@@ -10,14 +10,6 @@ class ClassCollection extends Collection<IClassModel> {
   async getClassById(classId: string): Promise<ClassDocument> {
     return await this.findOne({ _id: classId })
   }
-
-  async cancelClass(classId: string, date: Date): Promise<ClassDocument> {
-    return this.updateOne({ _id: classId }, { $push: { datesCancelled: date }})
-  }
-
-  async checkIntoClass(classId: string, date: Date): Promise<ClassDocument> {
-    return this.updateOne({ _id: classId }, { $push: { datesCheckedIn: date }})
-  }
 }
 
 const classCollection = new ClassCollection(ClassModel)

@@ -39,6 +39,14 @@ abstract class Collection<T> {
       throw error
     }
   }
+
+  async deleteOne(query: object = {}): Promise<void> {
+    try {
+      await this.model.deleteOne(query)
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
 export default Collection

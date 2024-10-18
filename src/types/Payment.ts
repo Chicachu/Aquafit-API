@@ -5,7 +5,7 @@ export type Payment = IDocument & {
   clientId: string
   enrollmentId: string
   amountDue: {
-    currency: string,
+    currency: string
     value: number
   }
   discount: number

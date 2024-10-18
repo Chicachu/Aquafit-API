@@ -5,7 +5,7 @@ import { PaymentStatus } from "../../types/enums/PaymentStatus";
 const PaymentSchema = new Schema(
   {
     _id: String,
-    clientId: {
+    userId: {
       type: String, 
       required: true
     }, 
