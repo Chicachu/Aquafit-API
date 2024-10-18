@@ -24,8 +24,8 @@ class UserCollection extends Collection<IUserModel> {
     return await this.insertOne(user)
   }
 
-  async updateAccessToken(userId: string, accessToken: string): Promise<UserDocument> {
-    return await this.updateOne({ _id: userId }, { accessToken })
+  async updateUser(user: User): Promise<UserDocument> {
+    return await this.updateOne({ username: user.username}, user)
   }
 }
 

@@ -3,6 +3,9 @@
     "incorrectCredentials": "Incorrect username or password.",
     "missingCredentials": "Missing username or password.",
     "accessDenied": "You do not have access to this page.",
-    "notLoggedInAccessDenied": "Please login to access this page." 
+    "notLoggedInAccessDenied": "Please login to access this page.", 
+    "cannotRegisterMissingInfo": "Missing information, registration has failed.",
+    "notExistingClient": "The email you provided is not associated with an AquaFit client account. Contact us today to join!",
+    "somethingWentWrong": "Something went wrong. Please contact us."
   }
 }

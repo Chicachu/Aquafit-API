@@ -18,6 +18,14 @@ class AuthenticationService {
 
     return jwt.sign({ userId: user._id }, process.env.JWT_SECRET!)
   }
+
+  async encryptPassword(password: string): Promise<string> {
+    return await bcrypt.genSalt().then(salt => bcrypt.hash(password, salt)).then(hash => hash)
+  }
+
+  async createAccessToken(userId: string): Promise<string> {
+    return jwt.sign({ userId }, process.env.JWT_SECRET!)
+  }
 }
 
 const authenticationService = new AuthenticationService()

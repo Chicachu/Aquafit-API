@@ -16,9 +16,15 @@ class AuthenticationController {
     let user = await usersService.getUser(username)
 
     const accessToken = await authenticationService.authenticateUser(user, password)
-    user = await usersService.saveAccessToken(user._id!, accessToken)
 
-    res.send({ user: user })
+    const updatedUser = {
+      ...user, 
+      accessToken
+    }
+
+    user = await usersService.updateUser(updatedUser)
+
+    res.send({ user })
   })
 }
 

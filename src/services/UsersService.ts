@@ -39,15 +39,7 @@ class UsersService {
 
   async updateUser(user: User): Promise<User> {
     try {
-      return await this.userCollection.updateOne({ username: user.username}, user)
-    } catch (error: any) {
-      throw new AppError(error.message, 500)
-    }
-  }
-
-  async saveAccessToken(userId: string, accessToken: string): Promise<User> {
-    try {
-      return await this.userCollection.updateAccessToken(userId, accessToken)
+      return await this.userCollection.updateUser(user)
     } catch (error: any) {
       throw new AppError(error.message, 500)
     }
