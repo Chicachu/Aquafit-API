@@ -1,8 +1,10 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import jwt from 'jsonwebtoken'
-import { errorHandler } from './src/middleware/errorMiddleware'
+import { errorHandler } from './src/middleware/ErrorMiddleware'
 import AppError from './src/types/AppError'
+import i18n from './config/i18n'
+import { usersService } from './src/services/UsersService'
 
 dotenv.config()
 const app = express() 
@@ -10,7 +12,8 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-// for authentication 
+app.use(i18n.init)
+
 app.use(async(req, res, next) => {
   if (req.headers['authorization']) {
     const accessToken = <string>req.headers['authorization'].replace('Bearer ', '')
@@ -20,7 +23,7 @@ app.use(async(req, res, next) => {
       throw new AppError('Your access token has expired. Please login to obtain a new one.', 401)
     }
 
-    //res.locals.loggedInUser = await usersService.getUserById(userId)
+    res.locals.loggedInUser = await usersService.getUserById(userId)
   }  
 
   const whitelist = 'http://localhost:4200'

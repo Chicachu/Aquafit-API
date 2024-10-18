@@ -1,0 +1,8 @@
+{
+  "errors": {
+    "incorrectCredentials": "Incorrect username or password.",
+    "missingCredentials": "Missing username or password.",
+    "accessDenied": "You do not have access to this page.",
+    "notLoggedInAccessDenied": "Please login to access this page." 
+  }
+}

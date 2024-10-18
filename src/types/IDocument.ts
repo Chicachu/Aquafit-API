@@ -1,3 +1,3 @@
 export type IDocument = {
-  _id?: string
+  _id?: string | null
 }

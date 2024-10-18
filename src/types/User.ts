@@ -7,12 +7,12 @@ export type User = IDocument & {
   lastName: string
   phoneNumber: string
   role: Role
-  email?: string
-  username?: string
-  password?: string
+  email?: string | null
+  username?: string | null
+  password?: string | null
   credits?: {
     amount: number
     currency: Currency
-  }
-  accessToken?: string
+  } | null
+  accessToken?: string | null
 }
