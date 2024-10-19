@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import AppError from "../types/AppError";
 import { User } from "../types/User";
 import i18n from '../../config/i18n';
+import { Types } from 'mongoose';
 
 class AuthenticationService { 
   async authenticateUser(user: User, password: string): Promise<string> {
@@ -23,7 +24,7 @@ class AuthenticationService {
     return await bcrypt.genSalt().then(salt => bcrypt.hash(password, salt)).then(hash => hash)
   }
 
-  async createAccessToken(userId: string): Promise<string> {
+  async createAccessToken(userId: Types.ObjectId): Promise<string> {
     return jwt.sign({ userId }, process.env.JWT_SECRET!)
   }
 }

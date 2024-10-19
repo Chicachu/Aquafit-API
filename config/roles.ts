@@ -1,27 +1,28 @@
 import { AccessControl } from 'accesscontrol'
-import { Role } from '../types/enums/Role'
+import { Role } from '../src/types/enums/Role'
+import { AccessControlResource } from '../src/types/enums/AccessControlResource'
 
 const ac = new AccessControl()
-const PROFILE='clientProfile'
-const CLASS_SCHEDULE='classSchedule'
 
 function roles(): AccessControl {
+  ac.grant(Role.GUEST)
+    .readAny(AccessControlResource.CLASS)
+
   ac.grant(Role.CLIENT)
-    .readOwn(PROFILE)
-    .readAny(CLASS_SCHEDULE)
+    .extend(Role.GUEST)
+    .readOwn(AccessControlResource.USER)
   
   ac.grant(Role.INSTRUCTOR)
     .extend(Role.CLIENT)
-    .readAny(PROFILE)
-    .readAny(CLASS_SCHEDULE)
+    .readAny(AccessControlResource.USER)
+    .readAny(AccessControlResource.CLASS)
   
   ac.grant(Role.ADMIN)
-    .extend(Role.CLIENT)
     .extend(Role.INSTRUCTOR)
-    .updateAny(CLASS_SCHEDULE)
-    .deleteAny(CLASS_SCHEDULE)
-    .updateAny(PROFILE)
-    .deleteAny(PROFILE)
+    .updateAny(AccessControlResource.CLASS)
+    .deleteAny(AccessControlResource.CLASS)
+    .updateAny(AccessControlResource.USER)
+    .deleteAny(AccessControlResource.USER)
 
   return ac
 }

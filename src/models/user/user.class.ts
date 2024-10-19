@@ -1,4 +1,4 @@
-import { Model } from "mongoose"
+import { Model, Types } from "mongoose"
 import { User } from "../../types/User"
 import Collection from "../_common/collection.class"
 import { IUserModel, UserDocument, UserModel } from "./user.schema"
@@ -8,20 +8,12 @@ class UserCollection extends Collection<IUserModel> {
     super(model)
   }
 
-  async getAllUsers(): Promise<UserDocument[]> {
-    return await this.find()
-  }
-
   async getUser(username: string): Promise<UserDocument> {
     return await this.findOne({ username })
   }
 
-  async getUserByid(userId: string): Promise<UserDocument> {
+  async getUserById(userId: Types.ObjectId): Promise<UserDocument> {
     return await this.findOne({ userId })
-  }
-
-  async addNewUser(user: User): Promise<UserDocument> {
-    return await this.insertOne(user)
   }
 
   async updateUser(user: User): Promise<UserDocument> {

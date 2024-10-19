@@ -1,20 +1,25 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose"
 import { Currency } from "../../types/enums/Currency"
 import { Weekday } from "../../types/enums/Weekday"
+import { IUserDocument, UserModel } from "../user/user.schema"
+import { Role } from "../../types/enums/Role"
 
 const ClassSchema = new Schema(
   {
-    _id: String,
+    _id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      auto: true 
+    },
     classLocation: {
       type: String,
-      enum: Object.values(Location),
       required: true
     },
-    days: [{
-      type: String,
+    days: {
+      type: [Number],
       enum: Object.values(Weekday),
       required: true
-    }], 
+    }, 
     startDate: {
       type: Date,
       required: true
@@ -29,26 +34,66 @@ const ClassSchema = new Schema(
     },
     prices: {
       type: Map,
-      of: new Schema({
-        value: {
-          type: Number,
-          required: true
-        }
-      }),
+      of: Number, 
       required: true,
       validate: {
-        validator: function (v: Map<string, { value: number }>) {
-          const allowedCurrencies = Object.values(Currency)
-          const keys = Array.from(v.keys())
-          return keys.every(key => allowedCurrencies.includes(key as Currency))
+        validator: function (v: Map<Currency, number>) {
+          const allowedCurrencies = Object.values(Currency);
+          const keys = Array.from(v.keys());
+          return keys.every(key => allowedCurrencies.includes(key as Currency));
         },
         message: (props: { value: string }) => `${props.value} is not a valid currency!`
       }
     },
-    maxAttendees: {
+    maxCapacity: {
       type: Number,
       required: true
     },
+    checkIns: [{
+      date: {
+        type: Date, 
+        required: true
+      },
+      instructorId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        validate: {
+          validator: async function (instructorId: Schema.Types.ObjectId) {
+            const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
+            return user && user.role === Role.INSTRUCTOR 
+          },
+          message: 'Assigned user must have the role of instructor.'
+        }
+      }, 
+      clientIds: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      }]
+    }],
+    cancellations: [{
+      date: {
+        type: Date, 
+        required: true
+      },
+      instructorId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        validate: {
+          validator: async function (instructorId: Schema.Types.ObjectId) {
+            const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
+            return user && user.role === Role.INSTRUCTOR 
+          },
+          message: 'Assigned user must have the role of instructor.'
+        }
+      }, 
+      reason: {
+        type: String, 
+        required: true
+      }
+    }]
   },
   { timestamps: true }
 )

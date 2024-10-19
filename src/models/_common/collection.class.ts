@@ -22,7 +22,7 @@ abstract class Collection<T> {
 
   async insertOne(data: object): Promise<any> {
     try {
-      const newModel = new this.model({ _id: uuid(), ...data })
+      const newModel = new this.model({_id uuid(), ...data })
       let insertedModel: Model<any>
       await newModel.save().then((savedDocument: any) => {insertedModel = savedDocument})
       return insertedModel!

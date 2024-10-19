@@ -1,4 +1,4 @@
-import { Model } from "mongoose";
+import { Model, Types } from "mongoose";
 import Collection from "../_common/collection.class";
 import { IPaymentDocument, IPaymentModel, PaymentDocument, PaymentModel } from "./payment.schema";
 import { Payment } from "../../types/Payment";
@@ -8,7 +8,7 @@ class PaymentCollection extends Collection<IPaymentDocument> {
     super(model)
   }
 
-  async getPaymentsByClientId(clientId: string): Promise<PaymentDocument[]> {
+  async getPaymentsByClientId(clientId: Types.ObjectId): Promise<PaymentDocument[]> {
     return await this.find({ clientId })
   }
   

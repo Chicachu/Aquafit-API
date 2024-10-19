@@ -4,13 +4,19 @@ import { PaymentStatus } from "../../types/enums/PaymentStatus";
 
 const PaymentSchema = new Schema(
   {
-    _id: String,
+    _id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      auto: true 
+    },
     userId: {
-      type: String, 
+      type: Schema.Types.ObjectId, 
+      ref: 'User',
       required: true
     }, 
     enrollmentId: {
-      type: String, 
+      type: Schema.Types.ObjectId, 
+      ref: 'Enrollment',
       required: true
     },
     amountDue: {

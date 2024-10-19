@@ -1,3 +1,5 @@
+import { Types } from "mongoose"
+
 export type IDocument = {
-  _id?: string | null
+  _id?: Types.ObjectId
 }

@@ -1,3 +1,4 @@
+import { Types } from "mongoose"
 import { userCollection, UserCollection } from "../models/user/user.class"
 import AppError from "../types/AppError"
 import { User } from "../types/User"
@@ -21,9 +22,9 @@ class UsersService {
     }
   }
 
-  async getUserById(userId: string): Promise<User> {
+  async getUserById(userId: Types.ObjectId): Promise<User> {
     try {
-      return await this.userCollection.getUserByid(userId)
+      return await this.userCollection.getUserById(userId)
     } catch (error: any) {
       throw new AppError(error.message, 500)
     }
