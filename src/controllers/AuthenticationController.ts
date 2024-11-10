@@ -25,7 +25,7 @@ class AuthenticationController {
 
       user = await usersService.updateUserInfo(user, { accessToken })
 
-      res.send({ user })
+      res.send(user)
     })
   ]
 }

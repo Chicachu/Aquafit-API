@@ -8,6 +8,7 @@
   "roleRequired": "Se requiere rol.",
   "notExistingClient": "El correo electrónico que proporcionaste no está asociado a una cuenta de cliente de AquaFit. ¡Contáctanos hoy para unirte!",
   "somethingWentWrong": "Algo salió mal. Por favor, contáctanos.",
-  "invalidLanguage": "Idioma no válido."
+  "invalidLanguage": "Idioma no válido.",
+  "alreadyRegistered": "El usuario ya está registrado"
   }
 }

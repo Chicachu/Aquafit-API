@@ -11,7 +11,7 @@ class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
     const users = await usersService.getAllUsers()
 
-    res.send({ users })
+    res.send(users)
   })
 
   registerNewUser = [
@@ -27,8 +27,8 @@ class UsersController {
         throw new AppError(errors.array().join(', '), 400)
       }
 
-      let user = await usersService.getUser(username)
-      
+      let user = await usersService.getUser(username.toLowerCase())
+
       if (role === Role.CLIENT) {
         if (!user) {
           throw new AppError(i18n.__('errors.notExistingClient'), 400)
@@ -39,11 +39,15 @@ class UsersController {
         throw new AppError(i18n.__('errors.somethingWentWrong'), 500)
       }
 
+      if (user.password) {
+        throw new AppError(i18n.__('errors.alreadyRegistered'), 409)
+      }
+
       const { encryptedPassword, accessToken } = await authenticationService.encryptPassword(user._id, password)
 
       user = await usersService.updateUserInfo(user, { password: encryptedPassword, accessToken })
 
-      res.send({ user })
+      res.send(user)
     })
   ]
 }
