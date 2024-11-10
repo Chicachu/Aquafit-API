@@ -39,6 +39,12 @@ app.use(async(req, res, next) => {
   }
 })
 
+import languageRouter from './src/routes/language.routes'
+app.use('/api', languageRouter)
+
+import authenticationRouter from './src/routes/authentication.routes'
+app.use('/api/auth', authenticationRouter)
+
 app.use(errorHandler)
 
 export default app

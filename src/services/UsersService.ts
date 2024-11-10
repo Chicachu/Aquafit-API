@@ -1,7 +1,7 @@
 import { Types } from "mongoose"
 import { userCollection, UserCollection } from "../models/user/user.class"
 import AppError from "../types/AppError"
-import { User } from "../types/User"
+import { UpdateUserOptions, User, UserCreationDTO } from "../types/User"
 
 class UsersService {
   userCollection: UserCollection
@@ -11,7 +11,11 @@ class UsersService {
   }
 
   async getAllUsers(): Promise<User> {
-    return await this.userCollection.find()
+    try {
+      return await this.userCollection.find()
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
   }
 
   async getUser(username: string): Promise<User> {
@@ -30,7 +34,7 @@ class UsersService {
     }
   }
 
-  async createNewUser(user: User): Promise<User> {
+  async createNewUser(user: UserCreationDTO): Promise<User> {
     try {
       return await this.userCollection.insertOne(user)
     } catch (error: any) {
@@ -38,8 +42,13 @@ class UsersService {
     }
   }
 
-  async updateUser(user: User): Promise<User> {
+  async updateUserInfo(user: User, updateUserOptions: UpdateUserOptions): Promise<User> {
     try {
+      const updatedUser = {
+        ...user, 
+        ...updateUserOptions
+      }
+
       return await this.userCollection.updateUser(user)
     } catch (error: any) {
       throw new AppError(error.message, 500)

@@ -4,28 +4,30 @@ import { usersService } from "../services/UsersService"
 import AppError from "../types/AppError"
 import i18n from '../../config/i18n'
 import { authenticationService } from '../services/AuthenticationService'
+import { body, validationResult } from 'express-validator'
 
 class AuthenticationController {
-  login = asyncHandler(async (req: Request, res: Response) => {
-    const { username, password } = req.body
+  login = [
+    body('username').isString().notEmpty().withMessage(i18n.__('errors.usernameRequired')),
+    body('password').isString().notEmpty().withMessage(i18n.__('errors.passwordRequired')),
+    
+      asyncHandler(async (req: Request, res: Response) => {
+      const { username, password } = req.body
 
-    if (!username || !password) {
-      throw new AppError(i18n.__('errors.missingCredentials'), 400)
-    } 
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError(errors.array().join(', '), 400)
+      }
 
-    let user = await usersService.getUser(username)
+      let user = await usersService.getUser(username)
 
-    const accessToken = await authenticationService.authenticateUser(user, password)
+      const accessToken = await authenticationService.authenticateUser(user, password)
 
-    const updatedUser = {
-      ...user, 
-      accessToken
-    }
+      user = await usersService.updateUserInfo(user, { accessToken })
 
-    user = await usersService.updateUser(updatedUser)
-
-    res.send({ user })
-  })
+      res.send({ user })
+    })
+  ]
 }
 
 const authenticationController = new AuthenticationController()

@@ -1,11 +1,13 @@
 {
   "errors": {
     "incorrectCredentials": "Incorrect username or password.",
-    "missingCredentials": "Missing username or password.",
     "accessDenied": "You do not have access to this page.",
     "notLoggedInAccessDenied": "Please login to access this page.", 
-    "cannotRegisterMissingInfo": "Missing information, registration has failed.",
+    "usernameRequired": "Username is required.",
+    "passwordRequired": "Password is required.",
+    "roleRequired": "Role is required.",
     "notExistingClient": "The email you provided is not associated with an AquaFit client account. Contact us today to join!",
-    "somethingWentWrong": "Something went wrong. Please contact us."
+    "somethingWentWrong": "Something went wrong. Please contact us.",
+    "invalidLanguage": "Invalid language."
   }
 }

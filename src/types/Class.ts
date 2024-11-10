@@ -22,3 +22,21 @@ export type Class = IDocument & {
     reason: string
   }[]
 }
+
+export type ClassCreationDTO = {
+  classLocation: string
+  days: Weekday[]
+  startDate: Date
+  endDate: Date
+  startTime: string
+  prices: Map<Currency | string, number>
+  maxCapacity: number
+}
+
+export type ClassUpdateOptions = {
+  days?: Weekday[]
+  classLocation?: string
+  startTime?: string
+  prices?: Map<Currency | string, number> 
+  maxCapacity?: number 
+}

@@ -1,5 +1,5 @@
 import { ClassCollection, classCollection } from "../models/class/class.class"
-import { Class } from "../types/Class"
+import { Class, ClassCreationDTO, ClassUpdateOptions } from "../types/Class"
 
 
 class ClassService {
@@ -9,11 +9,15 @@ class ClassService {
     this.classCollection = classCollection
   }
 
-  async addNewClass(newClass: Class): Promise<Class> {
+  async addNewClass(newClass: ClassCreationDTO): Promise<Class> {
     return await this.classCollection.insertOne(newClass)
   }
 
-  async updateClassInfo(updatedClass: Class): Promise<Class> {
+  async updateClassInfo(currentClass: Class, classUpdateOptions: ClassUpdateOptions): Promise<Class> {
+    const updatedClass = {
+      ...currentClass, 
+      ...classUpdateOptions
+    }
     return await this.classCollection.updateClass(updatedClass)
   }
 }

@@ -1,0 +1,13 @@
+{
+  "errors": {
+  "incorrectCredentials": "Nombre de usuario o contraseña incorrectos.",
+  "accessDenied": "No tienes acceso a esta página.",
+  "notLoggedInAccessDenied": "Por favor, inicia sesión para acceder a esta página.",
+  "usernameRequired": "Se requiere nombre de usuario.",
+  "passwordRequired": "Se requiere contraseña.",
+  "roleRequired": "Se requiere rol.",
+  "notExistingClient": "El correo electrónico que proporcionaste no está asociado a una cuenta de cliente de AquaFit. ¡Contáctanos hoy para unirte!",
+  "somethingWentWrong": "Algo salió mal. Por favor, contáctanos.",
+  "invalidLanguage": "Idioma no válido."
+  }
+}

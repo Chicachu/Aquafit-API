@@ -7,7 +7,6 @@ export type User = IDocument & {
   lastName: string
   phoneNumber: string
   role: Role
-  email?: string | null
   username?: string | null
   password?: string | null
   credits?: {
@@ -15,4 +14,18 @@ export type User = IDocument & {
     currency: Currency
   } | null
   accessToken?: string | null
+}
+
+export type UserCreationDTO = {
+  firstName: string
+  lastName: string
+  phoneNumber: string
+  role: Role
+}
+
+export type UpdateUserOptions = {
+  phoneNumber?: string
+  username?: string
+  password?: string
+  accessToken?: string
 }
