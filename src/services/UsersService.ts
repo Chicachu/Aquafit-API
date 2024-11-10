@@ -49,7 +49,7 @@ class UsersService {
         ...updateUserOptions
       }
 
-      return await this.userCollection.updateUser(user)
+      return await this.userCollection.updateUser(updatedUser)
     } catch (error: any) {
       throw new AppError(error.message, 500)
     }

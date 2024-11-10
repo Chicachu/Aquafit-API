@@ -4,7 +4,7 @@ import { Role } from "../../types/enums/Role";
 const UserSchema = new Schema(
   {
     _id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       auto: true 
     },
@@ -20,6 +20,11 @@ const UserSchema = new Schema(
       type: String,
       required: true
     },
+    role: {
+      type: String,
+      enum: Object.values(Role),
+      required: true
+    }, 
     username: {
       type: String,
       required: false
@@ -28,20 +33,13 @@ const UserSchema = new Schema(
       type: String,
       required: false
     },
-    role: {
-      type: String,
-      enum: Object.values(Role),
-      required: true
-    }, 
     accessToken: String
   }
 )
 
 UserSchema.index({ username: 1 })
 
-type UserDocument = InferSchemaType<typeof UserSchema> & {
-  role: Role
-}
+type UserDocument = InferSchemaType<typeof UserSchema>
 
 interface IUserDocument extends UserDocument, Document { }
 interface IUserModel extends Model<IUserDocument> { } 

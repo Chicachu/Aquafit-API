@@ -10,21 +10,21 @@ abstract class Collection<T> {
 
   async find(query: object = {}, limit?: number, offset?: number): Promise<any> {
     try {
-      return await this.model.find(query).limit(limit!).skip(offset!)
+      return await this.model.find(query).limit(limit!).skip(offset!).lean()
     } catch (error) {
       throw error
     }
   }
 
   async findOne(query: object = {}): Promise<any> {
-    return await this.model.findOne(query)
+    return await this.model.findOne(query).lean()
   }
 
   async insertOne(data: object): Promise<any> {
     try {
       const newModel = new this.model({_id: uuid(), ...data })
       let insertedModel: Model<any>
-      await newModel.save().then((savedDocument: any) => {insertedModel = savedDocument})
+      await newModel.save().then((savedDocument: any) => {insertedModel = savedDocument}).lean()
       return insertedModel!
     }
     catch (error) {
@@ -34,7 +34,7 @@ abstract class Collection<T> {
 
   async updateOne(query: object = {}, update: object = {}): Promise<any> {
     try {
-      return await this.model.findOneAndUpdate(query, update, { returnDocument: 'after' })
+      return await this.model.findOneAndUpdate(query, update, { returnDocument: 'after' }).lean()
     } catch (error) {
       throw error
     }

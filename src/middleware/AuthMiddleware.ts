@@ -1,19 +1,21 @@
 import asyncHandler from 'express-async-handler'
 import { Permission, Query } from 'accesscontrol'
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Response, Request } from 'express'
 import AppError from '../types/AppError'
 import { roles } from '../../config/roles'
 import i18n from '../../config/i18n'
+import { usersService } from '../services/UsersService'
 
 const hasAccess = function(action: string, resource: string) {
   return asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    const { user } = req
+    const { username } = req
 
-    if (!user) {
+    if (!username) {
       throw new AppError(i18n.__('errors.accessDenied'), 401)
     }
 
     try {
+      const user = await usersService.getUser(username)
       const permission = <Permission>roles().can(user.role)[action as keyof Query](resource)
 
       if (!permission.granted) {
@@ -29,13 +31,13 @@ const hasAccess = function(action: string, resource: string) {
 
 const isLoggedIn = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const user = res.locals.loggedInUser
+    const username = res.locals.loggedInUser
 
-    if (!user) {
+    if (!username) {
       throw new AppError(i18n.__('errors.notLoggedInAccessDenied'), 400)
     }
 
-    req.user = user
+    req.username = username
     next()
   } catch (error: any) {
     throw new AppError(error.message, 500)

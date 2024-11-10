@@ -28,6 +28,7 @@ class UsersController {
       }
 
       let user = await usersService.getUser(username)
+      
       if (role === Role.CLIENT) {
         if (!user) {
           throw new AppError(i18n.__('errors.notExistingClient'), 400)
