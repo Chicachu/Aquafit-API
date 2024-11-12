@@ -8,7 +8,10 @@ export type Payment = IDocument & {
     currency: string
     value: number
   }
-  discount: number
+  discountsApplied: {
+    discountId: string
+    amount: number
+  }[]
   paymentStatus: PaymentStatus
   dueDate: Date
 }

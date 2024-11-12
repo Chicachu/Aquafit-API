@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 import { IDocument } from "./IDocument";
 import { Currency } from "./enums/Currency";
 import { Weekday } from "./enums/Weekday";
@@ -7,18 +6,18 @@ export type Class = IDocument & {
   classLocation: string
   days: Weekday[]
   startDate: Date
-  endDate: Date
+  endDate?: Date | null
   startTime: string
   prices: Map<Currency | string, number>
   maxCapacity: number
   checkIns: {
     date: Date
-    instructorId: Types.ObjectId
-    clientIds: Types.ObjectId[]
+    instructorId: string
+    clientIds: string[]
   }[]
   cancellations: {
     date: Date
-    instructorId: Types.ObjectId
+    instructorId: string
     reason: string
   }[]
 }
@@ -27,7 +26,6 @@ export type ClassCreationDTO = {
   classLocation: string
   days: Weekday[]
   startDate: Date
-  endDate: Date
   startTime: string
   prices: Map<Currency | string, number>
   maxCapacity: number

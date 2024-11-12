@@ -47,6 +47,9 @@ app.use('/api/auth', authenticationRouter)
 import usersRouter from './src/routes/user.routes'
 app.use('/api/users', usersRouter)
 
+import scheduleRouter from './src/routes/schedule.routes'
+app.use('/api/schedule', scheduleRouter)
+
 app.use(errorHandler)
 
 export default app

@@ -1,5 +1,6 @@
 import { InferSchemaType, model, Model, Schema } from "mongoose";
 import { Role } from "../../types/enums/Role";
+import { Currency } from "../../types/enums/Currency";
 
 const UserSchema = new Schema(
   {
@@ -33,8 +34,26 @@ const UserSchema = new Schema(
       type: String,
       required: false
     },
-    accessToken: String
-  }
+    credits: {
+      type: {
+        amount: {
+          type: Number, 
+          required: true
+        },
+        currency: {
+          type: String,
+          enum: Object.values(Currency),
+          required: true
+        }
+      },
+      required: false
+    },
+    accessToken: {
+      type: String,
+      required: false
+    }
+  },
+  { timestamps: true }
 )
 
 UserSchema.index({ username: 1 })

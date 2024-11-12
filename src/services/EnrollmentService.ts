@@ -1,4 +1,3 @@
-import { Types } from "mongoose";
 import { EnrollmentCollection } from "../models/enrollment/enrollment.class";
 import { Enrollment } from "../types/Enrollment";
 import AppError from "../types/AppError";

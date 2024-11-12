@@ -5,17 +5,17 @@ import { PaymentStatus } from "../../types/enums/PaymentStatus";
 const PaymentSchema = new Schema(
   {
     _id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       auto: true 
     },
     userId: {
-      type: Schema.Types.ObjectId, 
+      type: String, 
       ref: 'User',
       required: true
     }, 
     enrollmentId: {
-      type: Schema.Types.ObjectId, 
+      type: String, 
       ref: 'Enrollment',
       required: true
     },
@@ -35,7 +35,16 @@ const PaymentSchema = new Schema(
       ),
       required: true
     },
-    discount: Number, 
+    discountsApplied: [{
+      discountId: {
+        type: String,
+        required: true
+      },
+      amount: {
+        type: Number, 
+        required: true
+      }
+    }], 
     paymentStatus: {
       type: String, 
       enum: Object.values(PaymentStatus)

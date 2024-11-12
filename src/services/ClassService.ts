@@ -8,6 +8,10 @@ class ClassService {
   constructor(classCollection: ClassCollection) {
     this.classCollection = classCollection
   }
+  
+  async getAllClasses(): Promise<Class[]> {
+    return await this.classCollection.find()
+  }
 
   async addNewClass(newClass: ClassCreationDTO): Promise<Class> {
     return await this.classCollection.insertOne(newClass)
@@ -17,6 +21,7 @@ class ClassService {
     const updatedClass = {
       ...currentClass, 
       ...classUpdateOptions
+
     }
     return await this.classCollection.updateClass(updatedClass)
   }

@@ -7,7 +7,7 @@ import { Role } from "../../types/enums/Role"
 const ClassSchema = new Schema(
   {
     _id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       auto: true 
     },
@@ -26,7 +26,7 @@ const ClassSchema = new Schema(
     },
     endDate: {
       type: Date,
-      required: true
+      required: false
     },
     startTime: {
       type: String, // "14:30" = 2:30
@@ -55,11 +55,11 @@ const ClassSchema = new Schema(
         required: true
       },
       instructorId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true,
         validate: {
-          validator: async function (instructorId: Schema.Types.ObjectId) {
+          validator: async function (instructorId: String) {
             const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
             return user && user.role === Role.INSTRUCTOR 
           },
@@ -67,7 +67,7 @@ const ClassSchema = new Schema(
         }
       }, 
       clientIds: [{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true
       }]
@@ -78,11 +78,11 @@ const ClassSchema = new Schema(
         required: true
       },
       instructorId: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true,
         validate: {
-          validator: async function (instructorId: Schema.Types.ObjectId) {
+          validator: async function (instructorId: String) {
             const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
             return user && user.role === Role.INSTRUCTOR 
           },

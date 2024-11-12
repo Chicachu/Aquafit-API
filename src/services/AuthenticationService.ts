@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import AppError from "../types/AppError";
 import { User } from "../types/User";
 import i18n from '../../config/i18n';
-import { Types } from 'mongoose';
 
 class AuthenticationService { 
   async authenticateUser(user: User, password: string): Promise<string> {

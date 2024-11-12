@@ -9,10 +9,10 @@ export type User = IDocument & {
   role: Role
   username?: string | null
   password?: string | null
-  // credits?: {
-  //   amount: number
-  //   currency: Currency
-  // } | null
+  credits?: {
+    amount: number
+    currency: Currency
+  } | null
   accessToken?: string | null
 }
 

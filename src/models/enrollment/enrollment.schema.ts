@@ -3,17 +3,17 @@ import { InferSchemaType, Model, Schema, model } from "mongoose";
 const EnrollmentSchema = new Schema(
   {
     _id: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
       auto: true 
     }, 
     userId: {
-      type: Schema.Types.ObjectId, 
+      type: String, 
       ref: 'User',
       required: true
     }, 
     classId: {
-      type: Schema.Types.ObjectId, 
+      type: String, 
       ref: 'Class',
       required: true
     }, 

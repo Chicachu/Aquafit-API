@@ -1,4 +1,4 @@
-import { Model, Types } from "mongoose"
+import { Model } from "mongoose"
 import { User } from "../../types/User"
 import Collection from "../_common/collection.class"
 import { IUserModel, UserDocument, UserModel } from "./user.schema"
@@ -12,7 +12,7 @@ class UserCollection extends Collection<IUserModel> {
     return await this.findOne({ username })
   }
 
-  async getUserById(userId: Types.ObjectId): Promise<UserDocument> {
+  async getUserById(userId: string): Promise<UserDocument> {
     return await this.findOne({ userId })
   }
 
