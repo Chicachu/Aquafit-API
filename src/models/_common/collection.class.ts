@@ -24,7 +24,7 @@ abstract class Collection<T> {
     try {
       const newModel = new this.model({_id: uuid(), ...data })
       let insertedModel: Model<any>
-      await newModel.save().then((savedDocument: any) => {insertedModel = savedDocument}).lean()
+      await newModel.save().then((savedDocument: any) => {insertedModel = savedDocument})
       return insertedModel!
     }
     catch (error) {

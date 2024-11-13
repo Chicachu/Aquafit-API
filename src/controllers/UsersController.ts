@@ -6,6 +6,7 @@ import AppError from '../types/AppError'
 import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
 import { body, validationResult } from 'express-validator'
+import { UserCreationDTO } from '../types/User'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -13,12 +14,36 @@ class UsersController {
 
     res.send(users)
   })
+  
+  addNewClient = [
+    body('firstName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+    body('lastName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+    body('phoneNumber').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+      asyncHandler(async (req: Request, res: Response) => {
+        const { firstName, lastName, phoneNumber } = req.body
+
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          throw new AppError(errors.array().join(', '), 400)
+        }
+
+        const createUserDTO: UserCreationDTO = {
+          firstName, 
+          lastName, 
+          phoneNumber, 
+          role: Role.CLIENT
+        }
+
+        await usersService.createNewUser(createUserDTO)
+
+        res.send()
+    })
+  ]
 
   registerNewUser = [
     body('username').isString().notEmpty().withMessage(i18n.__('errors.usernameRequired')),
     body('password').isString().notEmpty().withMessage(i18n.__('errors.passwordRequired')),
     body('role').isString().notEmpty().withMessage(i18n.__('errors.roleRequired')),
-    
       asyncHandler(async (req: Request, res: Response) => {
       const { username, password, role } = req.body
 
