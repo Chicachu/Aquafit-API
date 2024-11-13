@@ -31,13 +31,18 @@ const hasAccess = function(action: string, resource: string) {
 
 const isLoggedIn = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const username = res.locals.loggedInUser
+    const userId = res.locals.loggedInUser
 
-    if (!username) {
+    if (!userId) {
+      throw new AppError(i18n.__('errors.notLoggedInAccessDenied'), 400)
+    }
+    const user = await usersService.getUserById(userId)
+
+    if (!user || !user.username) {
       throw new AppError(i18n.__('errors.notLoggedInAccessDenied'), 400)
     }
 
-    req.username = username
+    req.username = user.username
     next()
   } catch (error: any) {
     throw new AppError(error.message, 500)

@@ -1,9 +1,11 @@
 import { IDocument } from "./IDocument";
+import { ClassType } from "./enums/ClassType";
 import { Currency } from "./enums/Currency";
 import { Weekday } from "./enums/Weekday";
 
 export type Class = IDocument & {
   classLocation: string
+  classType: ClassType
   days: Weekday[]
   startDate: Date
   endDate?: Date | null

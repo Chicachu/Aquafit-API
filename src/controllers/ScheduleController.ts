@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import { Request, Response } from 'express'
-import { param } from 'express-validator'
+import { query } from 'express-validator'
 import i18n from '../../config/i18n';
 import { classService } from '../services/ClassService'
 import { scheduleService } from '../services/ScheduleService'
@@ -10,18 +10,18 @@ import { Class } from '../types/Class'
 
 class ScheduleController {
   getClassSchedule = [
-    param('view').isString().notEmpty().custom((value) => Object.values(ScheduleView).includes(value)).withMessage(i18n.__('errors.viewIsRequired')),
-    param('year').isNumeric(), 
-    param('month').isNumeric(),
-    param('date').isString(),
+    query('view').isString().notEmpty().custom((value) => Object.values(ScheduleView).includes(value)).withMessage(i18n.__('errors.viewIsRequired')),
+    query('year').isNumeric(), 
+    query('month').isNumeric(),
+    query('date').isString(),
     asyncHandler(async (req: Request, res: Response) => {
-      const { view, year, month, date } = req.params
+      const { view, year, month, date } = req.query
 
       const classes = await classService.getAllClasses()
 
       if (!view) throw new AppError(i18n.__('errors.viewIsRequired'), 400)
 
-      let classesSchedule: Map<string, Class[]>
+      let classesSchedule: Map<string, Class[]> = new Map()
 
       switch (view) {
         case ScheduleView.MONTH: 
@@ -32,14 +32,16 @@ class ScheduleController {
         case ScheduleView.WEEK:
           if (!date) throw new AppError(i18n.__('errors.missingParameters'), 400)
 
-          classesSchedule = await scheduleService.getClassOccurrencesForWeek(classes, new Date(date))
+          classesSchedule = await scheduleService.getClassOccurrencesForWeek(classes, new Date(date as string))
           break
         case ScheduleView.DAY: 
           if (!date) throw new AppError(i18n.__('errors.missingParameters'), 400)
 
-          classesSchedule = await scheduleService.getClassOccurrencesForDay(classes, new Date(date))
+          classesSchedule = await scheduleService.getClassOccurrencesForDay(classes, new Date(date as string))
           break
       }
+
+      res.send(Object.fromEntries(classesSchedule))
     })  
   ]
 }

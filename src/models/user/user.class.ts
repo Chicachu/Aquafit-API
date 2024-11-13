@@ -13,7 +13,7 @@ class UserCollection extends Collection<IUserModel> {
   }
 
   async getUserById(userId: string): Promise<UserDocument> {
-    return await this.findOne({ userId })
+    return await this.findOne({ _id: userId })
   }
 
   async updateUser(user: User): Promise<UserDocument> {

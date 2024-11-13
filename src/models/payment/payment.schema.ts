@@ -19,7 +19,7 @@ const PaymentSchema = new Schema(
       ref: 'Enrollment',
       required: true
     },
-    amountDue: {
+    amount: {
       type: new Schema(
         {
           currency: {
@@ -45,6 +45,26 @@ const PaymentSchema = new Schema(
         required: true
       }
     }], 
+    payments: [{
+      type: new Schema(
+        {
+          currency: {
+            type: String, 
+            enum: Object.values(Currency), 
+            required: true
+          },
+          value: {
+            type: Number, 
+            required: true
+          },
+          date: {
+            type: Date, 
+            required: true
+          }
+        }
+      ),
+      required: true
+    }],
     paymentStatus: {
       type: String, 
       enum: Object.values(PaymentStatus)
@@ -53,6 +73,9 @@ const PaymentSchema = new Schema(
   }, 
   { timestamps: true }
 )
+
+
+// have virtual fields for amountDue and remainingBalance 
 
 type PaymentDocument = InferSchemaType<typeof PaymentSchema>
 

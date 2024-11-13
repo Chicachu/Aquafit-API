@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import { CalendarClass } from "../types/CalendarClass";
 import { Class } from "../types/Class";
 
@@ -53,7 +54,7 @@ class ScheduleService {
         if (classInfo.days.includes(currentDate.getDay())) {
           occurrences.push({
             ...classInfo,
-            date: currentDate
+            date: this._addTimeToDate(currentDate, classInfo.startTime)
           })
         }
 
@@ -70,7 +71,7 @@ class ScheduleService {
     })
   } 
 
-   private _groupOccurrencesByDate(occurrences: CalendarClass[]): Map<string, CalendarClass[]> {
+  private _groupOccurrencesByDate(occurrences: CalendarClass[]): Map<string, CalendarClass[]> {
     return new Map(
       Object.entries(
         occurrences.reduce((acc, curr) => {
@@ -84,6 +85,13 @@ class ScheduleService {
       )
     );
   } 
+
+  private _addTimeToDate(date: Date, timeString: string): Date {
+    const [hours, minutes] = timeString.split(":").map(Number)
+    const newDate = new Date(date)
+    newDate.setHours(hours, minutes)
+    return newDate
+  }
 }
 
 const scheduleService = new ScheduleService()

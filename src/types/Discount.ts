@@ -1,8 +1,9 @@
 import { IDocument } from "./IDocument";
+import { DiscountType } from "./enums/DiscountType";
 
 export type Discount = IDocument & {
-  name: string
-  type: Discount
+  description: string
+  type: DiscountType
   value: number
   startDate: Date
 }

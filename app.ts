@@ -39,7 +39,7 @@ app.use(async(req, res, next) => {
 })
 
 import languageRouter from './src/routes/language.routes'
-app.use('/api', languageRouter)
+app.use('/api/languages', languageRouter)
 
 import authenticationRouter from './src/routes/authentication.routes'
 app.use('/api/auth', authenticationRouter)
@@ -48,7 +48,7 @@ import usersRouter from './src/routes/user.routes'
 app.use('/api/users', usersRouter)
 
 import scheduleRouter from './src/routes/schedule.routes'
-app.use('/api/schedule', scheduleRouter)
+app.use('/api/schedules', scheduleRouter)
 
 app.use(errorHandler)
 

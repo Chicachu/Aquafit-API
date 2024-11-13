@@ -3,6 +3,7 @@ import { Currency } from "../../types/enums/Currency"
 import { Weekday } from "../../types/enums/Weekday"
 import { IUserDocument, UserModel } from "../user/user.schema"
 import { Role } from "../../types/enums/Role"
+import { ClassType } from "../../types/enums/ClassType"
 
 const ClassSchema = new Schema(
   {
@@ -10,6 +11,11 @@ const ClassSchema = new Schema(
       type: String,
       required: true,
       auto: true 
+    },
+    classType: {
+      type: String, 
+      enum: Object.values(ClassType),
+      required: true
     },
     classLocation: {
       type: String,

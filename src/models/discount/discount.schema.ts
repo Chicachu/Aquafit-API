@@ -8,7 +8,7 @@ const DiscountSchema = new Schema(
       required: true, 
       auto: true
     }, 
-    name: {
+    description: {
       type: String,
       required: true
     },
