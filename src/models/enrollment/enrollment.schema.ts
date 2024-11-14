@@ -21,6 +21,7 @@ const EnrollmentSchema = new Schema(
       type: Date,
       required: true
     },
+    sessionsOverride: Number,
     bonusSessions: Number
   },
   { timestamps: true }

@@ -47,6 +47,9 @@ app.use('/api/auth', authenticationRouter)
 import usersRouter from './src/routes/user.routes'
 app.use('/api/users', usersRouter)
 
+import classRouter from './src/routes/class.routes'
+app.use('/api/classes', classRouter)
+
 import scheduleRouter from './src/routes/schedule.routes'
 app.use('/api/schedules', scheduleRouter)
 

@@ -7,6 +7,7 @@ const ac = new AccessControl()
 function roles(): AccessControl {
   ac.grant(Role.GUEST)
     .readAny(AccessControlResource.CLASS)
+    .readAny(AccessControlResource.SCHEDULE)
 
   ac.grant(Role.CLIENT)
     .extend(Role.GUEST)
@@ -15,7 +16,6 @@ function roles(): AccessControl {
   ac.grant(Role.INSTRUCTOR)
     .extend(Role.CLIENT)
     .readAny(AccessControlResource.USER)
-    .readAny(AccessControlResource.CLASS)
   
   ac.grant(Role.ADMIN)
     .extend(Role.INSTRUCTOR)
