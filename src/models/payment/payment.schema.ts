@@ -45,7 +45,7 @@ const PaymentSchema = new Schema(
         required: true
       }
     }], 
-    payments: [{
+    paymentsHistory: [{
       type: new Schema(
         {
           currency: {
@@ -69,7 +69,16 @@ const PaymentSchema = new Schema(
       type: String, 
       enum: Object.values(PaymentStatus)
     },
-    dueDate: Date
+    period: {
+      start: {
+        type: Date,
+        required: true
+      },
+      dueDate: {
+        type: Date, 
+        required: true
+      }
+    }
   }, 
   { timestamps: true }
 )

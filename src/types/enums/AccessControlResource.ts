@@ -3,5 +3,5 @@ export enum AccessControlResource {
   PAYMENT='payment', 
   CLASS='class', 
   ENROLLMENT='enrollment',
-  SCHEDULE='schedule'
+  ALL='allResources'
 }

@@ -9,15 +9,15 @@ class EnrollmentCollection extends Collection<IEnrollmentModel> {
     super(model)
   }
 
-  async getClientEnrollmentInformation(userId: string): Promise<EnrollmentDocument> {
+  async getClientEnrollmentInformation(userId: string): Promise<any> {
     return await this.findOne({ userId })
   }
 
-  async getClassEnrollmentInformation(classId: string): Promise<EnrollmentDocument> {
+  async getClassEnrollmentInformation(classId: string): Promise<any> {
     return await this.findOne({ classId })
   }
 
-  async enrollClient(enrollment: Enrollment): Promise<EnrollmentDocument> {
+  async enrollClient(enrollment: Enrollment): Promise<any> {
     return await this.insertOne(enrollment)
   }
 }

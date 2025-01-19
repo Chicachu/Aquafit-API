@@ -1,5 +1,8 @@
 import { Model } from "mongoose"
 import { v4 as uuid } from 'uuid'
+import AppError from "../../types/AppError"
+import i18n from "../../../config/i18n"
+import { ClassCreationDTO } from "../../types/Class"
 
 abstract class Collection<T> {
   model: Model<any>
@@ -16,8 +19,29 @@ abstract class Collection<T> {
     }
   }
 
+  async findConflicts(newClass: ClassCreationDTO): Promise<any> {
+    const convertedDays: number[] = newClass.days.map(day => Number(day))
+    const startDate = new Date(newClass.startDate)
+
+    const query = {
+      days: { $in: convertedDays },
+      startTime: newClass.startTime,
+      startDate: { $lte: startDate },
+      $or: [
+        { endDate: { $gte: startDate } },
+        { endDate: { $eq: null } }
+      ]
+    }
+
+    return await this.model.find(query)
+  }
+
   async findOne(query: object = {}): Promise<any> {
     return await this.model.findOne(query).lean()
+  }
+
+  async findDistinct(property: string): Promise<any> {
+    return await this.model.distinct(property)
   }
 
   async insertOne(data: object): Promise<any> {
@@ -28,7 +52,7 @@ abstract class Collection<T> {
       return insertedModel!
     }
     catch (error) {
-      throw error
+      throw new AppError(i18n.__(''), 500) 
     }
   }
 

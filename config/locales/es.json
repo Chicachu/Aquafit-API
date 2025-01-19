@@ -1,14 +1,18 @@
 {
   "errors": {
-  "incorrectCredentials": "Nombre de usuario o contraseña incorrectos.",
-  "accessDenied": "No tienes acceso a esta página.",
-  "notLoggedInAccessDenied": "Por favor, inicia sesión para acceder a esta página.",
-  "usernameRequired": "Se requiere nombre de usuario.",
-  "passwordRequired": "Se requiere contraseña.",
-  "roleRequired": "Se requiere rol.",
-  "notExistingClient": "El correo electrónico que proporcionaste no está asociado a una cuenta de cliente de AquaFit. ¡Contáctanos hoy para unirte!",
-  "somethingWentWrong": "Algo salió mal. Por favor, contáctanos.",
-  "invalidLanguage": "Idioma no válido.",
-  "alreadyRegistered": "El usuario ya está registrado"
+    "incorrectCredentials": "Nombre de usuario o contraseña incorrectos.",
+    "accessDenied": "No tienes acceso a esta página.",
+    "notLoggedInAccessDenied": "Por favor, inicia sesión para acceder a esta página.",
+    "usernameRequired": "Se requiere nombre de usuario.",
+    "passwordRequired": "Se requiere contraseña.",
+    "roleRequired": "Se requiere rol.",
+    "notExistingClient": "El correo electrónico que proporcionaste no está asociado a una cuenta de cliente de AquaFit. ¡Contáctanos hoy para unirte!",
+    "somethingWentWrong": "Algo salió mal. Por favor, contáctanos.",
+    "invalidLanguage": "Idioma no válido.",
+    "alreadyRegistered": "El usuario ya está registrado",
+    "missingParameters": "Faltan parámetros",
+    "viewIsRequired": "La vista es obligatoria",
+    "conflictingClasses": "La clase no se pudo agregar, entra en conflicto con una clase existente.",
+    "notSavedToDB": "Algo salió mal al guardar en la base de datos."
   }
 }

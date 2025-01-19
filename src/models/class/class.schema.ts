@@ -23,7 +23,14 @@ const ClassSchema = new Schema(
     },
     days: {
       type: [Number],
-      enum: Object.values(Weekday),
+      validate: {
+        validator: function(v: number[]) {
+          return v.every(day => 
+            Object.values(Weekday).includes(day) 
+          )
+        },
+        message: 'Invalid day values'
+      },
       required: true
     }, 
     startDate: {
@@ -38,19 +45,17 @@ const ClassSchema = new Schema(
       type: String, // "14:30" = 2:30
       required: true
     },
-    prices: {
-      type: Map,
-      of: Number, 
-      required: true,
-      validate: {
-        validator: function (v: Map<Currency, number>) {
-          const allowedCurrencies = Object.values(Currency);
-          const keys = Array.from(v.keys());
-          return keys.every(key => allowedCurrencies.includes(key as Currency));
-        },
-        message: (props: { value: string }) => `${props.value} is not a valid currency!`
+    prices:  [{
+      currency: {
+        type: String,
+        enum: Object.values(Currency),
+        required: true
+      },
+      amount: {
+        type: Number,
+        required: true
       }
-    },
+    }],
     maxCapacity: {
       type: Number,
       required: true
@@ -99,6 +104,10 @@ const ClassSchema = new Schema(
         type: String, 
         required: true
       }
+    }],
+    waitlist: [{
+      type: String,
+      required: false
     }]
   },
   { timestamps: true }

@@ -13,11 +13,14 @@ export type Payment = IDocument & {
     discountId: string
     amount: number
   }[]
-  payments: {
+  paymentsHistory: {
     currency: Currency
     value: number
     date: Date
   }[]
   paymentStatus: PaymentStatus
-  dueDate: Date
+  period: {
+    start: Date, 
+    duteDate: Date
+  }
 }

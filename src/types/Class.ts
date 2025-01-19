@@ -1,4 +1,6 @@
 import { IDocument } from "./IDocument";
+import { Price } from "./Price";
+import { User } from "./User";
 import { ClassType } from "./enums/ClassType";
 import { Currency } from "./enums/Currency";
 import { Weekday } from "./enums/Weekday";
@@ -10,18 +12,19 @@ export type Class = IDocument & {
   startDate: Date
   endDate?: Date | null
   startTime: string
-  prices: Map<Currency | string, number>
+  prices: Price[]
   maxCapacity: number
-  checkIns: {
+  checkIns?: {
     date: Date
     instructorId: string
     clientIds: string[]
   }[]
-  cancellations: {
+  cancellations?: {
     date: Date
     instructorId: string
     reason: string
   }[]
+  waitlist?: string[] | undefined
 }
 
 export type ClassCreationDTO = {
@@ -29,7 +32,7 @@ export type ClassCreationDTO = {
   days: Weekday[]
   startDate: Date
   startTime: string
-  prices: Map<Currency | string, number>
+  prices: Price[]
   maxCapacity: number
 }
 
@@ -37,6 +40,6 @@ export type ClassUpdateOptions = {
   days?: Weekday[]
   classLocation?: string
   startTime?: string
-  prices?: Map<Currency | string, number> 
+  prices?: Price[] 
   maxCapacity?: number 
 }

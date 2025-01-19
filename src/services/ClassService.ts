@@ -1,11 +1,10 @@
 import { ClassCollection, classCollection } from "../models/class/class.class"
+import AppError from "../types/AppError"
 import { Class, ClassCreationDTO, ClassUpdateOptions } from "../types/Class"
-
+import i18n from '../../config/i18n'
 
 class ClassService {
-  classCollection: ClassCollection
-
-  constructor(classCollection: ClassCollection) {
+  constructor(private classCollection: ClassCollection) {
     this.classCollection = classCollection
   }
   
@@ -13,7 +12,19 @@ class ClassService {
     return await this.classCollection.find()
   }
 
+  async getAllLocations(): Promise<string[]> {
+    return await this.classCollection.findDistinct('classLocation')
+  }
+
+  async getClass(classId: string): Promise<Class> {
+    return this.classCollection.getClassById(classId)
+  }
+
   async addNewClass(newClass: ClassCreationDTO): Promise<Class> {
+    if (await this._conflictsWithExistingClass(newClass)) {
+      throw new AppError(i18n.__('errors.conflictingClasses'), 400)
+    }
+
     return await this.classCollection.insertOne(newClass)
   }
 
@@ -24,6 +35,12 @@ class ClassService {
 
     }
     return await this.classCollection.updateClass(updatedClass)
+  }
+
+  private async _conflictsWithExistingClass(newClass: ClassCreationDTO): Promise<boolean> {
+    const conflictingClasses = await this.classCollection.findConflicts(newClass)
+
+    return conflictingClasses.length > 0
   }
 }
 

@@ -8,11 +8,20 @@ class PaymentCollection extends Collection<IPaymentDocument> {
     super(model)
   }
 
-  async getPaymentsByClientId(clientId: string): Promise<PaymentDocument[]> {
+  async getAllPaymentsForClass(enrollmentIds: string[], clientIds: string[]): Promise<any> {
+    return await this.find({
+      $and: [
+        { enrollmentId: { $in: enrollmentIds } },
+        { clientId: { $in: clientIds } }
+      ]
+    })
+  }
+
+  async getPaymentsByClientId(clientId: string): Promise<any> {
     return await this.find({ clientId })
   }
   
-  async createInvoice(payment: Payment): Promise<PaymentDocument> {
+  async createInvoice(payment: Payment): Promise<any> {
     return await this.insertOne(payment)
   } 
 }
