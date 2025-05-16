@@ -10,7 +10,8 @@ import { UserCreationDTO } from '../types/User'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
-    const users = await usersService.getAllUsers()
+    const role = req.query.role
+    const users = await usersService.getAllUsers(role as string)
 
     res.send(users)
   })
@@ -54,13 +55,13 @@ class UsersController {
 
       let user = await usersService.getUser(username.toLowerCase())
 
-      if (role === Role.CLIENT) {
+      if (role === Role.CLIENT || role === Role.INSTRUCTOR) {
         if (!user) {
           throw new AppError(i18n.__('errors.notExistingClient'), 400)
         }
       }
 
-      if (!user._id) {
+      if (!user?._id) {
         throw new AppError(i18n.__('errors.somethingWentWrong'), 500)
       }
 

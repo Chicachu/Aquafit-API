@@ -14,10 +14,11 @@ class ScheduleController {
     query('year').isNumeric(), 
     query('month').isNumeric(),
     query('date').isString(),
+    query('location').isString(),
     asyncHandler(async (req: Request, res: Response) => {
-      const { view, year, month, date } = req.query
+      const { view, year, month, date, location } = req.query
 
-      const classes = await classService.getAllClasses()
+      const classes = location ? await classService.getClassesAtLocation(location as string) : await classService.getAllClasses()
 
       if (!view) throw new AppError(i18n.__('errors.viewIsRequired'), 400)
 

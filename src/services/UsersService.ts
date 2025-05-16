@@ -1,5 +1,6 @@
 import { userCollection, UserCollection } from "../models/user/user.class"
 import AppError from "../types/AppError"
+import { Role } from "../types/enums/Role"
 import { UpdateUserOptions, User, UserCreationDTO } from "../types/User"
 
 class UsersService {
@@ -9,9 +10,10 @@ class UsersService {
     this.userCollection = userCollection
   }
 
-  async getAllUsers(): Promise<User> {
+  async getAllUsers(role?: string): Promise<User> {
     try {
-      return await this.userCollection.find()
+      if (role) return await this.userCollection.find({ role })
+      else return await this.userCollection.find()
     } catch (error: any) {
       throw new AppError(error.message, 500)
     }

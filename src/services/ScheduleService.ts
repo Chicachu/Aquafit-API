@@ -28,7 +28,7 @@ class ScheduleService {
     const startDate = new Date(date.setHours(0, 0, 0, 0));
     const endDate = new Date(date.setHours(23, 59, 59, 999));
 
-    const occurrences = await this._getClassOccurencesForRange(classes, startDate, endDate);
+    const occurrences = await this._getClassOccurencesForRange(classes, startDate, endDate)
 
     return this._groupOccurrencesByDate(occurrences)
   }

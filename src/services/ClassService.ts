@@ -12,6 +12,10 @@ class ClassService {
     return await this.classCollection.find()
   }
 
+  async getClassesAtLocation(location: string): Promise<Class[]> {
+    return await this.classCollection.find({ classLocation: location });
+  }
+
   async getAllLocations(): Promise<string[]> {
     return await this.classCollection.findDistinct('classLocation')
   }

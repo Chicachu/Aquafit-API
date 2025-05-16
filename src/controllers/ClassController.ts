@@ -20,7 +20,7 @@ class ClassController {
     body('newClass.classType').isString().notEmpty()
       .custom((value) => Object.values(ClassType).includes(value))
       .withMessage(i18n.__('errors.missingParameters')),
-    body('newClass.days').isArray()
+    body('newClass.days').isArray().notEmpty()
       .custom((days: string[]) => days.every(day => 
         Object.values(Weekday).includes(parseInt(day))))
       .withMessage(i18n.__('errors.missingParameters')),
