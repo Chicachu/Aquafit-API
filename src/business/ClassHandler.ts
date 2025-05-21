@@ -1,6 +1,6 @@
 import { ClassService, classService } from "../services/ClassService"
 import { EnrollmentService, enrollmentService } from "../services/EnrollmentService"
-import { PaymentService, paymentService } from "../services/PaymentService"
+import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import AppError from "../types/AppError"
 import { ClassDetails } from "../types/ClassDetails"
 
@@ -8,7 +8,7 @@ class ClassHandler {
   constructor(
     private classService: ClassService, 
     private enrollmentService: EnrollmentService,
-    private paymentService: PaymentService
+    private invoiceService: InvoiceService
   ) {}
 
   async getClassDetails(classId: string): Promise<ClassDetails> {
@@ -23,7 +23,7 @@ class ClassHandler {
 
     let payments 
     if (enrollmentIds && clientIds) {
-      payments = await this.paymentService.getAllPaymentsForClass(enrollmentIds, clientIds)
+      payments = await this.invoiceService.getAllInvoicesForClass(enrollmentIds, clientIds)
     }
 
     const classDetails: ClassDetails = {
@@ -34,5 +34,5 @@ class ClassHandler {
     return classDetails
   }
 }
-const classHandler = new ClassHandler(classService, enrollmentService, paymentService)
+const classHandler = new ClassHandler(classService, enrollmentService, invoiceService)
 export { classHandler, ClassHandler }

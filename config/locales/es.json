@@ -13,6 +13,7 @@
     "missingParameters": "Faltan parámetros",
     "viewIsRequired": "La vista es obligatoria",
     "conflictingClasses": "La clase no se pudo agregar, entra en conflicto con una clase existente.",
-    "notSavedToDB": "Algo salió mal al guardar en la base de datos."
+    "notSavedToDB": "Algo salió mal al guardar en la base de datos.",
+    "contextMissing": "Falta el contexto."
   }
 }

@@ -4,6 +4,8 @@ import { Weekday } from "../../types/enums/Weekday"
 import { IUserDocument, UserModel } from "../user/user.schema"
 import { Role } from "../../types/enums/Role"
 import { ClassType } from "../../types/enums/ClassType"
+import { AmountSchema } from "../_common/amount.schema"
+import { BillingFrequency } from "../../types/enums/BillingFrequency"
 
 const ClassSchema = new Schema(
   {
@@ -45,19 +47,17 @@ const ClassSchema = new Schema(
       type: String, // "14:30" = 2:30
       required: true
     },
-    prices:  [{
-      currency: {
-        type: String,
-        enum: Object.values(Currency),
-        required: true
-      },
-      amount: {
-        type: Number,
-        required: true
-      }
-    }],
+    prices:  {
+      type: [AmountSchema],
+      required: true
+    },
     maxCapacity: {
       type: Number,
+      required: true
+    },
+    billingFrequency: {
+      type: String, 
+      enum: Object.values(BillingFrequency), 
       required: true
     },
     checkIns: [{

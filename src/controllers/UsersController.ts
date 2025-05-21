@@ -5,7 +5,7 @@ import i18n from '../../config/i18n'
 import AppError from '../types/AppError'
 import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
-import { body, validationResult } from 'express-validator'
+import { body, param, validationResult } from 'express-validator'
 import { UserCreationDTO } from '../types/User'
 
 class UsersController {
@@ -16,7 +16,7 @@ class UsersController {
     res.send(users)
   })
   
-  addNewClient = [
+  addNewUser = [
     body('firstName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
     body('lastName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
     body('phoneNumber').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
@@ -38,6 +38,20 @@ class UsersController {
         await usersService.createNewUser(createUserDTO)
 
         res.send()
+    })
+  ]
+
+  getUser = [
+    param('userId').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+      asyncHandler(async (req: Request, res: Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          throw new AppError(errors.array().join(', '), 400)
+        }
+        const userId = req.params.userId 
+        const user = await usersService.getUserById(userId)
+
+        res.send(user)
     })
   ]
 

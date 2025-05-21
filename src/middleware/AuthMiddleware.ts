@@ -25,7 +25,7 @@ const hasAccess = function(action: string, resource: string) {
       next()
     } catch (error: any) {
       throw new AppError(error.message, 500)
-    }
+    } 
   })
 }
 

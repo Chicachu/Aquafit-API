@@ -1,5 +1,5 @@
 import { EnrollmentCollection, enrollmentCollection } from "../models/enrollment/enrollment.class";
-import { Enrollment } from "../types/Enrollment";
+import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment";
 import AppError from "../types/AppError";
 
 class EnrollmentService {
@@ -15,7 +15,7 @@ class EnrollmentService {
     }
   }
 
-  async enrollClient(newEnrollment: Enrollment): Promise<Enrollment> {
+  async enrollClient(newEnrollment: EnrollmentCreationDTO): Promise<Enrollment> {
       try {
         return await this.enrollmentCollection.insertOne(newEnrollment)
       } catch (error: any) {

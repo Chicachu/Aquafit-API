@@ -2,6 +2,9 @@ import { ClassCollection, classCollection } from "../models/class/class.class"
 import AppError from "../types/AppError"
 import { Class, ClassCreationDTO, ClassUpdateOptions } from "../types/Class"
 import i18n from '../../config/i18n'
+import { ClassType } from "../types/enums/ClassType"
+import { Weekday } from "../types/enums/Weekday"
+import { Price } from "../types/Price"
 
 class ClassService {
   constructor(private classCollection: ClassCollection) {
@@ -24,7 +27,24 @@ class ClassService {
     return this.classCollection.getClassById(classId)
   }
 
-  async addNewClass(newClass: ClassCreationDTO): Promise<Class> {
+  async addNewClass(
+    classLocation: string, 
+    classType: ClassType, 
+    days: Weekday[], 
+    startDate: Date, 
+    startTime: string, 
+    prices: Price[], 
+    maxCapacity: number
+  ): Promise<Class> {
+    const newClass: ClassCreationDTO = {
+      classLocation, 
+      classType, 
+      days, 
+      startDate, 
+      startTime, 
+      prices, 
+      maxCapacity
+    }
     if (await this._conflictsWithExistingClass(newClass)) {
       throw new AppError(i18n.__('errors.conflictingClasses'), 400)
     }

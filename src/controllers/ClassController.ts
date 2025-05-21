@@ -45,18 +45,7 @@ class ClassController {
       
       const { classLocation, classType, days, startDate, startTime, prices, maxCapacity } = req.body.newClass
 
-      const classToAdd = {
-        classLocation, 
-        classType, 
-        days, 
-        startDate, 
-        startTime, 
-        prices, 
-        maxCapacity
-      }
-
-      await classService.addNewClass(classToAdd)
-
+      await classService.addNewClass(classLocation, classType, days, startDate, startTime, prices, maxCapacity)
       res.send()
     })
   ]

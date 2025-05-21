@@ -14,6 +14,7 @@
     "viewIsRequired": "View is required",
     "conflictingClasses": "Class was not added, it conflicts with an existing class.",
     "notSavedToDB": "Something went wrong saving to the database.",
-    "resourceNotFound": "The resource was not found."
+    "resourceNotFound": "The resource was not found.",
+    "contextMissing": "Context is missing."
   }
 }

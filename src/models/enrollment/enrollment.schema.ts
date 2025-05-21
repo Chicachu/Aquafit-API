@@ -1,4 +1,8 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose";
+import { BillingFrequency } from "../../types/enums/BillingFrequency";
+import { Currency } from "../../types/enums/Currency";
+import { AmountSchema } from "../_common/amount.schema";
+import { FlatDiscountHandler } from "../../types/discounts/handlers/FlatDiscountHandler";
 
 const EnrollmentSchema = new Schema(
   {
@@ -21,8 +25,55 @@ const EnrollmentSchema = new Schema(
       type: Date,
       required: true
     },
-    sessionsOverride: Number,
-    bonusSessions: Number
+    daysOfWeekOverride: {
+      type: [Number],
+      required: false
+    },
+    billingFrequency: {
+      type: String,
+      enum: Object.values(BillingFrequency),
+      required: true
+    },
+    discountsApplied: [{
+      discountId: {
+        type: String,
+        ref: 'Discount',
+        required: false
+      },
+      amountOverride: {
+        type: AmountSchema, 
+        required: false
+      },
+      amountSnapshot: {
+        type: AmountSchema,
+        required: true
+      },
+      description: {
+        type: String, 
+        required: false
+      }
+    }],
+    bonusSessions: {
+      type: Number,
+      required: false
+    },
+    cancelDate: {
+      type: Date,
+      required: false
+    },
+    cancelReason: {
+      type: String, 
+      required: false 
+    }, 
+    isTrial: {
+      type: Boolean, 
+      required: false 
+    },
+    invoiceIds: [{
+      type: String, 
+      ref: 'Invoice',
+      required: false
+    }]
   },
   { timestamps: true }
 )

@@ -7,7 +7,8 @@ import { AccessControlAction } from "../types/enums/AccessControlAction";
 const router = express.Router()
 
 router.get('/', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.USER), usersController.getAllUsers)
-router.put('/', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.addNewClient)
+router.get('/:userId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.USER), usersController.getUser)
+router.put('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.USER), usersController.addNewUser)
 router.post('/register', usersController.registerNewUser)
 
 export default router
