@@ -5,6 +5,7 @@ import i18n from '../../config/i18n'
 import { ClassType } from "../types/enums/ClassType"
 import { Weekday } from "../types/enums/Weekday"
 import { Price } from "../types/Price"
+import { ClassScheduleMap } from "../types/ClassScheduleMap"
 
 class ClassService {
   constructor(private classCollection: ClassCollection) {
@@ -25,6 +26,30 @@ class ClassService {
 
   async getClass(classId: string): Promise<Class> {
     return this.classCollection.getClassById(classId)
+  }
+
+  async getClassScheduleMap(): Promise<ClassScheduleMap> {
+    const allClasses = await this.getAllClasses();
+  
+    const map: ClassScheduleMap = {};
+  
+    for (const classItem of allClasses) {
+      const { classType, classLocation, startTime } = classItem;
+  
+      if (!map[classType]) {
+        map[classType] = {};
+      }
+  
+      if (!map[classType][classLocation]) {
+        map[classType][classLocation] = [];
+      }
+  
+      if (!map[classType][classLocation].includes(startTime)) {
+        map[classType][classLocation].push(startTime);
+      }
+    }
+  
+    return map;
   }
 
   async addNewClass(

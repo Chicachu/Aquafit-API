@@ -7,11 +7,9 @@ import { ClassType } from '../types/enums/ClassType'
 import { Weekday } from '../types/enums/Weekday'
 import AppError from '../types/AppError'
 import { Price } from '../types/Price'
-import { ClassHandler, classHandler } from '../business/ClassHandler'
+import { classHandler } from '../business/ClassHandler'
 
 class ClassController {
-  constructor(private classHandler: ClassHandler) {}
-
   addNewClass = [
     body('newClass').isObject().notEmpty()
       .withMessage(i18n.__('errors.missingParameters')),
@@ -61,7 +59,6 @@ class ClassController {
 
     res.send(classes)
   })
-
   
   getClassDetails = [ 
     param('classId').isString().notEmpty()
@@ -73,13 +70,19 @@ class ClassController {
       }
       const classId = req.params.classId 
 
-      const classDetails = await this.classHandler.getClassDetails(classId)
+      const classDetails = await classHandler.getClassDetails(classId)
       
       res.send(classDetails)
     })
   ]
+
+  getClassTypeLocationTimeMap = asyncHandler(async (req: Request, res: Response) => {
+    const classScheduleMap = await classService.getClassScheduleMap()
+
+    res.send(classScheduleMap)
+  })
 }
 
-const classController = new ClassController(classHandler) 
+const classController = new ClassController() 
 export { classController, ClassController } 
 

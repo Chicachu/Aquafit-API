@@ -1,6 +1,6 @@
-import { EnrollmentCollection, enrollmentCollection } from "../models/enrollment/enrollment.class";
-import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment";
-import AppError from "../types/AppError";
+import { EnrollmentCollection, enrollmentCollection } from "../models/enrollment/enrollment.class"
+import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment"
+import AppError from "../types/AppError"
 
 class EnrollmentService {
   constructor(private enrollmentCollection: EnrollmentCollection) {
@@ -21,6 +21,23 @@ class EnrollmentService {
       } catch (error: any) {
         throw new AppError(error.message, 500)
       }
+  }
+
+  async addInvoice(enrollmentId: string, invoiceId: string): Promise<Enrollment> {
+    try {
+      const updatedEnrollment = await this.enrollmentCollection.updateOne(
+        { _id: enrollmentId },
+        { $addToSet: { invoiceIds: invoiceId } }
+      )
+  
+      if (!updatedEnrollment) {
+        throw new AppError(`Enrollment ${enrollmentId} not found`, 404);
+      }
+  
+      return updatedEnrollment;
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
   }
 }
 const enrollmentService = new EnrollmentService(enrollmentCollection)
