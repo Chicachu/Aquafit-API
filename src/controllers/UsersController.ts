@@ -25,7 +25,7 @@ class UsersController {
 
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(errors.array().join(', '), 400)
+          throw new AppError(i18n.__('errors.missingParameters'), 400)
         }
 
         const createUserDTO: UserCreationDTO = {
@@ -46,7 +46,7 @@ class UsersController {
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(errors.array().join(', '), 400)
+          throw new AppError(i18n.__('errors.missingParameters'), 400)
         }
         const userId = req.params.userId 
         const user = await usersService.getUserById(userId)
@@ -64,7 +64,7 @@ class UsersController {
 
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(errors.array().join(', '), 400)
+        throw new AppError(i18n.__('errors.missingParameters'), 400)
       }
 
       let user = await usersService.getUser(username.toLowerCase())

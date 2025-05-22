@@ -38,7 +38,7 @@ class ClassController {
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(errors.array().join(', '), 400)
+        throw new AppError(i18n.__('errors.missingParameters'), 400)
       }
       
       const { classLocation, classType, days, startDate, startTime, prices, maxCapacity } = req.body.newClass
@@ -66,7 +66,7 @@ class ClassController {
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(errors.array().join(', '), 400)
+        throw new AppError(i18n.__('errors.missingParameters'), 400)
       }
       const classId = req.params.classId 
 

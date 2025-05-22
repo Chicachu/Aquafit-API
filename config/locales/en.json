@@ -15,6 +15,8 @@
     "conflictingClasses": "Class was not added, it conflicts with an existing class.",
     "notSavedToDB": "Something went wrong saving to the database.",
     "resourceNotFound": "The resource was not found.",
-    "contextMissing": "Context is missing."
+    "contextMissing": "Context is missing.",
+    "enrollmentAlreadyExists": "Cannot enroll client, they are already enrolled in this class.",
+    "invoiceAlreadyExists": "An invoice already exists for that client, enrollment, and period."
   }
 }

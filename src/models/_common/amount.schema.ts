@@ -13,5 +13,5 @@ export const AmountSchema = new Schema(
       required: true
     }
   },
-  { _id: false }
+  { _id: false, id: false }
 )

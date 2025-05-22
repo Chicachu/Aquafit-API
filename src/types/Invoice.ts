@@ -27,7 +27,7 @@ export type Invoice = IDocument & {
 }
 
 export type InvoiceCreationDTO = {
-  clientId: string
+  userId: string
   enrollmentId: string 
   charge: Price
   period: {

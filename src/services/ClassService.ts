@@ -31,25 +31,23 @@ class ClassService {
   async getClassScheduleMap(): Promise<ClassScheduleMap> {
     const allClasses = await this.getAllClasses();
   
-    const map: ClassScheduleMap = {};
+    const map: ClassScheduleMap = {}
   
     for (const classItem of allClasses) {
-      const { classType, classLocation, startTime } = classItem;
+      const { classType, classLocation, startTime, _id } = classItem
   
       if (!map[classType]) {
         map[classType] = {};
       }
   
       if (!map[classType][classLocation]) {
-        map[classType][classLocation] = [];
+        map[classType][classLocation] = {}
       }
   
-      if (!map[classType][classLocation].includes(startTime)) {
-        map[classType][classLocation].push(startTime);
-      }
+      map[classType][classLocation][startTime] = _id
     }
   
-    return map;
+    return map
   }
 
   async addNewClass(

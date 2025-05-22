@@ -4,7 +4,7 @@ import { PaymentStatus } from "../../types/enums/PaymentStatus";
 import { PaymentType } from "../../types/enums/PaymentType";
 import { AmountSchema } from "../_common/amount.schema";
 
-const PaymentSchema = new Schema(
+const InvoiceSchema = new Schema(
   {
     _id: {
       type: String,
@@ -77,7 +77,7 @@ const PaymentSchema = new Schema(
       required: false
     },
     period: {
-      start: {
+      startDate: {
         type: Date,
         required: true
       },
@@ -102,13 +102,13 @@ function calculateTotalDiscounts(discounts: any[]): number {
   }, 0);
 }
 
-PaymentSchema.virtual('amountDue').get(function (this: IPaymentDocument) {
+InvoiceSchema.virtual('amountDue').get(function (this: IInvoiceDocument) {
   const totalCharge = this.charge?.amount || 0;
   const totalDiscounts = calculateTotalDiscounts(this.discountsApplied);
   return totalCharge - totalDiscounts;
 });
 
-PaymentSchema.virtual('remainingBalance').get(function (this: IPaymentDocument) {
+InvoiceSchema.virtual('remainingBalance').get(function (this: IInvoiceDocument) {
   const totalCharge = this.charge?.amount || 0;
   const totalDiscounts = calculateTotalDiscounts(this.discountsApplied);
   const totalPayments = (this.paymentsApplied || []).reduce((sum, p) => sum + p.amount, 0);
@@ -116,12 +116,12 @@ PaymentSchema.virtual('remainingBalance').get(function (this: IPaymentDocument) 
 });
 
 
-type PaymentDocument = InferSchemaType<typeof PaymentSchema>
+type InvoiceDocument = InferSchemaType<typeof InvoiceSchema>
 
-interface IPaymentDocument extends PaymentDocument, Document {
+interface IInvoiceDocument extends InvoiceDocument, Document {
   populated(path: string): any
 }
-interface IPaymentModel extends Model<IPaymentDocument> { }
+interface IInvoiceModel extends Model<IInvoiceDocument> { }
 
-const PaymentModel = model<IPaymentModel>('Payment', PaymentSchema)
-export { PaymentSchema, PaymentDocument, IPaymentDocument, IPaymentModel, PaymentModel }
+const InvoiceModel = model<IInvoiceModel>('Invoice', InvoiceSchema)
+export { InvoiceSchema, InvoiceDocument, IInvoiceDocument, IInvoiceModel, InvoiceModel }

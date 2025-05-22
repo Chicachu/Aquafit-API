@@ -49,7 +49,8 @@ const ClassSchema = new Schema(
     },
     prices:  {
       type: [AmountSchema],
-      required: true
+      required: true,
+      _id: false
     },
     maxCapacity: {
       type: Number,

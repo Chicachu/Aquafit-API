@@ -14,6 +14,8 @@
     "viewIsRequired": "La vista es obligatoria",
     "conflictingClasses": "La clase no se pudo agregar, entra en conflicto con una clase existente.",
     "notSavedToDB": "Algo salió mal al guardar en la base de datos.",
-    "contextMissing": "Falta el contexto."
+    "contextMissing": "Falta el contexto.",
+    "enrollmentAlreadyExists": "No se puede inscribir al cliente, ya está inscrito en esta clase.",
+    "invoiceAlreadyExists": "Ya existe una factura para ese cliente, inscripción y período."
   }
 }

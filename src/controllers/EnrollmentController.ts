@@ -7,19 +7,21 @@ import { clientHandler } from "../business/ClientHandler"
 class EnrollmentController {
   enrollClient = [
     body('classId').isString().notEmpty(),
-    body('userId').isString().notEmpty(),
-    body('startDate').isDate().notEmpty(), 
+    body('clientId').isString().notEmpty(),
+    body('startDate').isString().notEmpty(), 
     body('billingFrequency').isString().notEmpty(),
     //body('currency').isString().notEmpty(), // maybe have a client preference currency on each user. 
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(errors.array().join(', '), 400)
+          throw new AppError(i18n.__('errors.missingParameters'), 400)
         }
 
-        const { classId, userId, startDate, billingFrequency } = req.body
+        const { classId, clientId, startDate, billingFrequency } = req.body
 
-        await clientHandler.enrollClient(classId, userId, startDate, billingFrequency)
+        await clientHandler.enrollClient(classId, clientId, startDate, billingFrequency)
+
+        res.send()
       })
   ]
 }

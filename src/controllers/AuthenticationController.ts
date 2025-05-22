@@ -16,7 +16,7 @@ class AuthenticationController {
 
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(errors.array().join(', '), 400)
+        throw new AppError(i18n.__('errors.missingParameters'), 400)
       }
 
       let user = await usersService.getUser(username)

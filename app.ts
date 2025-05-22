@@ -53,6 +53,9 @@ app.use('/api/classes', classRouter)
 import scheduleRouter from './src/routes/schedule.routes'
 app.use('/api/schedules', scheduleRouter)
 
+import enrollmentRouter from './src/routes/enrollment.routes'
+app.use('/api/enrollments', enrollmentRouter)
+
 app.use(errorHandler)
 
 export default app

@@ -24,6 +24,10 @@ class ClientHandler {
       throw new AppError(i18n.__('errors.missingParameters'), 400)
     }
 
+    const existingEnrollment = await this._enrollmentService.getEnrollment(classId, userId)
+
+    if (existingEnrollment) throw new AppError(i18n.__('errors.enrollmentAlreadyExists'), 400)
+
     const classDoc = await this._classService.getClass(classId)
     let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequency)
     
@@ -48,7 +52,7 @@ class ClientHandler {
     billingFrequency: BillingFrequency
   ): Promise<Invoice> {
     const dueDate = this._calculateDueDate(startDate, billingFrequency)
-    return await this._invoiceService.createInvoice(userId, enrollmentId, price, startDate, dueDate)
+    return await this._invoiceService.createInvoice(userId, enrollmentId, price, new Date(startDate), dueDate)
   }
 
   private async _enrollClient(classDoc: Class, userId: string, startDate: Date, billingFrequency?: BillingFrequency): Promise<Enrollment> {
@@ -67,7 +71,7 @@ class ClientHandler {
 
     switch (billingFrequency) {
       case BillingFrequency.MONTHLY: 
-        dueDate.setDate(dueDate.getMonth() + 1)
+        dueDate.setDate(dueDate.getDate() + 28)
         break
       case BillingFrequency.WEEKLY: 
         dueDate.setDate(dueDate.getDate() + 7)

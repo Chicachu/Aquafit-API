@@ -8,7 +8,7 @@ class InvoiceService {
 
   async createInvoice(clientId: string, enrollmentId: string, charge: Price, startDate: Date, dueDate: Date): Promise<Invoice> {
     const invoiceCreationDTO: InvoiceCreationDTO = {
-      clientId, 
+      userId: clientId, 
       enrollmentId, 
       charge, 
       period: {
@@ -18,6 +18,10 @@ class InvoiceService {
     }
 
     try {
+      const invoiceExists = await this._invoiceCollection.invoiceExists(clientId, enrollmentId, startDate, dueDate)
+
+      if (invoiceExists) throw new AppError(i18n.__('errors.invoiceAlreadyExists'), 400)
+
       return await this._invoiceCollection.createInvoice(invoiceCreationDTO)
     } catch (error: any) {
       throw new AppError(error.message, 500)

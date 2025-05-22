@@ -23,6 +23,14 @@ class EnrollmentService {
       }
   }
 
+  async getEnrollment(classId: string, userId: string): Promise<Enrollment> {
+    try {
+      return await this.enrollmentCollection.getEnrollment(classId, userId)
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
+  }
+
   async addInvoice(enrollmentId: string, invoiceId: string): Promise<Enrollment> {
     try {
       const updatedEnrollment = await this.enrollmentCollection.updateOne(

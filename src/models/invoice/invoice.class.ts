@@ -1,10 +1,10 @@
 import { Model } from "mongoose";
 import Collection from "../_common/collection.class";
-import { IPaymentDocument, IPaymentModel, PaymentDocument, PaymentModel } from "./invoice.schema";
+import {  IInvoiceDocument, IInvoiceModel, InvoiceModel } from "./invoice.schema";
 import { Invoice, InvoiceCreationDTO } from "../../types/Invoice";
 
-class InvoiceCollection extends Collection<IPaymentDocument> {
-  constructor(model: Model<IPaymentModel>) {
+class InvoiceCollection extends Collection<IInvoiceDocument> {
+  constructor(model: Model<IInvoiceModel>) {
     super(model)
   }
 
@@ -22,9 +22,30 @@ class InvoiceCollection extends Collection<IPaymentDocument> {
   }
   
   async createInvoice(invoice: InvoiceCreationDTO): Promise<Invoice> {
-    return await this.insertOne(invoice)
+    try {
+      return await this.insertOne(invoice)
+    } catch (error) {
+      throw error
+    }
   } 
+
+  async invoiceExists(clientId: string, enrollmentId: string, startDate: Date, dueDate: Date): Promise<Boolean> {
+    const existingInvoice = this.findOne({
+      userId: clientId,
+      enrollmentId,
+      'period.startDate': {
+        $gte: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0),
+        $lt: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 1, 0, 0, 0)
+      },
+      'period.dueDate': {
+        $gte: new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate(), 0, 0, 0),
+        $lt: new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate() + 1, 0, 0, 0)
+      }
+    })
+
+    return !!existingInvoice
+  }
 }
 
-const invoiceCollection = new InvoiceCollection(PaymentModel)
+const invoiceCollection = new InvoiceCollection(InvoiceModel)
 export { invoiceCollection, InvoiceCollection }

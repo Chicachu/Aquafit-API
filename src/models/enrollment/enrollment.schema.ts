@@ -1,8 +1,6 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose";
 import { BillingFrequency } from "../../types/enums/BillingFrequency";
-import { Currency } from "../../types/enums/Currency";
 import { AmountSchema } from "../_common/amount.schema";
-import { FlatDiscountHandler } from "../../types/discounts/handlers/FlatDiscountHandler";
 
 const EnrollmentSchema = new Schema(
   {
@@ -77,6 +75,8 @@ const EnrollmentSchema = new Schema(
   },
   { timestamps: true }
 )
+
+EnrollmentSchema.index({ userId: 1, classId: 1 }, { unique: true })
 
 type EnrollmentDocument = InferSchemaType<typeof EnrollmentSchema>
 
