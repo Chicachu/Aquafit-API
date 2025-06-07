@@ -27,10 +27,10 @@ const EnrollmentSchema = new Schema(
       type: [Number],
       required: false
     },
-    billingFrequency: {
+    billingFrequencyOverride: {
       type: String,
       enum: Object.values(BillingFrequency),
-      required: true
+      required: false
     },
     discountsApplied: [{
       discountId: {

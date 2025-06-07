@@ -30,7 +30,7 @@ class InvoiceCollection extends Collection<IInvoiceDocument> {
   } 
 
   async invoiceExists(clientId: string, enrollmentId: string, startDate: Date, dueDate: Date): Promise<Boolean> {
-    const existingInvoice = this.findOne({
+    const existingInvoice = await this.findOne({
       userId: clientId,
       enrollmentId,
       'period.startDate': {

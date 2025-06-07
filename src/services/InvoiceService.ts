@@ -2,6 +2,7 @@ import { invoiceCollection, InvoiceCollection } from "../models/invoice/invoice.
 import AppError from "../types/AppError"
 import { Invoice, InvoiceCreationDTO } from "../types/Invoice"
 import { Price } from "../types/Price"
+import i18n from '../../config/i18n'
 
 class InvoiceService {
   constructor(private _invoiceCollection: InvoiceCollection) {}

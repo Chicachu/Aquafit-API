@@ -1,14 +1,14 @@
 import { BillingFrequency } from "./enums/BillingFrequency";
 import { Currency } from "./enums/Currency";
+import { PaymentType } from "./enums/PaymentType";
 import { Weekday } from "./enums/Weekday";
 import { IDocument } from "./IDocument";
-import { Invoice } from "./Invoice";
 
 export type Enrollment = IDocument & {
   userId: string
   classId: string
   startDate: Date
-  billingFrequency: BillingFrequency
+  billingFrequencyOverride: BillingFrequency
   discountsApplied: {
     discountId: string
     amountOverride: {
@@ -33,5 +33,5 @@ export type EnrollmentCreationDTO = {
   userId: string
   classId: string
   startDate: Date
-  billingFrequency: BillingFrequency
+  billingFrequencyOverride?: BillingFrequency
 }

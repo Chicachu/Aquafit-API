@@ -36,6 +36,7 @@ export type ClassCreationDTO = {
   startDate: Date
   startTime: string
   prices: Price[]
+  billingFrequency: BillingFrequency
   maxCapacity: number
 }
 

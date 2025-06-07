@@ -1,7 +1,11 @@
-import { IDocument } from "./IDocument";
-import { Payment } from "./Payment";
+import { Class } from "./Class"
+import { Enrollment } from "./Enrollment"
+import { User } from "./User"
 
-export type ClientEnrollmentDetails = IDocument & {
-  fullName: string
-  currentPayment: Payment
+export type ClientEnrollmentDetails = {
+  client: User
+  enrolledClassInfo: {
+    class: Class, 
+    enrollment: Enrollment
+  }[]
 }

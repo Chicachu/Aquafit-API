@@ -6,6 +6,7 @@ import { ClassType } from "../types/enums/ClassType"
 import { Weekday } from "../types/enums/Weekday"
 import { Price } from "../types/Price"
 import { ClassScheduleMap } from "../types/ClassScheduleMap"
+import { formatSchedule } from "./util"
 
 class ClassService {
   constructor(private classCollection: ClassCollection) {
@@ -34,7 +35,7 @@ class ClassService {
     const map: ClassScheduleMap = {}
   
     for (const classItem of allClasses) {
-      const { classType, classLocation, startTime, _id } = classItem
+      const { classType, classLocation, startTime, days, _id } = classItem
   
       if (!map[classType]) {
         map[classType] = {};
@@ -43,36 +44,21 @@ class ClassService {
       if (!map[classType][classLocation]) {
         map[classType][classLocation] = {}
       }
+
+      const formattedTime = formatSchedule(days, startTime)
   
-      map[classType][classLocation][startTime] = _id
+      map[classType][classLocation][formattedTime] = _id
     }
   
     return map
   }
 
-  async addNewClass(
-    classLocation: string, 
-    classType: ClassType, 
-    days: Weekday[], 
-    startDate: Date, 
-    startTime: string, 
-    prices: Price[], 
-    maxCapacity: number
-  ): Promise<Class> {
-    const newClass: ClassCreationDTO = {
-      classLocation, 
-      classType, 
-      days, 
-      startDate, 
-      startTime, 
-      prices, 
-      maxCapacity
-    }
-    if (await this._conflictsWithExistingClass(newClass)) {
+  async addNewClass(newClassDTO: ClassCreationDTO): Promise<Class> {
+    if (await this._conflictsWithExistingClass(newClassDTO)) {
       throw new AppError(i18n.__('errors.conflictingClasses'), 400)
     }
 
-    return await this.classCollection.insertOne(newClass)
+    return await this.classCollection.insertOne(newClassDTO)
   }
 
   async updateClassInfo(currentClass: Class, classUpdateOptions: ClassUpdateOptions): Promise<Class> {

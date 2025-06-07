@@ -1,9 +1,9 @@
 import { IDocument } from "./IDocument"
 import { Class } from "./Class"
-import { ClientEnrollmentDetails } from "./ClientEnrollmentDetails"
+import { ClassClientEnrollmentDetails } from "./ClassClientEnrollmentDetails"
 import { User } from "./User"
 
 export type ClassDetails = IDocument & Class & {
-  clients: ClientEnrollmentDetails[]
+  clients: ClassClientEnrollmentDetails[]
   waitlistClients?: User[]
 }

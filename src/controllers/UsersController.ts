@@ -7,6 +7,7 @@ import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
 import { body, param, validationResult } from 'express-validator'
 import { UserCreationDTO } from '../types/User'
+import { clientHandler } from '../business/ClientHandler'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -53,6 +54,20 @@ class UsersController {
 
         res.send(user)
     })
+  ]
+
+  getClientEnrollmentDetails = [
+    param('userId').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+      asyncHandler(async (req: Request, res: Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          throw new AppError(i18n.__('errors.missingParameters'), 400)
+        }
+        const userId = req.params.userId 
+        const clientEnrollmentDetails = await clientHandler.getClientEnrollmentDetails(userId)
+
+        res.send(clientEnrollmentDetails)
+      })
   ]
 
   registerNewUser = [

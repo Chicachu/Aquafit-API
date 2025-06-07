@@ -21,6 +21,10 @@ class EnrollmentCollection extends Collection<IEnrollmentModel> {
     return await this.findOne({ classId, userId })
   }
 
+  async getClientEnrollments(userId: string): Promise<Enrollment[]> {
+    return await this.find({ userId })
+  }
+
   async enrollClient(enrollment: Enrollment): Promise<Enrollment> {
     return await this.insertOne(enrollment)
   }

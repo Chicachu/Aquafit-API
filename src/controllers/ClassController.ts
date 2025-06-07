@@ -30,8 +30,9 @@ class ClassController {
       .custom((prices: Price[]) => prices.every(price => 
         typeof price.amount === 'string' && 
         typeof price.currency === 'string' &&
-        ['MXN', 'USD'].includes(price.currency)))
+        ['MXN'].includes(price.currency)))
       .withMessage(i18n.__('errors.missingParameters')),
+    body('newClass.billingFrequency').isString().notEmpty(),
     body('newClass.maxCapacity').isString()
       .custom((value) => !isNaN(parseInt(value)))
       .withMessage(i18n.__('errors.missingParameters')),
@@ -41,9 +42,7 @@ class ClassController {
         throw new AppError(i18n.__('errors.missingParameters'), 400)
       }
       
-      const { classLocation, classType, days, startDate, startTime, prices, maxCapacity } = req.body.newClass
-
-      await classService.addNewClass(classLocation, classType, days, startDate, startTime, prices, maxCapacity)
+      await classService.addNewClass(req.body.newClass)
       res.send()
     })
   ]

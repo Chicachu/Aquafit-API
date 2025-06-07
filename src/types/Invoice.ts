@@ -2,6 +2,7 @@ import { IDocument } from "./IDocument"
 import { Price } from "./Price"
 import { Currency } from "./enums/Currency"
 import { PaymentStatus } from "./enums/PaymentStatus"
+import { PaymentType } from "./enums/PaymentType"
 
 export type Invoice = IDocument & {
   clientId: string
@@ -14,10 +15,11 @@ export type Invoice = IDocument & {
       currency: Currency
     }
   }[]
-  paymentsHistory: {
+  paymentsApplied: {
     amount: number
     currency: Currency
     date: Date
+    paymentType: PaymentType
   }[]
   paymentStatus: PaymentStatus
   period: {

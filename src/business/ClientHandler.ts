@@ -9,9 +9,19 @@ import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Currency } from "../types/enums/Currency"
 import { Invoice } from "../types/Invoice"
 import { Price } from "../types/Price"
+import i18n from '../../config/i18n'
+import mongoose from 'mongoose'
+import { ClientEnrollmentDetails } from "../types/ClientEnrollmentDetails"
+import { usersService, UsersService } from "../services/UsersService"
 
 class ClientHandler {
-  constructor(private _enrollmentService: EnrollmentService, private _classService: ClassService, private _invoiceService: InvoiceService) {}
+  constructor(
+    private _enrollmentService: EnrollmentService, 
+    private _classService: ClassService, 
+    private _invoiceService: InvoiceService,
+    private _userService: UsersService
+  ) {}
+
   async enrollClient(
     classId: string, 
     userId: string, 
@@ -24,24 +34,52 @@ class ClientHandler {
       throw new AppError(i18n.__('errors.missingParameters'), 400)
     }
 
-    const existingEnrollment = await this._enrollmentService.getEnrollment(classId, userId)
+    const session = await mongoose.startSession()
+    session.startTransaction()
 
-    if (existingEnrollment) throw new AppError(i18n.__('errors.enrollmentAlreadyExists'), 400)
+    try {
+      const existingEnrollment = await this._enrollmentService.getEnrollment(classId, userId)
 
-    const classDoc = await this._classService.getClass(classId)
-    let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequency)
-    
+      if (existingEnrollment) throw new AppError(i18n.__('errors.enrollmentAlreadyExists'), 400)
 
-    const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
-    if (!basePrice) {
-      throw new AppError(i18n.__('errors.missingParameters'), 400)
+      const classDoc = await this._classService.getClass(classId)
+      let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequency)
+      
+
+      const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
+      if (!basePrice) {
+        throw new AppError(i18n.__('errors.missingParameters'), 400)
+      }
+
+      // apply promos or discounts (change basePrice below)
+
+      // create invoice 
+      const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency)
+      enrollment = await this._enrollmentService.addInvoice(enrollment._id, invoice._id)
+      await session.commitTransaction()
+    } catch (error: any) {
+      await session.abortTransaction()
+      throw new AppError(error.message, 500)
+    } finally {
+      session.endSession()
+    }
+  }
+
+  async getClientEnrollmentDetails(userId: string): Promise<ClientEnrollmentDetails> {
+    const clientEnrollments = await this._enrollmentService.getClientEnrollments(userId)
+    const client = await this._userService.getUserById(userId)
+    const enrolledClassInfo: { class: Class, enrollment: Enrollment }[] = []
+    for (const enrollment of clientEnrollments) {
+      const classInfo = await this._classService.getClass(enrollment.classId)
+      enrolledClassInfo.push({ class: classInfo, enrollment })
     }
 
-    // apply promos or discounts (change basePrice below)
+    const clientEnrollmentDetails: ClientEnrollmentDetails = {
+      client, 
+      enrolledClassInfo
+    }
 
-    // create invoice 
-    const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency)
-    enrollment = await this._enrollmentService.addInvoice(enrollment._id, invoice._id)
+    return clientEnrollmentDetails
   }
 
   private async _generateInvoice(
@@ -55,12 +93,12 @@ class ClientHandler {
     return await this._invoiceService.createInvoice(userId, enrollmentId, price, new Date(startDate), dueDate)
   }
 
-  private async _enrollClient(classDoc: Class, userId: string, startDate: Date, billingFrequency?: BillingFrequency): Promise<Enrollment> {
+  private async _enrollClient(classDoc: Class, userId: string, startDate: Date, billingFrequencyOverride?: BillingFrequency): Promise<Enrollment> {
     const enrollmentDTO: EnrollmentCreationDTO = {
       userId, 
       classId: classDoc._id, 
       startDate, 
-      billingFrequency: billingFrequency ?? classDoc.billingFrequency
+      billingFrequencyOverride: billingFrequencyOverride ?? undefined
     }
     
     return await this._enrollmentService.enrollClient(enrollmentDTO)
@@ -85,5 +123,5 @@ class ClientHandler {
   }
 }
 
-const clientHandler = new ClientHandler(enrollmentService, classService, invoiceService)
+const clientHandler = new ClientHandler(enrollmentService, classService, invoiceService, usersService)
 export { clientHandler, ClientHandler }
