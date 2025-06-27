@@ -9,7 +9,8 @@ class EnrollmentController {
     body('classId').isString().notEmpty(),
     body('clientId').isString().notEmpty(),
     body('startDate').isString().notEmpty(), 
-    body('billingFrequency').isString().notEmpty(),
+    body('billingFrequencyOverride').isString(),
+    body('daysOverride').isArray(),
     //body('currency').isString().notEmpty(), // maybe have a client preference currency on each user. 
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)

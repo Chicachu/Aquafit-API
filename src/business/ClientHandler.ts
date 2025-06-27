@@ -13,6 +13,7 @@ import i18n from '../../config/i18n'
 import mongoose from 'mongoose'
 import { ClientEnrollmentDetails } from "../types/ClientEnrollmentDetails"
 import { usersService, UsersService } from "../services/UsersService"
+import { Weekday } from "../types/enums/Weekday"
 
 class ClientHandler {
   constructor(
@@ -26,11 +27,12 @@ class ClientHandler {
     classId: string, 
     userId: string, 
     startDate: Date, 
-    billingFrequency?: BillingFrequency, 
+    billingFrequencyOverride?: BillingFrequency, 
+    daysOverride?: Weekday[],
     promotion?: Promotion,
     currency?: Currency
   ): Promise<void> {
-    if (!classId || !userId || !billingFrequency) {
+    if (!classId || !userId) {
       throw new AppError(i18n.__('errors.missingParameters'), 400)
     }
 
@@ -43,9 +45,8 @@ class ClientHandler {
       if (existingEnrollment) throw new AppError(i18n.__('errors.enrollmentAlreadyExists'), 400)
 
       const classDoc = await this._classService.getClass(classId)
-      let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequency)
+      let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequencyOverride, daysOverride)
       
-
       const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
       if (!basePrice) {
         throw new AppError(i18n.__('errors.missingParameters'), 400)
@@ -54,6 +55,7 @@ class ClientHandler {
       // apply promos or discounts (change basePrice below)
 
       // create invoice 
+      const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
       const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency)
       enrollment = await this._enrollmentService.addInvoice(enrollment._id, invoice._id)
       await session.commitTransaction()
@@ -93,12 +95,19 @@ class ClientHandler {
     return await this._invoiceService.createInvoice(userId, enrollmentId, price, new Date(startDate), dueDate)
   }
 
-  private async _enrollClient(classDoc: Class, userId: string, startDate: Date, billingFrequencyOverride?: BillingFrequency): Promise<Enrollment> {
+  private async _enrollClient(
+    classDoc: Class, 
+    userId: string, 
+    startDate: Date, 
+    billingFrequencyOverride?: BillingFrequency, 
+    daysOverride?: Weekday[]
+  ): Promise<Enrollment> {
     const enrollmentDTO: EnrollmentCreationDTO = {
       userId, 
       classId: classDoc._id, 
       startDate, 
-      billingFrequencyOverride: billingFrequencyOverride ?? undefined
+      billingFrequencyOverride: billingFrequencyOverride ?? undefined,
+      daysOfWeekOverride: daysOverride ?? undefined
     }
     
     return await this._enrollmentService.enrollClient(enrollmentDTO)

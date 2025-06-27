@@ -34,4 +34,5 @@ export type EnrollmentCreationDTO = {
   classId: string
   startDate: Date
   billingFrequencyOverride?: BillingFrequency
+  daysOfWeekOverride?: Weekday[]
 }
