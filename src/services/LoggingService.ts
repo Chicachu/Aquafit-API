@@ -32,19 +32,19 @@ class Logger {
   }
 
   public debugInside(fileName: string, methodName: string, details = {}): void {
-    let formedMessage = `${LogStatus.INSIDE} ${fileName}:${methodName}`
+    let formedMessage = `${LogStatus.INSIDE} [${fileName}:${methodName}]`
     formedMessage += details ? ` ${objectAsString(details)}` : ''
     this._debug(formedMessage)
   }
 
   public debugComplete(fileName: string, methodName: string, details = {}): void {
-    let formedMessage = `${LogStatus.COMPLETE} ${fileName}:${methodName}`
+    let formedMessage = `${LogStatus.COMPLETE} [${fileName}:${methodName}]`
     formedMessage += details ? ` ${objectAsString(details)}` : ''
     this._debug(formedMessage)
   }
 
   public info(fileName: string, methodName: string,message: string, details = {}): void {
-    let formedMessage = `${fileName}:${methodName} - ${message}`
+    let formedMessage = `[${fileName}:${methodName}] - ${message}`
     formedMessage += details ? ` ${objectAsString(details)}` : ''
     this._writeLog(LogLevel.INFO, message)
   }

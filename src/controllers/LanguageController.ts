@@ -1,7 +1,8 @@
 import asyncHandler from 'express-async-handler'
 import { Request, Response } from 'express'
 import { body, validationResult } from 'express-validator'
-import AppError from '../types/AppError';
+import i18n from '../../config/i18n'
+import AppError from '../types/AppError'
 
 class LanguageController {
   setLanguage = [

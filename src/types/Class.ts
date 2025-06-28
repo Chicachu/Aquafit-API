@@ -1,10 +1,8 @@
-import { IDocument } from "./IDocument";
-import { Price } from "./Price";
-import { User } from "./User";
-import { BillingFrequency } from "./enums/BillingFrequency";
-import { ClassType } from "./enums/ClassType";
-import { Currency } from "./enums/Currency";
-import { Weekday } from "./enums/Weekday";
+import { IDocument } from "./IDocument"
+import { Price } from "./Price"
+import { BillingFrequency } from "./enums/BillingFrequency"
+import { ClassType } from "./enums/ClassType"
+import { Weekday } from "./enums/Weekday"
 
 export type Class = IDocument & {
   classLocation: string

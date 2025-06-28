@@ -20,6 +20,7 @@ class AppError extends Error {
     this.status = statusCode
 
     logger.error(englishMessage)
+    console.log(englishMessage)
     Error.captureStackTrace(this, this.constructor)
   }
 }

@@ -9,8 +9,8 @@ class EnrollmentController {
     body('classId').isString().notEmpty(),
     body('clientId').isString().notEmpty(),
     body('startDate').isString().notEmpty(), 
-    body('billingFrequencyOverride').isString(),
-    body('daysOverride').isArray(),
+    body('billingFrequencyOverride').isString().optional(),
+    body('daysOverride').isArray().optional(),
     //body('currency').isString().notEmpty(), // maybe have a client preference currency on each user. 
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
@@ -18,19 +18,14 @@ class EnrollmentController {
           throw new AppError('errors.missingParameters', 400)
         }
 
-        const { classId, clientId, startDate, billingFrequency } = req.body
+        const { classId, clientId, startDate, billingFrequency, daysOverride } = req.body
 
-        await clientHandler.enrollClient(classId, clientId, startDate, billingFrequency)
+        await clientHandler.enrollClient(classId, clientId, startDate, billingFrequency, daysOverride)
 
         res.send()
       })
   ]
 }
-
-// userId: string
-//   classId: string
-//   startDate: Date
-//   billingFrequency: BillingFrequency
 
 const enrollmentCotroller = new EnrollmentController()
 export { enrollmentCotroller, EnrollmentController }
