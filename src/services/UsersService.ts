@@ -51,6 +51,7 @@ class UsersService {
   }
 
   async updateUserInfo(user: User, updateUserOptions: UpdateUserOptions): Promise<User> {
+    logger.debugInside(this._FILE_NAME, this.updateUserInfo.name, { user })
     try {
       const updatedUser = {
         ...user, 
