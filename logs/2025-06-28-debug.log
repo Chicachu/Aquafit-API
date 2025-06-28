@@ -349,3 +349,41 @@
 [2025-06-28T18:35:28.128Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
 [2025-06-28T18:35:28.223Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoicesForClass] 
 [2025-06-28T18:35:28.322Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2025-06-28T18:42:05.632Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2025-06-28T18:42:05.768Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2025-06-28T18:42:05.863Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T18:42:05.864Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T18:42:05.984Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T18:42:06.078Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoicesForClass] 
+[2025-06-28T18:42:06.208Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2025-06-28T19:36:26.320Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2025-06-28T19:36:26.435Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2025-06-28T19:36:26.573Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:36:26.574Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:36:26.698Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:36:29.110Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2025-06-28T19:36:29.236Z] [DEBUG]: Inside [InvoiceService.ts:getCurrentInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc"]
+[2025-06-28T19:36:29.363Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2025-06-28T19:36:29.533Z] [DEBUG]: Inside [InvoiceService.ts:getCurrentInvoice] invoiceIds=["e1b778b2-903e-42b8-b7e4-4a2371d3e467"]
+[2025-06-28T19:38:24.037Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2025-06-28T19:38:24.170Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2025-06-28T19:38:24.358Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:38:24.359Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:38:24.508Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2025-06-28T19:38:27.482Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2025-06-28T19:38:28.490Z] [DEBUG]: Inside [InvoiceService.ts:getCurrentInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc"]
+[2025-06-28T19:38:28.628Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2025-06-28T19:38:28.788Z] [DEBUG]: Inside [InvoiceService.ts:getCurrentInvoice] invoiceIds=["e1b778b2-903e-42b8-b7e4-4a2371d3e467"]
+[2025-06-28T19:38:52.670Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2025-06-28T20:10:30.294Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2025-06-28T20:11:00.017Z] [DEBUG]: Inside [:[CRON]] 0="R", 1="u", 2="n", 3="n", 4="i", 5="n", 6="g", 7=" ", 8="u", 9="p", 10="d", 11="a", 12="t", 13="e", 14="I", 15="n", 16="v", 17="o", 18="i", 19="c", 20="e", 21="S", 22="t", 23="a", 24="t", 25="u", 26="s", 27="e", 28="s", 29=".", 30=".", 31="."
+[2025-06-28T20:11:00.018Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2025-06-28T20:11:00.276Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2025-06-28T20:11:36.372Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2025-06-28T20:12:00.017Z] [DEBUG]: Inside [:[CRON] Running updateInvoiceStatuses...] 
+[2025-06-28T20:12:00.018Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2025-06-28T20:12:00.156Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2025-06-28T20:13:04.137Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2025-06-28T20:14:00.029Z] [DEBUG]: Inside [:[CRON] Running updateInvoiceStatuses...] 
+[2025-06-28T20:14:00.030Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2025-06-28T20:15:22.888Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 

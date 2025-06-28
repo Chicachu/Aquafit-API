@@ -34,8 +34,8 @@ abstract class Collection<T> {
     return await this.model.find(query)
   }
 
-  async findOne(query: object = {}): Promise<any> {
-    return await this.model.findOne(query).lean()
+  async findOne(query: object = {}, projection?: object): Promise<any> {
+    return await this.model.findOne(query, projection).lean();
   }
 
   async findDistinct(property: string): Promise<any> {

@@ -1,8 +1,7 @@
-import { BillingFrequency } from "./enums/BillingFrequency";
-import { Currency } from "./enums/Currency";
-import { PaymentType } from "./enums/PaymentType";
-import { Weekday } from "./enums/Weekday";
-import { IDocument } from "./IDocument";
+import { BillingFrequency } from "./enums/BillingFrequency"
+import { Currency } from "./enums/Currency"
+import { Weekday } from "./enums/Weekday"
+import { IDocument } from "./IDocument"
 
 export type Enrollment = IDocument & {
   userId: string

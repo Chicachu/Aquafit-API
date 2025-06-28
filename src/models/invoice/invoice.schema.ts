@@ -4,6 +4,19 @@ import { PaymentStatus } from "../../types/enums/PaymentStatus";
 import { PaymentType } from "../../types/enums/PaymentType";
 import { AmountSchema } from "../_common/amount.schema";
 
+const InvoicePeriodSchema = new Schema(
+  {
+    startDate: {
+      type: Date,
+      required: true
+    },
+    dueDate: {
+      type: Date, 
+      required: true
+    }
+  }
+)
+
 const InvoiceSchema = new Schema(
   {
     _id: {
@@ -22,15 +35,8 @@ const InvoiceSchema = new Schema(
       required: true
     },
     charge: {
-      currency: {
-        type: String, 
-        enum: Object.values(Currency), 
-        required: true
-      },
-      amount: {
-        type: Number, 
-        required: true
-      }
+      type: AmountSchema,
+      required: true
     },
     discountsApplied: [{
       discountId: {
@@ -74,17 +80,11 @@ const InvoiceSchema = new Schema(
     paymentStatus: {
       type: String, 
       enum: Object.values(PaymentStatus),
-      required: false
+      required: true
     },
     period: {
-      startDate: {
-        type: Date,
-        required: true
-      },
-      dueDate: {
-        type: Date, 
-        required: true
-      }
+      type: InvoicePeriodSchema, 
+      required: true
     }
   }, 
   { timestamps: true }

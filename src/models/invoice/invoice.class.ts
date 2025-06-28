@@ -1,33 +1,47 @@
-import { Model } from "mongoose";
-import Collection from "../_common/collection.class";
-import {  IInvoiceDocument, IInvoiceModel, InvoiceModel } from "./invoice.schema";
-import { Invoice, InvoiceCreationDTO } from "../../types/Invoice";
+import { Model } from "mongoose"
+import Collection from "../_common/collection.class"
+import { InvoiceDocument, IInvoiceModel, InvoiceModel } from "./invoice.schema"
+import { InvoiceCreationDTO } from "../../types/Invoice"
+import AppError from "../../types/AppError"
+import { PaymentStatus } from "../../types/enums/PaymentStatus"
+import { logger } from "../../services/LoggingService"
+import path from "path"
 
-class InvoiceCollection extends Collection<IInvoiceDocument> {
+class InvoiceCollection extends Collection<IInvoiceModel> {
   constructor(model: Model<IInvoiceModel>) {
     super(model)
   }
 
-  async getAllPaymentsForClass(enrollmentIds: string[], clientIds: string[]): Promise<Invoice[]> {
-    return await this.find({
-      $and: [
-        { enrollmentId: { $in: enrollmentIds } },
-        { clientId: { $in: clientIds } }
-      ]
-    })
-  }
+  private readonly _FILE_NAME = path.basename(__filename)
 
-  async getPaymentsByClientId(clientId: string): Promise<Invoice> {
+  async getPaymentsByClientId(clientId: string): Promise<InvoiceDocument> {
     return await this.find({ clientId })
   }
   
-  async createInvoice(invoice: InvoiceCreationDTO): Promise<Invoice> {
+  async createInvoice(invoice: InvoiceCreationDTO): Promise<InvoiceDocument> {
     try {
       return await this.insertOne(invoice)
     } catch (error) {
       throw error
     }
   } 
+
+  async getMostRecentInvoice(invoiceIds: string[]): Promise<InvoiceDocument> {
+    if (!invoiceIds || invoiceIds.length === 0) throw new AppError('errors.missingParameters', 400)
+
+    try {
+      const invoice = await this.model
+        .find({ _id: { $in: invoiceIds } })
+        .sort({ 'period.startDate': -1 }) 
+        .limit(1)
+        .lean()
+        .then(invoices => invoices[0] || null)
+      return invoice as InvoiceDocument
+    }
+    catch (error) {
+      throw error
+    }
+  }
 
   async invoiceExists(clientId: string, enrollmentId: string, startDate: Date, dueDate: Date): Promise<Boolean> {
     const existingInvoice = await this.findOne({
@@ -44,6 +58,46 @@ class InvoiceCollection extends Collection<IInvoiceDocument> {
     })
 
     return !!existingInvoice
+  }
+
+  async updatePaymentStatuses(): Promise<void> {
+    logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name)
+    const now = new Date()
+    const fourDaysFromNow = new Date()
+    fourDaysFromNow.setDate(now.getDate() + 4)
+  
+    const invoicesToUpdate = await this.model.find({
+      paymentStatus: { $in: [PaymentStatus.PENDING, PaymentStatus.ALMOST_DUE] }
+    })
+  
+    const bulkOps = invoicesToUpdate.map(invoice => {
+      const dueDate = invoice.period.dueDate
+  
+      let newStatus = PaymentStatus.PENDING
+  
+      if (dueDate < now) {
+        newStatus = PaymentStatus.OVERDUE
+      } else if (dueDate >= now && dueDate <= fourDaysFromNow) {
+        newStatus = PaymentStatus.ALMOST_DUE
+      } 
+  
+      if (newStatus !== invoice.paymentStatus) {
+        return {
+          updateOne: {
+            filter: { _id: invoice._id },
+            update: { paymentStatus: newStatus }
+          }
+        }
+      }
+  
+      return null
+    }).filter(op => op !== null)
+  
+    if (bulkOps.length > 0) {
+      await this.model.bulkWrite(bulkOps)
+    }
+    
+    logger.debugComplete(this._FILE_NAME, this.updatePaymentStatuses.name)
   }
 }
 

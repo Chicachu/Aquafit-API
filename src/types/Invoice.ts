@@ -5,15 +5,23 @@ import { PaymentStatus } from "./enums/PaymentStatus"
 import { PaymentType } from "./enums/PaymentType"
 
 export type Invoice = IDocument & {
-  clientId: string
+  userId: string
   enrollmentId: string
-  charge: Price 
-  discountsApplied: {
-    discountId: string
-    amountOverride: {
+  charge: {
+    amount: number
+    currency: Currency
+  }
+  discountsApplied?: {
+    discountId?: string | null
+    amountOverride?: {
       amount: number
       currency: Currency
-    }
+    } | null
+    amountSnapshot?: {
+      amount: number
+      currency: Currency
+    } | null
+    description?: string | null
   }[]
   paymentsApplied: {
     amount: number
@@ -23,10 +31,13 @@ export type Invoice = IDocument & {
   }[]
   paymentStatus: PaymentStatus
   period: {
-    startDate: Date, 
+    startDate: Date
     dueDate: Date
   }
+  createdAt: Date
+  updatedAt: Date
 }
+
 
 export type InvoiceCreationDTO = {
   userId: string

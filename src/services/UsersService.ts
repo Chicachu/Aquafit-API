@@ -23,6 +23,15 @@ class UsersService {
     }
   }
 
+  async getUserFirstAndLastName(userId: string): Promise<{firstName: string, lastName: string}> {
+    logger.debugInside(this._FILE_NAME, this.getUserFirstAndLastName.name, {userId})
+    try {
+      return await this.userCollection.getUserFirstAndLastName(userId)
+    } catch (error: any) {
+      throw new AppError('errors.resourceNotFound', 500)
+    }
+  }
+
   async getUser(username: string): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.getUser.name, { username })
     try {
@@ -40,6 +49,15 @@ class UsersService {
       throw new AppError('errors.resourceNotFound', 500)
     }
   }
+
+  async getUsersById(userIds: string[]): Promise<User[]> {
+    logger.debugInside(this._FILE_NAME, this.getUsersById.name, { userIds })
+    try {
+      return await this.userCollection.getUsersById(userIds)
+    } catch (error: any) {
+      throw new AppError('errors.resourceNotFound', 500)
+    }
+  } 
 
   async createNewUser(user: UserCreationDTO): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.createNewUser.name, { user })

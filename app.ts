@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import { errorHandler } from './src/middleware/ErrorMiddleware'
 import AppError from './src/types/AppError'
 import i18n from './config/i18n'
+import { CronSchedulerService } from './src/services/CronScheduler'
 
 dotenv.config()
 const app = express() 
@@ -12,6 +13,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(i18n.init)
+
+CronSchedulerService.startAllJobs()
 
 app.use(async(req, res, next) => {
   if (req.headers['authorization']) {

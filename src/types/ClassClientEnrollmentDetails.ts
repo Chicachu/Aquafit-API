@@ -1,7 +1,6 @@
-import { IDocument } from "./IDocument";
-import { Invoice } from "./Invoice";
+import { Invoice } from "./Invoice"
 
-export type ClassClientEnrollmentDetails = IDocument & {
+export type ClassClientEnrollmentDetails = {
   firstName: string
   lastName: string
   currentPayment: Invoice

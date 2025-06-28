@@ -7,12 +7,15 @@ import AppError from "../types/AppError"
 import { ClassDetails } from "../types/ClassDetails"
 import { Enrollment } from "../types/Enrollment"
 import { Weekday } from "../types/enums/Weekday"
+import { usersService, UsersService } from "../services/UsersService"
+import { ClassClientEnrollmentDetails } from "../types/ClassClientEnrollmentDetails"
 
 class ClassHandler {
   constructor(
     private classService: ClassService, 
     private enrollmentService: EnrollmentService,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private userService: UsersService
   ) {}
 
   private readonly _FILE_NAME = path.basename(__filename)
@@ -25,22 +28,32 @@ class ClassHandler {
     }
 
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(foundClass._id!)
-    const enrollmentIds = classEnrollments?.map(enrollment => enrollment._id)
-    const clientIds = classEnrollments?.map(enrollment => enrollment.classId)
-
-    let payments 
-    if (enrollmentIds && clientIds) {
-      payments = await this.invoiceService.getAllInvoicesForClass(enrollmentIds, clientIds)
-    }
-
+    
+    const clientEnrollmentDetails = await this._getClientEnrollmentDetails(classEnrollments)
     const classDetails: ClassDetails = {
       ...foundClass, 
-      clients: [],
+      clients: clientEnrollmentDetails,
       enrollmentCounts: this._getEnrollmentCounts(classEnrollments, foundClass.days)
     }
 
     logger.debugComplete(this._FILE_NAME, this.getClassDetails.name)
     return classDetails
+  }
+
+  private async _getClientEnrollmentDetails(classEnrollments: Enrollment[]): Promise<ClassClientEnrollmentDetails[]> {
+    const classClientEnrollmentDetails: ClassClientEnrollmentDetails[] = []
+  
+    for (const classEnrollment of classEnrollments) {
+      const firstAndLast = await this.userService.getUserFirstAndLastName(classEnrollment.userId)
+      const currentPayment = await this.invoiceService.getCurrentInvoice(classEnrollment.invoiceIds)
+      classClientEnrollmentDetails.push({
+        firstName: firstAndLast.firstName,
+        lastName: firstAndLast.lastName,
+        currentPayment
+      })
+    }
+  
+    return classClientEnrollmentDetails
   }
 
   private _getEnrollmentCounts(enrollments: Enrollment[], classDays: Weekday[]): Partial<Record<Weekday, number>> {
@@ -60,5 +73,5 @@ class ClassHandler {
     return enrollmentCounts
   }
 }
-const classHandler = new ClassHandler(classService, enrollmentService, invoiceService)
+const classHandler = new ClassHandler(classService, enrollmentService, invoiceService, usersService)
 export { classHandler, ClassHandler }
