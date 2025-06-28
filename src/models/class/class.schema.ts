@@ -1,5 +1,4 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose"
-import { Currency } from "../../types/enums/Currency"
 import { Weekday } from "../../types/enums/Weekday"
 import { IUserDocument, UserModel } from "../user/user.schema"
 import { Role } from "../../types/enums/Role"

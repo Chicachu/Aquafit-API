@@ -1,6 +1,6 @@
 import { Model } from "mongoose";
 import Collection from "../_common/collection.class";
-import { EnrollmentDocument, EnrollmentModel, IEnrollmentModel } from "./enrollment.schema";
+import { EnrollmentModel, IEnrollmentModel } from "./enrollment.schema";
 import { Enrollment } from "../../types/Enrollment";
 
 

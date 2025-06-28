@@ -14,8 +14,12 @@
     "viewIsRequired": "La vista es obligatoria",
     "conflictingClasses": "La clase no se pudo agregar, entra en conflicto con una clase existente.",
     "notSavedToDB": "Algo salió mal al guardar en la base de datos.",
+    "resourceNotFound": "El recurso no fue encontrado.",
     "contextMissing": "Falta el contexto.",
     "enrollmentAlreadyExists": "No se puede inscribir al cliente, ya está inscrito en esta clase.",
-    "invoiceAlreadyExists": "Ya existe una factura para ese cliente, inscripción y período."
+    "invoiceAlreadyExists": "Ya existe una factura para ese cliente, inscripción y período.",
+    "couldNotGetEnrollmentInfo": "No se pudo encontrar la información de inscripción.",
+    "unableToEnrollClient": "El cliente no estaba inscrito.",
+    "unableToCreateResource": "No se creó el recurso."
   }
 }

@@ -9,11 +9,12 @@ import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Currency } from "../types/enums/Currency"
 import { Invoice } from "../types/Invoice"
 import { Price } from "../types/Price"
-import i18n from '../../config/i18n'
 import mongoose from 'mongoose'
 import { ClientEnrollmentDetails } from "../types/ClientEnrollmentDetails"
 import { usersService, UsersService } from "../services/UsersService"
 import { Weekday } from "../types/enums/Weekday"
+import { logger } from "../services/LoggingService"
+import path from "path"
 
 class ClientHandler {
   constructor(
@@ -22,6 +23,8 @@ class ClientHandler {
     private _invoiceService: InvoiceService,
     private _userService: UsersService
   ) {}
+
+  private readonly _FILE_NAME = path.basename(__filename)
 
   async enrollClient(
     classId: string, 
@@ -33,8 +36,9 @@ class ClientHandler {
     currency?: Currency
   ): Promise<void> {
     if (!classId || !userId) {
-      throw new AppError(i18n.__('errors.missingParameters'), 400)
+      throw new AppError('errors.missingParameters', 400)
     }
+    logger.debugInside(this._FILE_NAME, this.enrollClient.name, { classId, userId })
 
     const session = await mongoose.startSession()
     session.startTransaction()
@@ -42,14 +46,14 @@ class ClientHandler {
     try {
       const existingEnrollment = await this._enrollmentService.getEnrollment(classId, userId)
 
-      if (existingEnrollment) throw new AppError(i18n.__('errors.enrollmentAlreadyExists'), 400)
+      if (existingEnrollment) throw new AppError('errors.enrollmentAlreadyExists', 400)
 
       const classDoc = await this._classService.getClass(classId)
       let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequencyOverride, daysOverride)
       
       const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
       if (!basePrice) {
-        throw new AppError(i18n.__('errors.missingParameters'), 400)
+        throw new AppError('errors.missingParameters', 400)
       }
 
       // apply promos or discounts (change basePrice below)
@@ -63,11 +67,13 @@ class ClientHandler {
       await session.abortTransaction()
       throw new AppError(error.message, 500)
     } finally {
+      logger.debugComplete(this._FILE_NAME, this.enrollClient.name)
       session.endSession()
     }
   }
 
   async getClientEnrollmentDetails(userId: string): Promise<ClientEnrollmentDetails> {
+    logger.debugInside(this._FILE_NAME, this.getClientEnrollmentDetails.name, { userId })
     const clientEnrollments = await this._enrollmentService.getClientEnrollments(userId)
     const client = await this._userService.getUserById(userId)
     const enrolledClassInfo: { class: Class, enrollment: Enrollment }[] = []
@@ -81,6 +87,7 @@ class ClientHandler {
       enrolledClassInfo
     }
 
+    logger.debugComplete(this._FILE_NAME, this.getClientEnrollmentDetails.name)
     return clientEnrollmentDetails
   }
 
@@ -91,6 +98,7 @@ class ClientHandler {
     startDate: Date, 
     billingFrequency: BillingFrequency
   ): Promise<Invoice> {
+    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, { userId, enrollmentId })
     const dueDate = this._calculateDueDate(startDate, billingFrequency)
     return await this._invoiceService.createInvoice(userId, enrollmentId, price, new Date(startDate), dueDate)
   }
@@ -102,6 +110,7 @@ class ClientHandler {
     billingFrequencyOverride?: BillingFrequency, 
     daysOverride?: Weekday[]
   ): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this._enrollClient.name, { userId })
     const enrollmentDTO: EnrollmentCreationDTO = {
       userId, 
       classId: classDoc._id, 
@@ -114,6 +123,7 @@ class ClientHandler {
   }
 
   private _calculateDueDate(startDate: Date, billingFrequency: BillingFrequency): Date {
+    logger.debugInside(this._FILE_NAME, this._calculateDueDate.name)
     const dueDate = new Date(startDate)
 
     switch (billingFrequency) {

@@ -28,3 +28,9 @@ export function formatSchedule(days: number[], time: string): string {
 
   return `${formattedDays} - ${formattedTime}`
 }
+
+export function objectAsString(object: {}): string {
+  return Object.entries(object)
+      .map(([key, value]) => `${key}=${JSON.stringify(value)}`)
+      .join(', ')
+}

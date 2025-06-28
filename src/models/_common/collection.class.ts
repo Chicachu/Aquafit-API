@@ -1,7 +1,5 @@
 import { Model } from "mongoose"
 import { v4 as uuid } from 'uuid'
-import AppError from "../../types/AppError"
-import i18n from "../../../config/i18n"
 import { ClassCreationDTO } from "../../types/Class"
 
 abstract class Collection<T> {
@@ -52,7 +50,7 @@ abstract class Collection<T> {
       return insertedModel!
     }
     catch (error) {
-      throw new AppError(i18n.__(''), 500) 
+      throw error
     }
   }
 

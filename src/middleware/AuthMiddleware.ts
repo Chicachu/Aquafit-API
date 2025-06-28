@@ -5,6 +5,7 @@ import AppError from '../types/AppError'
 import { roles } from '../../config/roles'
 import i18n from '../../config/i18n'
 import { usersService } from '../services/UsersService'
+import { logger } from '../services/LoggingService'
 
 const hasAccess = function(action: string, resource: string) {
   return asyncHandler(async (req: Request, res: Response, next: NextFunction) => {

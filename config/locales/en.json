@@ -17,6 +17,9 @@
     "resourceNotFound": "The resource was not found.",
     "contextMissing": "Context is missing.",
     "enrollmentAlreadyExists": "Cannot enroll client, they are already enrolled in this class.",
-    "invoiceAlreadyExists": "An invoice already exists for that client, enrollment, and period."
+    "invoiceAlreadyExists": "An invoice already exists for that client, enrollment, and period.",
+    "couldNotGetEnrollmentInfo": "Could not find enrollment info.",
+    "unableToEnrollClient": "Client was not enrolled.",
+    "unableToCreateResource": "The resource was not created."
   }
 }

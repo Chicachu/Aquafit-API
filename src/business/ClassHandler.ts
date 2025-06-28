@@ -1,6 +1,8 @@
+import path from "path"
 import { ClassService, classService } from "../services/ClassService"
 import { EnrollmentService, enrollmentService } from "../services/EnrollmentService"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
+import { logger } from "../services/LoggingService"
 import AppError from "../types/AppError"
 import { ClassDetails } from "../types/ClassDetails"
 
@@ -11,10 +13,13 @@ class ClassHandler {
     private invoiceService: InvoiceService
   ) {}
 
+  private readonly _FILE_NAME = path.basename(__filename)
+
   async getClassDetails(classId: string): Promise<ClassDetails> {
+    logger.debugInside(this._FILE_NAME, this.getClassDetails.name, { classId })
     const foundClass = await this.classService.getClass(classId)
     if (!foundClass) {
-      throw new AppError(i18n.__('errors.resourceNotFound'), 404)
+      throw new AppError('errors.resourceNotFound', 404)
     }
 
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(foundClass._id!)
@@ -31,6 +36,7 @@ class ClassHandler {
       clients: []
     }
 
+    logger.debugComplete(this._FILE_NAME, this.getClassDetails.name)
     return classDetails
   }
 }

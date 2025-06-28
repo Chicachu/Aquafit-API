@@ -1,45 +1,54 @@
 import { EnrollmentCollection, enrollmentCollection } from "../models/enrollment/enrollment.class"
 import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment"
 import AppError from "../types/AppError"
+import { logger } from "./LoggingService"
+import path from "path"
 
 class EnrollmentService {
   constructor(private enrollmentCollection: EnrollmentCollection) {
     this.enrollmentCollection = enrollmentCollection
   }
 
+  private readonly _FILE_NAME = path.basename(__filename)
+
   async getClassEnrollmentInfo(classId: string): Promise<Enrollment[]> {
+    logger.debugInside(this._FILE_NAME, this.getClassEnrollmentInfo.name, { classId })
     try {
       return await this.enrollmentCollection.getClassEnrollmentInformation(classId)
     } catch (error: any) {
-      throw new AppError(error.message, 500)
+      throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
     }
   }
 
   async enrollClient(newEnrollment: EnrollmentCreationDTO): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.enrollClient.name, { userId: newEnrollment.userId, classId: newEnrollment.classId })
       try {
         return await this.enrollmentCollection.insertOne(newEnrollment)
       } catch (error: any) {
-        throw new AppError(error.message, 500)
+        throw new AppError('error.unableToEnrollClient', 500)
       }
   }
 
   async getEnrollment(classId: string, userId: string): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.getEnrollment.name, { userId, classId })
     try {
       return await this.enrollmentCollection.getEnrollment(classId, userId)
     } catch (error: any) {
-      throw new AppError(error.message, 500)
+      throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
     }
   }
 
   async getClientEnrollments(userId: string): Promise<Enrollment[]> {
+    logger.debugInside(this._FILE_NAME, this.getClientEnrollments.name, { userId })
     try {
       return await this.enrollmentCollection.getClientEnrollments(userId)
     } catch (error: any) {
-      throw new AppError(error.message, 500)
+      throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
     }
   }
 
   async addInvoice(enrollmentId: string, invoiceId: string): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.addInvoice.name, { enrollmentId, invoiceId })
     try {
       const updatedEnrollment = await this.enrollmentCollection.updateOne(
         { _id: enrollmentId },
@@ -47,7 +56,7 @@ class EnrollmentService {
       )
   
       if (!updatedEnrollment) {
-        throw new AppError(`Enrollment ${enrollmentId} not found`, 404);
+        throw new AppError('errors.resourceNotFound', 404, { enrollmentId });
       }
   
       return updatedEnrollment;

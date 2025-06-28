@@ -15,7 +15,7 @@ class EnrollmentController {
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(i18n.__('errors.missingParameters'), 400)
+          throw new AppError('errors.missingParameters', 400)
         }
 
         const { classId, clientId, startDate, billingFrequency } = req.body

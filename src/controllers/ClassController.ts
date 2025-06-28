@@ -2,7 +2,6 @@ import asyncHandler from 'express-async-handler'
 import { Request, Response } from 'express'
 import { classService } from '../services/ClassService'
 import { body, param, validationResult } from 'express-validator'
-import i18n from '../../config/i18n'
 import { ClassType } from '../types/enums/ClassType'
 import { Weekday } from '../types/enums/Weekday'
 import AppError from '../types/AppError'
@@ -11,35 +10,27 @@ import { classHandler } from '../business/ClassHandler'
 
 class ClassController {
   addNewClass = [
-    body('newClass').isObject().notEmpty()
-      .withMessage(i18n.__('errors.missingParameters')),
-    body('newClass.classLocation').isString().notEmpty()
-      .withMessage(i18n.__('errors.missingParameters')),
+    body('newClass').isObject().notEmpty(),
+    body('newClass.classLocation').isString().notEmpty(),
     body('newClass.classType').isString().notEmpty()
-      .custom((value) => Object.values(ClassType).includes(value))
-      .withMessage(i18n.__('errors.missingParameters')),
+      .custom((value) => Object.values(ClassType).includes(value)),
     body('newClass.days').isArray().notEmpty()
       .custom((days: string[]) => days.every(day => 
-        Object.values(Weekday).includes(parseInt(day))))
-      .withMessage(i18n.__('errors.missingParameters')),
-    body('newClass.startDate').isISO8601()
-      .withMessage(i18n.__('errors.missingParameters')),
-    body('newClass.startTime').isString()
-      .withMessage(i18n.__('errors.missingParameters')),
+        Object.values(Weekday).includes(parseInt(day)))),
+    body('newClass.startDate').isISO8601(),
+    body('newClass.startTime').isString(),
     body('newClass.prices').isArray()
       .custom((prices: Price[]) => prices.every(price => 
         typeof price.amount === 'string' && 
         typeof price.currency === 'string' &&
-        ['MXN'].includes(price.currency)))
-      .withMessage(i18n.__('errors.missingParameters')),
+        ['MXN'].includes(price.currency))),
     body('newClass.billingFrequency').isString().notEmpty(),
     body('newClass.maxCapacity').isString()
-      .custom((value) => !isNaN(parseInt(value)))
-      .withMessage(i18n.__('errors.missingParameters')),
+      .custom((value) => !isNaN(parseInt(value))),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(i18n.__('errors.missingParameters'), 400)
+        throw new AppError('errors.missingParameters', 400)
       }
       
       await classService.addNewClass(req.body.newClass)
@@ -60,12 +51,11 @@ class ClassController {
   })
   
   getClassDetails = [ 
-    param('classId').isString().notEmpty()
-      .withMessage(i18n.__('errors.missingParameters')),
+    param('classId').isString().notEmpty(),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(i18n.__('errors.missingParameters'), 400)
+        throw new AppError('errors.missingParameters', 400)
       }
       const classId = req.params.classId 
 

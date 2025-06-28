@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import asyncHandler from 'express-async-handler'
 import { usersService } from '../services/UsersService'
-import i18n from '../../config/i18n'
 import AppError from '../types/AppError'
 import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
@@ -18,15 +17,15 @@ class UsersController {
   })
   
   addNewUser = [
-    body('firstName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
-    body('lastName').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
-    body('phoneNumber').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+    body('firstName').isString().notEmpty(),
+    body('lastName').isString().notEmpty(),
+    body('phoneNumber').isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
         const { firstName, lastName, phoneNumber } = req.body
 
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(i18n.__('errors.missingParameters'), 400)
+          throw new AppError('errors.missingParameters', 400)
         }
 
         const createUserDTO: UserCreationDTO = {
@@ -43,11 +42,11 @@ class UsersController {
   ]
 
   getUser = [
-    param('userId').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+    param('userId').isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(i18n.__('errors.missingParameters'), 400)
+          throw new AppError('errors.missingParameters', 400)
         }
         const userId = req.params.userId 
         const user = await usersService.getUserById(userId)
@@ -57,11 +56,11 @@ class UsersController {
   ]
 
   getClientEnrollmentDetails = [
-    param('userId').isString().notEmpty().withMessage(i18n.__('errors.missingParameters')),
+    param('userId').isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
-          throw new AppError(i18n.__('errors.missingParameters'), 400)
+          throw new AppError('errors.missingParameters', 400)
         }
         const userId = req.params.userId 
         const clientEnrollmentDetails = await clientHandler.getClientEnrollmentDetails(userId)
@@ -71,31 +70,31 @@ class UsersController {
   ]
 
   registerNewUser = [
-    body('username').isString().notEmpty().withMessage(i18n.__('errors.usernameRequired')),
-    body('password').isString().notEmpty().withMessage(i18n.__('errors.passwordRequired')),
-    body('role').isString().notEmpty().withMessage(i18n.__('errors.roleRequired')),
+    body('username').isString().notEmpty(),
+    body('password').isString().notEmpty(),
+    body('role').isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
       const { username, password, role } = req.body
 
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError(i18n.__('errors.missingParameters'), 400)
+        throw new AppError('errors.missingParameters', 400)
       }
 
       let user = await usersService.getUser(username.toLowerCase())
 
       if (role === Role.CLIENT || role === Role.INSTRUCTOR) {
         if (!user) {
-          throw new AppError(i18n.__('errors.notExistingClient'), 400)
+          throw new AppError('errors.notExistingClient', 400)
         }
       }
 
       if (!user?._id) {
-        throw new AppError(i18n.__('errors.somethingWentWrong'), 500)
+        throw new AppError('errors.somethingWentWrong', 500)
       }
 
       if (user.password) {
-        throw new AppError(i18n.__('errors.alreadyRegistered'), 409)
+        throw new AppError('errors.alreadyRegistered', 409)
       }
 
       const { encryptedPassword, accessToken } = await authenticationService.encryptPassword(user._id, password)

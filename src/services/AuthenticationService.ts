@@ -1,19 +1,20 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import AppError from "../types/AppError";
-import { User } from "../types/User";
-import i18n from '../../config/i18n';
+import AppError from "../types/AppError"
+import { User } from "../types/User"
+import { logger } from './LoggingService'
 
 class AuthenticationService { 
   async authenticateUser(user: User, password: string): Promise<string> {
     if (!user || !password || !user.password) {
-      throw new AppError(i18n.__('errors.incorrectCredentials'), 400)
+      throw new AppError('errors.incorrectCredentials', 400)
     }
 
     const authenticated = await bcrypt.compare(password, user.password)
 
     if (!authenticated) {
-      throw new AppError(i18n.__('errors.incorrectCredentials'), 400)
+      logger.access(`${user} tried to log in with incorrect credentials.`)
+      throw new AppError('errors.incorrectCredentials', 400)
     }
 
     return jwt.sign({ userId: user._id }, process.env.JWT_SECRET!)
