@@ -2,3 +2,10 @@
 [2025-06-29T02:03:18.961Z] [ERROR]: The resource was not found.
 [2025-06-29T03:33:44.042Z] [ERROR]: The resource was not found.
 [2025-06-29T03:33:44.043Z] [ERROR]: The resource was not found.
+[2025-06-29T15:19:18.453Z] [ERROR]: The resource was not found.
+[2025-06-29T15:19:21.768Z] [ERROR]: Cannot read properties of null (reading 'classId')
+[2025-06-29T15:28:29.375Z] [ERROR]: The resource was not created.
+[2025-06-29T15:28:29.376Z] [ERROR]: The resource was not created.
+[2025-06-29T15:28:29.386Z] [ERROR]: Could not find enrollment info.
+[2025-06-29T15:28:29.387Z] [ERROR]: Could not find enrollment info.
+[2025-06-29T15:56:38.090Z] [ERROR]: Missing parameters

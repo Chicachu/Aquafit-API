@@ -79,7 +79,7 @@ class ClientHandler {
         classDetails: {
           classType: classDoc.classType, 
           classLocation: classDoc.classLocation,
-          days: enrollment.daysOfWeekOverride ?? classDoc.days
+          days: (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) ? enrollment.daysOfWeekOverride : classDoc.days
         }
       }
 
