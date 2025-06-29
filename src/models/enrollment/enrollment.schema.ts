@@ -67,6 +67,10 @@ const EnrollmentSchema = new Schema(
       type: Boolean, 
       required: false 
     },
+    autoEnrollment: {
+      type: Boolean,
+      required: true
+    },
     invoiceIds: [{
       type: String, 
       ref: 'Invoice',

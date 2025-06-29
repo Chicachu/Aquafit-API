@@ -11,6 +11,15 @@ class EnrollmentService {
 
   private readonly _FILE_NAME = path.basename(__filename)
 
+  async getAllEnrollments(): Promise<Enrollment[]> {
+    logger.debugInside(this._FILE_NAME, this.getAllEnrollments.name)
+    try {
+      return await this.enrollmentCollection.find()
+    } catch (error: any) {
+      throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
+    }
+  }
+
   async getClassEnrollmentInfo(classId: string): Promise<Enrollment[]> {
     logger.debugInside(this._FILE_NAME, this.getClassEnrollmentInfo.name, { classId })
     try {
@@ -29,6 +38,15 @@ class EnrollmentService {
       }
   }
 
+  async getEnrollmentById(enrollmentId: string): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.getEnrollment.name, { enrollmentId })
+    try {
+      return await this.enrollmentCollection.getEnrollmentById(enrollmentId)
+    } catch (error: any) {
+      throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
+    }
+  }
+
   async getEnrollment(classId: string, userId: string): Promise<Enrollment> {
     logger.debugInside(this._FILE_NAME, this.getEnrollment.name, { userId, classId })
     try {
@@ -44,6 +62,22 @@ class EnrollmentService {
       return await this.enrollmentCollection.getClientEnrollments(userId)
     } catch (error: any) {
       throw new AppError('errors.couldNotGetEnrollmentInfo', 500)
+    }
+  }
+
+  async getClassIdFromEnrollment(enrollmentId: string): Promise<string> {
+    logger.debugInside(this._FILE_NAME, this.getClassIdFromEnrollment.name, { enrollmentId })
+    
+    try {
+      const enrollment = await this.enrollmentCollection.findOne({ _id: enrollmentId }, { classId: 1 })
+      
+      if (!enrollment || !enrollment.classId) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+  
+      return enrollment.classId
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
     }
   }
 

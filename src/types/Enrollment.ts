@@ -25,6 +25,7 @@ export type Enrollment = IDocument & {
   isTrial?: boolean
   cancelDate?: Date
   cancelReason?: string
+  autoEnrollment: boolean
   invoiceIds: string[]
 }
 
@@ -34,4 +35,5 @@ export type EnrollmentCreationDTO = {
   startDate: Date
   billingFrequencyOverride?: BillingFrequency
   daysOfWeekOverride?: Weekday[]
+  autoEnrollment: boolean
 }

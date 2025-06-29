@@ -45,8 +45,9 @@ class ClassHandler {
   
     for (const classEnrollment of classEnrollments) {
       const firstAndLast = await this.userService.getUserFirstAndLastName(classEnrollment.userId)
-      const currentPayment = await this.invoiceService.getCurrentInvoice(classEnrollment.invoiceIds)
+      const currentPayment = await this.invoiceService.getOldestUnpaidInvoice(classEnrollment.invoiceIds)
       classClientEnrollmentDetails.push({
+        _id: firstAndLast._id,
         firstName: firstAndLast.firstName,
         lastName: firstAndLast.lastName,
         currentPayment

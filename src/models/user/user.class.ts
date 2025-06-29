@@ -24,10 +24,10 @@ class UserCollection extends Collection<IUserModel> {
     return await this.updateOne({ username: user.username}, user)
   }
 
-  async getUserFirstAndLastName(userId: string): Promise<{firstName: string, lastName: string}> {
+  async getUserFirstAndLastName(userId: string): Promise<{firstName: string, lastName: string, _id: string}> {
     const user = await this.findOne(
       { _id: userId },
-      { firstName: 1, lastName: 1, _id: 0 }  
+      { firstName: 1, lastName: 1, _id: 1 }  
     )
 
     return user

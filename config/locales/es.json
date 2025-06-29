@@ -20,6 +20,7 @@
     "invoiceAlreadyExists": "Ya existe una factura para ese cliente, inscripción y período.",
     "couldNotGetEnrollmentInfo": "No se pudo encontrar la información de inscripción.",
     "unableToEnrollClient": "El cliente no estaba inscrito.",
-    "unableToCreateResource": "No se creó el recurso."
+    "unableToCreateResource": "No se creó el recurso.",
+    "noBasePriceInClass": "No se encontró un precio base para la clase al generar una nueva factura"
   }
 }

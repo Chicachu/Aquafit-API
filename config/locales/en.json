@@ -10,7 +10,7 @@
     "somethingWentWrong": "Something went wrong. Please contact us.",
     "invalidLanguage": "Invalid language.",
     "alreadyRegistered": "User is already registered",
-    "missingParameters": "Missing paramters",
+    "missingParameters": "Missing parameters",
     "viewIsRequired": "View is required",
     "conflictingClasses": "Class was not added, it conflicts with an existing class.",
     "notSavedToDB": "Something went wrong saving to the database.",
@@ -20,6 +20,7 @@
     "invoiceAlreadyExists": "An invoice already exists for that client, enrollment, and period.",
     "couldNotGetEnrollmentInfo": "Could not find enrollment info.",
     "unableToEnrollClient": "Client was not enrolled.",
-    "unableToCreateResource": "The resource was not created."
+    "unableToCreateResource": "The resource was not created.",
+    "noBasePriceInClass": "No base price found for class when generating new invoice"
   }
 }

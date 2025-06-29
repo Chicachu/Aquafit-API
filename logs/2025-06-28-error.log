@@ -1,1 +1,6 @@
 [2025-06-28T17:21:39.300Z] [ERROR]: Missing paramters
+[2025-06-28T23:10:00.705Z] [ERROR]: The resource was not created.
+[2025-06-28T23:10:00.706Z] [ERROR]: The resource was not created.
+[2025-06-28T23:24:24.615Z] [ERROR]: The resource was not created.
+[2025-06-28T23:28:27.885Z] [ERROR]: An invoice already exists for that client, enrollment, and period.
+[2025-06-28T23:30:19.030Z] [ERROR]: An invoice already exists for that client, enrollment, and period.

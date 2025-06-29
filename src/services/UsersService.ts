@@ -23,7 +23,7 @@ class UsersService {
     }
   }
 
-  async getUserFirstAndLastName(userId: string): Promise<{firstName: string, lastName: string}> {
+  async getUserFirstAndLastName(userId: string): Promise<{firstName: string, lastName: string, _id: string}> {
     logger.debugInside(this._FILE_NAME, this.getUserFirstAndLastName.name, {userId})
     try {
       return await this.userCollection.getUserFirstAndLastName(userId)

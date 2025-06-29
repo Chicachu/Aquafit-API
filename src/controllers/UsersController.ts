@@ -69,6 +69,39 @@ class UsersController {
       })
   ]
 
+  getInvoiceHistory = [
+    param('userId').isString().notEmpty(), 
+    param('enrollmentId').isString().notEmpty(),
+      asyncHandler(async (req: Request, res: Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          throw new AppError('errors.missingParameters', 400)
+        }
+
+        const { userId, enrollmentId } = req.params
+        const invoiceHistory = await clientHandler.getInvoiceHistory(userId, enrollmentId)
+
+        res.send(invoiceHistory)
+      })
+  ]
+
+  getInvoiceDetails = [
+    param('invoiceId').isString().notEmpty(),
+    param('userId').isString().notEmpty(), 
+    param('enrollmentId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+  
+      const { invoiceId, userId, enrollmentId } = req.params
+      const invoiceDetails = await clientHandler.getInvoiceDetails(invoiceId, userId, enrollmentId)
+  
+      res.send(invoiceDetails)
+    })
+  ]
+
   registerNewUser = [
     body('username').isString().notEmpty(),
     body('password').isString().notEmpty(),

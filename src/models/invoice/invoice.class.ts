@@ -1,7 +1,7 @@
 import { Model } from "mongoose"
 import Collection from "../_common/collection.class"
 import { InvoiceDocument, IInvoiceModel, InvoiceModel } from "./invoice.schema"
-import { InvoiceCreationDTO } from "../../types/Invoice"
+import { InvoiceCreationDTO } from "../../types/invoices/Invoice"
 import AppError from "../../types/AppError"
 import { PaymentStatus } from "../../types/enums/PaymentStatus"
 import { logger } from "../../services/LoggingService"
@@ -27,6 +27,7 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
   } 
 
   async getMostRecentInvoice(invoiceIds: string[]): Promise<InvoiceDocument> {
+    logger.debugInside(this._FILE_NAME, this.getMostRecentInvoice.name, { invoiceIds })
     if (!invoiceIds || invoiceIds.length === 0) throw new AppError('errors.missingParameters', 400)
 
     try {
@@ -36,9 +37,27 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
         .limit(1)
         .lean()
         .then(invoices => invoices[0] || null)
+        
       return invoice as InvoiceDocument
     }
     catch (error) {
+      throw error
+    }
+  }
+
+  async getOldestUnpaidInvoice(invoiceIds: string[]): Promise<InvoiceDocument> {
+    logger.debugInside(this._FILE_NAME, this.getOldestUnpaidInvoice.name, { invoiceIds })
+    try {
+      const invoice = await this.model.find({
+        _id: { $in: invoiceIds },
+        paymentStatus: { $ne: 'paid' } 
+      })
+      .sort({ 'period.dueDate': 1 }) 
+      .limit(1)
+      .then(invoices => invoices[0] || null)
+
+      return invoice
+    } catch (error) {
       throw error
     }
   }

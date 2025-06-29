@@ -19,6 +19,10 @@ function roles(): AccessControl {
   
   ac.grant(Role.ADMIN)
     .extend(Role.INSTRUCTOR)
+    .readAny(AccessControlResource.PAYMENT)
+    .createAny(AccessControlResource.PAYMENT)
+    .updateAny(AccessControlResource.PAYMENT)
+    .deleteAny(AccessControlResource.PAYMENT)
     .createAny(AccessControlResource.CLASS)
     .updateAny(AccessControlResource.CLASS)
     .deleteAny(AccessControlResource.CLASS)

@@ -43,10 +43,10 @@ class Logger {
     this._debug(formedMessage)
   }
 
-  public info(fileName: string, methodName: string,message: string, details = {}): void {
+  public info(fileName: string, methodName: string, message: string, details = {}): void {
     let formedMessage = `[${fileName}:${methodName}] - ${message}`
     formedMessage += details ? ` ${objectAsString(details)}` : ''
-    this._writeLog(LogLevel.INFO, message)
+    this._writeLog(LogLevel.INFO, formedMessage)
   }
 
   public warn(message: string): void {
