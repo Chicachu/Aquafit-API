@@ -16,6 +16,7 @@
     "notSavedToDB": "Algo salió mal al guardar en la base de datos.",
     "resourceNotFound": "El recurso no fue encontrado.",
     "contextMissing": "Falta el contexto.",
+    "invalidPercentage": "Porcentaje no válido. Debe estar entre 0 y 100.",
     "enrollmentAlreadyExists": "No se puede inscribir al cliente, ya está inscrito en esta clase.",
     "invoiceAlreadyExists": "Ya existe una factura para ese cliente, inscripción y período.",
     "couldNotGetEnrollmentInfo": "No se pudo encontrar la información de inscripción.",

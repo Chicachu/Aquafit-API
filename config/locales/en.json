@@ -16,6 +16,7 @@
     "notSavedToDB": "Something went wrong saving to the database.",
     "resourceNotFound": "The resource was not found.",
     "contextMissing": "Context is missing.",
+    "invalidPercentage": "Invalid percentage. Must be between 0 and 100.",
     "enrollmentAlreadyExists": "Cannot enroll client, they are already enrolled in this class.",
     "invoiceAlreadyExists": "An invoice already exists for that client, enrollment, and period.",
     "couldNotGetEnrollmentInfo": "Could not find enrollment info.",

@@ -65,3 +65,5 @@
 [2026-01-26T21:13:47.496Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
 [2026-01-26T21:13:47.572Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
 [2026-01-26T21:13:47.653Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T21:20:12.292Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T21:20:20.014Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
