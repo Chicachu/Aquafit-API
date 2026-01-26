@@ -1,20 +1,21 @@
 import AppError from "../types/AppError";
+import { Discount } from "../types/discounts/Discount";
 import { DiscountHandlerFactory } from "../types/discounts/DiscountHandlerFactory";
-import { Promotion } from "../types/discounts/Promotion";
+import { DiscountContext } from "../types/discounts/handlers/contexts/DiscountContext";
 import { Currency } from "../types/enums/Currency";
 
 class DiscountService {
-  async applyDiscountToPayment(
-    discount: Promotion,
+  async applyDiscountToInvoice<TContext>(
+    discount: Discount,
     chargeAmount: number,
     currency: Currency,
-    context?: any
+    context?: TContext
   ): Promise<{}> {
     const handler = DiscountHandlerFactory.getHandler(discount.type)
 
     if (!handler) throw new AppError('', 400)
 
-    const calculatedAmount = handler.apply(chargeAmount, discount, context)
+    const calculatedAmount = handler.apply(chargeAmount, discount, context as TContext)
   
     return {
       discountId: discount._id,

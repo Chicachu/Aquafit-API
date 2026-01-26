@@ -1,0 +1,67 @@
+[2026-01-26T21:05:10.099Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T21:05:11.021Z] [DEBUG]: Deleted old log: 2025-06-28-access.log
+[2026-01-26T21:05:11.021Z] [DEBUG]: Deleted old log: 2025-06-28-error.log
+[2026-01-26T21:05:11.022Z] [DEBUG]: Deleted old log: 2025-06-28-info.log
+[2026-01-26T21:05:11.022Z] [DEBUG]: Deleted old log: 2025-06-28-warn.log
+[2026-01-26T21:05:11.022Z] [DEBUG]: Deleted old log: 2025-06-29-access.log
+[2026-01-26T21:05:11.023Z] [DEBUG]: Deleted old log: 2025-06-29-error.log
+[2026-01-26T21:05:11.023Z] [DEBUG]: Deleted old log: 2025-06-29-info.log
+[2026-01-26T21:05:11.023Z] [DEBUG]: Deleted old log: 2025-06-29-warn.log
+[2026-01-26T21:05:11.024Z] [DEBUG]: Deleted old log: 2025-06-30-access.log
+[2026-01-26T21:05:11.024Z] [DEBUG]: Deleted old log: 2025-06-30-debug.log
+[2026-01-26T21:05:11.024Z] [DEBUG]: Deleted old log: 2025-06-30-error.log
+[2026-01-26T21:05:11.025Z] [DEBUG]: Deleted old log: 2025-06-30-info.log
+[2026-01-26T21:05:11.025Z] [DEBUG]: Deleted old log: 2025-07-01-access.log
+[2026-01-26T21:05:11.025Z] [DEBUG]: Deleted old log: 2025-06-30-warn.log
+[2026-01-26T21:05:11.025Z] [DEBUG]: Deleted old log: 2025-07-01-debug.log
+[2026-01-26T21:05:11.025Z] [DEBUG]: Deleted old log: 2025-07-01-error.log
+[2026-01-26T21:05:11.026Z] [DEBUG]: Deleted old log: 2025-07-01-info.log
+[2026-01-26T21:05:11.026Z] [DEBUG]: Deleted old log: 2025-07-01-warn.log
+[2026-01-26T21:05:11.026Z] [DEBUG]: Deleted old log: 2025-07-03-access.log
+[2026-01-26T21:05:11.027Z] [DEBUG]: Deleted old log: 2025-07-03-debug.log
+[2026-01-26T21:05:11.027Z] [DEBUG]: Deleted old log: 2025-07-03-error.log
+[2026-01-26T21:05:11.027Z] [DEBUG]: Deleted old log: 2025-07-03-info.log
+[2026-01-26T21:05:11.027Z] [DEBUG]: Deleted old log: 2025-07-03-warn.log
+[2026-01-26T21:05:11.027Z] [DEBUG]: Deleted old log: 2025-07-05-access.log
+[2026-01-26T21:05:11.028Z] [DEBUG]: Deleted old log: 2025-07-05-debug.log
+[2026-01-26T21:05:11.028Z] [DEBUG]: Deleted old log: 2025-07-05-error.log
+[2026-01-26T21:05:11.028Z] [DEBUG]: Deleted old log: 2025-07-05-info.log
+[2026-01-26T21:05:11.028Z] [DEBUG]: Deleted old log: 2025-07-05-warn.log
+[2026-01-26T21:05:11.028Z] [DEBUG]: Deleted old log: 2025-07-06-access.log
+[2026-01-26T21:05:11.029Z] [DEBUG]: Deleted old log: 2025-07-06-debug.log
+[2026-01-26T21:05:11.029Z] [DEBUG]: Deleted old log: 2025-07-06-error.log
+[2026-01-26T21:05:11.029Z] [DEBUG]: Deleted old log: 2025-07-06-info.log
+[2026-01-26T21:05:11.030Z] [DEBUG]: Deleted old log: 2025-07-06-warn.log
+[2026-01-26T21:12:51.171Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T21:12:59.665Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:12:59.799Z] [DEBUG]: Inside [UsersService.ts:updateUserInfo] user={"_id":"b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9","username":"admin@aquafitvallarta.com","password":"$2b$10$RS0yVIZGBYC3yJkq7NlgNeN3.Bq6ZCGZJIXzB/VPf/PasOwuUlvaa","role":"admin","__v":0,"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiM2Y2YmU2Yi02MzIwLTRkM2YtYmJkNy1hYjI2ZWM0NGVjYTkiLCJpYXQiOjE3NTEwNjE4Njd9.dvhx8ugMJkIyg6mE1VrWHcPQSLOn1Ivd8EM-rvgYnT8","firstName":"Erica","lastName":"Putsche","phoneNumber":"4252331266","updatedAt":"2025-06-27T22:04:27.953Z"}
+[2026-01-26T21:13:32.067Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:32.078Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:32.157Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:32.165Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:32.243Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T21:13:32.250Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T21:13:32.328Z] [DEBUG]: Inside [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:32.329Z] [DEBUG]: Complete [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:36.409Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:36.489Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:36.567Z] [DEBUG]: Inside [ClassService.ts:getClassesAtLocation] 
+[2026-01-26T21:13:36.643Z] [DEBUG]: Inside [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:36.644Z] [DEBUG]: Complete [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:37.860Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:37.941Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:38.027Z] [DEBUG]: Inside [ClassService.ts:getClassesAtLocation] 
+[2026-01-26T21:13:38.103Z] [DEBUG]: Inside [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:38.103Z] [DEBUG]: Complete [ScheduleService.ts:getClassOccurrencesForDay] 
+[2026-01-26T21:13:43.768Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:43.845Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:43.922Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T21:13:44.278Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:44.360Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:44.448Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T21:13:44.939Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:45.018Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:45.098Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T21:13:47.496Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T21:13:47.572Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T21:13:47.653Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"

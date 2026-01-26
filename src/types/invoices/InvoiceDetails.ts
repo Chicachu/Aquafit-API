@@ -2,6 +2,7 @@ import { Currency } from "../enums/Currency"
 import { PaymentStatus } from "../enums/PaymentStatus"
 import { PaymentType } from "../enums/PaymentType"
 import { Weekday } from "../enums/Weekday"
+import { Period } from "../Period"
 import { Price } from "../Price"
 
 export type InvoiceDetails = {
@@ -25,14 +26,10 @@ export type InvoiceDetails = {
       description?: string | null
     }[]
     paymentsApplied: {
-      amount: number
-      currency: Currency
+      charge: Price
       date: Date
       paymentType: PaymentType
     }[]
     paymentStatus: PaymentStatus
-    period: {
-      startDate: Date
-      dueDate: Date
-    }
+    period: Period
 }

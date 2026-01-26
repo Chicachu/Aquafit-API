@@ -1,5 +1,6 @@
-import { Promotion } from "./Promotion";
+import { Discount } from "./Discount";
+import { DiscountContext } from "./handlers/contexts/DiscountContext";
 
-export interface DiscountHandler {
-  apply(chargeAmount: number, discount: Promotion, context?: any): number;
+export interface DiscountHandler<TContext extends DiscountContext = DiscountContext> {
+  apply(chargeAmount: number, discount: Discount, context?: TContext): number;
 }

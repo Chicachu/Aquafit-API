@@ -15,6 +15,8 @@ const WaitlistSchema = new Schema(
   { timestamps: true }
 )
 
+WaitlistSchema.index({ classId: 1, userId: 1 }, { unique: true })
+
 type WaitlistDocument = InferSchemaType<typeof WaitlistSchema> 
 
 interface IWaitlistDocument extends WaitlistDocument, Document { }

@@ -3,7 +3,7 @@ import { enrollmentService, EnrollmentService } from "../services/EnrollmentServ
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import AppError from "../types/AppError"
 import { Class } from "../types/Class"
-import { Promotion } from "../types/discounts/Promotion"
+import { Discount } from "../types/discounts/Discount"
 import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment"
 import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Currency } from "../types/enums/Currency"
@@ -96,7 +96,7 @@ class ClientHandler {
     startDate: Date, 
     billingFrequencyOverride?: BillingFrequency, 
     daysOverride?: Weekday[],
-    promotion?: Promotion,
+    discount?: Discount,
     currency?: Currency
   ): Promise<void> {
     if (!classId || !userId) {
@@ -114,20 +114,8 @@ class ClientHandler {
 
       const classDoc = await this._classService.getClass(classId)
       let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequencyOverride, daysOverride)
+      await this._generateInvoice(userId, enrollment._id, classDoc, startDate, billingFrequencyOverride!, currency)
       
-      const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
-      if (!basePrice) {
-        throw new AppError('errors.missingParameters', 400)
-      }
-
-      // apply promos or discounts (change basePrice below)
-
-      // create invoice 
-      const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
-      const enrollmentRatio = enrollment.daysOfWeekOverride ? (enrollment.daysOfWeekOverride.length / classDoc.days.length) : 1
-
-      const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency, enrollmentRatio)
-      enrollment = await this._enrollmentService.addInvoice(enrollment._id, invoice._id)
       await session.commitTransaction()
     } catch (error: any) {
       await session.abortTransaction()
@@ -179,34 +167,23 @@ class ClientHandler {
         const latestInvoice = invoices[0]
   
         // If the dueDate has passed, create a new invoice
-        if (latestInvoice.period.dueDate < today) {
+        if (latestInvoice.period.endDate < today) {
           logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Due date passed, generating new invoice', {
             enrollmentId: enrollment._id,
             userId: enrollment.userId,
-            latestInvoiceDueDate: latestInvoice.period.dueDate,
+            latestInvoiceDueDate: latestInvoice.period.endDate,
           })
   
           const classDoc = await this._classService.getClass(enrollment.classId)
-          const basePrice = classDoc.prices.find(p => p.currency === Currency.PESOS)
-          if (!basePrice) {
-            throw new AppError('errors.noBasePriceInClass', 400)
-          }
   
-          const billingFrequency = enrollment.billingFrequencyOverride ?? classDoc.billingFrequency
-          const overrideDays = enrollment.daysOfWeekOverride
-          const enrollmentRatio = (overrideDays && overrideDays.length > 0) ? (overrideDays.length / classDoc.days.length) : 1
           // Generate new invoice starting from today
           const newInvoice = await this._generateInvoice(
             enrollment.userId,
             enrollment._id,
-            basePrice,
-            new Date(latestInvoice.period.dueDate),
-            billingFrequency,
-            enrollmentRatio
+            classDoc,
+            new Date(latestInvoice.period.endDate),
+            enrollment.billingFrequencyOverride
           )
-  
-          // Link new invoice to enrollment
-          await this._enrollmentService.addInvoice(enrollment._id, newInvoice._id)
           logger.debugComplete(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, { newInvoiceId: newInvoice._id })
         }
       } catch (error: any) {
@@ -220,18 +197,28 @@ class ClientHandler {
   private async _generateInvoice(
     userId: string, 
     enrollmentId: string, 
-    price: Price, 
+    classDoc: Class,
     startDate: Date, 
-    billingFrequency: BillingFrequency,
-    partialEnrollmentRatio: number
+    billingFrequencyOverride: BillingFrequency,
+    currency?: Currency
   ): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this._generateInvoice.name, { userId, enrollmentId })
-    const dueDate = this._calculateDueDate(startDate, billingFrequency)
-    const newPrice = {
-      amount: partialEnrollmentRatio ? Math.round((price.amount * partialEnrollmentRatio)) : price.amount,
-      currency: price.currency
+
+    const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
+    if (!basePrice) {
+      throw new AppError('errors.missingParameters', 400)
     }
-    return await this._invoiceService.createInvoice(userId, enrollmentId, newPrice, new Date(startDate), dueDate)
+
+    // apply promos or discounts (change basePrice below)
+
+    // create invoice 
+    const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
+    const dueDate = this._calculateDueDate(startDate, billingFrequency)
+    const invoice = await this._invoiceService.createInvoice(userId, enrollmentId, basePrice, new Date(startDate), dueDate)
+    // const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency)
+    await this._enrollmentService.addInvoice(enrollmentId, invoice._id)
+    
+    return invoice
   }
 
   private async _enrollClient(

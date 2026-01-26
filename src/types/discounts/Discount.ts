@@ -1,9 +1,10 @@
 import { IDocument } from "../IDocument";
+import { Period } from "../Period";
 import { DiscountType } from "../enums/DiscountType";
 
-export type Promotion = IDocument & {
+export type Discount = IDocument & {
   description: string
   type: DiscountType
-  amount: number
-  startDate: Date
+  amount?: number
+  period?: Period
 }

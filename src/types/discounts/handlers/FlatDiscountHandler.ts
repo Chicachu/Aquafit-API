@@ -1,8 +1,9 @@
-import { Promotion } from "../Discount";
+import { Discount } from "../Discount";
 import { DiscountHandler } from "../DiscountHandler";
+import { DiscountContext } from "./contexts/DiscountContext";
 
-export class FlatDiscountHandler implements DiscountHandler {
-  apply(_: number, discount: Promotion): number {
-    return discount.amount;
+export class FlatDiscountHandler implements DiscountHandler<DiscountContext> {
+  apply(_: number, discount: Discount): number {
+    return discount.amount ?? 0;
   }
 }

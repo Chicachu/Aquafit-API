@@ -52,7 +52,7 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
         _id: { $in: invoiceIds },
         paymentStatus: { $ne: 'paid' } 
       })
-      .sort({ 'period.dueDate': 1 }) 
+      .sort({ 'period.endDate': 1 }) 
       .limit(1)
       .then(invoices => invoices[0] || null)
 
@@ -62,7 +62,7 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
     }
   }
 
-  async invoiceExists(clientId: string, enrollmentId: string, startDate: Date, dueDate: Date): Promise<Boolean> {
+  async invoiceExists(clientId: string, enrollmentId: string, startDate: Date, endDate: Date): Promise<Boolean> {
     const existingInvoice = await this.findOne({
       userId: clientId,
       enrollmentId,
@@ -70,9 +70,9 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
         $gte: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0),
         $lt: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 1, 0, 0, 0)
       },
-      'period.dueDate': {
-        $gte: new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate(), 0, 0, 0),
-        $lt: new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate() + 1, 0, 0, 0)
+      'period.endDate': {
+        $gte: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 0, 0, 0),
+        $lt: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate() + 1, 0, 0, 0)
       }
     })
 
@@ -90,13 +90,13 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
     })
   
     const bulkOps = invoicesToUpdate.map(invoice => {
-      const dueDate = invoice.period.dueDate
-  
+      const endDate = invoice.period.endDate
+      
       let newStatus = PaymentStatus.PENDING
-  
-      if (dueDate < now) {
+      
+      if (endDate < now) {
         newStatus = PaymentStatus.OVERDUE
-      } else if (dueDate >= now && dueDate <= fourDaysFromNow) {
+      } else if (endDate >= now && endDate <= fourDaysFromNow) {
         newStatus = PaymentStatus.ALMOST_DUE
       } 
   

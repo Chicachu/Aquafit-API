@@ -1,5 +1,6 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose";
 import { BillingFrequency } from "../../types/enums/BillingFrequency";
+import { EnrollmentStatus } from "../../types/enums/EnrollmentStatus";
 import { AmountSchema } from "../_common/amount.schema";
 
 const EnrollmentSchema = new Schema(
@@ -22,6 +23,12 @@ const EnrollmentSchema = new Schema(
     startDate: {
       type: Date,
       required: true
+    },
+    status: {
+      type: String,
+      enum: Object.values(EnrollmentStatus),
+      required: true,
+      default: EnrollmentStatus.ACTIVE
     },
     daysOfWeekOverride: {
       type: [Number],

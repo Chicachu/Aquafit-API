@@ -17,7 +17,7 @@ class InvoiceService {
       const invoices = await this._invoiceCollection.model.find({
         userId,
         enrollmentId
-      }).sort({ 'period.dueDate': -1 })
+      }).sort({ 'period.endDate': -1 })
 
       return invoices
     } catch (error) {
@@ -65,13 +65,13 @@ class InvoiceService {
     
     try {
       const invoices = await this._invoiceCollection.find({ _id: { $in: invoiceIds } })
-      return invoices.sort((a: Invoice, b: Invoice) => b.period.dueDate.getTime() - a.period.dueDate.getTime())
+      return invoices.sort((a: Invoice, b: Invoice) => b.period.endDate.getTime() - a.period.endDate.getTime())
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
   }
 
-  async createInvoice(clientId: string, enrollmentId: string, charge: Price, startDate: Date, dueDate: Date): Promise<Invoice> {
+  async createInvoice(clientId: string, enrollmentId: string, charge: Price, startDate: Date, endDate: Date): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.createInvoice.name, { userId: clientId, enrollmentId })
     const invoiceCreationDTO: InvoiceCreationDTO = {
       userId: clientId, 
@@ -79,13 +79,13 @@ class InvoiceService {
       charge, 
       period: {
         startDate, 
-        dueDate
+        endDate
       },
       paymentStatus: PaymentStatus.PENDING
     }
 
     try {
-      const invoiceExists = await this._invoiceCollection.invoiceExists(clientId, enrollmentId, startDate, dueDate)
+      const invoiceExists = await this._invoiceCollection.invoiceExists(clientId, enrollmentId, startDate, endDate)
 
       if (invoiceExists) throw new AppError('errors.invoiceAlreadyExists', 400)
 

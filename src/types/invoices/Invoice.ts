@@ -1,36 +1,21 @@
 import { IDocument } from "../IDocument"
+import { Period } from "../Period"
 import { Price } from "../Price"
+import { AppliedDiscount } from "../discounts/AppliedDiscount"
 import { Currency } from "../enums/Currency"
 import { PaymentStatus } from "../enums/PaymentStatus"
-import { PaymentType } from "../enums/PaymentType"
+import { Payment } from "./Payment"
 
 export type Invoice = IDocument & {
   userId: string
   enrollmentId: string
   charge: Price
-  discountsApplied?: {
-    discountId?: string | null
-    amountOverride?: {
-      amount: number
-      currency: Currency
-    } | null
-    amountSnapshot?: {
-      amount: number
-      currency: Currency
-    } | null
-    description?: string | null
-  }[]
-  paymentsApplied: {
-    amount: number
-    currency: Currency
-    date: Date
-    paymentType: PaymentType
-  }[]
+  amountDue: number
+  remainingBalance: number
+  discountsApplied?: AppliedDiscount[]
+  paymentsApplied: Payment[]
   paymentStatus: PaymentStatus
-  period: {
-    startDate: Date
-    dueDate: Date
-  }
+  period: Period
   createdAt: Date
   updatedAt: Date
 }
@@ -40,10 +25,7 @@ export type InvoiceCreationDTO = {
   userId: string
   enrollmentId: string 
   charge: Price
-  period: {
-    startDate: Date, 
-    dueDate: Date
-  }
+  period: Period
   paymentStatus: PaymentStatus
   discountsApplied?: {
     discountId: string
