@@ -380,3 +380,130 @@
 [2026-01-26T23:19:21.879Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
 [2026-01-26T23:19:21.882Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
 [2026-01-26T23:19:21.975Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:21:57.607Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:21:57.685Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:21:57.763Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:57.764Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:57.841Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:57.917Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:21:57.994Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:21:57.995Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:21:58.071Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:21:58.871Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:21:58.952Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:21:59.029Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:59.030Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:59.105Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:21:59.185Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:21:59.268Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:21:59.268Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:21:59.348Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:22:01.124Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:22:01.200Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:22:01.282Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:01.283Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:01.361Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:01.436Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:22:01.511Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:01.512Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:01.589Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:22:04.485Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:22:04.563Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:22:04.640Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:04.649Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:04.730Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:04.806Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:22:04.886Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:04.886Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:04.962Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:22:24.297Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:22:24.376Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:22:24.457Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:24.458Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:24.536Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:24.612Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:22:24.687Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:24.688Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:24.769Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:22:25.644Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:22:25.721Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:22:25.798Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:25.798Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:25.875Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:22:25.951Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:22:26.029Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:26.029Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:22:26.108Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:13.431Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:13.508Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:13.585Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:13.586Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:13.662Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:13.742Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:13.825Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:13.826Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:13.906Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:15.553Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:15.630Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:15.708Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:15.718Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:15.794Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:15.871Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:15.952Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:15.954Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:16.038Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:18.000Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:18.080Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:18.161Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:18.162Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:18.240Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:18.316Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:18.397Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:18.398Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:18.477Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:20.024Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:20.102Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:20.179Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:20.180Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:20.257Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:20.332Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:20.415Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:20.415Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:20.495Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:52.696Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:52.773Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:52.851Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:52.852Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:52.927Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:53.003Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:53.078Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:53.079Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:53.155Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:54.310Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:54.387Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:54.464Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:54.465Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:54.545Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:54.621Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:54.703Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:54.705Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:54.787Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:56.655Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:56.731Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:56.807Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:56.808Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:56.888Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:56.963Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:57.043Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:57.044Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:57.121Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:26:58.048Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:26:58.127Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:26:58.205Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:58.206Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:58.286Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:26:58.366Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:26:58.447Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:58.449Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:26:58.536Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:28:04.295Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 

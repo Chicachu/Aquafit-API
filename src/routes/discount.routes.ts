@@ -6,9 +6,9 @@ import { discountController } from "../controllers/DiscountController";
 
 const router = express.Router()
 
-router.get('/', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ALL), discountController.getAllDiscounts)
-router.get('/:discountId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ALL), discountController.getDiscount)
-router.post('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.ALL), discountController.createDiscount)
-router.put('/:discountId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.ALL), discountController.updateDiscount)
+router.get('/', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.DISCOUNT), discountController.getAllDiscounts)
+router.get('/:discountId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.DISCOUNT), discountController.getDiscount)
+router.post('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.DISCOUNT), discountController.createDiscount)
+router.put('/:discountId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.DISCOUNT), discountController.updateDiscount)
 
 export default router
