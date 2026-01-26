@@ -59,6 +59,9 @@ app.use('/api/schedules', scheduleRouter)
 import enrollmentRouter from './src/routes/enrollment.routes'
 app.use('/api/enrollments', enrollmentRouter)
 
+import discountRouter from './src/routes/discount.routes'
+app.use('/api/discounts', discountRouter)
+
 app.use(errorHandler)
 
 export default app

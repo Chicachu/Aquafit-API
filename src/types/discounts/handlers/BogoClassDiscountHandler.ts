@@ -11,13 +11,9 @@ export class BogoClassDiscountHandler implements DiscountHandler<BogoClassContex
     }
 
     if (context.numberOfClasses < 2) {
-      // BOGO requires at least 2 classes
       return 0;
     }
 
-    // "2 classes, 1 price" means for every 2 classes, you get 1 free
-    // So if chargeAmount is for numberOfClasses, discount is chargeAmount / numberOfClasses * (numberOfClasses / 2)
-    // Simplified: for every pair of classes, discount one class worth
     const pairs = Math.floor(context.numberOfClasses / 2);
     const discountPerClass = chargeAmount / context.numberOfClasses;
     

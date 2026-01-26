@@ -67,3 +67,34 @@
 [2026-01-26T21:13:47.653Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
 [2026-01-26T21:20:12.292Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
 [2026-01-26T21:20:20.014Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T21:59:19.684Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:03:18.271Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:03:18.362Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:03:18.447Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:05:53.575Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:05:53.654Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:05:53.731Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:06:28.462Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:06:28.539Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:06:28.615Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:06:30.272Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:06:30.353Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:06:30.436Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:07:56.452Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:07:56.531Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:07:56.609Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:10:54.524Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:11:53.586Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:13:15.837Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:13:37.303Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:13:37.387Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:13:37.467Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-26T22:14:22.353Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:14:22.437Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:14:22.522Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-26T22:14:54.661Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:14:54.739Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:14:54.824Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:14:56.701Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:14:56.785Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:14:56.871Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 

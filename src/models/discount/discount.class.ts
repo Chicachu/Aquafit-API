@@ -7,6 +7,9 @@ class DiscountCollection extends Collection<IDiscountDocument> {
     super(model)
   }
 
+  async getDiscountById(discountId: string): Promise<IDiscountDocument> {
+    return await this.findOne({ _id: discountId })
+  }
 }
 
 const discountCollection = new DiscountCollection(DiscountModel)
