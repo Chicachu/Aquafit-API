@@ -24,6 +24,8 @@ export type UserCreationDTO = {
 }
 
 export type UpdateUserOptions = {
+  firstName?: string
+  lastName?: string
   phoneNumber?: string
   username?: string
   password?: string

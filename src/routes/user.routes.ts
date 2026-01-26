@@ -20,4 +20,6 @@ router.get('/:userId/payments/:enrollmentId', isLoggedIn, hasAccess(AccessContro
 
 router.get('/:userId/payments/:enrollmentId/:invoiceId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceDetails)
 
+router.put('/:userId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.updateClient)
+
 export default router

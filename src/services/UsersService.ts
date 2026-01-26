@@ -76,7 +76,12 @@ class UsersService {
         ...updateUserOptions
       }
 
-      return await this.userCollection.updateUser(updatedUser)
+      // Use updateOne with _id if we have it, otherwise fall back to username
+      if (user._id) {
+        return await this.userCollection.updateOne({ _id: user._id }, updateUserOptions)
+      } else {
+        return await this.userCollection.updateUser(updatedUser)
+      }
     } catch (error: any) {
       throw new AppError(error.message, 500)
     }

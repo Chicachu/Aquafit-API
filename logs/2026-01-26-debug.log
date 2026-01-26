@@ -98,3 +98,285 @@
 [2026-01-26T22:14:56.701Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
 [2026-01-26T22:14:56.785Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
 [2026-01-26T22:14:56.871Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-26T22:17:52.995Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:17:53.073Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:17:53.157Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-26T22:18:48.595Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:24:22.742Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:22.826Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:22.913Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-26T22:24:24.192Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:24.278Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:24.363Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:24:26.810Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:26.890Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:26.970Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:24:27.843Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:27.925Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:28.026Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:24:28.028Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:24:28.113Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:24:28.191Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:24:28.277Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:24:28.352Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:24:35.947Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:36.031Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:36.112Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:24:36.991Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:37.072Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:37.154Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T22:24:38.713Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:24:38.796Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:24:38.876Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T22:24:38.877Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T22:24:38.961Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T22:24:39.043Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T22:24:39.120Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T22:24:39.120Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T22:24:39.209Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T22:29:50.774Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T22:30:04.492Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:30:04.575Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:30:04.660Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T22:30:06.346Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:30:06.423Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:30:06.506Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:30:06.507Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:30:06.586Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:30:06.663Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:30:06.739Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:30:06.815Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:32:21.501Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:32:21.585Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:32:21.672Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:32:21.674Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:32:21.759Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:32:21.844Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:32:21.925Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:32:22.002Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:33:49.893Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:33:49.979Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:33:50.059Z] [DEBUG]: Inside [ClassService.ts:getClassScheduleMap] 
+[2026-01-26T22:33:50.060Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T22:33:50.137Z] [DEBUG]: Complete [ClassService.ts:getClassScheduleMap] 
+[2026-01-26T22:33:55.232Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:33:55.311Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:33:55.399Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-26T22:33:55.400Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-26T22:33:55.481Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:33:55.558Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-26T22:33:55.642Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:33:55.728Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-26T22:33:59.861Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:33:59.938Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:34:00.017Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:00.017Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:00.092Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:00.167Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:34:00.246Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:34:00.322Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:34:01.824Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:34:01.910Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:34:01.988Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:01.989Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:02.069Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:02.150Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:02.225Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:34:02.302Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-26T22:34:13.112Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:34:13.198Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:34:13.278Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:13.279Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:13.361Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:13.442Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:34:13.523Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:34:13.599Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:34:15.865Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:34:15.946Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:34:16.031Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:16.032Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:16.121Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:16.203Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-26T22:34:16.285Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:34:16.371Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-26T22:34:20.402Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:34:20.482Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:34:20.561Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:20.562Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:20.638Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:34:20.714Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:34:20.794Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:34:20.874Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:37:27.202Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:37:27.307Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:37:27.392Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:27.392Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:27.473Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:27.550Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:37:27.631Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:37:27.714Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T22:37:42.540Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T22:37:42.619Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T22:37:42.703Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:42.704Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:42.781Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T22:37:42.857Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T22:37:42.933Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T22:37:43.011Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:02:41.502Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:02:41.581Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:02:41.657Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-26T23:02:43.097Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:02:43.180Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:02:43.263Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:02:43.265Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:02:43.350Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:02:43.426Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:02:43.503Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:02:43.581Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:03:43.658Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:03:43.750Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:03:43.833Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:03:43.833Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:03:43.909Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:03:43.992Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:03:44.072Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:03:44.151Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:05:30.934Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:05:31.011Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:05:31.092Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:05:31.093Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:05:31.172Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:05:31.248Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:05:31.328Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:05:31.410Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:06:22.435Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:06:22.513Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:06:22.589Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:22.589Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:22.667Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:22.743Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:06:22.819Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:06:22.894Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:06:24.924Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:06:25.002Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:06:25.080Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:25.081Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:25.164Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:25.240Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:06:25.317Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:06:25.393Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:06:26.084Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:06:26.163Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:06:26.239Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:26.240Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:26.317Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:26.392Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:06:26.468Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:06:26.544Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:06:40.196Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:06:40.273Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:06:40.353Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:40.354Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:40.430Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:06:40.506Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:06:40.586Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:06:40.668Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:06:41.661Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:06:41.737Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:06:41.820Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:10:04.318Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:04.396Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:04.474Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:10:11.408Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:11.489Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:11.575Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:10:11.577Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:10:11.660Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-26T23:10:11.748Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-26T23:10:11.825Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-26T23:10:11.900Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-26T23:10:15.637Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:15.713Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:15.789Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T23:10:16.867Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:16.946Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:17.023Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:10:18.546Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:18.622Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:18.708Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-26T23:10:19.873Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:19.953Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:20.047Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:10:20.049Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:10:20.129Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:10:20.205Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:10:20.282Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:10:20.284Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:10:20.369Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:10:21.000Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:10:21.080Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:10:21.155Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:12:04.345Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T23:12:10.074Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T23:15:46.213Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:15:46.224Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:15:46.295Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:15:46.302Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:15:46.382Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:46.382Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:46.387Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:15:46.460Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:46.538Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:15:46.615Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:15:46.615Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:15:46.696Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:15:50.634Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:15:50.640Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:15:50.711Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:15:50.716Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:15:50.789Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:50.790Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:50.795Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:15:50.868Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:15:50.944Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:15:51.024Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:15:51.024Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:15:58.888Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T23:16:11.074Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:16:11.089Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:16:11.159Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:16:11.166Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:16:11.243Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:16:11.244Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:16:11.248Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:16:11.322Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:16:11.399Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:16:11.478Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:16:11.478Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:16:11.560Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-26T23:17:13.733Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-26T23:17:15.468Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:17:15.694Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:17:15.856Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:17:27.805Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:17:27.811Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:17:27.888Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:17:27.917Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:17:27.997Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:17:28.001Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:19:13.980Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:19:13.990Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:19:14.058Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:19:14.068Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:19:14.137Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:19:14.145Z] [DEBUG]: Inside [ClassService.ts:getAllLocations] 
+[2026-01-26T23:19:21.465Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-26T23:19:21.547Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-26T23:19:21.637Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:19:21.638Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:19:21.715Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-26T23:19:21.792Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-26T23:19:21.879Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:19:21.882Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6"]
+[2026-01-26T23:19:21.975Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 

@@ -7,6 +7,7 @@ import { Weekday } from '../types/enums/Weekday'
 import AppError from '../types/AppError'
 import { Price } from '../types/Price'
 import { classHandler } from '../business/ClassHandler'
+import { ClassUpdateOptions } from '../types/Class'
 
 class ClassController {
   addNewClass = [
@@ -50,6 +51,22 @@ class ClassController {
     res.send(classes)
   })
   
+  getClass = [
+    param('classId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const classId = req.params.classId
+      const foundClass = await classService.getClass(classId)
+      if (!foundClass) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+      res.send(foundClass)
+    })
+  ]
+
   getClassDetails = [ 
     param('classId').isString().notEmpty(),
     asyncHandler(async (req: Request, res: Response) => {
@@ -70,6 +87,50 @@ class ClassController {
 
     res.send(classScheduleMap)
   })
+
+  updateClass = [
+    param('classId').isString().notEmpty(),
+    body('newClass').optional().isObject(),
+    body('newClass.classLocation').optional().isString().notEmpty(),
+    body('newClass.classType').optional().isString().notEmpty()
+      .custom((value) => Object.values(ClassType).includes(value)),
+    body('newClass.days').optional().isArray().notEmpty()
+      .custom((days: string[]) => days.every(day => 
+        Object.values(Weekday).includes(parseInt(day)))),
+    body('newClass.startDate').optional().isISO8601(),
+    body('newClass.startTime').optional().isString(),
+    body('newClass.prices').optional().isArray()
+      .custom((prices: Price[]) => prices.every(price => 
+        typeof price.amount === 'string' && 
+        typeof price.currency === 'string' &&
+        ['MXN'].includes(price.currency))),
+    body('newClass.billingFrequency').optional().isString().notEmpty(),
+    body('newClass.maxCapacity').optional().isString()
+      .custom((value) => !isNaN(parseInt(value))),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      
+      const classId = req.params.classId
+      const currentClass = await classService.getClass(classId)
+
+      if (!currentClass) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const updateOptions: ClassUpdateOptions = {}
+      if (req.body.newClass?.classLocation) updateOptions.classLocation = req.body.newClass.classLocation
+      if (req.body.newClass?.startTime) updateOptions.startTime = req.body.newClass.startTime
+      if (req.body.newClass?.days) updateOptions.days = req.body.newClass.days.map((day: string) => parseInt(day))
+      if (req.body.newClass?.prices) updateOptions.prices = req.body.newClass.prices
+      if (req.body.newClass?.maxCapacity) updateOptions.maxCapacity = parseInt(req.body.newClass.maxCapacity)
+
+      await classService.updateClassInfo(currentClass, updateOptions)
+      res.send()
+    })
+  ]
 }
 
 const classController = new ClassController() 

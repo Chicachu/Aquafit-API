@@ -30,6 +30,51 @@ class DiscountService {
     return discount
   }
 
+  async createDiscount(discountData: {
+    description: string
+    type: string
+    amount?: number
+    period?: { startDate: Date, endDate?: Date }
+  }): Promise<Discount> {
+    logger.debugInside(this._FILE_NAME, this.createDiscount.name, { discountData })
+    
+    // Amount is required in schema, default to 0 if not provided (for discount types that don't use it)
+    const discountToCreate = {
+      description: discountData.description,
+      type: discountData.type,
+      amount: discountData.amount ?? 0,
+      startDate: discountData.period?.startDate || new Date(),
+      endDate: discountData.period?.endDate
+    }
+
+    return await this.discountCollection.insertOne(discountToCreate)
+  }
+
+  async updateDiscount(discountId: string, discountData: {
+    description?: string
+    type?: string
+    amount?: number
+    period?: { startDate: Date, endDate?: Date }
+  }): Promise<Discount> {
+    logger.debugInside(this._FILE_NAME, this.updateDiscount.name, { discountId, discountData })
+    
+    const discount = await this.discountCollection.getDiscountById(discountId)
+    
+    if (!discount) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    const updateData: any = {}
+    if (discountData.description !== undefined) updateData.description = discountData.description
+    if (discountData.type !== undefined) updateData.type = discountData.type
+    if (discountData.amount !== undefined) updateData.amount = discountData.amount
+    if (discountData.period?.startDate !== undefined) updateData.startDate = discountData.period.startDate
+    if (discountData.period?.endDate !== undefined) updateData.endDate = discountData.period.endDate
+    else if (discountData.period && discountData.period.endDate === null) updateData.endDate = null
+
+    return await this.discountCollection.updateOne({ _id: discountId }, updateData)
+  }
+
   async applyDiscountToInvoice<TContext extends DiscountContext = DiscountContext>(
     discount: Discount,
     chargeAmount: number,

@@ -11,5 +11,7 @@ router.put('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessCont
 router.get('/:classId/details', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ALL), classController.getClassDetails)
 router.get('/locations', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), classController.getAllLocations)
 router.get('/classScheduleMap', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), classController.getClassTypeLocationTimeMap)
+router.get('/:classId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), ...classController.getClass)
+router.put('/:classId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), classController.updateClass)
 
 export default router

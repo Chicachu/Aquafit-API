@@ -5,7 +5,7 @@ import AppError from '../types/AppError'
 import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
 import { body, param, validationResult } from 'express-validator'
-import { UserCreationDTO } from '../types/User'
+import { UpdateUserOptions, UserCreationDTO } from '../types/User'
 import { clientHandler } from '../business/ClientHandler'
 
 class UsersController {
@@ -99,6 +99,35 @@ class UsersController {
       const invoiceDetails = await clientHandler.getInvoiceDetails(invoiceId, userId, enrollmentId)
   
       res.send(invoiceDetails)
+    })
+  ]
+
+  updateClient = [
+    param('userId').isString().notEmpty(),
+    body('firstName').optional().isString().notEmpty(),
+    body('lastName').optional().isString().notEmpty(),
+    body('phoneNumber').optional().isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const userId = req.params.userId
+      const user = await usersService.getUserById(userId)
+
+      if (!user) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const updateData: UpdateUserOptions & { firstName?: string, lastName?: string } = {}
+      if (req.body.firstName !== undefined) updateData.firstName = req.body.firstName
+      if (req.body.lastName !== undefined) updateData.lastName = req.body.lastName
+      if (req.body.phoneNumber !== undefined) updateData.phoneNumber = req.body.phoneNumber
+
+      const updatedUser = await usersService.updateUserInfo(user, updateData)
+
+      res.send(updatedUser)
     })
   ]
 
