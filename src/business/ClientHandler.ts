@@ -4,9 +4,11 @@ import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import AppError from "../types/AppError"
 import { Class } from "../types/Class"
 import { Discount } from "../types/discounts/Discount"
+import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
 import { Enrollment, EnrollmentCreationDTO } from "../types/Enrollment"
 import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Currency } from "../types/enums/Currency"
+import { DiscountType } from "../types/enums/DiscountType"
 import { Invoice } from "../types/invoices/Invoice"
 import { Price } from "../types/Price"
 import mongoose from 'mongoose'
@@ -17,6 +19,8 @@ import { logger } from "../services/LoggingService"
 import path from "path"
 import { InvoiceHistory } from "../types/invoices/InvoiceHistory"
 import { InvoiceDetails } from "../types/invoices/InvoiceDetails"
+import { DiscountHandlerFactory } from "../types/discounts/DiscountHandlerFactory"
+import { PartialEnrollmentContext } from "../types/discounts/handlers/contexts/PartialEnrollmentContext"
 
 class ClientHandler {
   constructor(
@@ -40,6 +44,20 @@ class ClientHandler {
       const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
       const classDoc = await this._classService.getClass(enrollment.classId)
 
+      // Calculate original price: if originalPrice exists, use it; otherwise calculate from charge + discounts
+      let originalPrice = invoice.originalPrice
+      if (!originalPrice) {
+        // For old invoices without originalPrice, calculate it from charge + discounts
+        const totalDiscounts = (invoice.discountsApplied || []).reduce((sum, discount) => {
+          const discountAmount = discount.amountSnapshot?.amount || discount.amountOverride?.amount || 0
+          return sum + discountAmount
+        }, 0)
+        originalPrice = {
+          amount: invoice.charge.amount + totalDiscounts,
+          currency: invoice.charge.currency
+        }
+      }
+
       const invoiceDetails: InvoiceDetails = {
         clientName: `${clientName.firstName} ${clientName.lastName}`, 
         classDetails: {
@@ -47,7 +65,9 @@ class ClientHandler {
           classLocation: classDoc.classLocation,
           days: (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) ? enrollment.daysOfWeekOverride : classDoc.days
         },
+        originalPrice: originalPrice,
         charge: invoice.charge, 
+        discountsApplied: invoice.discountsApplied || [],
         paymentsApplied: [...invoice.paymentsApplied],
         paymentStatus: invoice.paymentStatus,
         period: invoice.period
@@ -145,6 +165,128 @@ class ClientHandler {
     return clientEnrollmentDetails
   }
 
+  /**
+   * TEMPORARY: Fix invoice prices to match the correct class prices
+   * This should be removed after all invoices are corrected
+   */
+  async fixInvoicePrices(): Promise<void> {
+    logger.info(this._FILE_NAME, this.fixInvoicePrices.name, 'Starting invoice price fix...')
+    
+    try {
+      // Get all invoices
+      const allInvoices = await this._invoiceService.getAllInvoices()
+      
+      logger.info(this._FILE_NAME, this.fixInvoicePrices.name, `Found ${allInvoices.length} invoices to check`)
+      
+      let fixedCount = 0
+      let errorCount = 0
+      let skippedCount = 0
+      
+      // Process invoices by enrollment to avoid duplicate class fetches
+      const invoicesByEnrollment = new Map<string, Invoice[]>()
+      
+      for (const invoice of allInvoices) {
+        const enrollmentId = invoice.enrollmentId
+        if (!invoicesByEnrollment.has(enrollmentId)) {
+          invoicesByEnrollment.set(enrollmentId, [])
+        }
+        invoicesByEnrollment.get(enrollmentId)!.push(invoice)
+      }
+      
+      logger.info(this._FILE_NAME, this.fixInvoicePrices.name, `Processing ${invoicesByEnrollment.size} enrollments`)
+      
+      for (const [enrollmentId, invoices] of invoicesByEnrollment) {
+        try {
+          // Get the enrollment
+          const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
+          
+          if (!enrollment) {
+            logger.warn(`Enrollment not found: ${enrollmentId}`)
+            errorCount += invoices.length
+            continue
+          }
+          
+          // Get the class for this enrollment
+          const classDoc = await this._classService.getClass(enrollment.classId)
+          
+          if (!classDoc) {
+            logger.warn(`Class not found for enrollment ${enrollmentId}, classId: ${enrollment.classId}`)
+            errorCount += invoices.length
+            continue
+          }
+          
+          // Get the correct price from the class
+          const targetCurrency = Currency.PESOS // Default to pesos
+          const matchingPrices = classDoc.prices.filter(p => p.currency === targetCurrency)
+          
+          if (matchingPrices.length === 0) {
+            logger.warn(`No price found for currency ${targetCurrency} in class ${classDoc._id} for enrollment ${enrollmentId}`)
+            errorCount += invoices.length
+            continue
+          }
+          
+          const originalPrice = matchingPrices[0]
+          
+          // Apply partial enrollment discount if applicable
+          const discountResult = this._applyPartialEnrollmentDiscount(originalPrice, enrollment, classDoc)
+          const correctPrice = discountResult.finalPrice
+          const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
+          
+          // Check and fix each invoice
+          for (const invoice of invoices) {
+            const currentCharge = invoice.charge
+            const currentOriginalPrice = invoice.originalPrice || invoice.charge // Fallback for old invoices
+            
+            // Check if the price or originalPrice needs to be fixed
+            const chargeNeedsFix = currentCharge.currency !== correctPrice.currency || 
+                                   currentCharge.amount !== correctPrice.amount
+            const originalPriceNeedsFix = !invoice.originalPrice || 
+                                          currentOriginalPrice.currency !== originalPrice.currency || 
+                                          currentOriginalPrice.amount !== originalPrice.amount
+            
+            if (chargeNeedsFix || originalPriceNeedsFix) {
+              
+              logger.info(this._FILE_NAME, this.fixInvoicePrices.name, `Fixing invoice ${invoice._id}`, {
+                invoiceId: invoice._id,
+                enrollmentId: enrollment._id,
+                userId: invoice.userId,
+                classId: classDoc._id,
+                classType: classDoc.classType,
+                classLocation: classDoc.classLocation,
+                oldCharge: currentCharge,
+                newCharge: correctPrice,
+                oldOriginalPrice: currentOriginalPrice,
+                newOriginalPrice: originalPrice,
+                discountsApplied: discountsApplied,
+                chargeNeedsFix,
+                originalPriceNeedsFix
+              })
+              
+              // Update the invoice charge, originalPrice, and discounts
+              await this._invoiceService.updateInvoiceCharge(invoice._id, originalPrice, correctPrice, discountsApplied)
+              fixedCount++
+            } else {
+              skippedCount++
+            }
+          }
+        } catch (error: any) {
+          logger.error(`Error fixing invoices for enrollment ${enrollmentId}: ${error?.message || error}`)
+          errorCount += invoices.length
+        }
+      }
+      
+      logger.info(this._FILE_NAME, this.fixInvoicePrices.name, 'Invoice price fix completed', {
+        fixedCount,
+        skippedCount,
+        errorCount,
+        totalInvoices: allInvoices.length
+      })
+    } catch (error: any) {
+      logger.error(`Error in fixInvoicePrices: ${error?.message || error}`)
+      throw error
+    }
+  }
+
   async processDueDateCheckAndCreateInvoices(): Promise<void> {
     logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name)
   
@@ -173,7 +315,29 @@ class ClientHandler {
           continue
         }
   
+        // Fetch class using enrollment's classId - this is the source of truth
+        logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+          message: 'Fetching class for enrollment',
+          enrollmentId: enrollment._id,
+          enrollmentClassId: enrollment.classId,
+          userId: enrollment.userId
+        })
         const classDoc = await this._classService.getClass(enrollment.classId)
+        
+        if (!classDoc) {
+          logger.error(`Class not found for enrollment ${enrollment._id}. Enrollment has classId: ${enrollment.classId}`)
+          continue // Skip this enrollment if class doesn't exist
+        }
+        
+        logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+          message: 'Class fetched for enrollment',
+          enrollmentId: enrollment._id,
+          enrollmentClassId: enrollment.classId,
+          classDocId: classDoc._id,
+          classType: classDoc.classType,
+          classLocation: classDoc.classLocation,
+          classPrices: classDoc.prices
+        })
         
         if (classDoc.endDate) {
           const classEndDate = new Date(classDoc.endDate)
@@ -306,6 +470,81 @@ class ClientHandler {
     logger.debugComplete(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name)
   }
 
+  private _applyPartialEnrollmentDiscount(
+    basePrice: Price,
+    enrollment: Enrollment,
+    classDoc: Class
+  ): { finalPrice: Price; discount?: AppliedDiscount } {
+    // Check if partial enrollment applies (client attends fewer days than class total)
+    const daysAttending = (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0)
+      ? enrollment.daysOfWeekOverride.length
+      : classDoc.days.length
+    
+    const totalDaysInClass = classDoc.days.length
+
+    // Only apply discount if client attends fewer days than the class total
+    if (daysAttending >= totalDaysInClass) {
+      return { finalPrice: basePrice }
+    }
+
+    logger.debugInside(this._FILE_NAME, this._applyPartialEnrollmentDiscount.name, {
+      enrollmentId: enrollment._id,
+      daysAttending,
+      totalDaysInClass,
+      originalAmount: basePrice.amount,
+      originalCurrency: basePrice.currency
+    })
+
+    // Create a virtual discount for partial enrollment
+    const partialEnrollmentDiscount: Discount = {
+      _id: 'partial-enrollment',
+      description: 'Partial Enrollment Discount',
+      type: DiscountType.PARTIAL_ENROLLMENT,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+
+    // Create context for partial enrollment
+    const context: PartialEnrollmentContext = {
+      daysAttending,
+      totalDaysInClass
+    }
+
+    // Get handler and apply discount
+    const handler = DiscountHandlerFactory.getHandler(DiscountType.PARTIAL_ENROLLMENT)
+    if (!handler) {
+      logger.warn(`Partial enrollment handler not found, skipping discount for enrollment ${enrollment._id}`)
+      return { finalPrice: basePrice }
+    }
+
+    const discountedAmount = handler.apply(basePrice.amount, partialEnrollmentDiscount, context)
+    const discountAmount = basePrice.amount - discountedAmount
+    
+    logger.debugInside(this._FILE_NAME, this._applyPartialEnrollmentDiscount.name, {
+      enrollmentId: enrollment._id,
+      discountedAmount,
+      discountApplied: discountAmount
+    })
+
+    const discount: AppliedDiscount = {
+      discountId: null,
+      description: `Partial Enrollment (${daysAttending}/${totalDaysInClass} days)`,
+      amountSnapshot: {
+        amount: discountAmount,
+        currency: basePrice.currency
+      },
+      amountOverride: null
+    }
+
+    return {
+      finalPrice: {
+        amount: discountedAmount,
+        currency: basePrice.currency
+      },
+      discount
+    }
+  }
+
   private async _generateInvoice(
     userId: string, 
     enrollmentId: string, 
@@ -314,20 +553,58 @@ class ClientHandler {
     billingFrequencyOverride: BillingFrequency,
     currency?: Currency
   ): Promise<Invoice> {
-    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, { userId, enrollmentId })
+    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, { 
+      userId, 
+      enrollmentId,
+      classId: classDoc._id,
+      classType: classDoc.classType,
+      classLocation: classDoc.classLocation,
+      availablePrices: classDoc.prices
+    })
 
-    const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
-    if (!basePrice) {
+    const targetCurrency = currency || Currency.PESOS
+    const matchingPrices = classDoc.prices.filter(p => p.currency === targetCurrency)
+    
+    if (matchingPrices.length === 0) {
+      logger.error(`No price found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Available prices: ${JSON.stringify(classDoc.prices)}`)
       throw new AppError('errors.missingParameters', 400)
     }
 
-    // apply promos or discounts (change basePrice below)
+    if (matchingPrices.length > 1) {
+      logger.warn(`Multiple prices found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Using first match. Matching prices: ${JSON.stringify(matchingPrices)}`)
+    }
+
+    const originalPrice = matchingPrices[0]
+
+    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, {
+      message: 'Selected price for invoice',
+      classId: classDoc._id,
+      classType: classDoc.classType,
+      classLocation: classDoc.classLocation,
+      selectedPrice: originalPrice,
+      currency: targetCurrency,
+      totalPricesForCurrency: matchingPrices.length
+    })
+
+    // Apply partial enrollment discount if applicable (fetch enrollment to check daysOfWeekOverride)
+    const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
+    const discountResult = this._applyPartialEnrollmentDiscount(originalPrice, enrollment, classDoc)
+    const finalPrice = discountResult.finalPrice
+    const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
 
     // create invoice 
     const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
     const dueDate = this._calculateDueDate(startDate, billingFrequency)
-    const invoice = await this._invoiceService.createInvoice(userId, enrollmentId, basePrice, new Date(startDate), dueDate)
-    // const invoice = await this._generateInvoice(userId, enrollment._id, basePrice, startDate, billingFrequency)
+    const invoice = await this._invoiceService.createInvoice(
+      userId, 
+      enrollmentId, 
+      originalPrice,
+      finalPrice, 
+      new Date(startDate), 
+      dueDate,
+      undefined,
+      discountsApplied
+    )
     await this._enrollmentService.addInvoice(enrollmentId, invoice._id)
     
     return invoice
@@ -342,17 +619,58 @@ class ClientHandler {
     billingFrequencyOverride: BillingFrequency,
     currency?: Currency
   ): Promise<Invoice> {
-    logger.debugInside(this._FILE_NAME, this._generateInvoiceWithEndDate.name, { userId, enrollmentId, startDate, endDate })
+    logger.debugInside(this._FILE_NAME, this._generateInvoiceWithEndDate.name, { 
+      userId, 
+      enrollmentId, 
+      startDate, 
+      endDate,
+      classId: classDoc._id,
+      classType: classDoc.classType,
+      classLocation: classDoc.classLocation,
+      availablePrices: classDoc.prices
+    })
 
-    const basePrice = classDoc.prices.find(p => currency ? p.currency === currency : p.currency === Currency.PESOS)
-    if (!basePrice) {
+    const targetCurrency = currency || Currency.PESOS
+    const matchingPrices = classDoc.prices.filter(p => p.currency === targetCurrency)
+    
+    if (matchingPrices.length === 0) {
+      logger.error(`No price found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Available prices: ${JSON.stringify(classDoc.prices)}`)
       throw new AppError('errors.missingParameters', 400)
     }
 
-    // apply promos or discounts (change basePrice below)
+    if (matchingPrices.length > 1) {
+      logger.warn(`Multiple prices found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Using first match. Matching prices: ${JSON.stringify(matchingPrices)}`)
+    }
+
+    const originalPrice = matchingPrices[0]
+
+    logger.debugInside(this._FILE_NAME, this._generateInvoiceWithEndDate.name, {
+      message: 'Selected price for invoice',
+      classId: classDoc._id,
+      classType: classDoc.classType,
+      classLocation: classDoc.classLocation,
+      selectedPrice: originalPrice,
+      currency: targetCurrency,
+      totalPricesForCurrency: matchingPrices.length
+    })
+
+    // Apply partial enrollment discount if applicable (fetch enrollment to check daysOfWeekOverride)
+    const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
+    const discountResult = this._applyPartialEnrollmentDiscount(originalPrice, enrollment, classDoc)
+    const finalPrice = discountResult.finalPrice
+    const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
 
     // create invoice with calculated endDate
-    const invoice = await this._invoiceService.createInvoice(userId, enrollmentId, basePrice, new Date(startDate), new Date(endDate))
+    const invoice = await this._invoiceService.createInvoice(
+      userId, 
+      enrollmentId, 
+      originalPrice,
+      finalPrice, 
+      new Date(startDate), 
+      new Date(endDate),
+      undefined,
+      discountsApplied
+    )
     await this._enrollmentService.addInvoice(enrollmentId, invoice._id)
     
     return invoice

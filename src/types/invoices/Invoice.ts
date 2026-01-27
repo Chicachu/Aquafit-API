@@ -9,6 +9,7 @@ import { Payment } from "./Payment"
 export type Invoice = IDocument & {
   userId: string
   enrollmentId: string
+  originalPrice: Price
   charge: Price
   amountDue: number
   remainingBalance: number
@@ -24,14 +25,9 @@ export type Invoice = IDocument & {
 export type InvoiceCreationDTO = {
   userId: string
   enrollmentId: string 
+  originalPrice: Price
   charge: Price
   period: Period
   paymentStatus: PaymentStatus
-  discountsApplied?: {
-    discountId: string
-    amountOverride: {
-      amount: number
-      currency: Currency
-    }
-  }[] 
+  discountsApplied?: AppliedDiscount[]
 }

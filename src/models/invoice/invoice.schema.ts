@@ -32,6 +32,10 @@ const InvoiceSchema = new Schema(
       ref: 'Enrollment',
       required: true
     },
+    originalPrice: {
+      type: AmountSchema,
+      required: true
+    },
     charge: {
       type: AmountSchema,
       required: true
@@ -97,27 +101,28 @@ const InvoiceSchema = new Schema(
 
 function calculateTotalDiscounts(discounts: any[]): number {
   return (discounts || []).reduce((sum, d) => {
-    if (d.amountOverride?.amount != null) {
-      return sum + d.amountOverride.amount;
-    }
+    // amountSnapshot represents the discount amount (how much was discounted)
     if (d.amountSnapshot?.amount != null) {
       return sum + d.amountSnapshot.amount;
+    }
+    // amountOverride is an alternative way to store discount amount
+    if (d.amountOverride?.amount != null) {
+      return sum + d.amountOverride.amount;
     }
     return sum;
   }, 0);
 }
 
 InvoiceSchema.virtual('amountDue').get(function (this: IInvoiceDocument) {
-  const totalCharge = this.charge?.amount || 0;
-  const totalDiscounts = calculateTotalDiscounts(this.discountsApplied);
-  return totalCharge - totalDiscounts;
+  // amountDue is the final price after all discounts (same as charge)
+  return this.charge?.amount || 0;
 });
 
 InvoiceSchema.virtual('remainingBalance').get(function (this: IInvoiceDocument) {
-  const totalCharge = this.charge?.amount || 0;
-  const totalDiscounts = calculateTotalDiscounts(this.discountsApplied);
+  // remainingBalance = amountDue - payments
+  const amountDue = this.charge?.amount || 0;
   const totalPayments = (this.paymentsApplied || []).reduce((sum, p) => sum + p.charge.amount, 0);
-  return totalCharge - totalDiscounts - totalPayments;
+  return amountDue - totalPayments;
 });
 
 InvoiceSchema.set('toObject', { virtuals: true });

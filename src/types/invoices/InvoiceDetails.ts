@@ -5,6 +5,8 @@ import { Weekday } from "../enums/Weekday"
 import { Period } from "../Period"
 import { Price } from "../Price"
 
+import { AppliedDiscount } from "../discounts/AppliedDiscount"
+
 export type InvoiceDetails = {
   clientName: string 
   classDetails: {
@@ -12,24 +14,14 @@ export type InvoiceDetails = {
     classLocation: string
     days: Weekday[]
   }
+  originalPrice?: Price
   charge: Price 
-  discountsApplied?: {
-      discountId?: string | null
-      amountOverride?: {
-        amount: number
-        currency: Currency
-      } | null
-      amountSnapshot?: {
-        amount: number
-        currency: Currency
-      } | null
-      description?: string | null
-    }[]
-    paymentsApplied: {
-      charge: Price
-      date: Date
-      paymentType: PaymentType
-    }[]
-    paymentStatus: PaymentStatus
-    period: Period
+  discountsApplied?: AppliedDiscount[]
+  paymentsApplied: {
+    charge: Price
+    date: Date
+    paymentType: PaymentType
+  }[]
+  paymentStatus: PaymentStatus
+  period: Period
 }

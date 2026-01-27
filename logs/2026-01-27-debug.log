@@ -1238,3 +1238,1269 @@
 [2026-01-27T00:48:21.597Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
 [2026-01-27T00:48:21.681Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
 [2026-01-27T00:48:21.757Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:49:33.266Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:49:33.343Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:49:33.422Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:33.422Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:33.499Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:33.575Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:33.651Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:49:33.726Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:49:39.533Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:49:39.610Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:49:39.689Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:39.689Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:39.765Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:39.841Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:39.916Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:49:39.995Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:49:40.714Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:49:40.791Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:49:40.873Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:40.876Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:40.958Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:41.036Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:41.126Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["1d775eb1-d9b7-4585-b355-b84e4bc84acc","38896798-1324-4e53-8801-850a4811aad9","85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc","18321395-e3ce-47d2-adb1-aa43b2b87328","cc1d62f4-2040-452e-9589-dacdc099e0b7","081f6cab-7033-422a-8f09-120093fbb58d"]
+[2026-01-27T00:49:41.128Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["1d775eb1-d9b7-4585-b355-b84e4bc84acc","38896798-1324-4e53-8801-850a4811aad9","85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc","18321395-e3ce-47d2-adb1-aa43b2b87328","cc1d62f4-2040-452e-9589-dacdc099e0b7","081f6cab-7033-422a-8f09-120093fbb58d"]
+[2026-01-27T00:49:41.211Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T00:49:55.425Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:49:55.509Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:49:55.587Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:55.588Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:55.664Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:49:55.743Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:49:55.821Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:49:55.897Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:49:58.278Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:49:58.354Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:49:58.431Z] [DEBUG]: Inside [DiscountService.ts:getAllDiscounts] 
+[2026-01-27T00:51:37.836Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:51:37.915Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:51:38.004Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-27T00:51:40.127Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:51:40.212Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:51:40.295Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:51:40.298Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:51:40.380Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:51:40.456Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:51:40.531Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:51:40.607Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:51:42.190Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:51:42.267Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:51:42.345Z] [DEBUG]: Inside [ClassService.ts:getClassScheduleMap] 
+[2026-01-27T00:51:42.345Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-27T00:51:42.428Z] [DEBUG]: Complete [ClassService.ts:getClassScheduleMap] 
+[2026-01-27T00:52:00.415Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:00.491Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:00.570Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:00.571Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:00.649Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:00.731Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:00.812Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:52:00.814Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:52:00.901Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T00:52:25.116Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:25.193Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:31.298Z] [DEBUG]: Inside [ClientHandler.ts:enrollClient] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:31.300Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] userId="6734187ccfccd4175a69faaf", classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:31.382Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:31.478Z] [DEBUG]: Inside [ClientHandler.ts:_enrollClient] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:31.479Z] [DEBUG]: Inside [EnrollmentService.ts:enrollClient] userId="6734187ccfccd4175a69faaf", classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:31.580Z] [DEBUG]: Inside [ClientHandler.ts:_generateInvoice] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:52:31.580Z] [DEBUG]: Inside [ClientHandler.ts:_calculateDueDate] 
+[2026-01-27T00:52:31.581Z] [DEBUG]: Inside [InvoiceService.ts:createInvoice] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:52:39.068Z] [DEBUG]: Complete [InvoiceService.ts:createInvoice] 
+[2026-01-27T00:52:39.154Z] [DEBUG]: Inside [EnrollmentService.ts:addInvoice] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T00:52:39.251Z] [DEBUG]: Complete [ClientHandler.ts:enrollClient] 
+[2026-01-27T00:52:39.259Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:39.345Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:39.425Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:39.426Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:39.505Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:39.586Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:52:39.665Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:39.749Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:52:39.830Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:52:43.958Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:44.035Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:44.114Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:52:44.114Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:52:44.198Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:44.284Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:52:44.367Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:44.443Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T00:52:46.354Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:46.431Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:46.509Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:46.510Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:46.586Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:46.662Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:52:46.739Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:46.815Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:52:46.893Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:52:47.614Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:47.690Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:47.779Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:47.781Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:47.867Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:47.954Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:48.034Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:52:48.034Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:52:48.116Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:52:48.193Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["91d39866-4f83-424e-90c3-ca27cc8cce77"]
+[2026-01-27T00:52:48.194Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["91d39866-4f83-424e-90c3-ca27cc8cce77"]
+[2026-01-27T00:52:48.276Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T00:52:54.566Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:54.644Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:54.725Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:54.725Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:54.813Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:54.891Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:54.967Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:52:56.368Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:56.445Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:56.524Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:52:56.525Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:52:56.605Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:56.684Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:52:56.763Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:56.850Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T00:52:58.400Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:52:58.483Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:52:58.570Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:58.571Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:58.648Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:52:58.728Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:52:58.809Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:54:08.341Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:54:08.418Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:54:08.499Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:54:08.500Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:54:08.579Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:54:08.676Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:54:08.759Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:56:39.309Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:39.389Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:39.478Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:56:39.481Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:56:39.568Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:56:39.648Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T00:56:39.727Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:39.802Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T00:56:42.148Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:42.225Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:42.306Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:56:42.306Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:56:42.382Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:56:42.460Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:42.543Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:56:43.305Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:43.387Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:43.472Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:43.472Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:43.548Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:43.625Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T00:56:43.709Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:56:43.710Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5","3b9a7a13-f202-4407-b0b3-ea59a015a298","73f5d5f9-cbfb-49f9-87a9-8ddace450007","0e617750-711c-47b3-b74a-f66649a0d394","defd71cb-119b-4f1b-b802-e496d36b44dd","9e705262-835f-44ec-b2e2-027181a6c3e1","f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"]
+[2026-01-27T00:56:43.790Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:43.868Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["91d39866-4f83-424e-90c3-ca27cc8cce77"]
+[2026-01-27T00:56:43.868Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["91d39866-4f83-424e-90c3-ca27cc8cce77"]
+[2026-01-27T00:56:43.950Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T00:56:45.115Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:45.194Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:45.277Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:45.277Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:45.357Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:45.436Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:56:45.522Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:45.608Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:56:45.688Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:56:47.753Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:47.830Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:47.906Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:56:47.907Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:56:47.991Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:48.075Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T00:56:48.158Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:48.238Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T00:56:49.621Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:49.697Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:49.775Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:49.776Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:49.851Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:49.927Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:56:50.003Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:50.080Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:56:50.157Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T00:56:51.617Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:51.694Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:51.771Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T00:56:51.771Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T00:56:51.858Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:51.940Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T00:56:52.016Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:56:52.096Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T00:56:53.577Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T00:56:53.657Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T00:56:53.733Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:53.734Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:53.810Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T00:56:53.889Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T00:56:53.974Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T00:56:54.058Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T00:56:54.134Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:01:49.027Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:01:49.029Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:01:49.029Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:01:50.637Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:01:50.638Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:01:50.638Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:01:50.638Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:01:50.639Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:01:50.639Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:01:50.640Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:01:50.991Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:01:51.553Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:51.553Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:01:51.706Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:51.707Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:01:51.861Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:51.861Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:01:52.016Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:52.016Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:01:52.172Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:52.172Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:01:52.328Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:52.328Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:01:52.482Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:01:52.483Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:01:52.483Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:02:30.951Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:02:30.952Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:02:30.953Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:02:32.413Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:02:32.414Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:02:32.414Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:02:32.414Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:02:32.414Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:02:32.415Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:02:32.415Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:02:32.755Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:02:33.319Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:33.320Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:02:33.472Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:33.473Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:02:33.627Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:33.628Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:02:33.779Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:33.779Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:02:33.936Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:33.939Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:02:34.094Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:34.095Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:02:34.247Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:02:34.248Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:02:34.248Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:04:31.293Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:04:31.294Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:04:31.295Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:04:32.854Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:04:32.855Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:04:32.855Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:04:32.855Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:04:32.856Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:04:32.856Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:04:32.857Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:04:33.174Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:04:33.806Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:33.807Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:04:33.958Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:33.958Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:04:34.112Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:34.112Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:04:34.267Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:34.268Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:04:34.424Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:34.424Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:04:34.580Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:34.580Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:04:34.735Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:04:34.737Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:04:34.739Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:05:51.792Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:05:51.793Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:05:51.793Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:05:53.410Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:05:53.411Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:05:53.412Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:05:53.412Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:05:53.412Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:05:53.412Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:05:53.413Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:05:53.729Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:05:54.332Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:54.332Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:05:54.484Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:54.485Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:05:54.643Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:54.643Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:05:54.794Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:54.795Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:05:54.955Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:54.955Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:05:55.109Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:55.109Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:05:55.270Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:05:55.270Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:05:55.270Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:06:01.861Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:06:01.862Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:06:01.862Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:06:03.297Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:06:03.298Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:06:03.299Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:06:03.299Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:06:03.299Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:06:03.300Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:06:03.301Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:06:03.610Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:06:03.611Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:06:04.154Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:06:04.235Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:04.236Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:06:04.236Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:06:04.311Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:06:04.389Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:04.389Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:06:04.389Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:06:04.466Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:06:04.546Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:04.546Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:06:04.547Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:06:04.623Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:06:04.701Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:04.702Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:06:04.702Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:06:04.778Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:06:04.857Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:04.857Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:06:04.858Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:06:04.933Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:06:05.013Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:05.014Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:06:05.014Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:06:05.091Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:06:05.167Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:06:05.168Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:06:05.168Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:08:16.487Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:08:16.488Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:08:16.489Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:13:27.913Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:13:27.915Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:13:27.915Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:13:29.587Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:13:29.588Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:13:29.588Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:13:29.589Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:13:29.589Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:13:29.589Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:13:29.590Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:13:29.931Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:29.931Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:30.008Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:13:30.093Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.094Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:13:30.094Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:30.170Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:13:30.247Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.248Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:13:30.248Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:13:30.324Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:13:30.401Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.401Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:13:30.402Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:13:30.479Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:13:30.555Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.556Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:30.556Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:30.632Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:13:30.708Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.709Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:13:30.709Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:30.785Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:13:30.866Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:30.867Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:30.867Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:30.943Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:13:31.025Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:13:31.026Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:13:31.026Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:13:31.026Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:13:31.027Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:13:31.179Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:13:31.260Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:31.336Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:13:31.412Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:31.488Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:13:31.564Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:13:31.640Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:13:31.716Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:13:31.791Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:13:31.867Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:31.944Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:32.019Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:13:32.020Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:13:32.021Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="38896798-1324-4e53-8801-850a4811aad9", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:32.021Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="38896798-1324-4e53-8801-850a4811aad9"
+[2026-01-27T01:13:32.187Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:32.188Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc"
+[2026-01-27T01:13:32.343Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="18321395-e3ce-47d2-adb1-aa43b2b87328", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:32.343Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="18321395-e3ce-47d2-adb1-aa43b2b87328"
+[2026-01-27T01:13:32.500Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="cc1d62f4-2040-452e-9589-dacdc099e0b7", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:32.500Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="cc1d62f4-2040-452e-9589-dacdc099e0b7"
+[2026-01-27T01:13:32.660Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="081f6cab-7033-422a-8f09-120093fbb58d", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:32.660Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="081f6cab-7033-422a-8f09-120093fbb58d"
+[2026-01-27T01:13:32.817Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:13:32.893Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:32.968Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:13:33.044Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:33.124Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:13:33.124Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:13:33.125Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77", charge={"amount":2000,"currency":"MXN"}
+[2026-01-27T01:13:33.125Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:13:33.282Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:13:41.414Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:41.493Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:41.578Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:41.579Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:41.655Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:41.730Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:41.806Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:41.883Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:41.958Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:13:42.495Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:42.571Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:42.647Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-27T01:13:43.369Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:43.446Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:43.529Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:43.531Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:43.614Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:43.693Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:43.776Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:43.859Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:43.939Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:13:46.560Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:46.640Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:46.733Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:46.736Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:46.829Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:46.909Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:46.985Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:47.060Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:13:51.795Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:51.871Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:51.950Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:51.951Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:52.031Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:52.113Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:52.190Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:52.271Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:52.348Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:13:53.938Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:54.015Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:54.096Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:54.096Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:54.183Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:54.259Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:13:54.340Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:54.420Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:13:56.362Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:56.442Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:56.523Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:56.524Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:56.600Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:56.675Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:13:56.751Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:13:56.829Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:56.910Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:13:57.777Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:13:57.857Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:13:57.935Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:13:57.936Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:13:58.015Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:13:58.093Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:13:58.172Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:13:58.253Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:14:45.598Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:14:45.674Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:14:45.752Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-27T01:14:50.063Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:14:50.142Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:14:50.226Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:14:50.227Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:14:50.303Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:14:50.378Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:14:50.454Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["f44a0973-660b-4ea0-8ec1-5b740a54705e","130bcfa5-6b2a-424e-88c1-333417c182c4","c449fceb-a76d-4576-abb0-20c7d6dfabf2","03f53113-9a4a-4e2c-a2a7-452eae2e7bc9","de43fb94-3522-4b51-af78-67cb4cb3a402","c03b11e1-d2b9-49db-840d-f6606dc05f4e","1326a715-71b6-4287-87c2-82d109175e0c"]
+[2026-01-27T01:14:50.455Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["f44a0973-660b-4ea0-8ec1-5b740a54705e","130bcfa5-6b2a-424e-88c1-333417c182c4","c449fceb-a76d-4576-abb0-20c7d6dfabf2","03f53113-9a4a-4e2c-a2a7-452eae2e7bc9","de43fb94-3522-4b51-af78-67cb4cb3a402","c03b11e1-d2b9-49db-840d-f6606dc05f4e","1326a715-71b6-4287-87c2-82d109175e0c"]
+[2026-01-27T01:14:50.537Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T01:14:53.957Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:14:54.034Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:14:54.112Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-27T01:14:59.883Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:14:59.961Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:00.038Z] [DEBUG]: Inside [UsersService.ts:getAllUsers] role="client"
+[2026-01-27T01:15:00.714Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:15:00.801Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:00.888Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:00.890Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:00.975Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:01.059Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:15:01.140Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:15:01.216Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:15:01.292Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:15:05.246Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:15:05.323Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:05.408Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:15:05.410Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:15:05.499Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:05.576Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:15:05.655Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:15:05.739Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:15:39.492Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:15:39.573Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:39.659Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:39.660Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:39.744Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:39.827Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:15:39.906Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:15:39.990Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:15:40.078Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:15:56.265Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:15:56.341Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:56.417Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:15:56.418Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:15:56.504Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:56.582Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:15:56.671Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:15:56.746Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:15:59.173Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:15:59.250Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:15:59.326Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:59.327Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:59.405Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:15:59.481Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:15:59.558Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:15:59.633Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:15:59.709Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:16:47.912Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:16:47.989Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:16:48.071Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:48.073Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:48.157Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:48.235Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:48.318Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:16:48.403Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:16:51.889Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:16:51.965Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:16:52.051Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:52.053Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:52.135Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:52.210Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:16:52.285Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:16:52.361Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:16:52.437Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:16:53.474Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:16:53.552Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:16:53.628Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:53.629Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:53.705Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:53.787Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:53.863Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:16:53.938Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:16:54.605Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:16:54.687Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:16:54.777Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:16:54.777Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:16:54.859Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:16:54.935Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:16:55.012Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:16:55.087Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:19:44.735Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:19:44.737Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:19:44.737Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:19:46.358Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:19:46.359Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:19:46.359Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:19:46.360Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:19:46.360Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:19:46.361Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:19:46.361Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:19:46.672Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:19:46.673Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:19:47.205Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:19:47.282Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:47.282Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:19:47.282Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:19:47.359Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:19:47.436Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:47.436Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:19:47.437Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:19:47.513Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:19:47.589Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:47.589Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:19:47.590Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:19:47.666Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:19:47.743Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:47.743Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:19:47.744Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:19:47.824Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:19:47.900Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:47.901Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:19:47.901Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:19:47.978Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:19:48.056Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:48.056Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:19:48.056Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:19:48.138Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:19:48.218Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:19:48.218Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:19:48.219Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:19:48.219Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:19:48.220Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:19:48.371Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:19:48.456Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:19:48.536Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:19:48.616Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:19:48.696Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:19:48.779Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:19:48.858Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:19:48.939Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:19:49.019Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:19:49.099Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:19:49.180Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:19:49.258Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:19:49.259Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:19:49.259Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:19:49.339Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:19:49.420Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:19:49.498Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:19:49.577Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:19:49.578Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:19:49.579Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:22:04.691Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:22:04.692Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:22:04.693Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:22:06.272Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:22:06.273Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:22:06.273Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:22:06.273Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:22:06.273Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:22:06.274Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:22:06.274Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:22:06.585Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:06.585Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:22:07.115Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:22:07.192Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.193Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:22:07.193Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:22:07.269Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:22:07.346Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.346Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:22:07.346Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:22:07.426Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:22:07.509Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.509Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:22:07.510Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:22:07.585Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:22:07.662Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.662Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:07.663Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:22:07.738Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:22:07.813Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.814Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:22:07.814Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:07.890Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:22:07.969Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:07.969Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:07.969Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:08.048Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:22:08.125Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:22:08.125Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:22:08.125Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:22:08.126Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:22:08.126Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:22:08.280Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:22:08.357Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:22:08.435Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:22:08.511Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:22:08.587Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:22:08.665Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:22:08.741Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:22:08.819Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:22:08.896Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:22:08.972Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:22:09.047Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:22:09.124Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:22:09.125Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:22:09.125Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:22:09.202Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:09.278Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:22:09.354Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:09.431Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:22:09.436Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:22:09.437Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:22:09.588Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:22:09.667Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:22:09.751Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:09.752Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:09.828Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:09.908Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:22:09.984Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:10.059Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:22:12.659Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:22:12.735Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:22:12.813Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:12.813Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:12.889Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:12.968Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:22:13.046Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:13.125Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:22:53.956Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:22:54.034Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:22:54.113Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:54.114Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:54.190Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:54.266Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:22:54.346Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:54.425Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:22:57.493Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:22:57.573Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:22:57.660Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:57.661Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:22:57.740Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:22:57.821Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:22:57.905Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:22:57.984Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:23:14.062Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:23:14.145Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:23:14.238Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:23:14.239Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:23:14.317Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:23:14.395Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:23:14.471Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:14.547Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:23:38.786Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:23:38.870Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:23:38.951Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:23:38.952Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:23:39.029Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:23:39.105Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:23:39.182Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:39.258Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:23:48.009Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:23:48.010Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:23:48.010Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:23:53.448Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:23:53.450Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:23:53.450Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:23:55.075Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:23:55.076Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:23:55.076Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:23:55.076Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:23:55.076Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:23:55.077Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:23:55.077Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:23:55.403Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:23:55.404Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:23:55.952Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:23:56.030Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.031Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:23:56.031Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:23:56.110Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:23:56.187Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.187Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:23:56.188Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:23:56.263Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:23:56.340Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.340Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:23:56.340Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:23:56.423Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:23:56.504Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.506Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:23:56.507Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:23:56.592Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:23:56.672Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.673Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:23:56.673Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:56.751Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:23:56.827Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.827Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:23:56.827Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:56.913Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:23:56.994Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:23:56.995Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:23:56.995Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:23:56.996Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:23:56.997Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:23:57.150Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:23:57.231Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:23:57.311Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:23:57.395Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:23:57.472Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:23:57.547Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:23:57.624Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:23:57.701Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:23:57.779Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:23:57.856Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:23:57.932Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:23:58.008Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:23:58.009Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:23:58.009Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:23:58.086Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:58.164Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:23:58.241Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:23:58.321Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:23:58.323Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:23:58.325Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:24:38.961Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:24:39.041Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:24:39.135Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:24:39.136Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:24:39.216Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:24:39.294Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:24:39.370Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:24:39.446Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:25:49.504Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:25:49.582Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:25:49.666Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:25:49.666Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:25:49.745Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:25:49.825Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:25:49.904Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:25:49.984Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:25:57.167Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:25:57.168Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:25:57.168Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:25:58.769Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:25:58.770Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:25:58.770Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:25:58.770Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:25:58.771Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:25:58.771Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:25:58.771Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:25:59.114Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:25:59.115Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:25:59.633Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:25:59.715Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:25:59.716Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:25:59.716Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:25:59.796Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:25:59.879Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:25:59.881Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:25:59.882Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:25:59.965Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:26:00.043Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:26:00.043Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:26:00.043Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:26:00.127Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:26:00.210Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:26:00.212Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:26:00.214Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:26:00.300Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:26:00.385Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:26:00.388Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:26:00.389Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:26:00.474Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:26:00.558Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:26:00.558Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:26:00.559Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:26:00.635Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:26:00.718Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:26:00.721Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:26:00.722Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:26:00.723Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:26:00.724Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:26:00.879Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:26:00.962Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:26:01.046Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:26:01.123Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:26:01.204Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:26:01.290Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:26:01.373Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:26:01.454Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:26:01.533Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:26:01.610Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:26:01.689Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:26:01.771Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:26:01.772Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:26:01.772Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:26:01.848Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:26:01.924Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:26:02.001Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:26:02.078Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:26:02.079Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:26:02.079Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:27:07.435Z] [DEBUG]: Inside [CronScheduler.ts:startAllJobs] 
+[2026-01-27T01:27:07.437Z] [DEBUG]: Inside [:[STARTUP] Running updateInvoiceStatuses on startup...] 
+[2026-01-27T01:27:07.437Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:27:09.193Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] foundInvoices=5, today="2026-01-26T08:00:00.000Z", fourDaysFromNow="2026-01-30T08:00:00.000Z"
+[2026-01-27T01:27:09.194Z] [DEBUG]: Inside [invoice.class.ts:updatePaymentStatuses] message="No invoices to update"
+[2026-01-27T01:27:09.194Z] [DEBUG]: Complete [invoice.class.ts:updatePaymentStatuses] 
+[2026-01-27T01:27:09.195Z] [DEBUG]: Inside [:[STARTUP] Completed updateInvoiceStatuses] 
+[2026-01-27T01:27:09.195Z] [DEBUG]: Inside [:[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...] 
+[2026-01-27T01:27:09.195Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:27:09.196Z] [DEBUG]: Inside [EnrollmentService.ts:getAllEnrollments] 
+[2026-01-27T01:27:09.562Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:27:09.562Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:27:09.639Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:27:09.732Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:09.732Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", userId="67341927cfccd4175a69fab3"
+[2026-01-27T01:27:09.733Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:27:09.813Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", enrollmentClassId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classDocId="cbd39986-6653-45c1-92f3-9dd2c62b32b3", classType="GROUP_FITNESS", classLocation="Narval", classPrices=[{"currency":"MXN","amount":1500},{"currency":"USD","amount":80}]
+[2026-01-27T01:27:09.889Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe", invoiceStartDate="2026-01-28T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:09.889Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:27:09.890Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:27:09.966Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", enrollmentClassId="fb9ce98a-b542-444e-b853-585267c3759f", classDocId="fb9ce98a-b542-444e-b853-585267c3759f", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:27:10.042Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:10.042Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", userId="673418bfcfccd4175a69fab0"
+[2026-01-27T01:27:10.042Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:27:10.119Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", enrollmentClassId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classDocId="e934218a-a4d3-4976-a445-4654d2fe8f0c", classType="GROUP_FITNESS", classLocation="Home Base", classPrices=[{"amount":800,"currency":"MXN"}]
+[2026-01-27T01:27:10.195Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183", invoiceStartDate="2026-01-31T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:10.195Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:27:10.196Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:27:10.276Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", enrollmentClassId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classDocId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2", classType="BABIES", classLocation="Home Base", classPrices=[{"currency":"MXN","amount":4000},{"currency":"USD","amount":0}]
+[2026-01-27T01:27:10.355Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:10.356Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="b7793ed9-dbf3-492a-9d55-c958d9bcd3e3"
+[2026-01-27T01:27:10.356Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:27:10.434Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:27:10.510Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941", invoiceStartDate="2026-01-27T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:10.511Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Fetching class for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:27:10.511Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:27:10.591Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Class fetched for enrollment", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", enrollmentClassId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classDocId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d", classType="PRIVATE_FITNESS", classLocation="Home Base", classPrices=[{"amount":4000,"currency":"MXN"}]
+[2026-01-27T01:27:10.667Z] [DEBUG]: Inside [ClientHandler.ts:processDueDateCheckAndCreateInvoices] message="Already up to date, skipping", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", invoiceStartDate="2026-02-26T08:00:00.000Z", today="2026-01-26T08:00:00.000Z"
+[2026-01-27T01:27:10.668Z] [DEBUG]: Complete [ClientHandler.ts:processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:27:10.668Z] [DEBUG]: Inside [:[STARTUP] Completed processDueDateCheckAndCreateInvoices] 
+[2026-01-27T01:27:10.668Z] [DEBUG]: Inside [:[STARTUP] Running fixInvoicePrices on startup...] 
+[2026-01-27T01:27:10.669Z] [DEBUG]: Inside [InvoiceService.ts:getAllInvoices] 
+[2026-01-27T01:27:10.821Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:27:10.902Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:27:10.979Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="8d70bda8-7c4e-47b5-b587-dcb35c5d3f95", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:10.979Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="8d70bda8-7c4e-47b5-b587-dcb35c5d3f95"
+[2026-01-27T01:27:11.183Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="ad3f8833-b05e-46bd-93b3-fc7b9d00a658", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.183Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="ad3f8833-b05e-46bd-93b3-fc7b9d00a658"
+[2026-01-27T01:27:11.348Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="098a6244-bc72-4898-889c-d5293efb3fdd", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.348Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="098a6244-bc72-4898-889c-d5293efb3fdd"
+[2026-01-27T01:27:11.505Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="9d23ef23-3649-4053-b6fd-5052a52f6bf1", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.505Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="9d23ef23-3649-4053-b6fd-5052a52f6bf1"
+[2026-01-27T01:27:11.664Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="47750de4-540c-4e66-aeeb-69ab5a4e0314", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.665Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="47750de4-540c-4e66-aeeb-69ab5a4e0314"
+[2026-01-27T01:27:11.828Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="8524c190-c721-4907-ab46-a86e573555da", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.830Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="8524c190-c721-4907-ab46-a86e573555da"
+[2026-01-27T01:27:11.991Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="1949a945-acfa-457d-b7be-a0b597a9d9ca", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:11.991Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="1949a945-acfa-457d-b7be-a0b597a9d9ca"
+[2026-01-27T01:27:12.148Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="0d716925-6762-4c08-9d37-bf798334947d", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:12.148Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="0d716925-6762-4c08-9d37-bf798334947d"
+[2026-01-27T01:27:12.305Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="8de51848-6653-4d92-b0a1-434a2cf6589d", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:12.305Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="8de51848-6653-4d92-b0a1-434a2cf6589d"
+[2026-01-27T01:27:12.459Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="fac86e2c-eecf-4a80-b436-415fe2a13cbe"
+[2026-01-27T01:27:12.536Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:27:12.619Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c22ef3b4-4cf6-4fcf-8202-17991c544dea", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:12.619Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c22ef3b4-4cf6-4fcf-8202-17991c544dea"
+[2026-01-27T01:27:12.780Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="fa4750ed-ef4b-4bc6-80b0-fb7e83c96eae", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:12.780Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="fa4750ed-ef4b-4bc6-80b0-fb7e83c96eae"
+[2026-01-27T01:27:12.942Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c386a3d9-2a05-4c39-bb72-86564d03ec28", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:12.942Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c386a3d9-2a05-4c39-bb72-86564d03ec28"
+[2026-01-27T01:27:13.105Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="aaab559d-d2e7-42f9-9cdf-5e34d3b5e955", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.106Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="aaab559d-d2e7-42f9-9cdf-5e34d3b5e955"
+[2026-01-27T01:27:13.267Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="1ac04be6-56c4-4d3f-940a-27aa545ac1f7", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.267Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="1ac04be6-56c4-4d3f-940a-27aa545ac1f7"
+[2026-01-27T01:27:13.443Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c7c874e1-ceae-45db-9d8b-7df5016cfb57", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.445Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c7c874e1-ceae-45db-9d8b-7df5016cfb57"
+[2026-01-27T01:27:13.605Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="a4251220-b3fc-4a12-88f4-94ef79db1619", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.606Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="a4251220-b3fc-4a12-88f4-94ef79db1619"
+[2026-01-27T01:27:13.764Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="7d96feab-2577-48f5-aa2e-2f4e074c5cf0", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.764Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="7d96feab-2577-48f5-aa2e-2f4e074c5cf0"
+[2026-01-27T01:27:13.925Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="16af308f-789c-4922-888e-402d041e4404", originalPrice={"currency":"MXN","amount":1500}, charge={"currency":"MXN","amount":1500}, discountsCount=0
+[2026-01-27T01:27:13.925Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="16af308f-789c-4922-888e-402d041e4404"
+[2026-01-27T01:27:14.081Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="1af42e2c-229a-4a19-8552-cf420f188fdf"
+[2026-01-27T01:27:14.165Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:27:14.242Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="fae1c83f-bb9d-42a8-828c-b7b1dc7369cc", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:14.243Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="fae1c83f-bb9d-42a8-828c-b7b1dc7369cc"
+[2026-01-27T01:27:14.397Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="07980204-e58e-4d8e-8215-2915a41be0d6", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:14.398Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="07980204-e58e-4d8e-8215-2915a41be0d6"
+[2026-01-27T01:27:14.557Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="b4103a68-9fed-4ea0-9caa-c8766f78b8f7", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:14.557Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="b4103a68-9fed-4ea0-9caa-c8766f78b8f7"
+[2026-01-27T01:27:14.712Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="33623250-a9b2-4b17-b725-90a96348a938", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:14.713Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="33623250-a9b2-4b17-b725-90a96348a938"
+[2026-01-27T01:27:14.867Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="e06a1d8e-8835-4e01-9870-8bb3e7bd4025", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:14.868Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="e06a1d8e-8835-4e01-9870-8bb3e7bd4025"
+[2026-01-27T01:27:15.029Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c368d0d0-ac28-4e84-bb79-5efdaa881435", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:15.030Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c368d0d0-ac28-4e84-bb79-5efdaa881435"
+[2026-01-27T01:27:15.190Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="16c7376a-7456-4849-8816-495d14101b58", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:15.190Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="16c7376a-7456-4849-8816-495d14101b58"
+[2026-01-27T01:27:15.356Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="b0ac08be-f9ff-4719-a7d0-3ff282f37bcf", originalPrice={"currency":"MXN","amount":4000}, charge={"currency":"MXN","amount":4000}, discountsCount=0
+[2026-01-27T01:27:15.358Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="b0ac08be-f9ff-4719-a7d0-3ff282f37bcf"
+[2026-01-27T01:27:15.523Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="10ee0c75-de73-43eb-98f9-f90d4f7ff183"
+[2026-01-27T01:27:15.602Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="e934218a-a4d3-4976-a445-4654d2fe8f0c"
+[2026-01-27T01:27:15.685Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="f44a0973-660b-4ea0-8ec1-5b740a54705e", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:15.686Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="f44a0973-660b-4ea0-8ec1-5b740a54705e"
+[2026-01-27T01:27:15.870Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="130bcfa5-6b2a-424e-88c1-333417c182c4", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:15.870Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="130bcfa5-6b2a-424e-88c1-333417c182c4"
+[2026-01-27T01:27:16.034Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c449fceb-a76d-4576-abb0-20c7d6dfabf2", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:16.036Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c449fceb-a76d-4576-abb0-20c7d6dfabf2"
+[2026-01-27T01:27:16.195Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="03f53113-9a4a-4e2c-a2a7-452eae2e7bc9", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:16.196Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="03f53113-9a4a-4e2c-a2a7-452eae2e7bc9"
+[2026-01-27T01:27:16.354Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="de43fb94-3522-4b51-af78-67cb4cb3a402", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:16.355Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="de43fb94-3522-4b51-af78-67cb4cb3a402"
+[2026-01-27T01:27:16.508Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="c03b11e1-d2b9-49db-840d-f6606dc05f4e", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:16.508Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="c03b11e1-d2b9-49db-840d-f6606dc05f4e"
+[2026-01-27T01:27:16.665Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="1326a715-71b6-4287-87c2-82d109175e0c", originalPrice={"amount":800,"currency":"MXN"}, charge={"amount":800,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:16.665Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="1326a715-71b6-4287-87c2-82d109175e0c"
+[2026-01-27T01:27:16.819Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="52331dd1-2ff1-49f9-9974-51c87d15add2"
+[2026-01-27T01:27:16.895Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d"
+[2026-01-27T01:27:16.973Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:27:17.057Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:27:17.058Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="00f39f22-5229-4e8d-a773-099a5e56269d", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:27:17.058Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="1d775eb1-d9b7-4585-b355-b84e4bc84acc", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.059Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="1d775eb1-d9b7-4585-b355-b84e4bc84acc"
+[2026-01-27T01:27:17.225Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="38896798-1324-4e53-8801-850a4811aad9", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.225Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="38896798-1324-4e53-8801-850a4811aad9"
+[2026-01-27T01:27:17.384Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.385Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="85394517-8ff7-4f5e-b1ab-c9a0aad1a4cc"
+[2026-01-27T01:27:17.545Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="18321395-e3ce-47d2-adb1-aa43b2b87328", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.545Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="18321395-e3ce-47d2-adb1-aa43b2b87328"
+[2026-01-27T01:27:17.709Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="cc1d62f4-2040-452e-9589-dacdc099e0b7", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.710Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="cc1d62f4-2040-452e-9589-dacdc099e0b7"
+[2026-01-27T01:27:17.865Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="081f6cab-7033-422a-8f09-120093fbb58d", originalPrice={"currency":"MXN","amount":4000}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:17.865Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="081f6cab-7033-422a-8f09-120093fbb58d"
+[2026-01-27T01:27:18.025Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="f03b89c2-1116-4e3a-8774-35abc54e0941"
+[2026-01-27T01:27:18.104Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:27:18.185Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:18.185Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="6d41baff-f3ad-4b8f-86ea-31b6ef5c8af5"
+[2026-01-27T01:27:18.349Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="3b9a7a13-f202-4407-b0b3-ea59a015a298", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:18.351Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="3b9a7a13-f202-4407-b0b3-ea59a015a298"
+[2026-01-27T01:27:18.522Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="73f5d5f9-cbfb-49f9-87a9-8ddace450007", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:18.524Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="73f5d5f9-cbfb-49f9-87a9-8ddace450007"
+[2026-01-27T01:27:18.692Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="0e617750-711c-47b3-b74a-f66649a0d394", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:18.693Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="0e617750-711c-47b3-b74a-f66649a0d394"
+[2026-01-27T01:27:18.858Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="defd71cb-119b-4f1b-b802-e496d36b44dd", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:18.859Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="defd71cb-119b-4f1b-b802-e496d36b44dd"
+[2026-01-27T01:27:19.014Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="9e705262-835f-44ec-b2e2-027181a6c3e1", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:19.015Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="9e705262-835f-44ec-b2e2-027181a6c3e1"
+[2026-01-27T01:27:19.174Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="f8dbd083-9e7b-4676-aa79-cb31b9b40ddf", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":4000,"currency":"MXN"}, discountsCount=0
+[2026-01-27T01:27:19.175Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="f8dbd083-9e7b-4676-aa79-cb31b9b40ddf"
+[2026-01-27T01:27:19.328Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:27:19.405Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:27:19.481Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", daysAttending=1, totalDaysInClass=2, originalAmount=4000, originalCurrency="MXN"
+[2026-01-27T01:27:19.481Z] [DEBUG]: Inside [ClientHandler.ts:_applyPartialEnrollmentDiscount] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f", discountedAmount=2000, discountApplied=2000
+[2026-01-27T01:27:19.482Z] [DEBUG]: Inside [InvoiceService.ts:updateInvoiceCharge] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77", originalPrice={"amount":4000,"currency":"MXN"}, charge={"amount":2000,"currency":"MXN"}, discountsCount=1
+[2026-01-27T01:27:19.482Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:27:19.637Z] [DEBUG]: Inside [:[STARTUP] Completed fixInvoicePrices] 
+[2026-01-27T01:27:20.830Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:27:20.912Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:27:20.995Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:27:20.995Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:27:21.071Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:27:21.148Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:27:21.227Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:27:21.302Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:29:10.586Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:29:10.665Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:29:10.744Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:29:10.745Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:29:10.824Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:29:10.905Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:29:10.982Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:29:11.059Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:29:26.037Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:29:26.116Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:29:26.197Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:29:26.198Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:29:26.285Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:29:26.365Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:29:26.441Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:29:26.516Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:30:11.162Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:30:11.243Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:30:11.328Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:11.345Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:11.430Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:30:11.510Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:30:11.587Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:30:11.663Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:30:12.459Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:30:12.536Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:30:12.617Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:12.618Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:12.698Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:30:12.774Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:30:12.853Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:30:12.932Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:30:20.018Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:30:20.100Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:30:20.184Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:20.185Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:30:20.264Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:30:20.342Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:30:20.418Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:30:20.495Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:31:43.581Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:31:43.658Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:31:43.736Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:43.737Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:43.816Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:31:43.892Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:31:43.972Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:31:44.047Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:31:45.088Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:31:45.164Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:31:45.243Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:45.244Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:45.324Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:31:45.400Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:31:45.476Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:31:45.552Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:31:46.629Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:31:46.706Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:31:46.786Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:46.797Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:31:46.876Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:31:46.956Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:31:47.038Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:31:47.114Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:32:12.071Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:32:12.148Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:32:12.225Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:32:12.226Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:32:12.303Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:32:12.379Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:32:12.461Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:32:12.542Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:33:05.680Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:33:05.756Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:33:05.836Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:05.837Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:05.912Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:33:05.988Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:33:06.064Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:33:06.147Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:33:18.127Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:33:18.205Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:33:18.282Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:18.283Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:18.360Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:33:18.436Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:33:18.512Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:33:18.594Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:33:38.698Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:33:38.776Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:33:38.855Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:38.855Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:38.931Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:33:39.006Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:33:39.083Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:33:39.159Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:33:46.652Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:33:46.733Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:33:46.819Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceDetails] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:46.832Z] [DEBUG]: Inside [InvoiceService.ts:getInvoice] invoiceId="91d39866-4f83-424e-90c3-ca27cc8cce77"
+[2026-01-27T01:33:46.911Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:33:46.987Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:33:47.063Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:33:47.142Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceDetails] 
+[2026-01-27T01:34:00.326Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:34:00.405Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:34:00.482Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:34:00.482Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:34:00.565Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:34:00.644Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="90516f5f-a400-4b71-a4b2-584c44349b6f"
+[2026-01-27T01:34:00.721Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:34:00.796Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:34:03.102Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:34:03.180Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:34:03.258Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:34:03.258Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:34:03.334Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:34:03.411Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:34:03.491Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:34:03.568Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:34:03.643Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:34:05.359Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:34:05.439Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:34:05.517Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:34:05.518Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:34:05.610Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:34:05.686Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:34:05.764Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:34:05.843Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:36:00.734Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:36:00.812Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:36:00.889Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:00.890Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:00.968Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:36:01.044Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:01.122Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:36:01.197Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:36:02.057Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:36:02.134Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:36:02.213Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:02.213Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:02.293Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:36:02.369Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:02.445Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:36:02.521Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:36:11.369Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:36:11.447Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:36:11.526Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:11.527Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:11.609Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:36:11.688Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:11.768Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:36:11.849Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:36:36.020Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:36:36.104Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:36:36.185Z] [DEBUG]: Inside [ClientHandler.ts:getInvoiceHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:36.186Z] [DEBUG]: Inside [InvoiceService.ts:getClientEnrollmentHistory] userId="6734187ccfccd4175a69faaf", enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:36.264Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:36:36.340Z] [DEBUG]: Inside [EnrollmentService.ts:getEnrollment] enrollmentId="5855f40c-7709-4b93-a2ba-489d677692c3"
+[2026-01-27T01:36:36.421Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:36:36.498Z] [DEBUG]: Complete [ClientHandler.ts:getInvoiceHistory] 
+[2026-01-27T01:37:00.217Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:37:00.302Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:37:00.382Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:37:00.383Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:37:00.459Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="6734187ccfccd4175a69faaf"
+[2026-01-27T01:37:00.547Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="7b0e98a3-f56d-44fc-bda4-30ca49b899d2"
+[2026-01-27T01:37:00.635Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="8ce8869f-cb3d-4fe7-a67a-aba66f7a324d"
+[2026-01-27T01:37:00.724Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="cbd39986-6653-45c1-92f3-9dd2c62b32b3"
+[2026-01-27T01:37:00.808Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:37:03.175Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:37:03.252Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:37:03.334Z] [DEBUG]: Inside [ClassService.ts:getAllClasses] 
+[2026-01-27T01:37:04.866Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:37:04.951Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:37:05.037Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:37:05.038Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:37:05.118Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:37:05.202Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:37:05.281Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6","b4103a68-9fed-4ea0-9caa-c8766f78b8f7","33623250-a9b2-4b17-b725-90a96348a938","e06a1d8e-8835-4e01-9870-8bb3e7bd4025","c368d0d0-ac28-4e84-bb79-5efdaa881435","16c7376a-7456-4849-8816-495d14101b58","b0ac08be-f9ff-4719-a7d0-3ff282f37bcf"]
+[2026-01-27T01:37:05.284Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6","b4103a68-9fed-4ea0-9caa-c8766f78b8f7","33623250-a9b2-4b17-b725-90a96348a938","e06a1d8e-8835-4e01-9870-8bb3e7bd4025","c368d0d0-ac28-4e84-bb79-5efdaa881435","16c7376a-7456-4849-8816-495d14101b58","b0ac08be-f9ff-4719-a7d0-3ff282f37bcf"]
+[2026-01-27T01:37:05.372Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
+[2026-01-27T01:42:51.479Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:42:51.560Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:42:51.637Z] [DEBUG]: Inside [ClientHandler.ts:getClientEnrollmentDetails] userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:42:51.637Z] [DEBUG]: Inside [EnrollmentService.ts:getClientEnrollments] userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:42:51.717Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:42:51.802Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:42:51.887Z] [DEBUG]: Complete [ClientHandler.ts:getClientEnrollmentDetails] 
+[2026-01-27T01:42:53.411Z] [DEBUG]: Inside [UsersService.ts:getUserById] userId="b3f6be6b-6320-4d3f-bbd7-ab26ec44eca9"
+[2026-01-27T01:42:53.488Z] [DEBUG]: Inside [UsersService.ts:getUser] username="admin@aquafitvallarta.com"
+[2026-01-27T01:42:53.565Z] [DEBUG]: Inside [ClassHandler.ts:getClassDetails] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:42:53.566Z] [DEBUG]: Inside [ClassService.ts:getClass] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:42:53.641Z] [DEBUG]: Inside [EnrollmentService.ts:getClassEnrollmentInfo] classId="fb9ce98a-b542-444e-b853-585267c3759f"
+[2026-01-27T01:42:53.719Z] [DEBUG]: Inside [UsersService.ts:getUserFirstAndLastName] userId="67341947cfccd4175a69fab4"
+[2026-01-27T01:42:53.798Z] [DEBUG]: Inside [InvoiceService.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6","b4103a68-9fed-4ea0-9caa-c8766f78b8f7","33623250-a9b2-4b17-b725-90a96348a938","e06a1d8e-8835-4e01-9870-8bb3e7bd4025","c368d0d0-ac28-4e84-bb79-5efdaa881435","16c7376a-7456-4849-8816-495d14101b58","b0ac08be-f9ff-4719-a7d0-3ff282f37bcf"]
+[2026-01-27T01:42:53.799Z] [DEBUG]: Inside [invoice.class.ts:getOldestUnpaidInvoice] invoiceIds=["fae1c83f-bb9d-42a8-828c-b7b1dc7369cc","07980204-e58e-4d8e-8215-2915a41be0d6","b4103a68-9fed-4ea0-9caa-c8766f78b8f7","33623250-a9b2-4b17-b725-90a96348a938","e06a1d8e-8835-4e01-9870-8bb3e7bd4025","c368d0d0-ac28-4e84-bb79-5efdaa881435","16c7376a-7456-4849-8816-495d14101b58","b0ac08be-f9ff-4719-a7d0-3ff282f37bcf"]
+[2026-01-27T01:42:53.877Z] [DEBUG]: Complete [ClassHandler.ts:getClassDetails] 
