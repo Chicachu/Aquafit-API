@@ -14,7 +14,10 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(i18n.init)
 
-CronSchedulerService.startAllJobs()
+// Start cron jobs (runs updatePaymentStatuses immediately on startup, then schedules for midnight)
+CronSchedulerService.startAllJobs().catch((error) => {
+  console.error('Error starting cron jobs:', error)
+})
 
 app.use(async(req, res, next) => {
   if (req.headers['authorization']) {

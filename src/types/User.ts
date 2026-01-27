@@ -5,7 +5,7 @@ import { IDocument } from "./IDocument"
 export type User = IDocument & {
   firstName: string
   lastName: string
-  phoneNumber: string
+  phoneNumber?: string | null
   role: Role
   username?: string | null
   password?: string | null
@@ -19,7 +19,7 @@ export type User = IDocument & {
 export type UserCreationDTO = {
   firstName: string
   lastName: string
-  phoneNumber: string
+  phoneNumber?: string
   role: Role
 }
 

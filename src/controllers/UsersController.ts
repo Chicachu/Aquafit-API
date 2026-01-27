@@ -19,7 +19,7 @@ class UsersController {
   addNewUser = [
     body('firstName').isString().notEmpty(),
     body('lastName').isString().notEmpty(),
-    body('phoneNumber').isString().notEmpty(),
+    body('phoneNumber').optional().isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
         const { firstName, lastName, phoneNumber } = req.body
 
@@ -31,8 +31,11 @@ class UsersController {
         const createUserDTO: UserCreationDTO = {
           firstName, 
           lastName, 
-          phoneNumber, 
           role: Role.CLIENT
+        }
+        
+        if (phoneNumber) {
+          createUserDTO.phoneNumber = phoneNumber
         }
 
         await usersService.createNewUser(createUserDTO)

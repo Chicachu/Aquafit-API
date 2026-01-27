@@ -82,25 +82,41 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
   async updatePaymentStatuses(): Promise<void> {
     logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name)
     const now = new Date()
-    const fourDaysFromNow = new Date()
-    fourDaysFromNow.setDate(now.getDate() + 4)
+    // Normalize to start of day for accurate date comparison
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const fourDaysFromNow = new Date(today)
+    fourDaysFromNow.setDate(today.getDate() + 4)
   
     const invoicesToUpdate = await this.model.find({
       paymentStatus: { $in: [PaymentStatus.PENDING, PaymentStatus.ALMOST_DUE] }
     })
   
+    logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, { 
+      foundInvoices: invoicesToUpdate.length,
+      today: today.toISOString(),
+      fourDaysFromNow: fourDaysFromNow.toISOString()
+    })
+  
     const bulkOps = invoicesToUpdate.map(invoice => {
-      const endDate = invoice.period.endDate
+      const endDate = new Date(invoice.period.endDate)
+      // Normalize endDate to start of day for comparison
+      const endDateNormalized = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
       
       let newStatus = PaymentStatus.PENDING
       
-      if (endDate < now) {
+      if (endDateNormalized < today) {
         newStatus = PaymentStatus.OVERDUE
-      } else if (endDate >= now && endDate <= fourDaysFromNow) {
+      } else if (endDateNormalized >= today && endDateNormalized <= fourDaysFromNow) {
         newStatus = PaymentStatus.ALMOST_DUE
       } 
   
       if (newStatus !== invoice.paymentStatus) {
+        logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, {
+          invoiceId: invoice._id,
+          currentStatus: invoice.paymentStatus,
+          newStatus: newStatus,
+          endDate: endDateNormalized.toISOString()
+        })
         return {
           updateOne: {
             filter: { _id: invoice._id },
@@ -114,6 +130,9 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
   
     if (bulkOps.length > 0) {
       await this.model.bulkWrite(bulkOps)
+      logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, { updatedCount: bulkOps.length })
+    } else {
+      logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, { message: 'No invoices to update' })
     }
     
     logger.debugComplete(this._FILE_NAME, this.updatePaymentStatuses.name)

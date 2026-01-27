@@ -5,12 +5,27 @@ import { invoiceCollection } from "../models/invoice/invoice.class"
 import { clientHandler } from "../business/ClientHandler"
 
 export class CronSchedulerService {
-  static startAllJobs() {
+  static async startAllJobs() {
     logger.debugInside(path.basename(__filename), this.startAllJobs.name)
     
-    cron.schedule('0 0 * * *', async () => {
-      logger.debugInside('', '[CRON] Running updateInvoiceStatuses...')
+    // Run immediately on startup
+    try {
+      logger.debugInside('', '[STARTUP] Running updateInvoiceStatuses on startup...')
       await invoiceCollection.updatePaymentStatuses()
+      logger.debugInside('', '[STARTUP] Completed updateInvoiceStatuses')
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in updateInvoiceStatuses: ${error?.message || error}`)
+    }
+
+    // Schedule to run every midnight
+    cron.schedule('0 0 * * *', async () => {
+      try {
+        logger.debugInside('', '[CRON] Running updateInvoiceStatuses...')
+        await invoiceCollection.updatePaymentStatuses()
+        logger.debugInside('', '[CRON] Completed updateInvoiceStatuses')
+      } catch (error: any) {
+        logger.error(`[CRON] Error in updateInvoiceStatuses: ${error?.message || error}`)
+      }
     })
 
     cron.schedule('0 0 * * *', async () => {
