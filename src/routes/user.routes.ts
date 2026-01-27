@@ -28,4 +28,6 @@ router.delete('/:userId/notes/:noteId', isLoggedIn, hasAccess(AccessControlActio
 
 router.get('/instructors/next-id', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.USER), usersController.getNextInstructorId)
 
+router.get('/:userId/classes', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), usersController.getInstructorClassDetails)
+
 export default router

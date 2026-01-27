@@ -7,6 +7,9 @@ import { authenticationService } from '../services/AuthenticationService'
 import { body, param, validationResult } from 'express-validator'
 import { UpdateUserOptions, UserCreationDTO } from '../types/User'
 import { clientHandler } from '../business/ClientHandler'
+import { classService } from '../services/ClassService'
+import { InstructorClassDetails } from '../types/InstructorClassDetails'
+import { assignmentService } from '../services/AssignmentService'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -225,6 +228,37 @@ class UsersController {
     const instructorId = await usersService.getNextInstructorId()
     res.send({ instructorId })
   })
+
+  getInstructorClassDetails = [
+    param('userId').isString().notEmpty(),
+      asyncHandler(async (req: Request, res: Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty()) {
+          throw new AppError('errors.missingParameters', 400)
+        }
+        const userId = req.params.userId 
+        const instructor = await usersService.getUserById(userId)
+        
+        if (!instructor || instructor.role !== Role.INSTRUCTOR) {
+          throw new AppError('errors.resourceNotFound', 404)
+        }
+
+        const assignments = await assignmentService.getInstructorAssignments(userId)
+        const assignmentInfo: { class: any, assignment: any }[] = []
+        
+        for (const assignment of assignments) {
+          const classInfo = await classService.getClass(assignment.classId)
+          assignmentInfo.push({ class: classInfo, assignment })
+        }
+        
+        const instructorClassDetails: InstructorClassDetails = {
+          instructor,
+          assignmentInfo
+        }
+
+        res.send(instructorClassDetails)
+      })
+  ]
 }
 
 const usersController = new UsersController()

@@ -135,6 +135,11 @@ class ClassService {
       throw new AppError('errors.unableToDeleteResource', 500)
     }
   }
+
+  async getClassesByInstructorId(instructorId: string): Promise<Class[]> {
+    logger.debugInside(this._FILE_NAME, this.getClassesByInstructorId.name, { instructorId })
+    return await this.classCollection.find({ instructorId })
+  }
 }
 
 const classService = new ClassService(classCollection)

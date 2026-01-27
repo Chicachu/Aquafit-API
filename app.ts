@@ -65,6 +65,9 @@ app.use('/api/enrollments', enrollmentRouter)
 import discountRouter from './src/routes/discount.routes'
 app.use('/api/discounts', discountRouter)
 
+import assignmentRouter from './src/routes/assignment.routes'
+app.use('/api/assignments', assignmentRouter)
+
 app.use(errorHandler)
 
 export default app
