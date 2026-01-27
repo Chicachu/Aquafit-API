@@ -118,9 +118,12 @@ class UsersController {
     param('userId').isString().notEmpty(),
     body('firstName').optional().isString().notEmpty(),
     body('lastName').optional().isString().notEmpty(),
-    body('phoneNumber').optional().isString().notEmpty(),
+    body('phoneNumber').optional({ checkFalsy: true }).isString(),
     body('role').optional().isString().isIn(Object.values(Role)),
-    body('instructorId').optional().isNumeric(),
+    body('instructorId').optional().custom((value) => {
+      if (value === null || value === undefined) return true
+      return !isNaN(Number(value))
+    }),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {

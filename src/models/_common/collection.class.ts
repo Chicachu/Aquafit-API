@@ -22,6 +22,7 @@ abstract class Collection<T> {
     const startDate = new Date(newClass.startDate)
 
     const query = {
+      classLocation: newClass.classLocation,
       days: { $in: convertedDays },
       startTime: newClass.startTime,
       startDate: { $lte: startDate },
