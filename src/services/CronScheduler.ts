@@ -3,6 +3,7 @@ import { logger } from "./LoggingService"
 import cron from 'node-cron'
 import { invoiceCollection } from "../models/invoice/invoice.class"
 import { clientHandler } from "../business/ClientHandler"
+import { enrollmentService } from "./EnrollmentService"
 
 export class CronSchedulerService {
   static async startAllJobs() {
@@ -25,6 +26,14 @@ export class CronSchedulerService {
       logger.error(`[STARTUP] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
     }
 
+    try {
+      logger.debugInside('', '[STARTUP] Running updateEnrollmentStatuses on startup...')
+      await enrollmentService.updateEnrollmentStatuses()
+      logger.debugInside('', '[STARTUP] Completed updateEnrollmentStatuses')
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in updateEnrollmentStatuses: ${error?.message || error}`)
+    }
+
     // Schedule to run every midnight
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -43,6 +52,16 @@ export class CronSchedulerService {
         logger.debugInside('', '[CRON] Completed processDueDateCheckAndCreateInvoices')
       } catch (error: any) {
         logger.error(`[CRON] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
+      }
+    })
+
+    cron.schedule('0 0 * * *', async () => {
+      try {
+        logger.debugInside('', '[CRON] Running updateEnrollmentStatuses...')
+        await enrollmentService.updateEnrollmentStatuses()
+        logger.debugInside('', '[CRON] Completed updateEnrollmentStatuses')
+      } catch (error: any) {
+        logger.error(`[CRON] Error in updateEnrollmentStatuses: ${error?.message || error}`)
       }
     })
   }

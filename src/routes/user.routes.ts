@@ -26,4 +26,6 @@ router.post('/:userId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_A
 
 router.delete('/:userId/notes/:noteId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.deleteNote)
 
+router.get('/instructors/next-id', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.USER), usersController.getNextInstructorId)
+
 export default router

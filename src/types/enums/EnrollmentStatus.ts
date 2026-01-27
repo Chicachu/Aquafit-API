@@ -1,5 +1,6 @@
 export enum EnrollmentStatus {
   ACTIVE = "active", 
-  CANCELLED = "cancelled",
+  UNENROLLED = "unenrolled",
+  TERMINATED = "terminated",
   PAUSED = "paused"
 }

@@ -12,7 +12,6 @@ import { usersService, UsersService } from "../services/UsersService"
 import { ClassClientEnrollmentDetails } from "../types/ClassClientEnrollmentDetails"
 import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
-import { Currency } from "../types/enums/Currency"
 import { Invoice } from "../types/invoices/Invoice"
 
 class ClassHandler {

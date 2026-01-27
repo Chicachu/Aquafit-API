@@ -22,6 +22,7 @@ export type User = IDocument & {
   } | null
   accessToken?: string | null
   notes?: Note[] | null
+  instructorId?: number | null
 }
 
 export type UserCreationDTO = {
@@ -29,6 +30,7 @@ export type UserCreationDTO = {
   lastName: string
   phoneNumber?: string
   role: Role
+  instructorId?: number
 }
 
 export type UpdateUserOptions = {
@@ -42,4 +44,6 @@ export type UpdateUserOptions = {
     amount: number
     currency: Currency
   } | null
+  role?: Role
+  instructorId?: number | null
 }

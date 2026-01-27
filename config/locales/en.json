@@ -22,7 +22,20 @@
     "couldNotGetEnrollmentInfo": "Could not find enrollment info.",
     "unableToEnrollClient": "Client was not enrolled.",
     "unableToCreateResource": "The resource was not created.",
+    "unableToUpdateResource": "The resource was not updated.",
     "noBasePriceInClass": "No base price found for class when generating new invoice",
-    "classAlreadyCancelledForDate": "This class has already been cancelled for the selected date."
+    "classAlreadyCancelledForDate": "This class has already been cancelled for the selected date.",
+    "enrollmentAlreadyCancelled": "This enrollment has already been cancelled."
+  },
+  "notes": {
+    "reasonForUnenrollingIn": "Reason for unenrolling in"
+  },
+  "CLASS_TYPES": {
+    "GROUP_FITNESS": "Group fitness",
+    "PRIVATE_FITNESS": "Private fitness",
+    "PRIVATE_REHAB": "Private rehab",
+    "FREE_SWIM": "Free swim",
+    "BABIES": "Babies",
+    "HOTEL_GROUP": "Hotel Group"
   }
 }

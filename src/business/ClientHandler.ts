@@ -334,19 +334,19 @@ class ClientHandler {
   
     for (const enrollment of enrollments) {
       try {
-        if (enrollment.cancelDate) {
-          if (enrollment.autoEnrollment) {
-            logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Enrollment cancelled, disabling autoEnrollment', {
-              enrollmentId: enrollment._id,
-              cancelDate: enrollment.cancelDate
-            })
-            await this._enrollmentService.updateAutoEnrollment(enrollment._id, false)
-          }
+        // Skip if autoEnrollment is false
+        if (!enrollment.autoEnrollment) {
           continue
         }
 
-        if (!enrollment.autoEnrollment) {
-          continue
+        // Skip if enrollment has an endDate that has already passed (enrollment has ended)
+        if (enrollment.endDate) {
+          const enrollmentEndDate = new Date(enrollment.endDate)
+          enrollmentEndDate.setHours(0, 0, 0, 0)
+          if (enrollmentEndDate <= today) {
+            // Enrollment has ended, skip invoice creation
+            continue
+          }
         }
   
         // Fetch class using enrollment's classId - this is the source of truth
@@ -431,18 +431,25 @@ class ClientHandler {
         const nextPeriodEndDate = this._calculateDueDate(invoiceStartDate, billingFrequency)
         nextPeriodEndDate.setHours(0, 0, 0, 0)
         
-        // Limit by class endDate if it exists and is earlier
-        let effectiveEndDate: Date | null = null
+        // Limit by enrollment endDate, class endDate, or calculated period endDate (whichever is earliest)
+        let effectiveEndDate: Date = nextPeriodEndDate
+        if (enrollment.endDate) {
+          const enrollmentEndDate = new Date(enrollment.endDate)
+          enrollmentEndDate.setHours(0, 0, 0, 0)
+          if (enrollmentEndDate < effectiveEndDate) {
+            effectiveEndDate = enrollmentEndDate
+          }
+        }
         if (classDoc.endDate) {
           const classEndDate = new Date(classDoc.endDate)
           classEndDate.setHours(0, 0, 0, 0)
-          if (classEndDate < nextPeriodEndDate) {
+          if (classEndDate < effectiveEndDate) {
             effectiveEndDate = classEndDate
           }
         }
         
         // Only create the next period's invoice (not multiple periods ahead)
-        const periodEndDate = effectiveEndDate || nextPeriodEndDate
+        const periodEndDate = effectiveEndDate
         const missingPeriods = [{
           startDate: invoiceStartDate,
           endDate: periodEndDate

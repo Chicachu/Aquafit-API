@@ -2,11 +2,13 @@ import { BillingFrequency } from "./enums/BillingFrequency"
 import { Currency } from "./enums/Currency"
 import { Weekday } from "./enums/Weekday"
 import { IDocument } from "./IDocument"
+import { EnrollmentStatus } from "./enums/EnrollmentStatus"
 
 export type Enrollment = IDocument & {
   userId: string
   classId: string
   startDate: Date
+  status: EnrollmentStatus
   billingFrequencyOverride: BillingFrequency
   discountsApplied: {
     discountId: string
@@ -24,7 +26,7 @@ export type Enrollment = IDocument & {
   bonusSessions?: number
   bonusSessionsConsumed?: number
   isTrial?: boolean
-  cancelDate?: Date
+  endDate?: Date
   cancelReason?: string
   autoEnrollment: boolean
   invoiceIds: string[]

@@ -75,6 +75,10 @@ const UserSchema = new Schema(
       }],
       required: false,
       default: []
+    },
+    instructorId: {
+      type: Number,
+      required: false
     }
   },
   { timestamps: true }

@@ -66,7 +66,7 @@ const EnrollmentSchema = new Schema(
       type: Number,
       required: false
     },
-    cancelDate: {
+    endDate: {
       type: Date,
       required: false
     },

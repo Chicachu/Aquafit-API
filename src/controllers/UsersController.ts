@@ -20,8 +20,13 @@ class UsersController {
     body('firstName').isString().notEmpty(),
     body('lastName').isString().notEmpty(),
     body('phoneNumber').optional().isString().notEmpty(),
+    body('role').optional().isString().isIn(Object.values(Role)),
+    body('instructorId').optional().custom((value) => {
+      if (value === null || value === undefined) return true
+      return !isNaN(Number(value))
+    }),
       asyncHandler(async (req: Request, res: Response) => {
-        const { firstName, lastName, phoneNumber } = req.body
+        const { firstName, lastName, phoneNumber, role, instructorId } = req.body
 
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -31,11 +36,15 @@ class UsersController {
         const createUserDTO: UserCreationDTO = {
           firstName, 
           lastName, 
-          role: Role.CLIENT
+          role: role || Role.CLIENT
         }
         
         if (phoneNumber) {
           createUserDTO.phoneNumber = phoneNumber
+        }
+
+        if (instructorId !== undefined) {
+          createUserDTO.instructorId = instructorId === null ? undefined : Number(instructorId)
         }
 
         await usersService.createNewUser(createUserDTO)
@@ -110,6 +119,8 @@ class UsersController {
     body('firstName').optional().isString().notEmpty(),
     body('lastName').optional().isString().notEmpty(),
     body('phoneNumber').optional().isString().notEmpty(),
+    body('role').optional().isString().isIn(Object.values(Role)),
+    body('instructorId').optional().isNumeric(),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
@@ -127,6 +138,10 @@ class UsersController {
       if (req.body.firstName !== undefined) updateData.firstName = req.body.firstName
       if (req.body.lastName !== undefined) updateData.lastName = req.body.lastName
       if (req.body.phoneNumber !== undefined) updateData.phoneNumber = req.body.phoneNumber
+      if (req.body.role !== undefined) updateData.role = req.body.role as Role
+      if (req.body.instructorId !== undefined) {
+        updateData.instructorId = (req.body.instructorId === null ? null : Number(req.body.instructorId)) as number | null
+      }
 
       const updatedUser = await usersService.updateUserInfo(user, updateData)
 
@@ -202,6 +217,11 @@ class UsersController {
       res.send(updatedUser)
     })
   ]
+
+  getNextInstructorId = asyncHandler(async (req: Request, res: Response) => {
+    const instructorId = await usersService.getNextInstructorId()
+    res.send({ instructorId })
+  })
 }
 
 const usersController = new UsersController()
