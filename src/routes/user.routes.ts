@@ -22,4 +22,8 @@ router.get('/:userId/payments/:enrollmentId/:invoiceId', isLoggedIn, hasAccess(A
 
 router.put('/:userId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.updateClient)
 
+router.post('/:userId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.addNote)
+
+router.delete('/:userId/notes/:noteId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.deleteNote)
+
 export default router

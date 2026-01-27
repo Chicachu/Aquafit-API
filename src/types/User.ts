@@ -2,6 +2,13 @@ import { Currency } from "./enums/Currency"
 import { Role } from "./enums/Role"
 import { IDocument } from "./IDocument"
 
+export type Note = {
+  _id: string
+  content: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export type User = IDocument & {
   firstName: string
   lastName: string
@@ -14,6 +21,7 @@ export type User = IDocument & {
     currency: Currency
   } | null
   accessToken?: string | null
+  notes?: Note[] | null
 }
 
 export type UserCreationDTO = {

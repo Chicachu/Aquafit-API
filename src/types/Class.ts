@@ -4,6 +4,8 @@ import { BillingFrequency } from "./enums/BillingFrequency"
 import { ClassType } from "./enums/ClassType"
 import { Weekday } from "./enums/Weekday"
 
+import { Note } from "./User"
+
 export type Class = IDocument & {
   classLocation: string
   classType: ClassType
@@ -25,6 +27,7 @@ export type Class = IDocument & {
     reason?: string | null
   }[]
   waitlist?: string[] | undefined
+  notes?: Note[] | null
 }
 
 export type ClassCreationDTO = {

@@ -169,6 +169,39 @@ class UsersController {
       res.send(user)
     })
   ]
+
+  addNote = [
+    param('userId').isString().notEmpty(),
+    body('content').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const userId = req.params.userId
+      const { content } = req.body
+
+      const updatedUser = await usersService.addNoteToUser(userId, content)
+      res.send(updatedUser)
+    })
+  ]
+
+  deleteNote = [
+    param('userId').isString().notEmpty(),
+    param('noteId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const { userId, noteId } = req.params
+
+      const updatedUser = await usersService.deleteNoteFromUser(userId, noteId)
+      res.send(updatedUser)
+    })
+  ]
 }
 
 const usersController = new UsersController()

@@ -16,4 +16,8 @@ router.put('/:classId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, Ac
 router.post('/:classId/terminate', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.terminateClass)
 router.post('/:classId/cancel', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.cancelClass)
 
+router.post('/:classId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.addNote)
+
+router.delete('/:classId/notes/:noteId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.deleteNote)
+
 export default router

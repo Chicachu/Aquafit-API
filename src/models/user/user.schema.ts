@@ -51,6 +51,30 @@ const UserSchema = new Schema(
     accessToken: {
       type: String,
       required: false
+    },
+    notes: {
+      type: [{
+        _id: {
+          type: String,
+          required: true
+        },
+        content: {
+          type: String,
+          required: true
+        },
+        createdAt: {
+          type: Date,
+          required: true,
+          default: Date.now
+        },
+        updatedAt: {
+          type: Date,
+          required: true,
+          default: Date.now
+        }
+      }],
+      required: false,
+      default: []
     }
   },
   { timestamps: true }

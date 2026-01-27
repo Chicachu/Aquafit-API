@@ -172,6 +172,39 @@ class ClassController {
       res.send()
     })
   ]
+
+  addNote = [
+    param('classId').isString().notEmpty(),
+    body('content').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const classId = req.params.classId
+      const { content } = req.body
+
+      const updatedClass = await classService.addNoteToClass(classId, content)
+      res.send(updatedClass)
+    })
+  ]
+
+  deleteNote = [
+    param('classId').isString().notEmpty(),
+    param('noteId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const { classId, noteId } = req.params
+
+      const updatedClass = await classService.deleteNoteFromClass(classId, noteId)
+      res.send(updatedClass)
+    })
+  ]
 }
 
 const classController = new ClassController() 

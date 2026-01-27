@@ -1,7 +1,7 @@
 import path from "path"
 import { userCollection, UserCollection } from "../models/user/user.class"
 import AppError from "../types/AppError"
-import { UpdateUserOptions, User, UserCreationDTO } from "../types/User"
+import { UpdateUserOptions, User, UserCreationDTO, Note } from "../types/User"
 import { logger } from "./LoggingService"
 
 class UsersService {
@@ -16,8 +16,8 @@ class UsersService {
   async getAllUsers(role?: string): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.getAllUsers.name, { role })
     try {
-      if (role) return await this.userCollection.find({ role })
-      else return await this.userCollection.find()
+      if (role) return await this.userCollection.find({ role }) as User
+      else return await this.userCollection.find() as User
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -35,7 +35,7 @@ class UsersService {
   async getUser(username: string): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.getUser.name, { username })
     try {
-      return await this.userCollection.getUser(username)
+      return await this.userCollection.getUser(username) as User
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -44,7 +44,7 @@ class UsersService {
   async getUserById(userId: string): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.getUserById.name, { userId })
     try {
-      return await this.userCollection.getUserById(userId)
+      return await this.userCollection.getUserById(userId) as User
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -53,7 +53,7 @@ class UsersService {
   async getUsersById(userIds: string[]): Promise<User[]> {
     logger.debugInside(this._FILE_NAME, this.getUsersById.name, { userIds })
     try {
-      return await this.userCollection.getUsersById(userIds)
+      return await this.userCollection.getUsersById(userIds) as User[]
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -78,12 +78,57 @@ class UsersService {
 
       // Use updateOne with _id if we have it, otherwise fall back to username
       if (user._id) {
-        return await this.userCollection.updateOne({ _id: user._id }, updateUserOptions)
+        return await this.userCollection.updateOne({ _id: user._id }, updateUserOptions) as User
       } else {
-        return await this.userCollection.updateUser(updatedUser)
+        return await this.userCollection.updateUser(updatedUser) as User
       }
     } catch (error: any) {
       throw new AppError(error.message, 500)
+    }
+  }
+
+  async addNoteToUser(userId: string, content: string): Promise<User> {
+    logger.debugInside(this._FILE_NAME, this.addNoteToUser.name, { userId, content })
+    try {
+      const user = await this.userCollection.getUserById(userId)
+      if (!user) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const newNote: Note = {
+        _id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        content,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+
+      const existingNotes = user.notes ? (Array.isArray(user.notes) ? [...user.notes] : []) : []
+      const notes = [...existingNotes, newNote]
+
+      const updatedUser = await this.userCollection.updateOne({ _id: userId }, { notes })
+      return updatedUser as User
+    } catch (error: any) {
+      if (error instanceof AppError) throw error
+      throw new AppError('errors.unableToCreateResource', 500)
+    }
+  }
+
+  async deleteNoteFromUser(userId: string, noteId: string): Promise<User> {
+    logger.debugInside(this._FILE_NAME, this.deleteNoteFromUser.name, { userId, noteId })
+    try {
+      const user = await this.userCollection.getUserById(userId)
+      if (!user) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const existingNotes = user.notes ? (Array.isArray(user.notes) ? [...user.notes] : []) : []
+      const notes = existingNotes.filter((note: Note) => note._id !== noteId)
+      
+      const updatedUser = await this.userCollection.updateOne({ _id: userId }, { notes })
+      return updatedUser as User
+    } catch (error: any) {
+      if (error instanceof AppError) throw error
+      throw new AppError('errors.unableToDeleteResource', 500)
     }
   }
 }

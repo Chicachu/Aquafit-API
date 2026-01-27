@@ -5,6 +5,7 @@ import { Class, ClassCreationDTO, ClassUpdateOptions } from "../types/Class"
 import { ClassScheduleMap } from "../types/ClassScheduleMap"
 import { logger } from "./LoggingService"
 import { formatSchedule } from "./util"
+import { Note } from "../types/User"
 
 class ClassService {
   constructor(private classCollection: ClassCollection) {
@@ -88,6 +89,51 @@ class ClassService {
     const conflictingClasses = await this.classCollection.findConflicts(newClass)
 
     return conflictingClasses.length > 0
+  }
+
+  async addNoteToClass(classId: string, content: string): Promise<Class> {
+    logger.debugInside(this._FILE_NAME, this.addNoteToClass.name, { classId, content })
+    try {
+      const classItem = await this.classCollection.getClassById(classId)
+      if (!classItem) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const newNote: Note = {
+        _id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        content,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+
+      const existingNotes = classItem.notes ? (Array.isArray(classItem.notes) ? [...classItem.notes] : []) : []
+      const notes = [...existingNotes, newNote]
+
+      const updatedClass = await this.classCollection.updateClass({ ...classItem, notes })
+      return updatedClass as Class
+    } catch (error: any) {
+      if (error instanceof AppError) throw error
+      throw new AppError('errors.unableToCreateResource', 500)
+    }
+  }
+
+  async deleteNoteFromClass(classId: string, noteId: string): Promise<Class> {
+    logger.debugInside(this._FILE_NAME, this.deleteNoteFromClass.name, { classId, noteId })
+    try {
+      const classItem = await this.classCollection.getClassById(classId)
+      if (!classItem) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+
+      const existingNotes = classItem.notes ? (Array.isArray(classItem.notes) ? [...classItem.notes] : []) : []
+      const notes = existingNotes.filter((note: Note) => note._id !== noteId)
+      
+      const updatedClass = await this.classCollection.updateClass({ ...classItem, notes })
+      return updatedClass as Class
+    } catch (error: any) {
+      if (error instanceof AppError) throw error
+      throw new AppError('errors.unableToDeleteResource', 500)
+    }
   }
 }
 
