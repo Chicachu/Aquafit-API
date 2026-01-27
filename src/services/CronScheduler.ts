@@ -17,6 +17,14 @@ export class CronSchedulerService {
       logger.error(`[STARTUP] Error in updateInvoiceStatuses: ${error?.message || error}`)
     }
 
+    try {
+      logger.debugInside('', '[STARTUP] Running processDueDateCheckAndCreateInvoices on startup...')
+      await clientHandler.processDueDateCheckAndCreateInvoices()
+      logger.debugInside('', '[STARTUP] Completed processDueDateCheckAndCreateInvoices')
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
+    }
+
     // Schedule to run every midnight
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -29,8 +37,13 @@ export class CronSchedulerService {
     })
 
     cron.schedule('0 0 * * *', async () => {
-      logger.debugInside('', '[CRON] running processDueDateCheckAndCreateInvoices...')
-      await clientHandler.processDueDateCheckAndCreateInvoices()
+      try {
+        logger.debugInside('', '[CRON] Running processDueDateCheckAndCreateInvoices...')
+        await clientHandler.processDueDateCheckAndCreateInvoices()
+        logger.debugInside('', '[CRON] Completed processDueDateCheckAndCreateInvoices')
+      } catch (error: any) {
+        logger.error(`[CRON] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
+      }
     })
   }
 }

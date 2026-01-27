@@ -98,6 +98,24 @@ class EnrollmentService {
       throw new AppError(error.message, 500)
     }
   }
+
+  async updateAutoEnrollment(enrollmentId: string, autoEnrollment: boolean): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.updateAutoEnrollment.name, { enrollmentId, autoEnrollment })
+    try {
+      const updatedEnrollment = await this.enrollmentCollection.updateOne(
+        { _id: enrollmentId },
+        { $set: { autoEnrollment } }
+      )
+
+      if (!updatedEnrollment) {
+        throw new AppError('errors.resourceNotFound', 404, { enrollmentId })
+      }
+
+      return updatedEnrollment
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
+  }
 }
 const enrollmentService = new EnrollmentService(enrollmentCollection)
 export {enrollmentService, EnrollmentService}

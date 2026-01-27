@@ -71,8 +71,32 @@ class InvoiceService {
     }
   }
 
-  async createInvoice(clientId: string, enrollmentId: string, charge: Price, startDate: Date, endDate: Date): Promise<Invoice> {
+  async createInvoice(clientId: string, enrollmentId: string, charge: Price, startDate: Date, endDate: Date, paymentStatus?: PaymentStatus): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.createInvoice.name, { userId: clientId, enrollmentId })
+    
+    // Determine payment status if not provided
+    let invoicePaymentStatus = paymentStatus
+    if (!invoicePaymentStatus) {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      const normalizedEndDate = new Date(endDate)
+      normalizedEndDate.setHours(0, 0, 0, 0)
+      
+      // If the invoice end date has passed, it should be OVERDUE
+      // Otherwise, check if it's within 4 days (ALMOST_DUE) or PENDING
+      if (normalizedEndDate < today) {
+        invoicePaymentStatus = PaymentStatus.OVERDUE
+      } else {
+        const fourDaysFromNow = new Date(today)
+        fourDaysFromNow.setDate(today.getDate() + 4)
+        if (normalizedEndDate >= today && normalizedEndDate <= fourDaysFromNow) {
+          invoicePaymentStatus = PaymentStatus.ALMOST_DUE
+        } else {
+          invoicePaymentStatus = PaymentStatus.PENDING
+        }
+      }
+    }
+    
     const invoiceCreationDTO: InvoiceCreationDTO = {
       userId: clientId, 
       enrollmentId, 
@@ -81,7 +105,7 @@ class InvoiceService {
         startDate, 
         endDate
       },
-      paymentStatus: PaymentStatus.PENDING
+      paymentStatus: invoicePaymentStatus
     }
 
     try {
