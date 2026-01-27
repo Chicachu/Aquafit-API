@@ -43,5 +43,6 @@ export type ClassUpdateOptions = {
   classLocation?: string
   startTime?: string
   prices?: Price[] 
-  maxCapacity?: number 
+  maxCapacity?: number
+  endDate?: Date | null
 }

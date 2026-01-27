@@ -30,4 +30,8 @@ export type UpdateUserOptions = {
   username?: string
   password?: string
   accessToken?: string
+  credits?: {
+    amount: number
+    currency: Currency
+  } | null
 }

@@ -181,6 +181,27 @@ class InvoiceService {
       throw new AppError('errors.unableToUpdateResource', 500)
     }
   }
+
+  async updateInvoiceAmounts(
+    invoiceId: string,
+    amountDue: number,
+    remainingBalance: number
+  ): Promise<Invoice> {
+    logger.debugInside(this._FILE_NAME, this.updateInvoiceAmounts.name, { invoiceId, amountDue, remainingBalance })
+    try {
+      return await this._invoiceCollection.updateOne(
+        { _id: invoiceId },
+        {
+          $set: {
+            amountDue,
+            remainingBalance
+          }
+        }
+      )
+    } catch (error) {
+      throw new AppError('errors.unableToUpdateResource', 500)
+    }
+  }
 }
 
 const invoiceService = new InvoiceService(invoiceCollection)

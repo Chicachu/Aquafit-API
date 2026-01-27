@@ -131,6 +131,31 @@ class ClassController {
       res.send()
     })
   ]
+
+  terminateClass = [
+    param('classId').isString().notEmpty(),
+    body('endDate').isISO8601().toDate().custom((value) => {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
+      const endDate = new Date(value)
+      endDate.setHours(0, 0, 0, 0)
+      if (endDate < today) {
+        throw new Error('endDate cannot be before today')
+      }
+      return true
+    }),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      
+      const classId = req.params.classId
+      const endDate = req.body.endDate as Date
+      await classHandler.terminateClass(classId, endDate)
+      res.send()
+    })
+  ]
 }
 
 const classController = new ClassController() 

@@ -13,5 +13,6 @@ router.get('/locations', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, Acc
 router.get('/classScheduleMap', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), classController.getClassTypeLocationTimeMap)
 router.get('/:classId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), ...classController.getClass)
 router.put('/:classId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), classController.updateClass)
+router.post('/:classId/terminate', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.terminateClass)
 
 export default router
