@@ -83,6 +83,12 @@ const InvoiceSchema = new Schema(
       type: PeriodSchema, 
       required: true
     },
+    bonusSessionsApplied: {
+      type: Number,
+      required: false,
+      default: 0,
+      min: 0
+    },
     lateFee: {
       type: AmountSchema,
       required: false

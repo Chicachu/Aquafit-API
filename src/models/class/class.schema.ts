@@ -94,6 +94,10 @@ const ClassSchema = new Schema(
         required: true,
         validate: {
           validator: async function (instructorId: String) {
+            // Allow 'system' as a placeholder until instructorId is properly implemented
+            if (instructorId === 'system') {
+              return true
+            }
             const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
             return user && user.role === Role.INSTRUCTOR 
           },
@@ -102,7 +106,7 @@ const ClassSchema = new Schema(
       }, 
       reason: {
         type: String, 
-        required: true
+        required: false
       }
     }],
     waitlist: [{

@@ -22,6 +22,7 @@ export type Enrollment = IDocument & {
   }[]
   daysOfWeekOverride?: Weekday[]
   bonusSessions?: number
+  bonusSessionsConsumed?: number
   isTrial?: boolean
   cancelDate?: Date
   cancelReason?: string

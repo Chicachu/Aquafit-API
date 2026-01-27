@@ -156,6 +156,22 @@ class ClassController {
       res.send()
     })
   ]
+
+  cancelClass = [
+    param('classId').isString().notEmpty(),
+    body('cancellationDate').isISO8601().toDate(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      
+      const classId = req.params.classId
+      const cancellationDate = req.body.cancellationDate as Date
+      await classHandler.cancelClass(classId, cancellationDate)
+      res.send()
+    })
+  ]
 }
 
 const classController = new ClassController() 

@@ -22,6 +22,7 @@
     "couldNotGetEnrollmentInfo": "No se pudo encontrar la información de inscripción.",
     "unableToEnrollClient": "El cliente no estaba inscrito.",
     "unableToCreateResource": "No se creó el recurso.",
-    "noBasePriceInClass": "No se encontró un precio base para la clase al generar una nueva factura"
+    "noBasePriceInClass": "No se encontró un precio base para la clase al generar una nueva factura",
+    "classAlreadyCancelledForDate": "Esta clase ya ha sido cancelada para la fecha seleccionada."
   }
 }

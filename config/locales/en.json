@@ -22,6 +22,7 @@
     "couldNotGetEnrollmentInfo": "Could not find enrollment info.",
     "unableToEnrollClient": "Client was not enrolled.",
     "unableToCreateResource": "The resource was not created.",
-    "noBasePriceInClass": "No base price found for class when generating new invoice"
+    "noBasePriceInClass": "No base price found for class when generating new invoice",
+    "classAlreadyCancelledForDate": "This class has already been cancelled for the selected date."
   }
 }

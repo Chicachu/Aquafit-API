@@ -116,6 +116,42 @@ class EnrollmentService {
       throw new AppError(error.message, 500)
     }
   }
+
+  async updateBonusSessions(enrollmentId: string, bonusSessions: number): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.updateBonusSessions.name, { enrollmentId, bonusSessions })
+    try {
+      const updatedEnrollment = await this.enrollmentCollection.updateOne(
+        { _id: enrollmentId },
+        { $set: { bonusSessions } }
+      )
+
+      if (!updatedEnrollment) {
+        throw new AppError('errors.resourceNotFound', 404, { enrollmentId })
+      }
+
+      return updatedEnrollment
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
+  }
+
+  async updateBonusSessionsConsumed(enrollmentId: string, bonusSessionsConsumed: number): Promise<Enrollment> {
+    logger.debugInside(this._FILE_NAME, this.updateBonusSessionsConsumed.name, { enrollmentId, bonusSessionsConsumed })
+    try {
+      const updatedEnrollment = await this.enrollmentCollection.updateOne(
+        { _id: enrollmentId },
+        { $set: { bonusSessionsConsumed } }
+      )
+
+      if (!updatedEnrollment) {
+        throw new AppError('errors.resourceNotFound', 404, { enrollmentId })
+      }
+
+      return updatedEnrollment
+    } catch (error: any) {
+      throw new AppError(error.message, 500)
+    }
+  }
 }
 const enrollmentService = new EnrollmentService(enrollmentCollection)
 export {enrollmentService, EnrollmentService}

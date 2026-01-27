@@ -70,11 +70,14 @@ class ClassService {
   }
 
   async updateClassInfo(currentClass: Class, classUpdateOptions: ClassUpdateOptions): Promise<Class> {
-    logger.debugInside(this._FILE_NAME, this.updateClassInfo.name, { currentClass: currentClass._id })
+    logger.debugInside(this._FILE_NAME, this.updateClassInfo.name, { 
+      currentClass: currentClass._id,
+      updateOptions: Object.keys(classUpdateOptions)
+    })
+    
     const updatedClass = {
       ...currentClass, 
       ...classUpdateOptions
-
     }
     
     logger.debugComplete(this._FILE_NAME, this.updateClassInfo.name)

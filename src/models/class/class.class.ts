@@ -9,7 +9,8 @@ class ClassCollection extends Collection<IClassModel> {
   }
 
   async updateClass(updatedClass: Class): Promise<ClassDocument> {
-    return await this.updateOne({ _id: updatedClass._id }, updatedClass)
+    // Use $set to ensure nested arrays and subdocuments are properly updated
+    return await this.updateOne({ _id: updatedClass._id }, { $set: updatedClass })
   }
 
   async getClassById(classId: string): Promise<ClassDocument> {

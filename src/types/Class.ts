@@ -22,7 +22,7 @@ export type Class = IDocument & {
   cancellations?: {
     date: Date
     instructorId: string
-    reason: string
+    reason?: string | null
   }[]
   waitlist?: string[] | undefined
 }
@@ -45,4 +45,9 @@ export type ClassUpdateOptions = {
   prices?: Price[] 
   maxCapacity?: number
   endDate?: Date | null
+  cancellations?: {
+    date: Date
+    instructorId: string
+    reason?: string | null
+  }[]
 }

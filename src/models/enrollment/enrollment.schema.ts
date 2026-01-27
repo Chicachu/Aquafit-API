@@ -62,6 +62,10 @@ const EnrollmentSchema = new Schema(
       type: Number,
       required: false
     },
+    bonusSessionsConsumed: {
+      type: Number,
+      required: false
+    },
     cancelDate: {
       type: Date,
       required: false

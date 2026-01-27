@@ -3,6 +3,7 @@ import { ClassService, classService } from "../services/ClassService"
 import { EnrollmentService, enrollmentService } from "../services/EnrollmentService"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import { logger } from "../services/LoggingService"
+import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
 import AppError from "../types/AppError"
 import { ClassDetails } from "../types/ClassDetails"
 import { Enrollment } from "../types/Enrollment"
@@ -12,6 +13,7 @@ import { ClassClientEnrollmentDetails } from "../types/ClassClientEnrollmentDeta
 import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
 import { Currency } from "../types/enums/Currency"
+import { Invoice } from "../types/invoices/Invoice"
 
 class ClassHandler {
   constructor(
@@ -121,7 +123,7 @@ class ClassHandler {
         const invoiceEndDate = new Date(currentInvoice.period.endDate)
         invoiceEndDate.setHours(0, 0, 0, 0)
         
-        const remainingSessions = this._countWeekdaysInPeriod(terminationDate, invoiceEndDate, effectiveWeekdays)
+        const remainingSessions = countWeekdaysInPeriod(terminationDate, invoiceEndDate, effectiveWeekdays)
 
         if (remainingSessions <= 0) continue
 
@@ -132,7 +134,7 @@ class ClassHandler {
         if (!classPrice) continue
 
         // Calculate total sessions in the invoice period
-        const totalSessions = this._countWeekdaysInPeriod(
+        const totalSessions = countWeekdaysInPeriod(
           new Date(currentInvoice.period.startDate),
           invoiceEndDate,
           effectiveWeekdays
@@ -241,19 +243,155 @@ class ClassHandler {
     logger.debugComplete(this._FILE_NAME, this.terminateClass.name)
   }
 
-  private _countWeekdaysInPeriod(startDate: Date, endDate: Date, weekdays: Weekday[]): number {
-    let count = 0
-    const currentDate = new Date(startDate)
+  async cancelClass(classId: string, cancellationDate: Date): Promise<void> {
+    logger.debugInside(this._FILE_NAME, this.cancelClass.name, { classId, cancellationDate })
     
-    while (currentDate <= endDate) {
-      const dayOfWeek = currentDate.getDay()
-      if (weekdays.includes(dayOfWeek)) {
-        count++
+    const foundClass = await this.classService.getClass(classId)
+    if (!foundClass) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    // Normalize the cancellation date (set to midnight)
+    const normalizedCancellationDate = new Date(cancellationDate)
+    normalizedCancellationDate.setHours(0, 0, 0, 0)
+
+    // Check if this date has already been cancelled
+    if (foundClass.cancellations && foundClass.cancellations.length > 0) {
+      const existingCancellation = foundClass.cancellations.find(cancellation => {
+        const cancellationDateObj = new Date(cancellation.date)
+        cancellationDateObj.setHours(0, 0, 0, 0)
+        return cancellationDateObj.getTime() === normalizedCancellationDate.getTime()
+      })
+      
+      if (existingCancellation) {
+        throw new AppError('errors.classAlreadyCancelledForDate', 400)
       }
-      currentDate.setDate(currentDate.getDate() + 1)
+    }
+
+    // Get all enrollments for this class
+    const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(classId)
+    
+    // Get class days
+    const classDays = foundClass.days
+
+    // Process each enrollment
+    for (const enrollment of classEnrollments) {
+      try {
+        // Determine effective weekdays for this enrollment
+        const effectiveWeekdays = enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0
+          ? enrollment.daysOfWeekOverride
+          : classDays
+
+        // Check if the cancellation date falls on a day this enrollment attends
+        // If not, skip giving them a bonus session
+        const cancellationDayOfWeek = normalizedCancellationDate.getDay()
+        if (!effectiveWeekdays.includes(cancellationDayOfWeek)) {
+          logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+            userId: enrollment.userId,
+            enrollmentId: enrollment._id,
+            message: 'Cancellation date not in enrollment days, skipping bonus session',
+            cancellationDayOfWeek,
+            effectiveWeekdays
+          })
+          continue
+        }
+
+        // Find the invoice that contains the cancellation date in its period
+        const allInvoices = await this.invoiceService.getInvoicesFromIds(enrollment.invoiceIds)
+        let targetInvoice: Invoice | null = null
+        
+        for (const invoice of allInvoices) {
+          const invoiceStartDate = new Date(invoice.period.startDate)
+          invoiceStartDate.setHours(0, 0, 0, 0)
+          const invoiceEndDate = new Date(invoice.period.endDate)
+          invoiceEndDate.setHours(0, 0, 0, 0)
+          
+          // Check if cancellation date falls within this invoice's period
+          if (normalizedCancellationDate >= invoiceStartDate && normalizedCancellationDate <= invoiceEndDate) {
+            targetInvoice = invoice
+            break
+          }
+        }
+
+        if (!targetInvoice) {
+          logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+            enrollmentId: enrollment._id,
+            userId: enrollment.userId,
+            message: 'No invoice found that contains cancellation date - invoice may need to be generated first',
+            cancellationDate: normalizedCancellationDate.toISOString(),
+            invoiceCount: allInvoices.length
+          })
+          // Skip applying bonus session if no invoice contains the cancellation date
+          // The invoice generation process will handle this when it runs
+          continue
+        }
+
+        // Increment bonus sessions (total given) for this enrollment
+        const currentBonusSessions = enrollment.bonusSessions || 0
+        const newBonusSessions = currentBonusSessions + 1
+
+        // Increment consumed bonus sessions (since we're immediately using it to extend current invoice)
+        const currentBonusSessionsConsumed = enrollment.bonusSessionsConsumed || 0
+        const newBonusSessionsConsumed = currentBonusSessionsConsumed + 1
+
+        await this.enrollmentService.updateBonusSessions(enrollment._id!, newBonusSessions)
+        await this.enrollmentService.updateBonusSessionsConsumed(enrollment._id!, newBonusSessionsConsumed)
+
+        // Extend the invoice period end date by one session day
+        const currentEndDate = new Date(targetInvoice.period.endDate)
+        currentEndDate.setHours(0, 0, 0, 0)
+        
+        const extendedEndDate = getNextSessionDay(currentEndDate, effectiveWeekdays)
+        extendedEndDate.setHours(0, 0, 0, 0)
+
+        // Update the invoice period end date and increment bonus sessions applied
+        await this.invoiceService.updateInvoicePeriodEndDate(targetInvoice._id!, extendedEndDate, true)
+
+        logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+          userId: enrollment.userId,
+          enrollmentId: enrollment._id,
+          action: 'bonus_session_added_and_consumed',
+          bonusSessions: newBonusSessions,
+          bonusSessionsConsumed: newBonusSessionsConsumed,
+          invoiceId: targetInvoice._id,
+          oldEndDate: currentEndDate.toISOString(),
+          newEndDate: extendedEndDate.toISOString(),
+          cancellationDate: normalizedCancellationDate.toISOString()
+        })
+      } catch (error: any) {
+        logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+          error: error.message,
+          enrollmentId: enrollment._id,
+          userId: enrollment.userId
+        })
+        // Continue processing other enrollments even if one fails
+      }
+    }
+
+    // Add the cancellation to the class's cancellations array
+    // Using a placeholder instructorId for now - will be implemented later
+    const placeholderInstructorId = 'system' // TODO: Replace with actual instructorId when implemented
+    const newCancellation = {
+      date: normalizedCancellationDate,
+      instructorId: placeholderInstructorId,
+      reason: 'Class cancelled by admin'
     }
     
-    return count
+    // Get existing cancellations (handle both Mongoose document and plain object)
+    const existingCancellations = foundClass.cancellations || []
+    const updatedCancellations = [...existingCancellations, newCancellation]
+    
+    logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+      message: 'Adding cancellation to class',
+      classId: foundClass._id,
+      cancellationDate: normalizedCancellationDate.toISOString(),
+      existingCancellationsCount: existingCancellations.length,
+      updatedCancellationsCount: updatedCancellations.length
+    })
+    
+    await this.classService.updateClassInfo(foundClass, { cancellations: updatedCancellations })
+
+    logger.debugComplete(this._FILE_NAME, this.cancelClass.name)
   }
 }
 const classHandler = new ClassHandler(classService, enrollmentService, invoiceService, usersService)

@@ -30,7 +30,8 @@ class InvoiceService {
     logger.debugInside(this._FILE_NAME, this.getInvoice.name, { invoiceId })
 
     try {
-      return await this._invoiceCollection.findOne({ _id: invoiceId })
+      const invoice = await this._invoiceCollection.findOne({ _id: invoiceId })
+      return invoice as Invoice
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -39,7 +40,8 @@ class InvoiceService {
   async getCurrentInvoice(invoiceIds: string[]): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.getCurrentInvoice.name, { invoiceIds })
     try {
-      return await this._invoiceCollection.getMostRecentInvoice(invoiceIds)
+      const invoice = await this._invoiceCollection.getMostRecentInvoice(invoiceIds)
+      return invoice as Invoice
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -132,7 +134,8 @@ class InvoiceService {
       if (invoiceExists) throw new AppError('errors.invoiceAlreadyExists', 400)
 
       logger.debugComplete(this._FILE_NAME, this.createInvoice.name)
-      return await this._invoiceCollection.createInvoice(invoiceCreationDTO) 
+      const invoice = await this._invoiceCollection.createInvoice(invoiceCreationDTO)
+      return invoice as Invoice 
     } catch (error: any) {
       throw new AppError('errors.unableToCreateResource', 500)
     } 
@@ -195,6 +198,57 @@ class InvoiceService {
           $set: {
             amountDue,
             remainingBalance
+          }
+        }
+      )
+    } catch (error) {
+      throw new AppError('errors.unableToUpdateResource', 500)
+    }
+  }
+
+  async updateInvoicePeriodEndDate(
+    invoiceId: string,
+    newEndDate: Date,
+    incrementBonusSessions?: boolean
+  ): Promise<Invoice> {
+    logger.debugInside(this._FILE_NAME, this.updateInvoicePeriodEndDate.name, { invoiceId, newEndDate, incrementBonusSessions })
+    try {
+      const normalizedEndDate = new Date(newEndDate)
+      normalizedEndDate.setHours(0, 0, 0, 0)
+      
+      const update: any = {
+        'period.endDate': normalizedEndDate
+      }
+      
+      if (incrementBonusSessions) {
+        // Get current invoice to check existing bonusSessionsApplied
+        const currentInvoice = await this.getInvoice(invoiceId)
+        const currentBonusSessions = currentInvoice.bonusSessionsApplied || 0
+        update.bonusSessionsApplied = currentBonusSessions + 1
+      }
+      
+      return await this._invoiceCollection.updateOne(
+        { _id: invoiceId },
+        {
+          $set: update
+        }
+      )
+    } catch (error) {
+      throw new AppError('errors.unableToUpdateResource', 500)
+    }
+  }
+
+  async updateBonusSessionsApplied(
+    invoiceId: string,
+    bonusSessionsApplied: number
+  ): Promise<Invoice> {
+    logger.debugInside(this._FILE_NAME, this.updateBonusSessionsApplied.name, { invoiceId, bonusSessionsApplied })
+    try {
+      return await this._invoiceCollection.updateOne(
+        { _id: invoiceId },
+        {
+          $set: {
+            bonusSessionsApplied
           }
         }
       )

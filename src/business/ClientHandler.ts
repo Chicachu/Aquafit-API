@@ -1,6 +1,7 @@
 import { ClassService, classService } from "../services/ClassService"
 import { enrollmentService, EnrollmentService } from "../services/EnrollmentService"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
+import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
 import AppError from "../types/AppError"
 import { Class } from "../types/Class"
 import { Discount } from "../types/discounts/Discount"
@@ -58,19 +59,52 @@ class ClientHandler {
         }
       }
 
+      // Calculate effective weekdays for this enrollment
+      const effectiveWeekdays = (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) 
+        ? enrollment.daysOfWeekOverride 
+        : classDoc.days
+
+      // Calculate original end date if bonus sessions were applied
+      let originalEndDate: Date | undefined
+      const bonusSessionsApplied = invoice.bonusSessionsApplied || 0
+      if (bonusSessionsApplied > 0) {
+        // Work backwards from current end date to find original end date
+        let calculatedEndDate = new Date(invoice.period.endDate)
+        calculatedEndDate.setHours(0, 0, 0, 0)
+        
+        // Go back one session day for each bonus session applied
+        for (let i = 0; i < bonusSessionsApplied; i++) {
+          // Find the previous session day
+          calculatedEndDate.setDate(calculatedEndDate.getDate() - 1)
+          // Find the most recent session day before this date
+          let attempts = 0
+          while (attempts < 7) {
+            const dayOfWeek = calculatedEndDate.getDay()
+            if (effectiveWeekdays.includes(dayOfWeek)) {
+              break
+            }
+            calculatedEndDate.setDate(calculatedEndDate.getDate() - 1)
+            attempts++
+          }
+        }
+        originalEndDate = calculatedEndDate
+      }
+
       const invoiceDetails: InvoiceDetails = {
         clientName: `${clientName.firstName} ${clientName.lastName}`, 
         classDetails: {
           classType: classDoc.classType,
           classLocation: classDoc.classLocation,
-          days: (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) ? enrollment.daysOfWeekOverride : classDoc.days
+          days: effectiveWeekdays
         },
         originalPrice: originalPrice,
         charge: invoice.charge, 
         discountsApplied: invoice.discountsApplied || [],
         paymentsApplied: [...invoice.paymentsApplied],
         paymentStatus: invoice.paymentStatus,
-        period: invoice.period
+        period: invoice.period,
+        bonusSessionsApplied: bonusSessionsApplied > 0 ? bonusSessionsApplied : undefined,
+        originalEndDate: originalEndDate
       }
 
       logger.debugComplete(this._FILE_NAME, this.getInvoiceDetails.name)
@@ -370,78 +404,126 @@ class ClientHandler {
           const latestInvoice = invoices[0]
           const latestInvoiceEndDate = new Date(latestInvoice.period.endDate)
           latestInvoiceEndDate.setHours(0, 0, 0, 0)
-          invoiceStartDate = this._getNextSessionDay(latestInvoiceEndDate, weekdays)
-          invoiceStartDate.setHours(0, 0, 0, 0)
-        }
-
-        // Don't create invoices if we're already up to date
-        if (invoiceStartDate >= today) {
-          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-            message: 'Already up to date, skipping',
-            enrollmentId: enrollment._id,
-            invoiceStartDate: invoiceStartDate.toISOString(),
-            today: today.toISOString()
-          })
-          continue
-        }
-
-        // Determine effective end date (class endDate or today, whichever is earlier)
-        let effectiveEndDate = today
-        if (classDoc.endDate) {
-          const classEndDate = new Date(classDoc.endDate)
-          classEndDate.setHours(0, 0, 0, 0)
-          if (classEndDate < today) {
-            effectiveEndDate = classEndDate
+          
+          // Generate invoice as soon as we've passed the last invoice's end date
+          // Don't wait for the next session day to arrive - create it immediately
+          if (today > latestInvoiceEndDate) {
+            // The invoice period start date should be the next session day that the person
+            // is enrolled for FROM TODAY (when generating), not from the last invoice's end date
+            invoiceStartDate = getNextSessionDay(today, weekdays)
+            invoiceStartDate.setHours(0, 0, 0, 0)
+          } else {
+            // Last invoice hasn't ended yet, skip
+            logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+              message: 'Last invoice period has not ended yet, skipping',
+              enrollmentId: enrollment._id,
+              userId: enrollment.userId,
+              latestInvoiceEndDate: latestInvoiceEndDate.toISOString(),
+              today: today.toISOString(),
+              invoiceCount: invoices.length
+            })
+            continue
           }
         }
 
-        // Calculate all missing billing periods
+        // Calculate the next period's end date based on billing frequency
         const billingFrequency = enrollment.billingFrequencyOverride || classDoc.billingFrequency
-        const missingPeriods = this._calculateMissingPeriods(invoiceStartDate, effectiveEndDate, billingFrequency, weekdays)
+        const nextPeriodEndDate = this._calculateDueDate(invoiceStartDate, billingFrequency)
+        nextPeriodEndDate.setHours(0, 0, 0, 0)
+        
+        // Limit by class endDate if it exists and is earlier
+        let effectiveEndDate: Date | null = null
+        if (classDoc.endDate) {
+          const classEndDate = new Date(classDoc.endDate)
+          classEndDate.setHours(0, 0, 0, 0)
+          if (classEndDate < nextPeriodEndDate) {
+            effectiveEndDate = classEndDate
+          }
+        }
+        
+        // Only create the next period's invoice (not multiple periods ahead)
+        const periodEndDate = effectiveEndDate || nextPeriodEndDate
+        const missingPeriods = [{
+          startDate: invoiceStartDate,
+          endDate: periodEndDate
+        }]
 
         if (missingPeriods.length === 0) {
           logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-            message: 'No missing periods found',
+            message: 'No period to create',
             enrollmentId: enrollment._id,
+            userId: enrollment.userId,
             invoiceStartDate: invoiceStartDate.toISOString(),
-            effectiveEndDate: effectiveEndDate.toISOString(),
-            billingFrequency
+            nextPeriodEndDate: nextPeriodEndDate.toISOString(),
+            classEndDate: effectiveEndDate?.toISOString() || 'none',
+            billingFrequency,
+            weekdays: weekdays,
+            latestInvoiceEndDate: invoices.length > 0 ? invoices[0].period.endDate.toISOString() : 'N/A'
           })
           continue
         }
 
-        logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Creating invoices for missing periods', {
+        logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Creating invoice for next period', {
           enrollmentId: enrollment._id,
           userId: enrollment.userId,
-          missingPeriodsCount: missingPeriods.length,
           invoiceStartDate: invoiceStartDate.toISOString(),
-          effectiveEndDate: effectiveEndDate.toISOString()
+          invoiceEndDate: periodEndDate.toISOString(),
+          classEndDate: effectiveEndDate?.toISOString() || 'none',
+          billingFrequency
         })
 
-        // Get bonus sessions (already calculated from cancellations)
+        // Get bonus sessions (total given and already consumed)
         const totalBonusSessions = enrollment.bonusSessions || 0
-        let remainingBonusSessions = totalBonusSessions
+        const consumedBonusSessions = enrollment.bonusSessionsConsumed || 0
+        const availableBonusSessions = totalBonusSessions - consumedBonusSessions
+        
+        let remainingBonusSessions = availableBonusSessions
+        const initialRemainingBonusSessions = remainingBonusSessions
 
         // Create invoices for each missing period
         for (const period of missingPeriods) {
+          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+            message: 'Processing period for invoice creation',
+            enrollmentId: enrollment._id,
+            userId: enrollment.userId,
+            periodStart: period.startDate.toISOString(),
+            periodEnd: period.endDate.toISOString(),
+            billingFrequency
+          })
+          
           // Calculate base end date for this period
           let periodEndDate = this._calculateDueDate(period.startDate, billingFrequency)
           periodEndDate.setHours(0, 0, 0, 0) // Normalize to start of day
+          
+          // Track bonus sessions applied to this invoice
+          let bonusSessionsForThisInvoice = 0
           
           // Apply bonus sessions to this period (one session day per bonus session)
           // Note: When backfilling, we apply available bonus sessions to periods as we create them
           // In normal operation, bonus sessions would be applied at the time of cancellation
           if (remainingBonusSessions > 0) {
             // Apply one bonus session to this period (extend by one session day)
-            periodEndDate = this._getNextSessionDay(periodEndDate, weekdays)
+            periodEndDate = getNextSessionDay(periodEndDate, weekdays)
             periodEndDate.setHours(0, 0, 0, 0) // Normalize after extending
             remainingBonusSessions--
+            bonusSessionsForThisInvoice = 1
           }
 
-          // Ensure we don't extend beyond the effective end date
-          const finalEndDate = periodEndDate > effectiveEndDate ? new Date(effectiveEndDate) : periodEndDate
+          // Ensure we don't extend beyond the class end date (if it exists)
+          const finalEndDate = effectiveEndDate && periodEndDate > effectiveEndDate 
+            ? new Date(effectiveEndDate) 
+            : periodEndDate
 
-          await this._generateInvoiceWithEndDate(
+          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+            message: 'Creating invoice',
+            enrollmentId: enrollment._id,
+            userId: enrollment.userId,
+            invoiceStartDate: period.startDate.toISOString(),
+            invoiceEndDate: finalEndDate.toISOString(),
+            bonusSessionsForThisInvoice
+          })
+
+          const invoice = await this._generateInvoiceWithEndDate(
             enrollment.userId,
             enrollment._id,
             classDoc,
@@ -450,15 +532,36 @@ class ClientHandler {
             enrollment.billingFrequencyOverride
           )
 
+          // Update invoice with bonus sessions applied if any were used
+          if (bonusSessionsForThisInvoice > 0) {
+            await this._invoiceService.updateBonusSessionsApplied(invoice._id!, bonusSessionsForThisInvoice)
+          }
+
           logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
             message: 'Created invoice for period',
             enrollmentId: enrollment._id,
             periodStart: period.startDate.toISOString(),
             periodEnd: finalEndDate.toISOString(),
-            bonusSessionsApplied: totalBonusSessions - remainingBonusSessions,
+            bonusSessionsApplied: initialRemainingBonusSessions - remainingBonusSessions,
             remainingBonusSessions: remainingBonusSessions,
             weekdays: weekdays,
             classSchedule: `${weekdays.length} days per week`
+          })
+        }
+
+        // Persist consumed bonus sessions if any were applied
+        const newlyConsumedBonusSessions = initialRemainingBonusSessions - remainingBonusSessions
+        if (newlyConsumedBonusSessions > 0) {
+          const newConsumedCount = consumedBonusSessions + newlyConsumedBonusSessions
+          await this._enrollmentService.updateBonusSessionsConsumed(enrollment._id!, newConsumedCount)
+          
+          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
+            message: 'Updated bonus sessions consumption',
+            enrollmentId: enrollment._id,
+            newlyConsumed: newlyConsumedBonusSessions,
+            totalConsumed: newConsumedCount,
+            totalGiven: totalBonusSessions,
+            remainingAvailable: totalBonusSessions - newConsumedCount
           })
         }
       } catch (error: any) {
@@ -716,46 +819,6 @@ class ClientHandler {
   }
 
   /**
-   * Counts the number of occurrences of specific weekdays within a date range
-   */
-  private _countWeekdaysInPeriod(startDate: Date, endDate: Date, weekdays: Weekday[]): number {
-    let count = 0
-    const currentDate = new Date(startDate)
-    
-    while (currentDate <= endDate) {
-      const dayOfWeek = currentDate.getDay()
-      if (weekdays.includes(dayOfWeek)) {
-        count++
-      }
-      currentDate.setDate(currentDate.getDate() + 1)
-    }
-    
-    return count
-  }
-
-  /**
-   * Finds the next session day (based on weekdays) after a given date
-   */
-  private _getNextSessionDay(date: Date, weekdays: Weekday[]): Date {
-    const nextDate = new Date(date)
-    nextDate.setDate(nextDate.getDate() + 1)
-    
-    // Find the next day that matches one of the session weekdays
-    let attempts = 0
-    while (attempts < 7) {
-      const dayOfWeek = nextDate.getDay()
-      if (weekdays.includes(dayOfWeek)) {
-        return nextDate
-      }
-      nextDate.setDate(nextDate.getDate() + 1)
-      attempts++
-    }
-    
-    // Fallback: return date + 1 day if no match found (shouldn't happen)
-    return nextDate
-  }
-
-  /**
    * Calculates the end date for an invoice period, extending it by bonus sessions
    */
   private _calculatePeriodEndDateWithBonusSessions(
@@ -769,7 +832,7 @@ class ClientHandler {
     
     // Extend end date by bonus sessions (one session day per bonus session)
     for (let i = 0; i < bonusSessions; i++) {
-      endDate = this._getNextSessionDay(endDate, weekdays)
+      endDate = getNextSessionDay(endDate, weekdays)
     }
     
     return endDate
@@ -788,21 +851,55 @@ class ClientHandler {
     const periods: { startDate: Date; endDate: Date }[] = []
     let currentStart = new Date(startDate)
     
+    logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+      billingFrequency,
+      weekdays,
+      initialCurrentStart: currentStart.toISOString()
+    })
+    
     while (currentStart < endDate) {
       const periodEnd = this._calculateDueDate(currentStart, billingFrequency)
       
       // Don't create periods that extend beyond the end date
       const actualEnd = periodEnd > endDate ? new Date(endDate) : periodEnd
       
-      periods.push({
-        startDate: new Date(currentStart),
-        endDate: actualEnd
-      })
+      // Only add period if it has a valid date range (start < end)
+      // This prevents creating periods with zero or negative duration
+      if (currentStart < actualEnd) {
+        periods.push({
+          startDate: new Date(currentStart),
+          endDate: actualEnd
+        })
+      } else {
+        logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
+          message: 'Skipping period with invalid date range',
+          currentStart: currentStart.toISOString(),
+          actualEnd: actualEnd.toISOString()
+        })
+        // Break to avoid infinite loop if dates are equal
+        break
+      }
       
       // Move to next period - start from the next session day after this period's end date
-      const nextPeriodStart = this._getNextSessionDay(actualEnd, weekdays)
+      const nextPeriodStart = getNextSessionDay(actualEnd, weekdays)
       currentStart = new Date(nextPeriodStart)
+      
+      logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
+        iteration: periods.length,
+        currentStart: currentStart.toISOString(),
+        periodEnd: periodEnd.toISOString(),
+        actualEnd: actualEnd.toISOString(),
+        nextPeriodStart: nextPeriodStart.toISOString(),
+        condition: `${currentStart.toISOString()} < ${endDate.toISOString()} = ${currentStart < endDate}`
+      })
     }
+    
+    logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
+      result: `Found ${periods.length} periods`,
+      periods: periods.map(p => ({ start: p.startDate.toISOString(), end: p.endDate.toISOString() }))
+    })
     
     return periods
   }

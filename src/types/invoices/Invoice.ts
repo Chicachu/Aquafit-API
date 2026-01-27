@@ -2,7 +2,6 @@ import { IDocument } from "../IDocument"
 import { Period } from "../Period"
 import { Price } from "../Price"
 import { AppliedDiscount } from "../discounts/AppliedDiscount"
-import { Currency } from "../enums/Currency"
 import { PaymentStatus } from "../enums/PaymentStatus"
 import { Payment } from "./Payment"
 
@@ -17,6 +16,7 @@ export type Invoice = IDocument & {
   paymentsApplied: Payment[]
   paymentStatus: PaymentStatus
   period: Period
+  bonusSessionsApplied?: number | null
   createdAt: Date
   updatedAt: Date
 }

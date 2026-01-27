@@ -14,5 +14,6 @@ router.get('/classScheduleMap', isLoggedIn, hasAccess(AccessControlAction.READ_A
 router.get('/:classId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), ...classController.getClass)
 router.put('/:classId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), classController.updateClass)
 router.post('/:classId/terminate', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.terminateClass)
+router.post('/:classId/cancel', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.cancelClass)
 
 export default router
