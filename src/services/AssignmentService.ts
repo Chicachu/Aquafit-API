@@ -1,5 +1,5 @@
 import { AssignmentCollection, assignmentCollection } from "../models/assignment/assignment.class"
-import { Assignment, AssignmentCreationDTO } from "../types/Assignment"
+import { Assignment, AssignmentCreationDTO, AssignmentUpdateOptions } from "../types/Assignment"
 import AppError from "../types/AppError"
 import { logger } from "./LoggingService"
 import path from "path"
@@ -62,7 +62,16 @@ class AssignmentService {
     }
   }
 
-  async updateAssignment(assignmentId: string, updateOptions: { startDate?: Date, endDate?: Date | null }): Promise<Assignment> {
+  async getInstructorIdsWithPayableAssignments(): Promise<string[]> {
+    logger.debugInside(this._FILE_NAME, this.getInstructorIdsWithPayableAssignments.name)
+    try {
+      return await this.assignmentCollection.getInstructorIdsWithPayableAssignments()
+    } catch (error: any) {
+      throw new AppError('errors.couldNotGetAssignmentInfo', 500)
+    }
+  }
+
+  async updateAssignment(assignmentId: string, updateOptions: AssignmentUpdateOptions): Promise<Assignment> {
     logger.debugInside(this._FILE_NAME, this.updateAssignment.name, { assignmentId, updateOptions })
     try {
       const assignment = await this.assignmentCollection.getAssignmentById(assignmentId)
@@ -83,6 +92,15 @@ class AssignmentService {
       await this.assignmentCollection.deleteOne({ _id: assignmentId })
     } catch (error: any) {
       throw new AppError('errors.unableToDeleteAssignment', 500)
+    }
+  }
+
+  async updateAssignmentStatuses(): Promise<{ modifiedCount: number }> {
+    logger.debugInside(this._FILE_NAME, this.updateAssignmentStatuses.name)
+    try {
+      return await this.assignmentCollection.updateAssignmentStatuses()
+    } catch (error: any) {
+      throw new AppError('errors.unableToUpdateResource', 500)
     }
   }
 }

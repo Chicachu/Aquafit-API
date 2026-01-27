@@ -8,6 +8,8 @@ const router = express.Router()
 
 router.post('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.CLASS), assignmentController.assignInstructor)
 
+router.patch('/:assignmentId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), assignmentController.updateAssignment)
+
 router.delete('/:assignmentId', isLoggedIn, hasAccess(AccessControlAction.DELETE_ANY, AccessControlResource.CLASS), assignmentController.unassignInstructor)
 
 export default router

@@ -1,4 +1,6 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose";
+import { AmountSchema } from "../_common/amount.schema";
+import { AssignmentStatus } from "../../types/enums/AssignmentStatus";
 
 const AssignmentSchema = new Schema(
   {
@@ -24,6 +26,15 @@ const AssignmentSchema = new Schema(
     endDate: {
       type: Date,
       required: false
+    },
+    paymentPerSession: {
+      type: AmountSchema,
+      required: false
+    },
+    status: {
+      type: String,
+      enum: Object.values(AssignmentStatus),
+      default: AssignmentStatus.ACTIVE
     }
   },
   { timestamps: true }

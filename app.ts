@@ -33,7 +33,7 @@ app.use(async(req, res, next) => {
 
   const whitelist = 'http://localhost:4200'
   res.setHeader('Access-Control-Allow-Origin', whitelist)
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
   res.header('Content-Type', 'application/json')
   if (req.method === "OPTIONS") {
     res.setHeader('Access-Control-Allow-Headers', 'access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,authorization,content-type')

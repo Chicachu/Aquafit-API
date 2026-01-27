@@ -26,6 +26,16 @@ class InvoiceService {
     }
   }
 
+  async getInvoicesByUserId(userId: string): Promise<Invoice[]> {
+    logger.debugInside(this._FILE_NAME, this.getInvoicesByUserId.name, { userId })
+    try {
+      const invoices = await this._invoiceCollection.model.find({ userId }).sort({ 'period.endDate': -1 }).lean()
+      return invoices as Invoice[]
+    } catch (error) {
+      throw new AppError('errors.resourceNotFound', 500)
+    }
+  }
+
   async getInvoice(invoiceId: string): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.getInvoice.name, { invoiceId })
 

@@ -10,6 +10,8 @@ import { clientHandler } from '../business/ClientHandler'
 import { classService } from '../services/ClassService'
 import { InstructorClassDetails } from '../types/InstructorClassDetails'
 import { assignmentService } from '../services/AssignmentService'
+import { invoiceService } from '../services/InvoiceService'
+import * as instructorPayableService from '../services/InstructorPayableService'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -98,6 +100,24 @@ class UsersController {
 
         res.send(invoiceHistory)
       })
+  ]
+
+  getInvoicesByUserId = [
+    param('userId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const userId = req.params.userId
+      const [invoices, instructorPayables, name] = await Promise.all([
+        invoiceService.getInvoicesByUserId(userId),
+        instructorPayableService.getPayablesByUserId(userId),
+        usersService.getUserFirstAndLastName(userId)
+      ])
+      const userName = `${name.firstName} ${name.lastName}`.trim()
+      res.send({ invoices, instructorPayables, userName })
+    })
   ]
 
   getInvoiceDetails = [

@@ -4,6 +4,8 @@ import cron from 'node-cron'
 import { invoiceCollection } from "../models/invoice/invoice.class"
 import { clientHandler } from "../business/ClientHandler"
 import { enrollmentService } from "./EnrollmentService"
+import { assignmentService } from "./AssignmentService"
+import * as instructorPayableService from "./InstructorPayableService"
 
 export class CronSchedulerService {
   static async startAllJobs() {
@@ -34,6 +36,22 @@ export class CronSchedulerService {
       logger.error(`[STARTUP] Error in updateEnrollmentStatuses: ${error?.message || error}`)
     }
 
+    try {
+      logger.debugInside('', '[STARTUP] Running generatePayablesForCurrentMonth on startup...')
+      await instructorPayableService.generatePayablesForCurrentMonth()
+      logger.debugInside('', '[STARTUP] Completed generatePayablesForCurrentMonth')
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in generatePayablesForCurrentMonth: ${error?.message || error}`)
+    }
+
+    try {
+      logger.debugInside('', '[STARTUP] Running updateAssignmentStatuses on startup...')
+      const { modifiedCount } = await assignmentService.updateAssignmentStatuses()
+      logger.debugInside('', '[STARTUP] Completed updateAssignmentStatuses', { modifiedCount })
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in updateAssignmentStatuses: ${error?.message || error}`)
+    }
+
     // Schedule to run every midnight
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -62,6 +80,26 @@ export class CronSchedulerService {
         logger.debugInside('', '[CRON] Completed updateEnrollmentStatuses')
       } catch (error: any) {
         logger.error(`[CRON] Error in updateEnrollmentStatuses: ${error?.message || error}`)
+      }
+    })
+
+    cron.schedule('0 0 * * *', async () => {
+      try {
+        logger.debugInside('', '[CRON] Running generatePayablesForCurrentMonth...')
+        await instructorPayableService.generatePayablesForCurrentMonth()
+        logger.debugInside('', '[CRON] Completed generatePayablesForCurrentMonth')
+      } catch (error: any) {
+        logger.error(`[CRON] Error in generatePayablesForCurrentMonth: ${error?.message || error}`)
+      }
+    })
+
+    cron.schedule('0 0 * * *', async () => {
+      try {
+        logger.debugInside('', '[CRON] Running updateAssignmentStatuses...')
+        await assignmentService.updateAssignmentStatuses()
+        logger.debugInside('', '[CRON] Completed updateAssignmentStatuses')
+      } catch (error: any) {
+        logger.error(`[CRON] Error in updateAssignmentStatuses: ${error?.message || error}`)
       }
     })
   }

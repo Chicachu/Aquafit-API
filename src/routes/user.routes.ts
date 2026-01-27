@@ -16,6 +16,8 @@ router.post('/register', usersController.registerNewUser)
 
 router.get('/:userId/enrollments', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ENROLLMENT), usersController.getClientEnrollmentDetails)
 
+router.get('/:userId/invoices', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoicesByUserId)
+
 router.get('/:userId/payments/:enrollmentId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceHistory)
 
 router.get('/:userId/payments/:enrollmentId/:invoiceId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceDetails)
