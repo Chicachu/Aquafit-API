@@ -1,27 +1,27 @@
 import { Model } from "mongoose";
 import { v4 as uuid } from "uuid";
 import {
-  InstructorCheckInDocument,
-  IInstructorCheckInModel,
-  InstructorCheckInModel
-} from "./instructor-checkin.schema";
-import type { InstructorCheckInCreationDTO } from "../../types/InstructorCheckIn";
+  EmployeeCheckInDocument,
+  IEmployeeCheckInModel,
+  EmployeeCheckInModel
+} from "./employee-checkin.schema";
+import type { EmployeeCheckInCreationDTO } from "../../types/EmployeeCheckIn";
 
-class InstructorCheckInCollection {
-  model: Model<IInstructorCheckInModel>;
+class EmployeeCheckInCollection {
+  model: Model<IEmployeeCheckInModel>;
 
-  constructor(model: Model<IInstructorCheckInModel>) {
+  constructor(model: Model<IEmployeeCheckInModel>) {
     this.model = model;
   }
 
-  async create(dto: InstructorCheckInCreationDTO): Promise<InstructorCheckInDocument> {
+  async create(dto: EmployeeCheckInCreationDTO): Promise<EmployeeCheckInDocument> {
     const doc = new this.model({ _id: uuid(), ...dto });
     await doc.save();
-    return doc.toObject() as unknown as InstructorCheckInDocument;
+    return doc.toObject() as unknown as EmployeeCheckInDocument;
   }
 
-  async getCheckInsForInstructorInMonth(
-    instructorId: string,
+  async getCheckInsForEmployeeInMonth(
+    employeeId: string,
     year: number,
     month: number
   ): Promise<{ assignmentId: string; date: Date }[]> {
@@ -29,7 +29,7 @@ class InstructorCheckInCollection {
     const end = new Date(year, month + 1, 0, 23, 59, 59, 999);
     const docs = await this.model
       .find({
-        instructorId,
+        employeeId,
         date: { $gte: start, $lte: end }
       })
       .select({ assignmentId: 1, date: 1 })
@@ -37,16 +37,16 @@ class InstructorCheckInCollection {
     return docs as unknown as { assignmentId: string; date: Date }[];
   }
 
-  async hasCheckInsInMonth(instructorId: string, year: number, month: number): Promise<boolean> {
+  async hasCheckInsInMonth(employeeId: string, year: number, month: number): Promise<boolean> {
     const start = new Date(year, month, 1);
     const end = new Date(year, month + 1, 0, 23, 59, 59, 999);
     const count = await this.model.countDocuments({
-      instructorId,
+      employeeId,
       date: { $gte: start, $lte: end }
     });
     return count > 0;
   }
 }
 
-const instructorCheckInCollection = new InstructorCheckInCollection(InstructorCheckInModel);
-export { instructorCheckInCollection, InstructorCheckInCollection };
+const employeeCheckInCollection = new EmployeeCheckInCollection(EmployeeCheckInModel);
+export { employeeCheckInCollection, EmployeeCheckInCollection };

@@ -11,6 +11,10 @@ function roles(): AccessControl {
   ac.grant(Role.CLIENT)
     .extend(Role.GUEST)
     .readOwn(AccessControlResource.USER)
+
+  ac.grant(Role.EMPLOYEE)
+    .extend(Role.GUEST)
+    .readOwn(AccessControlResource.USER)
   
   ac.grant(Role.INSTRUCTOR)
     .extend(Role.CLIENT)

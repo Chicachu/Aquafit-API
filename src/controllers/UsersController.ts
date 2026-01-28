@@ -11,7 +11,7 @@ import { classService } from '../services/ClassService'
 import { InstructorClassDetails } from '../types/InstructorClassDetails'
 import { assignmentService } from '../services/AssignmentService'
 import { invoiceService } from '../services/InvoiceService'
-import * as instructorPayableService from '../services/InstructorPayableService'
+import * as employeePayableService from '../services/EmployeePayableService'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -110,13 +110,13 @@ class UsersController {
         throw new AppError('errors.missingParameters', 400)
       }
       const userId = req.params.userId
-      const [invoices, instructorPayables, name] = await Promise.all([
+      const [invoices, employeePayables, name] = await Promise.all([
         invoiceService.getInvoicesByUserId(userId),
-        instructorPayableService.getPayablesByUserId(userId),
+        employeePayableService.getPayablesByUserId(userId),
         usersService.getUserFirstAndLastName(userId)
       ])
       const userName = `${name.firstName} ${name.lastName}`.trim()
-      res.send({ invoices, instructorPayables, userName })
+      res.send({ invoices, employeePayables, userName })
     })
   ]
 
@@ -244,9 +244,9 @@ class UsersController {
     })
   ]
 
-  getNextInstructorId = asyncHandler(async (req: Request, res: Response) => {
-    const instructorId = await usersService.getNextInstructorId()
-    res.send({ instructorId })
+  getNextEmployeeId = asyncHandler(async (req: Request, res: Response) => {
+    const employeeId = await usersService.getNextEmployeeId()
+    res.send({ employeeId })
   })
 
   getInstructorClassDetails = [

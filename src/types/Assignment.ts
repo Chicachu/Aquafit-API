@@ -7,7 +7,7 @@ export type Assignment = IDocument & {
   classId: string
   startDate: Date
   endDate?: Date | null
-  paymentPerSession?: Price | null
+  paymentValue?: Price | null
   status?: AssignmentStatus
 }
 
@@ -16,11 +16,11 @@ export type AssignmentCreationDTO = {
   classId: string
   startDate: Date
   endDate?: Date | null
-  paymentPerSession?: Price | null
+  paymentValue?: Price | null
 }
 
 export type AssignmentUpdateOptions = {
   startDate?: Date
   endDate?: Date | null
-  paymentPerSession?: Price | null
+  paymentValue?: Price | null
 }

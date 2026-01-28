@@ -132,50 +132,36 @@ class UsersService {
     }
   }
 
-  async getNextInstructorId(): Promise<number> {
-    logger.debugInside(this._FILE_NAME, this.getNextInstructorId.name, {})
+  async getNextEmployeeId(): Promise<number> {
+    logger.debugInside(this._FILE_NAME, this.getNextEmployeeId.name, {})
     try {
-      const instructors = await this.userCollection.find({ role: 'instructor' }) as User[]
-      
+      const staff = await this.userCollection.find({ role: { $in: ['instructor', 'employee'] } }) as User[]
       const existingIds = new Set<number>()
-      if (instructors && Array.isArray(instructors)) {
-        instructors
-          .map((inst: User) => inst.instructorId)
+      if (staff && Array.isArray(staff)) {
+        staff
+          .map((u: User) => u.instructorId)
           .filter((id): id is number => id !== null && id !== undefined)
           .forEach(id => existingIds.add(id))
       }
-
-      // Generate a random 6-digit number (100000 to 999999)
-      const minId = 100000
-      const maxId = 999999
-      const maxAttempts = 100 // Prevent infinite loop
-      
-      for (let attempt = 0; attempt < maxAttempts; attempt++) {
-        // Generate random number between minId and maxId
-        const randomId = Math.floor(Math.random() * (maxId - minId + 1)) + minId
-        
-        // If ID doesn't exist, return it
-        if (!existingIds.has(randomId)) {
-          return randomId
-        }
-      }
-      
-      // If we couldn't find a unique ID after maxAttempts, fall back to sequential
-      // This should be extremely rare (only if most IDs are taken)
-      let nextId = minId
-      while (existingIds.has(nextId) && nextId <= maxId) {
-        nextId++
-      }
-      
-      if (nextId > maxId) {
-        throw new AppError('errors.unableToGetResource', 500)
-      }
-      
-      return nextId
+      return this._generateUniqueSixDigitId(existingIds)
     } catch (error: any) {
-      logger.error(`Error in ${this._FILE_NAME}:${this.getNextInstructorId.name} - ${error?.message || error}`)
+      logger.error(`Error in ${this._FILE_NAME}:${this.getNextEmployeeId.name} - ${error?.message || error}`)
       throw new AppError('errors.unableToGetResource', 500)
     }
+  }
+
+  private _generateUniqueSixDigitId(existingIds: Set<number>): number {
+    const minId = 100000
+    const maxId = 999999
+    const maxAttempts = 100
+    for (let attempt = 0; attempt < maxAttempts; attempt++) {
+      const randomId = Math.floor(Math.random() * (maxId - minId + 1)) + minId
+      if (!existingIds.has(randomId)) return randomId
+    }
+    let nextId = minId
+    while (existingIds.has(nextId) && nextId <= maxId) nextId++
+    if (nextId > maxId) throw new AppError('errors.unableToGetResource', 500)
+    return nextId
   }
 }
 

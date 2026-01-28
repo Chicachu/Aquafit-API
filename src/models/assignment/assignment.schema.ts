@@ -27,7 +27,7 @@ const AssignmentSchema = new Schema(
       type: Date,
       required: false
     },
-    paymentPerSession: {
+    paymentValue: {
       type: AmountSchema,
       required: false
     },

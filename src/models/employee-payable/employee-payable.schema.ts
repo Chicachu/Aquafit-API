@@ -19,10 +19,10 @@ const LineItemSchema = new Schema(
   { _id: false }
 );
 
-const InstructorPayableSchema = new Schema(
+const EmployeePayableSchema = new Schema(
   {
     _id: { type: String, required: true },
-    instructorId: { type: String, ref: "User", required: true },
+    employeeId: { type: String, ref: "User", required: true },
     period: { type: PayablePeriodSchema, required: true },
     paymentStatus: { type: String, enum: Object.values(PaymentStatus), required: true },
     charge: { type: AmountSchema, required: true },
@@ -31,17 +31,17 @@ const InstructorPayableSchema = new Schema(
   { timestamps: true }
 );
 
-InstructorPayableSchema.index({ instructorId: 1, "period.startDate": 1 }, { unique: true });
+EmployeePayableSchema.index({ employeeId: 1, "period.startDate": 1 }, { unique: true });
 
-type InstructorPayableDocument = InferSchemaType<typeof InstructorPayableSchema>;
-interface IInstructorPayableDocument extends InstructorPayableDocument, Document {}
-interface IInstructorPayableModel extends Model<IInstructorPayableDocument> {}
+type EmployeePayableDocument = InferSchemaType<typeof EmployeePayableSchema>;
+interface IEmployeePayableDocument extends EmployeePayableDocument, Document {}
+interface IEmployeePayableModel extends Model<IEmployeePayableDocument> {}
 
-const InstructorPayableModel = model<IInstructorPayableModel>("InstructorPayable", InstructorPayableSchema);
+const EmployeePayableModel = model<IEmployeePayableModel>("EmployeePayable", EmployeePayableSchema);
 export {
-  InstructorPayableSchema,
-  InstructorPayableDocument,
-  IInstructorPayableDocument,
-  IInstructorPayableModel,
-  InstructorPayableModel
+  EmployeePayableSchema,
+  EmployeePayableDocument,
+  IEmployeePayableDocument,
+  IEmployeePayableModel,
+  EmployeePayableModel
 };

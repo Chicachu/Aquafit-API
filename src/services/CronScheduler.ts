@@ -5,13 +5,13 @@ import { invoiceCollection } from "../models/invoice/invoice.class"
 import { clientHandler } from "../business/ClientHandler"
 import { enrollmentService } from "./EnrollmentService"
 import { assignmentService } from "./AssignmentService"
-import * as instructorPayableService from "./InstructorPayableService"
+import * as employeePayableService from "./EmployeePayableService"
 
 export class CronSchedulerService {
   static async startAllJobs() {
     logger.debugInside(path.basename(__filename), this.startAllJobs.name)
-    
-    // Run immediately on startup
+
+    // Run immediately on startup so state is correct after every server restart
     try {
       logger.debugInside('', '[STARTUP] Running updateInvoiceStatuses on startup...')
       await invoiceCollection.updatePaymentStatuses()
@@ -38,7 +38,7 @@ export class CronSchedulerService {
 
     try {
       logger.debugInside('', '[STARTUP] Running generatePayablesForCurrentMonth on startup...')
-      await instructorPayableService.generatePayablesForCurrentMonth()
+      await employeePayableService.generatePayablesForCurrentMonth()
       logger.debugInside('', '[STARTUP] Completed generatePayablesForCurrentMonth')
     } catch (error: any) {
       logger.error(`[STARTUP] Error in generatePayablesForCurrentMonth: ${error?.message || error}`)
@@ -52,7 +52,7 @@ export class CronSchedulerService {
       logger.error(`[STARTUP] Error in updateAssignmentStatuses: ${error?.message || error}`)
     }
 
-    // Schedule to run every midnight
+    // Schedule to run every midnight (payables, invoices, enrollments, assignments)
     cron.schedule('0 0 * * *', async () => {
       try {
         logger.debugInside('', '[CRON] Running updateInvoiceStatuses...')
@@ -86,7 +86,7 @@ export class CronSchedulerService {
     cron.schedule('0 0 * * *', async () => {
       try {
         logger.debugInside('', '[CRON] Running generatePayablesForCurrentMonth...')
-        await instructorPayableService.generatePayablesForCurrentMonth()
+        await employeePayableService.generatePayablesForCurrentMonth()
         logger.debugInside('', '[CRON] Completed generatePayablesForCurrentMonth')
       } catch (error: any) {
         logger.error(`[CRON] Error in generatePayablesForCurrentMonth: ${error?.message || error}`)

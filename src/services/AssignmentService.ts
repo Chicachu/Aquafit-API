@@ -71,6 +71,15 @@ class AssignmentService {
     }
   }
 
+  async getClassIdsWithActiveAssignment(): Promise<string[]> {
+    logger.debugInside(this._FILE_NAME, this.getClassIdsWithActiveAssignment.name)
+    try {
+      return await this.assignmentCollection.getClassIdsWithActiveAssignment()
+    } catch (error: any) {
+      throw new AppError('errors.couldNotGetAssignmentInfo', 500)
+    }
+  }
+
   async updateAssignment(assignmentId: string, updateOptions: AssignmentUpdateOptions): Promise<Assignment> {
     logger.debugInside(this._FILE_NAME, this.updateAssignment.name, { assignmentId, updateOptions })
     try {
@@ -78,8 +87,7 @@ class AssignmentService {
       if (!assignment) {
         throw new AppError('errors.resourceNotFound', 404)
       }
-      const updatedAssignment = { ...assignment, ...updateOptions }
-      return await this.assignmentCollection.updateAssignment(updatedAssignment)
+      return await this.assignmentCollection.updateAssignment(assignmentId, updateOptions)
     } catch (error: any) {
       if (error instanceof AppError) throw error
       throw new AppError('errors.unableToUpdateAssignment', 500)

@@ -8,16 +8,16 @@ export type PayableLineItem = {
   amount: Price;
 };
 
-export type InstructorPayable = IDocument & {
-  instructorId: string;
+export type EmployeePayable = IDocument & {
+  employeeId: string;
   period: { startDate: Date; endDate: Date };
   paymentStatus: PaymentStatus;
   charge: Price;
   lineItems?: PayableLineItem[];
 };
 
-export type InstructorPayableCreationDTO = {
-  instructorId: string;
+export type EmployeePayableCreationDTO = {
+  employeeId: string;
   period: { startDate: Date; endDate: Date };
   paymentStatus: PaymentStatus;
   charge: Price;

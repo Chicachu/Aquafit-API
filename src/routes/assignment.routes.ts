@@ -6,9 +6,11 @@ import { AccessControlAction } from '../types/enums/AccessControlAction'
 
 const router = express.Router()
 
-router.post('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.CLASS), assignmentController.assignInstructor)
+router.get('/class-ids-with-active', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), assignmentController.getClassIdsWithActiveAssignment)
 
-router.patch('/:assignmentId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), assignmentController.updateAssignment)
+router.post('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessControlResource.CLASS), ...assignmentController.assignInstructor)
+
+router.patch('/:assignmentId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...assignmentController.updateAssignment)
 
 router.delete('/:assignmentId', isLoggedIn, hasAccess(AccessControlAction.DELETE_ANY, AccessControlResource.CLASS), assignmentController.unassignInstructor)
 
