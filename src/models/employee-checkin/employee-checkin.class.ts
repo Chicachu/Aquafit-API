@@ -5,7 +5,7 @@ import {
   IEmployeeCheckInModel,
   EmployeeCheckInModel
 } from "./employee-checkin.schema";
-import type { EmployeeCheckInCreationDTO } from "../../types/EmployeeCheckIn";
+import type { EmployeeCheckInCreationDTO, EmployeeCheckInDocument } from "../../types/EmployeeCheckIn";
 
 class EmployeeCheckInCollection {
   model: Model<IEmployeeCheckInModel>;
@@ -30,6 +30,7 @@ class EmployeeCheckInCollection {
     const docs = await this.model
       .find({
         employeeId,
+        type: "check-in",
         date: { $gte: start, $lte: end }
       })
       .select({ assignmentId: 1, date: 1 })
@@ -45,6 +46,14 @@ class EmployeeCheckInCollection {
       date: { $gte: start, $lte: end }
     });
     return count > 0;
+  }
+
+  async getAllEntriesForEmployee(employeeId: string): Promise<EmployeeCheckInDocument[]> {
+    const docs = await this.model
+      .find({ employeeId })
+      .sort({ date: -1 })
+      .lean();
+    return docs as unknown as EmployeeCheckInDocument[];
   }
 }
 

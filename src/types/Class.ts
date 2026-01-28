@@ -18,12 +18,12 @@ export type Class = IDocument & {
   billingFrequency: BillingFrequency
   checkIns?: {
     date: Date
-    instructorId: string
+    employeeId: string
     clientIds: string[]
   }[]
   cancellations?: {
     date: Date
-    instructorId: string
+    employeeId: string
     reason?: string | null
   }[]
   waitlist?: string[] | undefined
@@ -50,7 +50,7 @@ export type ClassUpdateOptions = {
   endDate?: Date | null
   cancellations?: {
     date: Date
-    instructorId: string
+    employeeId: string
     reason?: string | null
   }[]
 }

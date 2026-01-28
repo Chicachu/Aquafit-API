@@ -13,16 +13,16 @@ class AssignmentCollection extends Collection<IAssignmentModel> {
     return await this.findOne({ _id: assignmentId })
   }
 
-  async getInstructorAssignments(instructorId: string): Promise<AssignmentDocument[]> {
-    return await this.find({ instructorId })
+  async getInstructorAssignments(employeeId: string): Promise<AssignmentDocument[]> {
+    return await this.find({ employeeId })
   }
 
   async getClassAssignments(classId: string): Promise<AssignmentDocument[]> {
     return await this.find({ classId })
   }
 
-  async getAssignment(instructorId: string, classId: string): Promise<AssignmentDocument | null> {
-    return await this.findOne({ instructorId, classId })
+  async getAssignment(employeeId: string, classId: string): Promise<AssignmentDocument | null> {
+    return await this.findOne({ employeeId, classId })
   }
 
   /** Returns user ids (instructors or employees) who have at least one *active* assignment with a payment value. */
@@ -38,7 +38,7 @@ class AssignmentCollection extends Collection<IAssignmentModel> {
           { $or: [{ endDate: null }, { endDate: { $exists: false } }, { endDate: { $gt: today } }] }
         ]
       })
-      .distinct('instructorId')
+      .distinct('employeeId')
       .lean()
     return docs as string[]
   }

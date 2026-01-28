@@ -9,7 +9,7 @@ const AssignmentSchema = new Schema(
       required: true,
       auto: true 
     }, 
-    instructorId: {
+    employeeId: {
       type: String, 
       ref: 'User',
       required: true
@@ -40,7 +40,7 @@ const AssignmentSchema = new Schema(
   { timestamps: true }
 )
 
-AssignmentSchema.index({ instructorId: 1, classId: 1 }, { unique: true })
+AssignmentSchema.index({ employeeId: 1, classId: 1 }, { unique: true })
 
 type AssignmentDocument = InferSchemaType<typeof AssignmentSchema>
 

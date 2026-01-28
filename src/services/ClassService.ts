@@ -136,9 +136,9 @@ class ClassService {
     }
   }
 
-  async getClassesByInstructorId(instructorId: string): Promise<Class[]> {
-    logger.debugInside(this._FILE_NAME, this.getClassesByInstructorId.name, { instructorId })
-    return await this.classCollection.find({ instructorId })
+  async getClassesByInstructorId(employeeId: string): Promise<Class[]> {
+    logger.debugInside(this._FILE_NAME, this.getClassesByInstructorId.name, { employeeId })
+    return await this.classCollection.find({ employeeId })
   }
 }
 

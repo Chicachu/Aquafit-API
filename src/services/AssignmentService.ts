@@ -21,10 +21,10 @@ class AssignmentService {
   }
 
   async assignInstructor(newAssignment: AssignmentCreationDTO): Promise<Assignment> {
-    logger.debugInside(this._FILE_NAME, this.assignInstructor.name, { instructorId: newAssignment.instructorId, classId: newAssignment.classId })
+    logger.debugInside(this._FILE_NAME, this.assignInstructor.name, { employeeId: newAssignment.employeeId, classId: newAssignment.classId })
     try {
       // Check if assignment already exists
-      const existingAssignment = await this.assignmentCollection.getAssignment(newAssignment.instructorId, newAssignment.classId)
+      const existingAssignment = await this.assignmentCollection.getAssignment(newAssignment.employeeId, newAssignment.classId)
       if (existingAssignment) {
         throw new AppError('errors.assignmentAlreadyExists', 400)
       }
@@ -44,10 +44,10 @@ class AssignmentService {
     }
   }
 
-  async getInstructorAssignments(instructorId: string): Promise<Assignment[]> {
-    logger.debugInside(this._FILE_NAME, this.getInstructorAssignments.name, { instructorId })
+  async getInstructorAssignments(employeeId: string): Promise<Assignment[]> {
+    logger.debugInside(this._FILE_NAME, this.getInstructorAssignments.name, { employeeId })
     try {
-      return await this.assignmentCollection.getInstructorAssignments(instructorId)
+      return await this.assignmentCollection.getInstructorAssignments(employeeId)
     } catch (error: any) {
       throw new AppError('errors.couldNotGetAssignmentInfo', 500)
     }

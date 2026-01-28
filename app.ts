@@ -4,7 +4,6 @@ import jwt from 'jsonwebtoken'
 import { errorHandler } from './src/middleware/ErrorMiddleware'
 import AppError from './src/types/AppError'
 import i18n from './config/i18n'
-import { CronSchedulerService } from './src/services/CronScheduler'
 
 dotenv.config()
 const app = express() 
@@ -13,11 +12,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(i18n.init)
-
-// Start cron jobs (runs updatePaymentStatuses immediately on startup, then schedules for midnight)
-CronSchedulerService.startAllJobs().catch((error) => {
-  console.error('Error starting cron jobs:', error)
-})
 
 app.use(async(req, res, next) => {
   if (req.headers['authorization']) {
@@ -67,6 +61,9 @@ app.use('/api/discounts', discountRouter)
 
 import assignmentRouter from './src/routes/assignment.routes'
 app.use('/api/assignments', assignmentRouter)
+
+import checkInRouter from './src/routes/check-in.routes'
+app.use('/api/check-ins', checkInRouter)
 
 app.use(errorHandler)
 

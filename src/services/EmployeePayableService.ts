@@ -99,6 +99,10 @@ export async function createOrUpdatePayableForMonth(
     let currency: Currency = Currency.PESOS;
 
     for (const c of checkIns) {
+      // TODO: Calculate assignment overlap based on check-in time and class schedule
+      // For now, skip entries without assignmentId (overlap calculation not yet implemented)
+      if (!c.assignmentId) continue;
+      
       const a = assignmentMap.get(c.assignmentId);
       const cls = classByAssignmentId.get(c.assignmentId);
       if (!a || !cls || !_hasValidPayment(a) || !a.paymentValue) continue;

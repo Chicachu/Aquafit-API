@@ -139,7 +139,7 @@ class UsersService {
       const existingIds = new Set<number>()
       if (staff && Array.isArray(staff)) {
         staff
-          .map((u: User) => u.instructorId)
+          .map((u: User) => u.employeeId)
           .filter((id): id is number => id !== null && id !== undefined)
           .forEach(id => existingIds.add(id))
       }

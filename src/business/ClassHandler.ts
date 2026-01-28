@@ -368,11 +368,11 @@ class ClassHandler {
     }
 
     // Add the cancellation to the class's cancellations array
-    // Using a placeholder instructorId for now - will be implemented later
-    const placeholderInstructorId = 'system' // TODO: Replace with actual instructorId when implemented
+    // Using a placeholder employeeId for now - will be implemented later
+    const placeholderEmployeeId = 'system' // TODO: Replace with actual employeeId when implemented
     const newCancellation = {
       date: normalizedCancellationDate,
-      instructorId: placeholderInstructorId,
+      employeeId: placeholderEmployeeId,
       reason: 'Class cancelled by admin'
     }
     

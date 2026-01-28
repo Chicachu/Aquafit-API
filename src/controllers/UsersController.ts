@@ -26,12 +26,12 @@ class UsersController {
     body('lastName').isString().notEmpty(),
     body('phoneNumber').optional().isString().notEmpty(),
     body('role').optional().isString().isIn(Object.values(Role)),
-    body('instructorId').optional().custom((value) => {
+    body('employeeId').optional().custom((value) => {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
     }),
       asyncHandler(async (req: Request, res: Response) => {
-        const { firstName, lastName, phoneNumber, role, instructorId } = req.body
+        const { firstName, lastName, phoneNumber, role, employeeId } = req.body
 
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -48,8 +48,8 @@ class UsersController {
           createUserDTO.phoneNumber = phoneNumber
         }
 
-        if (instructorId !== undefined) {
-          createUserDTO.instructorId = instructorId === null ? undefined : Number(instructorId)
+        if (employeeId !== undefined) {
+          createUserDTO.employeeId = employeeId === null ? undefined : Number(employeeId)
         }
 
         await usersService.createNewUser(createUserDTO)
@@ -143,7 +143,7 @@ class UsersController {
     body('lastName').optional().isString().notEmpty(),
     body('phoneNumber').optional({ checkFalsy: true }).isString(),
     body('role').optional().isString().isIn(Object.values(Role)),
-    body('instructorId').optional().custom((value) => {
+    body('employeeId').optional().custom((value) => {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
     }),
@@ -165,8 +165,8 @@ class UsersController {
       if (req.body.lastName !== undefined) updateData.lastName = req.body.lastName
       if (req.body.phoneNumber !== undefined) updateData.phoneNumber = req.body.phoneNumber
       if (req.body.role !== undefined) updateData.role = req.body.role as Role
-      if (req.body.instructorId !== undefined) {
-        updateData.instructorId = (req.body.instructorId === null ? null : Number(req.body.instructorId)) as number | null
+      if (req.body.employeeId !== undefined) {
+        updateData.employeeId = (req.body.employeeId === null ? null : Number(req.body.employeeId)) as number | null
       }
 
       const updatedUser = await usersService.updateUserInfo(user, updateData)

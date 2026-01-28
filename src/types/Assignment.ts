@@ -3,7 +3,7 @@ import { Price } from "./Price";
 import { AssignmentStatus } from "./enums/AssignmentStatus";
 
 export type Assignment = IDocument & {
-  instructorId: string
+  employeeId: string
   classId: string
   startDate: Date
   endDate?: Date | null
@@ -12,7 +12,7 @@ export type Assignment = IDocument & {
 }
 
 export type AssignmentCreationDTO = {
-  instructorId: string
+  employeeId: string
   classId: string
   startDate: Date
   endDate?: Date | null

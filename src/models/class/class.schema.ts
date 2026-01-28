@@ -65,13 +65,13 @@ const ClassSchema = new Schema(
         type: Date, 
         required: true
       },
-      instructorId: {
+      employeeId: {
         type: String,
         ref: 'User',
         required: true,
         validate: {
-          validator: async function (instructorId: String) {
-            const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
+          validator: async function (employeeId: String) {
+            const user = await UserModel.findById(employeeId).lean() as IUserDocument | null
             return user && user.role === Role.INSTRUCTOR 
           },
           message: 'Assigned user must have the role of instructor.'
@@ -88,17 +88,17 @@ const ClassSchema = new Schema(
         type: Date, 
         required: true
       },
-      instructorId: {
+      employeeId: {
         type: String,
         ref: 'User',
         required: true,
         validate: {
-          validator: async function (instructorId: String) {
-            // Allow 'system' as a placeholder until instructorId is properly implemented
-            if (instructorId === 'system') {
+          validator: async function (employeeId: String) {
+            // Allow 'system' as a placeholder until employeeId is properly implemented
+            if (employeeId === 'system') {
               return true
             }
-            const user = await UserModel.findById(instructorId).lean() as IUserDocument | null
+            const user = await UserModel.findById(employeeId).lean() as IUserDocument | null
             return user && user.role === Role.INSTRUCTOR 
           },
           message: 'Assigned user must have the role of instructor.'

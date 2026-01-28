@@ -1,4 +1,5 @@
 import { InferSchemaType, Model, Schema, model } from "mongoose";
+import { CheckInType } from "../../types/EmployeeCheckIn";
 
 const EmployeeCheckInSchema = new Schema(
   {
@@ -11,14 +12,19 @@ const EmployeeCheckInSchema = new Schema(
       ref: "User",
       required: true
     },
-    assignmentId: {
+    type: {
       type: String,
-      ref: "Assignment",
+      enum: Object.values(CheckInType),
       required: true
     },
     date: {
       type: Date,
       required: true
+    },
+    assignmentId: {
+      type: String,
+      ref: "Assignment",
+      required: false
     }
   },
   { timestamps: true }

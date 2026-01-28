@@ -76,7 +76,7 @@ const UserSchema = new Schema(
       required: false,
       default: []
     },
-    instructorId: {
+    employeeId: {
       type: Number,
       required: false
     }

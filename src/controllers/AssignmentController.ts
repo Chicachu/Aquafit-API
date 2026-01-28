@@ -13,7 +13,7 @@ class AssignmentController {
 
   assignInstructor = [
     body('classId').isString().notEmpty(),
-    body('instructorId').isString().notEmpty(),
+    body('employeeId').isString().notEmpty(),
     body('startDate').isString().notEmpty(),
     body('endDate').optional(),
     body('paymentValue').optional(),
@@ -25,10 +25,10 @@ class AssignmentController {
           throw new AppError('errors.missingParameters', 400)
         }
 
-        const { classId, instructorId, startDate, endDate, paymentValue } = req.body
+        const { classId, employeeId, startDate, endDate, paymentValue } = req.body
         const createDto: Parameters<typeof assignmentService.assignInstructor>[0] = {
           classId,
-          instructorId,
+          employeeId,
           startDate: new Date(startDate),
           endDate: endDate ? new Date(endDate) : null
         }
