@@ -5,7 +5,7 @@ import {
   IEmployeeCheckInModel,
   EmployeeCheckInModel
 } from "./employee-checkin.schema";
-import type { EmployeeCheckInCreationDTO, EmployeeCheckInDocument } from "../../types/EmployeeCheckIn";
+import type { EmployeeCheckInCreationDTO } from "../../types/EmployeeCheckIn";
 
 class EmployeeCheckInCollection {
   model: Model<IEmployeeCheckInModel>;
@@ -20,22 +20,24 @@ class EmployeeCheckInCollection {
     return doc.toObject() as unknown as EmployeeCheckInDocument;
   }
 
-  async getCheckInsForEmployeeInMonth(
+  /** All check-in and check-out entries in the month, sorted by date asc. Used for work-interval–based payable logic. */
+  async getEntriesForEmployeeInMonth(
     employeeId: string,
     year: number,
     month: number
-  ): Promise<{ assignmentId: string; date: Date }[]> {
+  ): Promise<{ type: string; date: Date }[]> {
     const start = new Date(year, month, 1);
     const end = new Date(year, month + 1, 0, 23, 59, 59, 999);
     const docs = await this.model
       .find({
         employeeId,
-        type: "check-in",
+        type: { $in: ["check-in", "check-out"] },
         date: { $gte: start, $lte: end }
       })
-      .select({ assignmentId: 1, date: 1 })
+      .select({ type: 1, date: 1 })
+      .sort({ date: 1 })
       .lean();
-    return docs as unknown as { assignmentId: string; date: Date }[];
+    return docs as unknown as { type: string; date: Date }[];
   }
 
   async hasCheckInsInMonth(employeeId: string, year: number, month: number): Promise<boolean> {

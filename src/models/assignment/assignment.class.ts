@@ -25,34 +25,24 @@ class AssignmentCollection extends Collection<IAssignmentModel> {
     return await this.findOne({ employeeId, classId })
   }
 
-  /** Returns user ids (instructors or employees) who have at least one *active* assignment with a payment value. */
+  /** Returns user ids (instructors or employees) who have at least one *active* assignment with a payment value. Uses status only; cron checks endDate. */
   async getInstructorIdsWithPayableAssignments(): Promise<string[]> {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
     const docs = await this.model
       .find({
         'paymentValue.amount': { $exists: true, $gt: 0 },
         'paymentValue.currency': { $exists: true, $in: ['MXN', 'USD'] },
-        $and: [
-          { $or: [{ status: AssignmentStatus.ACTIVE }, { status: { $exists: false } }] },
-          { $or: [{ endDate: null }, { endDate: { $exists: false } }, { endDate: { $gt: today } }] }
-        ]
+        $or: [{ status: AssignmentStatus.ACTIVE }, { status: { $exists: false } }]
       })
       .distinct('employeeId')
       .lean()
     return docs as string[]
   }
 
-  /** Returns class IDs that have at least one active assignment (any instructor). */
+  /** Returns class IDs that have at least one active assignment (any instructor). Uses status only; cron checks endDate. */
   async getClassIdsWithActiveAssignment(): Promise<string[]> {
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
     const docs = await this.model
       .find({
-        $and: [
-          { $or: [{ status: AssignmentStatus.ACTIVE }, { status: { $exists: false } }] },
-          { $or: [{ endDate: null }, { endDate: { $exists: false } }, { endDate: { $gt: today } }] }
-        ]
+        $or: [{ status: AssignmentStatus.ACTIVE }, { status: { $exists: false } }]
       })
       .distinct('classId')
       .lean()
@@ -64,13 +54,17 @@ class AssignmentCollection extends Collection<IAssignmentModel> {
     return await this.updateOne({ _id: assignmentId }, { $set: updateFields })
   }
 
+  /**
+   * Cron-only (one of three endDate checks): assignment endDate on or before today
+   * → status UNASSIGNED. Project code uses status only for active vs past vs terminated.
+   */
   async updateAssignmentStatuses(): Promise<{ modifiedCount: number }> {
     const today = new Date()
     today.setHours(0, 0, 0, 0)
     const result = await this.model.updateMany(
       {
         $or: [{ status: AssignmentStatus.ACTIVE }, { status: { $exists: false } }],
-        endDate: { $exists: true, $ne: null, $lt: today }
+        endDate: { $exists: true, $ne: null, $lte: today }
       },
       { $set: { status: AssignmentStatus.UNASSIGNED } }
     )

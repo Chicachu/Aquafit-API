@@ -6,6 +6,11 @@ export type PayableLineItem = {
   assignmentId: string;
   sessionsCount: number;
   amount: Price;
+  /** Display: class type, location, schedule */
+  classType?: string;
+  classLocation?: string;
+  days?: number[];
+  startTime?: string;
 };
 
 export type EmployeePayable = IDocument & {

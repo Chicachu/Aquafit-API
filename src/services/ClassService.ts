@@ -3,6 +3,7 @@ import { ClassCollection, classCollection } from "../models/class/class.class"
 import AppError from "../types/AppError"
 import { Class, ClassCreationDTO, ClassUpdateOptions } from "../types/Class"
 import { ClassScheduleMap } from "../types/ClassScheduleMap"
+import { ClassStatus } from "../types/enums/ClassStatus"
 import { logger } from "./LoggingService"
 import { formatSchedule } from "./util"
 import { Note } from "../types/User"
@@ -139,6 +140,19 @@ class ClassService {
   async getClassesByInstructorId(employeeId: string): Promise<Class[]> {
     logger.debugInside(this._FILE_NAME, this.getClassesByInstructorId.name, { employeeId })
     return await this.classCollection.find({ employeeId })
+  }
+
+  /**
+   * Returns classes with endDate on or before today and not yet terminated.
+   * Used by cron to run termination (status + enrollments + refunds) via ClassHandler.terminateClass.
+   */
+  async getClassesWithEndDatePassed(): Promise<Class[]> {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    return (await this.classCollection.find({
+      endDate: { $exists: true, $ne: null, $lte: today },
+      $or: [{ status: { $ne: ClassStatus.TERMINATED } }, { status: { $exists: false } }]
+    })) as Class[]
   }
 }
 

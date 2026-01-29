@@ -3,6 +3,7 @@ import { Weekday } from "../../types/enums/Weekday"
 import { IUserDocument, UserModel } from "../user/user.schema"
 import { Role } from "../../types/enums/Role"
 import { ClassType } from "../../types/enums/ClassType"
+import { ClassStatus } from "../../types/enums/ClassStatus"
 import { AmountSchema } from "../_common/amount.schema"
 import { BillingFrequency } from "../../types/enums/BillingFrequency"
 
@@ -41,6 +42,12 @@ const ClassSchema = new Schema(
     endDate: {
       type: Date,
       required: false
+    },
+    status: {
+      type: String,
+      enum: Object.values(ClassStatus),
+      required: false,
+      default: ClassStatus.ACTIVE
     },
     startTime: {
       type: String, // "14:30" = 2:30

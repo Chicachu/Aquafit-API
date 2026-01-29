@@ -20,11 +20,6 @@ const EmployeeCheckInSchema = new Schema(
     date: {
       type: Date,
       required: true
-    },
-    assignmentId: {
-      type: String,
-      ref: "Assignment",
-      required: false
     }
   },
   { timestamps: true }

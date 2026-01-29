@@ -5,7 +5,7 @@ import AppError from '../types/AppError'
 import { roles } from '../../config/roles'
 import i18n from '../../config/i18n'
 import { usersService } from '../services/UsersService'
-import { logger } from '../services/LoggingService'
+import { Role } from '../types/enums/Role'
 
 const hasAccess = function(action: string, resource: string) {
   return asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
@@ -50,4 +50,32 @@ const isLoggedIn = asyncHandler(async (req: Request, res: Response, next: NextFu
   }
 })
 
-export { hasAccess, isLoggedIn }
+/**
+ * Allow GET /users/:userId/invoices for:
+ * - Admins (READ_ANY PAYMENT), or
+ * - Instructors/employees viewing their own userId (My Account → payment overview).
+ */
+const hasAccessToUserInvoices = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+  const loggedInId = res.locals.loggedInUser as string | undefined
+  const targetUserId = req.params.userId
+
+  if (!loggedInId || !targetUserId) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+
+  const user = await usersService.getUserById(loggedInId)
+  if (!user) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+
+  if (user.role === Role.ADMIN) {
+    return next()
+  }
+  if ((user.role === Role.INSTRUCTOR || user.role === Role.EMPLOYEE) && targetUserId === loggedInId) {
+    return next()
+  }
+
+  throw new AppError(i18n.__('errors.accessDenied'), 401)
+})
+
+export { hasAccess, isLoggedIn, hasAccessToUserInvoices }

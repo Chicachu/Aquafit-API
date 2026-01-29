@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post("/", isLoggedIn, ...checkInController.createEntry);
 router.get("/my-entries", isLoggedIn, checkInController.getMyEntries);
+router.get("/entries/:employeeId", isLoggedIn, ...checkInController.getEntriesByEmployeeId);
 
 export default router;

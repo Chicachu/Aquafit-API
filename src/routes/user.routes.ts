@@ -1,6 +1,6 @@
 import express from "express";
 import { usersController } from "../controllers/UsersController";
-import { hasAccess, isLoggedIn } from "../middleware/AuthMiddleware";
+import { hasAccess, isLoggedIn, hasAccessToUserInvoices } from "../middleware/AuthMiddleware";
 import { AccessControlResource } from "../types/enums/AccessControlResource";
 import { AccessControlAction } from "../types/enums/AccessControlAction";
 
@@ -18,11 +18,13 @@ router.post('/register', usersController.registerNewUser)
 
 router.get('/:userId/enrollments', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ENROLLMENT), usersController.getClientEnrollmentDetails)
 
-router.get('/:userId/invoices', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoicesByUserId)
+router.get('/:userId/invoices', isLoggedIn, hasAccessToUserInvoices, usersController.getInvoicesByUserId)
 
 router.get('/:userId/payments/:enrollmentId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceHistory)
 
 router.get('/:userId/payments/:enrollmentId/:invoiceId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceDetails)
+
+router.get('/:userId/payables/:payableId', isLoggedIn, hasAccessToUserInvoices, ...usersController.getPayableDetails)
 
 router.put('/:userId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.updateClient)
 

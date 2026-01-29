@@ -12,6 +12,10 @@ class UserCollection extends Collection<IUserModel> {
     return await this.findOne({ username })
   }
 
+  async getUserByEmployeeId(employeeId: number): Promise<UserDocument | null> {
+    return await this.findOne({ employeeId })
+  }
+
   async getUserById(userId: string): Promise<UserDocument> {
     return await this.findOne({ _id: userId })
   }

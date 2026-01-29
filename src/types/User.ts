@@ -31,6 +31,7 @@ export type UserCreationDTO = {
   phoneNumber?: string
   role: Role
   employeeId?: number
+  username?: string
 }
 
 export type UpdateUserOptions = {

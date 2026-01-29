@@ -32,6 +32,11 @@ class EnrollmentCollection extends Collection<IEnrollmentModel> {
   async getEnrollmentById(enrollmentId: string): Promise<Enrollment> {
     return await this.findOne({ _id: enrollmentId });
   }
+
+  async updateMany(query: object, update: object): Promise<{ modifiedCount: number }> {
+    const result = await this.model.updateMany(query, update);
+    return { modifiedCount: result.modifiedCount };
+  }
 }
 
 const enrollmentCollection = new EnrollmentCollection(EnrollmentModel)

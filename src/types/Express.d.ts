@@ -3,8 +3,9 @@ import { User } from "./User";
 declare global {
   namespace Express {
     export interface Request {
-      username?: string, 
+      username?: string
       password?: string
+      user?: User
     }
   }
 }

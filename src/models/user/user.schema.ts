@@ -85,6 +85,7 @@ const UserSchema = new Schema(
 )
 
 UserSchema.index({ username: 1 })
+UserSchema.index({ employeeId: 1 })
 
 type UserDocument = InferSchemaType<typeof UserSchema>
 

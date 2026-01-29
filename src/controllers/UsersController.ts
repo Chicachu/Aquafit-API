@@ -12,6 +12,7 @@ import { InstructorClassDetails } from '../types/InstructorClassDetails'
 import { assignmentService } from '../services/AssignmentService'
 import { invoiceService } from '../services/InvoiceService'
 import * as employeePayableService from '../services/EmployeePayableService'
+import { logger } from '../services/LoggingService'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -50,6 +51,11 @@ class UsersController {
 
         if (employeeId !== undefined) {
           createUserDTO.employeeId = employeeId === null ? undefined : Number(employeeId)
+        }
+
+        const roleVal = (role || Role.CLIENT) as Role
+        if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE) && createUserDTO.employeeId != null) {
+          createUserDTO.username = String(createUserDTO.employeeId)
         }
 
         await usersService.createNewUser(createUserDTO)
@@ -137,6 +143,23 @@ class UsersController {
     })
   ]
 
+  getPayableDetails = [
+    param('userId').isString().notEmpty(),
+    param('payableId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const { userId, payableId } = req.params
+      const payable = await employeePayableService.getPayableDetailsWithComputedAmounts(userId, payableId)
+      if (!payable) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+      res.send(payable)
+    })
+  ]
+
   updateClient = [
     param('userId').isString().notEmpty(),
     body('firstName').optional().isString().notEmpty(),
@@ -147,10 +170,16 @@ class UsersController {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
     }),
+    body('password')
+      .optional()
+      .custom((val) => val === undefined || val === null || val === '' || (typeof val === 'string' && val.trim().length >= 6))
+      .withMessage('errors.passwordMinLength'),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
-        throw new AppError('errors.missingParameters', 400)
+        const first = errors.array()[0]
+        const msg = typeof first?.msg === 'string' ? first.msg : 'errors.missingParameters'
+        throw new AppError(msg, 400)
       }
 
       const userId = req.params.userId
@@ -167,6 +196,16 @@ class UsersController {
       if (req.body.role !== undefined) updateData.role = req.body.role as Role
       if (req.body.employeeId !== undefined) {
         updateData.employeeId = (req.body.employeeId === null ? null : Number(req.body.employeeId)) as number | null
+      }
+      const passwordRaw = req.body.password
+      if (typeof passwordRaw === 'string' && passwordRaw.trim().length > 0) {
+        updateData.password = await authenticationService.hashPassword(passwordRaw.trim())
+      }
+
+      const roleVal = (updateData.role ?? user.role) as Role
+      const employeeIdVal = updateData.employeeId !== undefined ? updateData.employeeId : user.employeeId
+      if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE) && employeeIdVal != null) {
+        updateData.username = String(employeeIdVal)
       }
 
       const updatedUser = await usersService.updateUserInfo(user, updateData)
@@ -268,6 +307,15 @@ class UsersController {
         
         for (const assignment of assignments) {
           const classInfo = await classService.getClass(assignment.classId)
+          if (!classInfo) {
+            logger.info(
+              'UsersController',
+              'getInstructorClassDetails',
+              `Skipping assignment ${assignment._id}: class ${assignment.classId} not found`,
+              { assignmentId: assignment._id, classId: assignment.classId }
+            )
+            continue
+          }
           assignmentInfo.push({ class: classInfo, assignment })
         }
         

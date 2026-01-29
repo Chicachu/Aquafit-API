@@ -1,8 +1,16 @@
+/**
+ * Cron runs at midnight and on startup. Three jobs check endDates and update status:
+ * - Classes: endDate passed → 'terminated'; enrollments → 'terminated'; refunds for remaining sessions (ClassHandler.terminateClass).
+ * - Enrollments: endDate passed → 'unenrolled'.
+ * - Assignments: endDate passed → 'unassigned'.
+ */
 import path from "path"
 import { logger } from "./LoggingService"
 import cron from 'node-cron'
 import { invoiceCollection } from "../models/invoice/invoice.class"
 import { clientHandler } from "../business/ClientHandler"
+import { classHandler } from "../business/ClassHandler"
+import { classService } from "./ClassService"
 import { enrollmentService } from "./EnrollmentService"
 import { assignmentService } from "./AssignmentService"
 import * as employeePayableService from "./EmployeePayableService"
@@ -26,6 +34,17 @@ export class CronSchedulerService {
       logger.debugInside('', '[STARTUP] Completed processDueDateCheckAndCreateInvoices')
     } catch (error: any) {
       logger.error(`[STARTUP] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
+    }
+
+    try {
+      logger.debugInside('', '[STARTUP] Running class termination (status, enrollments, refunds)...')
+      const toTerminate = await classService.getClassesWithEndDatePassed()
+      for (const c of toTerminate) {
+        await classHandler.terminateClass(c._id!, c.endDate!)
+      }
+      logger.debugInside('', '[STARTUP] Completed class termination', { count: toTerminate.length })
+    } catch (error: any) {
+      logger.error(`[STARTUP] Error in class termination: ${error?.message || error}`)
     }
 
     try {
@@ -70,6 +89,19 @@ export class CronSchedulerService {
         logger.debugInside('', '[CRON] Completed processDueDateCheckAndCreateInvoices')
       } catch (error: any) {
         logger.error(`[CRON] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
+      }
+    })
+
+    cron.schedule('0 0 * * *', async () => {
+      try {
+        logger.debugInside('', '[CRON] Running class termination (status, enrollments, refunds)...')
+        const toTerminate = await classService.getClassesWithEndDatePassed()
+        for (const c of toTerminate) {
+          await classHandler.terminateClass(c._id!, c.endDate!)
+        }
+        logger.debugInside('', '[CRON] Completed class termination', { count: toTerminate.length })
+      } catch (error: any) {
+        logger.error(`[CRON] Error in class termination: ${error?.message || error}`)
       }
     })
 

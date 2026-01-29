@@ -1,6 +1,7 @@
 import path from "path"
 import { ClassService, classService } from "../services/ClassService"
 import { EnrollmentService, enrollmentService } from "../services/EnrollmentService"
+import { ClassStatus } from "../types/enums/ClassStatus"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import { logger } from "../services/LoggingService"
 import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
@@ -86,14 +87,30 @@ class ClassHandler {
       throw new AppError('errors.resourceNotFound', 404)
     }
 
-    // Normalize the termination date (set to midnight)
     const terminationDate = new Date(endDate)
     terminationDate.setHours(0, 0, 0, 0)
-    
-    // Update class endDate to the selected termination date
-    await this.classService.updateClassInfo(foundClass, { endDate: terminationDate })
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const endDatePassed = terminationDate <= today
 
-    // Get all enrollments for this class
+    if (!endDatePassed) {
+      // Future endDate: only set endDate. Cron will update status and run refunds when it passes.
+      await this.classService.updateClassInfo(foundClass, { endDate: terminationDate })
+      logger.debugInside(this._FILE_NAME, this.terminateClass.name, {
+        action: 'endDate_scheduled',
+        terminationDate: terminationDate.toISOString()
+      })
+      logger.debugComplete(this._FILE_NAME, this.terminateClass.name)
+      return
+    }
+
+    // endDate has passed: update endDate + status, mark enrollments terminated, run refunds
+    await this.classService.updateClassInfo(foundClass, {
+      endDate: terminationDate,
+      status: ClassStatus.TERMINATED
+    })
+    await this.enrollmentService.setEnrollmentsTerminatedForClass(classId)
+
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(classId)
     
     // Get class days (use enrollment override if exists, otherwise use class days)

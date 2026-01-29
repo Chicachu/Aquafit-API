@@ -71,6 +71,18 @@ class EnrollmentService {
     }
   }
 
+  /** Set all enrollments for a class to TERMINATED (skip already UNENROLLED/TERMINATED). Used when class is terminated. */
+  async setEnrollmentsTerminatedForClass(classId: string): Promise<number> {
+    const { modifiedCount } = await this.enrollmentCollection.updateMany(
+      {
+        classId,
+        status: { $nin: [EnrollmentStatus.UNENROLLED, EnrollmentStatus.TERMINATED] }
+      },
+      { $set: { status: EnrollmentStatus.TERMINATED } }
+    )
+    return modifiedCount
+  }
+
   async getClassIdFromEnrollment(enrollmentId: string): Promise<string> {
     logger.debugInside(this._FILE_NAME, this.getClassIdFromEnrollment.name, { enrollmentId })
     
@@ -255,61 +267,29 @@ class EnrollmentService {
     }
   }
 
+  /**
+   * Cron-only: checks enrollment endDate. Enrollments with endDate on or before today
+   * become 'unenrolled'. Class endDate → 'terminated' is handled by updateClassStatuses.
+   */
   async updateEnrollmentStatuses(): Promise<void> {
     logger.debugInside(this._FILE_NAME, this.updateEnrollmentStatuses.name)
     try {
       const allEnrollments = await this.getAllEnrollments()
       const today = new Date()
       today.setHours(0, 0, 0, 0)
-      const yesterday = new Date(today)
-      yesterday.setDate(yesterday.getDate() - 1)
 
       for (const enrollment of allEnrollments) {
-        let newStatus: EnrollmentStatus | null = null
-
-        // Skip if already unenrolled or terminated
         if (enrollment.status === EnrollmentStatus.UNENROLLED || enrollment.status === EnrollmentStatus.TERMINATED) {
           continue
         }
-
-        // Check if enrollment has an endDate that has passed (yesterday or earlier)
-        if (enrollment.endDate) {
-          const endDate = new Date(enrollment.endDate)
-          endDate.setHours(0, 0, 0, 0)
-          if (endDate <= yesterday) {
-            newStatus = EnrollmentStatus.UNENROLLED
-          }
-        }
-
-        // If not unenrolled, check if the class was terminated
-        if (!newStatus) {
-          try {
-            const classInfo = await classService.getClass(enrollment.classId)
-            if (classInfo.endDate) {
-              const classEndDate = new Date(classInfo.endDate)
-              classEndDate.setHours(0, 0, 0, 0)
-              if (classEndDate <= today) {
-                newStatus = EnrollmentStatus.TERMINATED
-              }
-            }
-          } catch (error) {
-            // If we can't get the class, skip this enrollment
-            continue
-          }
-        }
-
-        // If no specific status determined, set to ACTIVE (temporary - should be default)
-        if (!newStatus) {
-          newStatus = EnrollmentStatus.ACTIVE
-        }
-
-        // Only update if status has changed
-        if (enrollment.status !== newStatus) {
-          await this.enrollmentCollection.updateOne(
-            { _id: enrollment._id },
-            { $set: { status: newStatus } }
-          )
-        }
+        if (!enrollment.endDate) continue
+        const endDate = new Date(enrollment.endDate)
+        endDate.setHours(0, 0, 0, 0)
+        if (endDate > today) continue
+        await this.enrollmentCollection.updateOne(
+          { _id: enrollment._id },
+          { $set: { status: EnrollmentStatus.UNENROLLED } }
+        )
       }
 
       logger.debugComplete(this._FILE_NAME, this.updateEnrollmentStatuses.name)

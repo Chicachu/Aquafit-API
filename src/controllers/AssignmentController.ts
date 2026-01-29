@@ -11,6 +11,15 @@ class AssignmentController {
     res.send({ classIds })
   })
 
+  getAssignmentById = asyncHandler(async (req: Request, res: Response) => {
+    const { assignmentId } = req.params
+    const assignment = await assignmentService.getAssignmentById(assignmentId)
+    if (!assignment) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+    res.send(assignment)
+  })
+
   assignInstructor = [
     body('classId').isString().notEmpty(),
     body('employeeId').isString().notEmpty(),

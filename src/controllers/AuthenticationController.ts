@@ -10,8 +10,8 @@ class AuthenticationController {
   login = [
     body('username').isString().notEmpty(),
     body('password').isString().notEmpty(),
-    
-      asyncHandler(async (req: Request, res: Response) => {
+
+    asyncHandler(async (req: Request, res: Response) => {
       const { username, password } = req.body
 
       const errors = validationResult(req)
@@ -19,13 +19,21 @@ class AuthenticationController {
         throw new AppError('errors.missingParameters', 400)
       }
 
-      let user = await usersService.getUser(username)
+      const identifier = String(username).trim()
+      const isEmployeeId = /^\d{6}$/.test(identifier)
+      let user = isEmployeeId
+        ? await usersService.getUserByEmployeeId(parseInt(identifier, 10))
+        : await usersService.getUser(identifier)
+
+      if (!user) {
+        throw new AppError('errors.incorrectCredentials', 400)
+      }
 
       const accessToken = await authenticationService.authenticateUser(user, password)
 
       user = await usersService.updateUserInfo(user, { accessToken })
 
-      logger.access(`${user.username} has logged in.`)
+      logger.access(`${user.username ?? identifier} has logged in.`)
       res.send(user)
     })
   ]

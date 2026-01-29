@@ -2,6 +2,7 @@ import { IDocument } from "./IDocument"
 import { Price } from "./Price"
 import { BillingFrequency } from "./enums/BillingFrequency"
 import { ClassType } from "./enums/ClassType"
+import { ClassStatus } from "./enums/ClassStatus"
 import { Weekday } from "./enums/Weekday"
 
 import { Note } from "./User"
@@ -12,6 +13,7 @@ export type Class = IDocument & {
   days: Weekday[]
   startDate: Date
   endDate?: Date | null
+  status?: ClassStatus | null
   startTime: string
   prices: Price[]
   maxCapacity: number
@@ -48,6 +50,7 @@ export type ClassUpdateOptions = {
   prices?: Price[] 
   maxCapacity?: number
   endDate?: Date | null
+  status?: ClassStatus | null
   cancellations?: {
     date: Date
     employeeId: string

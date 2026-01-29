@@ -9,12 +9,10 @@ export type EmployeeCheckIn = IDocument & {
   employeeId: string;
   type: CheckInType;
   date: Date;
-  assignmentId?: string | null; // Optional - calculated based on time overlap
 };
 
 export type EmployeeCheckInCreationDTO = {
   employeeId: string;
   type: CheckInType;
   date: Date;
-  assignmentId?: string | null;
 };

@@ -14,7 +14,11 @@ const LineItemSchema = new Schema(
   {
     assignmentId: { type: String, ref: "Assignment", required: true },
     sessionsCount: { type: Number, required: true },
-    amount: { type: AmountSchema, required: true }
+    amount: { type: AmountSchema, required: true },
+    classType: { type: String, required: false },
+    classLocation: { type: String, required: false },
+    days: { type: [Number], required: false },
+    startTime: { type: String, required: false }
   },
   { _id: false }
 );

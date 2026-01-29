@@ -41,6 +41,15 @@ class UsersService {
     }
   }
 
+  async getUserByEmployeeId(employeeId: number): Promise<User | null> {
+    logger.debugInside(this._FILE_NAME, this.getUserByEmployeeId.name, { employeeId })
+    try {
+      return (await this.userCollection.getUserByEmployeeId(employeeId)) as User | null
+    } catch (error: any) {
+      throw new AppError('errors.resourceNotFound', 500)
+    }
+  }
+
   async getUserById(userId: string): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.getUserById.name, { userId })
     try {
@@ -78,7 +87,10 @@ class UsersService {
 
       // Use updateOne with _id if we have it, otherwise fall back to username
       if (user._id) {
-        return await this.userCollection.updateOne({ _id: user._id }, updateUserOptions) as User
+        return await this.userCollection.updateOne(
+          { _id: user._id },
+          { $set: updateUserOptions }
+        ) as User
       } else {
         return await this.userCollection.updateUser(updatedUser) as User
       }
@@ -105,7 +117,10 @@ class UsersService {
       const existingNotes = user.notes ? (Array.isArray(user.notes) ? [...user.notes] : []) : []
       const notes = [...existingNotes, newNote]
 
-      const updatedUser = await this.userCollection.updateOne({ _id: userId }, { notes })
+      const updatedUser = await this.userCollection.updateOne(
+        { _id: userId },
+        { $set: { notes } }
+      )
       return updatedUser as User
     } catch (error: any) {
       if (error instanceof AppError) throw error
@@ -123,8 +138,11 @@ class UsersService {
 
       const existingNotes = user.notes ? (Array.isArray(user.notes) ? [...user.notes] : []) : []
       const notes = existingNotes.filter((note: Note) => note._id !== noteId)
-      
-      const updatedUser = await this.userCollection.updateOne({ _id: userId }, { notes })
+
+      const updatedUser = await this.userCollection.updateOne(
+        { _id: userId },
+        { $set: { notes } }
+      )
       return updatedUser as User
     } catch (error: any) {
       if (error instanceof AppError) throw error
