@@ -17,6 +17,7 @@ const hasAccess = function(action: string, resource: string) {
 
     try {
       const user = await usersService.getUser(username)
+      if (!user) throw new AppError(i18n.__('errors.accessDenied'), 401)
       const permission = <Permission>roles().can(user.role)[action as keyof Query](resource)
 
       if (!permission.granted) {

@@ -21,9 +21,10 @@ class AuthenticationController {
 
       const identifier = String(username).trim()
       const isEmployeeId = /^\d{6}$/.test(identifier)
+      const lookupUsername = isEmployeeId ? identifier : identifier.toLowerCase()
       let user = isEmployeeId
         ? await usersService.getUserByEmployeeId(parseInt(identifier, 10))
-        : await usersService.getUser(identifier)
+        : await usersService.getUser(lookupUsername)
 
       if (!user) {
         throw new AppError('errors.incorrectCredentials', 400)

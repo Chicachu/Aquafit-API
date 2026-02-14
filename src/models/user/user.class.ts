@@ -8,7 +8,7 @@ class UserCollection extends Collection<IUserModel> {
     super(model)
   }
 
-  async getUser(username: string): Promise<UserDocument> {
+  async getUser(username: string): Promise<UserDocument | null> {
     return await this.findOne({ username })
   }
 

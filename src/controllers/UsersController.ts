@@ -275,7 +275,11 @@ class UsersController {
 
       const { encryptedPassword, accessToken } = await authenticationService.encryptPassword(user._id, password)
 
-      user = await usersService.updateUserInfo(user, { password: encryptedPassword, accessToken })
+      user = await usersService.updateUserInfo(user, {
+        password: encryptedPassword,
+        accessToken,
+        username: username.toLowerCase()
+      })
 
       res.send(user)
     })

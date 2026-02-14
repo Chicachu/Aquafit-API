@@ -32,10 +32,10 @@ class UsersService {
     }
   }
 
-  async getUser(username: string): Promise<User> {
+  async getUser(username: string): Promise<User | null> {
     logger.debugInside(this._FILE_NAME, this.getUser.name, { username })
     try {
-      return await this.userCollection.getUser(username) as User
+      return (await this.userCollection.getUser(username)) as User | null
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -89,7 +89,10 @@ class UsersService {
   async createNewUser(user: UserCreationDTO): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.createNewUser.name, { user })
     try {
-      return await this.userCollection.insertOne(user)
+      const toInsert = user.username
+        ? { ...user, username: user.username.toLowerCase() }
+        : user
+      return await this.userCollection.insertOne(toInsert)
     } catch (error: any) {
       throw new AppError('errors.unableToCreateResource', 500)
     }
@@ -98,16 +101,19 @@ class UsersService {
   async updateUserInfo(user: User, updateUserOptions: UpdateUserOptions): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.updateUserInfo.name, { user })
     try {
+      const normalizedOptions = updateUserOptions.username
+        ? { ...updateUserOptions, username: updateUserOptions.username.toLowerCase() }
+        : updateUserOptions
       const updatedUser = {
-        ...user, 
-        ...updateUserOptions
+        ...user,
+        ...normalizedOptions
       }
 
       // Use updateOne with _id if we have it, otherwise fall back to username
       if (user._id) {
         return await this.userCollection.updateOne(
           { _id: user._id },
-          { $set: updateUserOptions }
+          { $set: normalizedOptions }
         ) as User
       } else {
         return await this.userCollection.updateUser(updatedUser) as User
