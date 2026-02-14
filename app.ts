@@ -16,6 +16,45 @@ app.use(express.urlencoded({ extended: false }))
 
 app.use(i18n.init)
 
+// CORS first so every response (including errors and OPTIONS) can have the header
+const getAllowedOrigins = (): string[] => {
+  const raw = process.env.FRONTEND_URL ?? ''
+  const list = raw
+    .split(',')
+    .map(u => u.trim().replace(/^["']|["']$/g, ''))
+    .filter(Boolean)
+  return ['http://localhost:4200', ...list]
+}
+
+const isOriginAllowed = (origin: string | undefined): boolean => {
+  if (!origin) return false
+  const allowed = getAllowedOrigins()
+  const o = origin.toLowerCase()
+  if (allowed.some(a => a.toLowerCase() === o)) return true
+  try {
+    const host = new URL(origin).hostname.toLowerCase()
+    if (host === 'aquafitvallarta.com' || host.endsWith('.aquafitvallarta.com')) return true
+  } catch {
+    // ignore invalid origin
+  }
+  return false
+}
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin as string | undefined
+  if (origin && isOriginAllowed(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  res.header('Content-Type', 'application/json')
+  if (req.method === 'OPTIONS') {
+    res.status(204).end()
+    return
+  }
+  next()
+})
+
 app.use(async(req, res, next) => {
   if (req.headers['authorization']) {
     const accessToken = <string>req.headers['authorization'].replace('Bearer ', '')
@@ -26,22 +65,8 @@ app.use(async(req, res, next) => {
     }
 
     res.locals.loggedInUser = userId
-  }  
-
-  const allowedOrigins = ['http://localhost:4200', process.env.FRONTEND_URL].filter(Boolean) as string[]
-  const origin = req.headers.origin
-  if (origin && allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin)
   }
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
-  res.header('Content-Type', 'application/json')
-  if (req.method === "OPTIONS") {
-    res.setHeader('Access-Control-Allow-Headers', 'access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,authorization,content-type')
-    res.status(200).end()
-  } else {
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Headers, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization')
-    next()
-  }
+  next()
 })
 
 import languageRouter from './src/routes/language.routes'
