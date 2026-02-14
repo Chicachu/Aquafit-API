@@ -36,6 +36,15 @@ class UserCollection extends Collection<IUserModel> {
 
     return user
   }
+
+  async findOneByFirstAndLastName(firstName: string, lastName: string): Promise<UserDocument | null> {
+    const normalizedFirst = firstName.trim()
+    const normalizedLast = lastName.trim()
+    return await this.findOne({
+      firstName: normalizedFirst,
+      lastName: normalizedLast
+    })
+  }
 }
 
 const userCollection = new UserCollection(UserModel)

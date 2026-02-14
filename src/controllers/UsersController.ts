@@ -4,15 +4,19 @@ import { usersService } from '../services/UsersService'
 import AppError from '../types/AppError'
 import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
-import { body, param, validationResult } from 'express-validator'
+import { body, param, query, validationResult } from 'express-validator'
 import { UpdateUserOptions, UserCreationDTO } from '../types/User'
 import { clientHandler } from '../business/ClientHandler'
 import { classService } from '../services/ClassService'
 import { InstructorClassDetails } from '../types/InstructorClassDetails'
 import { assignmentService } from '../services/AssignmentService'
 import { invoiceService } from '../services/InvoiceService'
+import { enrollmentService } from '../services/EnrollmentService'
+import { waitlistCollection } from '../models/waitlist/waitlist.class'
+import { PaymentStatus } from '../types/enums/PaymentStatus'
 import * as employeePayableService from '../services/EmployeePayableService'
 import { logger } from '../services/LoggingService'
+import i18n from '../../config/i18n'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -61,6 +65,33 @@ class UsersController {
         await usersService.createNewUser(createUserDTO)
 
         res.send()
+    })
+  ]
+
+  lookupByFirstNameAndLastName = [
+    query('firstName').isString().trim().notEmpty(),
+    query('lastName').isString().trim().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const firstName = (req.query.firstName as string).trim()
+      const lastName = (req.query.lastName as string).trim()
+      const user = await usersService.findUserByFirstAndLastName(firstName, lastName)
+      if (!user) {
+        res.send({ found: false })
+        return
+      }
+      res.send({
+        found: true,
+        user: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          phoneNumber: user.phoneNumber ?? null
+        }
+      })
     })
   ]
 
@@ -280,6 +311,80 @@ class UsersController {
 
       const updatedUser = await usersService.deleteNoteFromUser(userId, noteId)
       res.send(updatedUser)
+    })
+  ]
+
+  getCanDeleteUser = [
+    param('userId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response): Promise<void> => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const userId = req.params.userId
+      const [enrollments, invoices, waitlistEntries] = await Promise.all([
+        enrollmentService.getClientEnrollments(userId),
+        invoiceService.getInvoicesByUserId(userId),
+        waitlistCollection.getWaitlistEntriesByUserId(userId)
+      ])
+      if (enrollments.length > 0) {
+        res.send({ canDelete: false, reason: i18n.__('errors.cannotDeleteUserHasEnrollments') })
+        return
+      }
+      const unpaidInvoices = invoices.filter(
+        (inv: { paymentStatus: string }) =>
+          inv.paymentStatus !== PaymentStatus.PAID && inv.paymentStatus !== PaymentStatus.CANCELLED
+      )
+      if (unpaidInvoices.length > 0) {
+        res.send({ canDelete: false, reason: i18n.__('errors.cannotDeleteUserHasUnpaidInvoices') })
+        return
+      }
+      if (waitlistEntries.length > 0) {
+        res.send({ canDelete: false, reason: i18n.__('errors.cannotDeleteUserOnWaitlist') })
+        return
+      }
+      res.send({ canDelete: true })
+    })
+  ]
+
+  deleteUser = [
+    param('userId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response): Promise<void> => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+      const userId = req.params.userId
+
+      const user = await usersService.getUserById(userId)
+      if (!user) {
+        throw new AppError('errors.resourceNotFound', 404)
+      }
+      if (user.role !== Role.CLIENT) {
+        throw new AppError('errors.cannotDeleteNonClient', 400)
+      }
+
+      const [enrollments, invoices, waitlistEntries] = await Promise.all([
+        enrollmentService.getClientEnrollments(userId),
+        invoiceService.getInvoicesByUserId(userId),
+        waitlistCollection.getWaitlistEntriesByUserId(userId)
+      ])
+      if (enrollments.length > 0) {
+        throw new AppError('errors.cannotDeleteUserHasEnrollments', 400)
+      }
+      const unpaidInvoices = invoices.filter(
+        (inv: { paymentStatus: string }) =>
+          inv.paymentStatus !== PaymentStatus.PAID && inv.paymentStatus !== PaymentStatus.CANCELLED
+      )
+      if (unpaidInvoices.length > 0) {
+        throw new AppError('errors.cannotDeleteUserHasUnpaidInvoices', 400)
+      }
+      if (waitlistEntries.length > 0) {
+        throw new AppError('errors.cannotDeleteUserOnWaitlist', 400)
+      }
+
+      await usersService.deleteUser(userId)
+      res.status(200).send()
     })
   ]
 

@@ -78,4 +78,17 @@ const hasAccessToUserInvoices = asyncHandler(async (req: Request, res: Response,
   throw new AppError(i18n.__('errors.accessDenied'), 401)
 })
 
-export { hasAccess, isLoggedIn, hasAccessToUserInvoices }
+/** Allow add/delete class notes for Admin or Instructor. */
+const hasAccessToClassNotes = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+  const userId = res.locals.loggedInUser as string | undefined
+  if (!userId) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+  const user = await usersService.getUserById(userId)
+  if (!user || (user.role !== Role.ADMIN && user.role !== Role.INSTRUCTOR)) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+  next()
+})
+
+export { hasAccess, isLoggedIn, hasAccessToUserInvoices, hasAccessToClassNotes }

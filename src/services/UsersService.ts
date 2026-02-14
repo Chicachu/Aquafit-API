@@ -68,6 +68,24 @@ class UsersService {
     }
   } 
 
+  async findUserByFirstAndLastName(firstName: string, lastName: string): Promise<User | null> {
+    logger.debugInside(this._FILE_NAME, this.findUserByFirstAndLastName.name, { firstName, lastName })
+    try {
+      return (await this.userCollection.findOneByFirstAndLastName(firstName, lastName)) as User | null
+    } catch (error: any) {
+      throw new AppError('errors.unableToGetResource', 500)
+    }
+  }
+
+  async deleteUser(userId: string): Promise<void> {
+    logger.debugInside(this._FILE_NAME, this.deleteUser.name, { userId })
+    try {
+      await this.userCollection.deleteOne({ _id: userId })
+    } catch (error: any) {
+      throw new AppError('errors.unableToDeleteResource', 500)
+    }
+  }
+
   async createNewUser(user: UserCreationDTO): Promise<User> {
     logger.debugInside(this._FILE_NAME, this.createNewUser.name, { user })
     try {

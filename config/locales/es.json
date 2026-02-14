@@ -26,7 +26,14 @@
     "unableToUpdateResource": "El recurso no fue actualizado.",
     "noBasePriceInClass": "No se encontró un precio base para la clase al generar una nueva factura",
     "classAlreadyCancelledForDate": "Esta clase ya ha sido cancelada para la fecha seleccionada.",
-    "enrollmentAlreadyCancelled": "Esta inscripción ya ha sido cancelada."
+    "enrollmentAlreadyCancelled": "Esta inscripción ya ha sido cancelada.",
+    "classAtCapacity": "No se puede inscribir al cliente, la clase está al máximo de capacidad.",
+    "partialEnrollmentRequired": "Se requiere inscripción parcial. Por favor seleccione días disponibles en las opciones avanzadas.",
+    "unableToDeleteResource": "El recurso no fue eliminado.",
+    "cannotDeleteUserHasEnrollments": "El usuario tiene inscripciones.",
+    "cannotDeleteUserHasUnpaidInvoices": "El usuario tiene facturas sin pagar.",
+    "cannotDeleteUserOnWaitlist": "El usuario está en una lista de espera.",
+    "cannotDeleteNonClient": "Solo se pueden eliminar usuarios con rol de cliente."
   },
   "notes": {
     "reasonForUnenrollingIn": "Razón para dar de baja en"

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const dbLocation = process.env.MONOGO_URI!
+const dbLocation = process.env.MONGO_URI!
 
 class DBConnector {
   constructor() { }

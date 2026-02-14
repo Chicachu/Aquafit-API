@@ -69,10 +69,52 @@ class CheckInController {
         throw new AppError("errors.accessDenied", 403);
       }
 
+      const checkInDate = new Date(date);
+      const checkInType = type as CheckInType;
+
+      // Validation: Check-in cannot be duplicated if there's an open check-in
+      if (checkInType === CheckInType.CHECK_IN) {
+        const openCheckIn = await employeeCheckInCollection.getOpenCheckInBeforeDate(
+          userIdForEntry,
+          checkInDate
+        );
+        
+        if (openCheckIn) {
+          res.status(400).json({
+            message: i18n.__("errors.missingParameters"),
+            validationErrors: [
+              {
+                path: "type",
+                msg: `Cannot create check-in: there is an open check-in from ${openCheckIn.date.toISOString()} that has not been closed with a check-out`,
+              },
+            ],
+          });
+          return;
+        }
+      }
+
+      // Validation: Check-out can only happen if there's an open check-in
+      if (checkInType === CheckInType.CHECK_OUT) {
+        const hasOpenCheckIn = await employeeCheckInCollection.hasOpenCheckIn(userIdForEntry);
+        
+        if (!hasOpenCheckIn) {
+          res.status(400).json({
+            message: i18n.__("errors.missingParameters"),
+            validationErrors: [
+              {
+                path: "type",
+                msg: "Cannot create check-out: there is no open check-in. A check-out requires a matching check-in.",
+              },
+            ],
+          });
+          return;
+        }
+      }
+
       const entry = await employeeCheckInCollection.create({
         employeeId: userIdForEntry,
-        type: type as CheckInType,
-        date: new Date(date),
+        type: checkInType,
+        date: checkInDate,
       });
 
       res.status(201).send(entry);

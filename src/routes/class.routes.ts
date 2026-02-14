@@ -1,5 +1,5 @@
 import express from "express";
-import { hasAccess, isLoggedIn } from "../middleware/AuthMiddleware";
+import { hasAccess, isLoggedIn, hasAccessToClassNotes } from "../middleware/AuthMiddleware";
 import { AccessControlAction } from "../types/enums/AccessControlAction";
 import { AccessControlResource } from "../types/enums/AccessControlResource";
 import { classController } from "../controllers/ClassController";
@@ -16,8 +16,8 @@ router.put('/:classId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, Ac
 router.post('/:classId/terminate', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.terminateClass)
 router.post('/:classId/cancel', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.cancelClass)
 
-router.post('/:classId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.addNote)
+router.post('/:classId/notes', isLoggedIn, hasAccessToClassNotes, ...classController.addNote)
 
-router.delete('/:classId/notes/:noteId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.CLASS), ...classController.deleteNote)
+router.delete('/:classId/notes/:noteId', isLoggedIn, hasAccessToClassNotes, ...classController.deleteNote)
 
 export default router

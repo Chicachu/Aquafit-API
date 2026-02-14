@@ -33,8 +33,8 @@ class ClassHandler {
     }
 
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(foundClass._id!)
-    
-    const clientEnrollmentDetails = await this._getClientEnrollmentDetails(classEnrollments)
+
+    const clientEnrollmentDetails = await this._getClientEnrollmentDetails(classEnrollments, foundClass.days)
     const classDetails: ClassDetails = {
       ...foundClass, 
       clients: clientEnrollmentDetails,
@@ -45,20 +45,27 @@ class ClassHandler {
     return classDetails
   }
 
-  private async _getClientEnrollmentDetails(classEnrollments: Enrollment[]): Promise<ClassClientEnrollmentDetails[]> {
+  private async _getClientEnrollmentDetails(
+    classEnrollments: Enrollment[],
+    classDays: Weekday[]
+  ): Promise<ClassClientEnrollmentDetails[]> {
     const classClientEnrollmentDetails: ClassClientEnrollmentDetails[] = []
-  
+
     for (const classEnrollment of classEnrollments) {
       const firstAndLast = await this.userService.getUserFirstAndLastName(classEnrollment.userId)
       const currentPayment = await this.invoiceService.getOldestUnpaidInvoice(classEnrollment.invoiceIds)
+      const isPartiallyEnrolled =
+        (classEnrollment.daysOfWeekOverride?.length ?? 0) > 0 &&
+        (classEnrollment.daysOfWeekOverride?.length ?? 0) < classDays.length
       classClientEnrollmentDetails.push({
         _id: firstAndLast._id,
         firstName: firstAndLast.firstName,
         lastName: firstAndLast.lastName,
-        currentPayment
+        currentPayment,
+        isPartiallyEnrolled
       })
     }
-  
+
     return classClientEnrollmentDetails
   }
 

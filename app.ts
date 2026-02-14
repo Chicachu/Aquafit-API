@@ -5,7 +5,10 @@ import { errorHandler } from './src/middleware/ErrorMiddleware'
 import AppError from './src/types/AppError'
 import i18n from './config/i18n'
 
-dotenv.config()
+// Load .env only in development; production uses platform env vars (e.g. Koyeb)
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config()
+}
 const app = express() 
 
 app.use(express.json())
@@ -25,8 +28,11 @@ app.use(async(req, res, next) => {
     res.locals.loggedInUser = userId
   }  
 
-  const whitelist = 'http://localhost:4200'
-  res.setHeader('Access-Control-Allow-Origin', whitelist)
+  const allowedOrigins = ['http://localhost:4200', process.env.FRONTEND_URL].filter(Boolean) as string[]
+  const origin = req.headers.origin
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
   res.header('Content-Type', 'application/json')
   if (req.method === "OPTIONS") {
@@ -64,6 +70,9 @@ app.use('/api/assignments', assignmentRouter)
 
 import checkInRouter from './src/routes/check-in.routes'
 app.use('/api/check-ins', checkInRouter)
+
+import waitlistRouter from './src/routes/waitlist.routes'
+app.use('/api/waitlist', waitlistRouter)
 
 app.use(errorHandler)
 

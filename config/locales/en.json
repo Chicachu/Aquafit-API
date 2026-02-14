@@ -26,7 +26,14 @@
     "unableToUpdateResource": "The resource was not updated.",
     "noBasePriceInClass": "No base price found for class when generating new invoice",
     "classAlreadyCancelledForDate": "This class has already been cancelled for the selected date.",
-    "enrollmentAlreadyCancelled": "This enrollment has already been cancelled."
+    "enrollmentAlreadyCancelled": "This enrollment has already been cancelled.",
+    "classAtCapacity": "Cannot enroll client, class is at maximum capacity.",
+    "partialEnrollmentRequired": "Partial enrollment is required. Please select available days from the advanced options.",
+    "unableToDeleteResource": "The resource was not deleted.",
+    "cannotDeleteUserHasEnrollments": "User has enrollments.",
+    "cannotDeleteUserHasUnpaidInvoices": "User has unpaid invoices.",
+    "cannotDeleteUserOnWaitlist": "User is on a waitlist.",
+    "cannotDeleteNonClient": "Only client users can be deleted."
   },
   "notes": {
     "reasonForUnenrollingIn": "Reason for unenrolling in"

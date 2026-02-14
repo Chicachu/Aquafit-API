@@ -16,8 +16,10 @@ import mongoose from 'mongoose'
 import { ClientEnrollmentDetails } from "../types/ClientEnrollmentDetails"
 import { usersService, UsersService } from "../services/UsersService"
 import { Weekday } from "../types/enums/Weekday"
+import { EnrollmentStatus } from "../types/enums/EnrollmentStatus"
 import { logger } from "../services/LoggingService"
 import path from "path"
+import { waitlistCollection } from "../models/waitlist/waitlist.class"
 import { InvoiceHistory } from "../types/invoices/InvoiceHistory"
 import { InvoiceDetails } from "../types/invoices/InvoiceDetails"
 import { DiscountHandlerFactory } from "../types/discounts/DiscountHandlerFactory"
@@ -167,8 +169,46 @@ class ClientHandler {
       if (existingEnrollment) throw new AppError('errors.enrollmentAlreadyExists', 400)
 
       const classDoc = await this._classService.getClass(classId)
+      
+      const allEnrollments = await this._enrollmentService.getClassEnrollmentInfo(classId)
+      // Only count active enrollments (exclude terminated/unenrolled)
+      const activeEnrollments = allEnrollments.filter(e => e.status === EnrollmentStatus.ACTIVE)
+      const enrollmentCounts = this._calculateEnrollmentCounts(activeEnrollments, classDoc.days)
+      
+      // Determine effective days (either daysOverride or all class days)
+      const effectiveDays = daysOverride && daysOverride.length > 0 ? daysOverride : classDoc.days
+      
+      // Check if partial enrollment is needed (some days full, some available)
+      const fullDays = classDoc.days.filter(day => {
+        const count = enrollmentCounts[day] || 0
+        return count >= classDoc.maxCapacity
+      })
+      const hasFullDays = fullDays.length > 0
+      const hasAvailableDays = classDoc.days.some(day => {
+        const count = enrollmentCounts[day] || 0
+        return count < classDoc.maxCapacity
+      })
+      
+      // If partial enrollment is needed (some days full, some available), daysOverride is required
+      if (hasFullDays && hasAvailableDays) {
+        if (!daysOverride || daysOverride.length === 0) {
+          throw new AppError('errors.partialEnrollmentRequired', 400)
+        }
+      }
+      
+      // Check capacity for the effective days
+      for (const day of effectiveDays) {
+        const currentCount = enrollmentCounts[day] || 0
+        if (currentCount >= classDoc.maxCapacity) {
+          throw new AppError('errors.classAtCapacity', 400)
+        }
+      }
+      
       let enrollment = await this._enrollClient(classDoc, userId, startDate, billingFrequencyOverride, daysOverride)
       await this._generateInvoice(userId, enrollment._id, classDoc, startDate, billingFrequencyOverride!, currency)
+      
+      // Remove user from waitlist for this class if they were on it
+      await waitlistCollection.removeWaitlistEntryByUserAndClass(userId, classId)
       
       await session.commitTransaction()
     } catch (error: any) {
@@ -804,6 +844,22 @@ class ClientHandler {
     }
     
     return await this._enrollmentService.enrollClient(enrollmentDTO)
+  }
+
+  private _calculateEnrollmentCounts(enrollments: Enrollment[], classDays: Weekday[]): Partial<Record<Weekday, number>> {
+    const enrollmentCounts: Partial<Record<Weekday, number>> = Object.fromEntries(
+      classDays.map(day => [day, 0])
+    )
+    enrollments.forEach((enrollment) => {
+      if (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) {
+        for (const day of enrollment.daysOfWeekOverride) {
+          if (enrollmentCounts[day] !== undefined) enrollmentCounts[day] += 1
+        }
+      } else {
+        for (const day of classDays) enrollmentCounts[day]! += 1
+      }
+    })
+    return enrollmentCounts
   }
 
   private _calculateDueDate(startDate: Date, billingFrequency: BillingFrequency): Date {

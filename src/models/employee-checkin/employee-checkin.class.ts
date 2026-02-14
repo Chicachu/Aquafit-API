@@ -57,6 +57,69 @@ class EmployeeCheckInCollection {
       .lean();
     return docs as unknown as EmployeeCheckInDocument[];
   }
+
+  /**
+   * Checks if there's an open check-in (no matching check-out) that starts on or before the given date.
+   * Returns the open check-in if found, null otherwise.
+   */
+  async getOpenCheckInBeforeDate(employeeId: string, date: Date): Promise<EmployeeCheckInDocument | null> {
+    // Get all entries for this employee up to the given date, sorted by date ascending
+    const entries = await this.model
+      .find({
+        employeeId,
+        date: { $lte: date }
+      })
+      .sort({ date: 1 })
+      .lean();
+
+    // Count check-ins and check-outs to determine if there's an open check-in
+    // Odd number of entries means there's an open check-in
+    let checkInCount = 0;
+    let checkOutCount = 0;
+    let lastOpenCheckIn: EmployeeCheckInDocument | null = null;
+
+    for (const entry of entries as unknown as Array<{ type: string; date: Date; _id: string; employeeId: string }>) {
+      if (entry.type === "check-in") {
+        checkInCount++;
+        lastOpenCheckIn = entry as unknown as EmployeeCheckInDocument;
+      } else if (entry.type === "check-out") {
+        checkOutCount++;
+        // If we have a matching check-out, there's no open check-in
+        if (checkInCount === checkOutCount) {
+          lastOpenCheckIn = null;
+        }
+      }
+    }
+
+    // If check-in count > check-out count, there's an open check-in
+    return checkInCount > checkOutCount ? lastOpenCheckIn : null;
+  }
+
+  /**
+   * Checks if there's an open check-in (odd number of check-ins/check-outs).
+   * Returns true if a check-out is allowed (there's an open check-in).
+   */
+  async hasOpenCheckIn(employeeId: string): Promise<boolean> {
+    const entries = await this.model
+      .find({ employeeId })
+      .select({ type: 1 })
+      .sort({ date: 1 })
+      .lean() as unknown as Array<{ type: string }>;
+
+    let checkInCount = 0;
+    let checkOutCount = 0;
+
+    for (const entry of entries) {
+      if (entry.type === "check-in") {
+        checkInCount++;
+      } else if (entry.type === "check-out") {
+        checkOutCount++;
+      }
+    }
+
+    // Odd number means there's an open check-in (check-in count > check-out count)
+    return checkInCount > checkOutCount;
+  }
 }
 
 const employeeCheckInCollection = new EmployeeCheckInCollection(EmployeeCheckInModel);
