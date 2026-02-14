@@ -1,0 +1,7 @@
+const fs = require('fs')
+const path = require('path')
+const src = path.join(__dirname, '..', 'config', 'locales')
+const dest = path.join(__dirname, '..', 'dist', 'config', 'locales')
+fs.mkdirSync(path.dirname(dest), { recursive: true })
+fs.cpSync(src, dest, { recursive: true })
+console.log('Copied config/locales to dist/config/locales')
