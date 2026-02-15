@@ -110,9 +110,14 @@ const ClassSchema = new Schema(
           },
           message: 'Assigned user must have the role of instructor.'
         }
-      }, 
+      },
       reason: {
-        type: String, 
+        type: String,
+        required: false
+      },
+      cancelledBy: {
+        type: String,
+        enum: ['instructor', 'client'],
         required: false
       }
     }],

@@ -14,6 +14,7 @@ import { ClassClientEnrollmentDetails } from "../types/ClassClientEnrollmentDeta
 import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
 import { Invoice } from "../types/invoices/Invoice"
+import { ClassType } from "../types/enums/ClassType"
 
 class ClassHandler {
   constructor(
@@ -266,9 +267,11 @@ class ClassHandler {
     logger.debugComplete(this._FILE_NAME, this.terminateClass.name)
   }
 
-  async cancelClass(classId: string, cancellationDate: Date): Promise<void> {
-    logger.debugInside(this._FILE_NAME, this.cancelClass.name, { classId, cancellationDate })
-    
+  async cancelClass(classId: string, cancellationDate: Date, cancelledBy?: 'instructor' | 'client', reason?: string): Promise<void> {
+    const effectiveCancelledBy = cancelledBy ?? 'instructor'
+    const effectiveReason = (reason && reason.trim()) ? reason.trim() : 'Class cancelled by admin'
+    logger.debugInside(this._FILE_NAME, this.cancelClass.name, { classId, cancellationDate, cancelledBy: effectiveCancelledBy })
+
     const foundClass = await this.classService.getClass(classId)
     if (!foundClass) {
       throw new AppError('errors.resourceNotFound', 404)
@@ -285,7 +288,7 @@ class ClassHandler {
         cancellationDateObj.setHours(0, 0, 0, 0)
         return cancellationDateObj.getTime() === normalizedCancellationDate.getTime()
       })
-      
+
       if (existingCancellation) {
         throw new AppError('errors.classAlreadyCancelledForDate', 400)
       }
@@ -293,9 +296,10 @@ class ClassHandler {
 
     // Get all enrollments for this class
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(classId)
-    
+
     // Get class days
     const classDays = foundClass.days
+    const isPrivateFitness = foundClass.classType === ClassType.PRIVATE_FITNESS
 
     // Process each enrollment
     for (const enrollment of classEnrollments) {
@@ -322,13 +326,13 @@ class ClassHandler {
         // Find the invoice that contains the cancellation date in its period
         const allInvoices = await this.invoiceService.getInvoicesFromIds(enrollment.invoiceIds)
         let targetInvoice: Invoice | null = null
-        
+
         for (const invoice of allInvoices) {
           const invoiceStartDate = new Date(invoice.period.startDate)
           invoiceStartDate.setHours(0, 0, 0, 0)
           const invoiceEndDate = new Date(invoice.period.endDate)
           invoiceEndDate.setHours(0, 0, 0, 0)
-          
+
           // Check if cancellation date falls within this invoice's period
           if (normalizedCancellationDate >= invoiceStartDate && normalizedCancellationDate <= invoiceEndDate) {
             targetInvoice = invoice
@@ -347,6 +351,28 @@ class ClassHandler {
           // Skip applying bonus session if no invoice contains the cancellation date
           // The invoice generation process will handle this when it runs
           continue
+        }
+
+        // Private Fitness + client-initiated: only give bonus on first client cancel per enrollment period; instructor-initiated always gets bonus
+        if (isPrivateFitness && effectiveCancelledBy === 'client') {
+          const invoiceStartDate = new Date(targetInvoice.period.startDate)
+          invoiceStartDate.setHours(0, 0, 0, 0)
+          const invoiceEndDate = new Date(targetInvoice.period.endDate)
+          invoiceEndDate.setHours(0, 0, 0, 0)
+          const existingClientCancellationsInPeriod = (foundClass.cancellations || []).filter(c => {
+            const d = new Date(c.date)
+            d.setHours(0, 0, 0, 0)
+            return d >= invoiceStartDate && d <= invoiceEndDate && c.cancelledBy === 'client'
+          })
+          if (existingClientCancellationsInPeriod.length >= 1) {
+            logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
+              userId: enrollment.userId,
+              enrollmentId: enrollment._id,
+              message: 'Private Fitness client cancel: not first in period, no bonus session',
+              existingClientCancellationsInPeriod: existingClientCancellationsInPeriod.length
+            })
+            continue
+          }
         }
 
         // Increment bonus sessions (total given) for this enrollment
@@ -397,7 +423,8 @@ class ClassHandler {
     const newCancellation = {
       date: normalizedCancellationDate,
       employeeId: placeholderEmployeeId,
-      reason: 'Class cancelled by admin'
+      reason: effectiveReason,
+      cancelledBy: effectiveCancelledBy
     }
     
     // Get existing cancellations (handle both Mongoose document and plain object)

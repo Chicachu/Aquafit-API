@@ -1,7 +1,7 @@
 import { ClassService, classService } from "../services/ClassService"
 import { enrollmentService, EnrollmentService } from "../services/EnrollmentService"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
-import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
+import { countWeekdaysInPeriod, getNextSessionDay, getNthSessionDay } from "../services/dateUtils"
 import AppError from "../types/AppError"
 import { Class } from "../types/Class"
 import { Discount } from "../types/discounts/Discount"
@@ -468,7 +468,7 @@ class ClientHandler {
 
         // Calculate the next period's end date based on billing frequency
         const billingFrequency = enrollment.billingFrequencyOverride || classDoc.billingFrequency
-        const nextPeriodEndDate = this._calculateDueDate(invoiceStartDate, billingFrequency)
+        const nextPeriodEndDate = this._calculateDueDate(invoiceStartDate, billingFrequency, weekdays)
         nextPeriodEndDate.setHours(0, 0, 0, 0)
         
         // Limit by enrollment endDate, class endDate, or calculated period endDate (whichever is earliest)
@@ -539,7 +539,7 @@ class ClientHandler {
           })
           
           // Calculate base end date for this period
-          let periodEndDate = this._calculateDueDate(period.startDate, billingFrequency)
+          let periodEndDate = this._calculateDueDate(period.startDate, billingFrequency, weekdays)
           periodEndDate.setHours(0, 0, 0, 0) // Normalize to start of day
           
           // Track bonus sessions applied to this invoice
@@ -742,9 +742,10 @@ class ClientHandler {
     const finalPrice = discountResult.finalPrice
     const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
 
-    // create invoice 
+    // create invoice
     const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
-    const dueDate = this._calculateDueDate(startDate, billingFrequency)
+    const weekdays = enrollment.daysOfWeekOverride?.length ? enrollment.daysOfWeekOverride : classDoc.days
+    const dueDate = this._calculateDueDate(startDate, billingFrequency, weekdays)
     const invoice = await this._invoiceService.createInvoice(
       userId, 
       enrollmentId, 
@@ -862,19 +863,31 @@ class ClientHandler {
     return enrollmentCounts
   }
 
-  private _calculateDueDate(startDate: Date, billingFrequency: BillingFrequency): Date {
+  /**
+   * Period end by billing frequency (when weekdays provided, uses session count):
+   * - MONTHLY: 4 weeks = 4 × sessions per week (e.g. 8 sessions for Sat/Sun).
+   * - WEEKLY: 1 week = 1 × sessions per week (e.g. 3 sessions for Mon/Wed/Fri).
+   * - ONE_TIME: first session is the last session (1 session).
+   */
+  private _calculateDueDate(startDate: Date, billingFrequency: BillingFrequency, weekdays?: Weekday[]): Date {
     logger.debugInside(this._FILE_NAME, this._calculateDueDate.name)
     const dueDate = new Date(startDate)
+    dueDate.setHours(0, 0, 0, 0)
 
+    if (weekdays && weekdays.length > 0) {
+      return getNthSessionDay(dueDate, billingFrequency, weekdays)
+    }
+
+    // Fallback when weekdays not available
     switch (billingFrequency) {
-      case BillingFrequency.MONTHLY: 
+      case BillingFrequency.MONTHLY:
         dueDate.setDate(dueDate.getDate() + 28)
         break
-      case BillingFrequency.WEEKLY: 
+      case BillingFrequency.WEEKLY:
         dueDate.setDate(dueDate.getDate() + 7)
         break
-      case BillingFrequency.ONE_TIME: 
-        default: 
+      case BillingFrequency.ONE_TIME:
+      default:
         break
     }
 
@@ -891,8 +904,8 @@ class ClientHandler {
     bonusSessions: number
   ): Date {
     // Calculate base end date
-    let endDate = this._calculateDueDate(startDate, billingFrequency)
-    
+    let endDate = this._calculateDueDate(startDate, billingFrequency, weekdays)
+
     // Extend end date by bonus sessions (one session day per bonus session)
     for (let i = 0; i < bonusSessions; i++) {
       endDate = getNextSessionDay(endDate, weekdays)
@@ -923,8 +936,8 @@ class ClientHandler {
     })
     
     while (currentStart < endDate) {
-      const periodEnd = this._calculateDueDate(currentStart, billingFrequency)
-      
+      const periodEnd = this._calculateDueDate(currentStart, billingFrequency, weekdays)
+
       // Don't create periods that extend beyond the end date
       const actualEnd = periodEnd > endDate ? new Date(endDate) : periodEnd
       

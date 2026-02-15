@@ -27,6 +27,7 @@ export type Class = IDocument & {
     date: Date
     employeeId: string
     reason?: string | null
+    cancelledBy?: 'instructor' | 'client' | null
   }[]
   waitlist?: string[] | undefined
   notes?: Note[] | null
@@ -55,5 +56,6 @@ export type ClassUpdateOptions = {
     date: Date
     employeeId: string
     reason?: string | null
+    cancelledBy?: 'instructor' | 'client' | null
   }[]
 }

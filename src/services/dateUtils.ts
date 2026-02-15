@@ -1,3 +1,4 @@
+import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Weekday } from "../types/enums/Weekday"
 
 /**
@@ -38,4 +39,40 @@ export function getNextSessionDay(date: Date, weekdays: Weekday[]): Date {
   
   // Fallback: return date + 1 day if no match found (shouldn't happen)
   return nextDate
+}
+
+/**
+ * Returns the period-end session day from startDate based on billing frequency.
+ * Session count per period:
+ * - MONTHLY: 4 × days per week (e.g. 8 for Sat/Sun)
+ * - WEEKLY: 1 × days per week (e.g. 3 for Mon/Wed/Fri)
+ * - ONE_TIME: 1 (first session is the last session)
+ */
+export function getNthSessionDay(
+  startDate: Date,
+  billingFrequency: BillingFrequency,
+  weekdays: number[]
+): Date {
+  let n: number
+  switch (billingFrequency) {
+    case BillingFrequency.MONTHLY:
+      n = 4 * weekdays.length
+      break
+    case BillingFrequency.WEEKLY:
+      n = 1 * weekdays.length
+      break
+    case BillingFrequency.ONE_TIME:
+    default:
+      n = 1
+      break
+  }
+
+  if (n <= 0) return new Date(startDate)
+  let current = new Date(startDate)
+  current.setHours(0, 0, 0, 0)
+  for (let i = 0; i < n - 1; i++) {
+    current = getNextSessionDay(current, weekdays)
+    current.setHours(0, 0, 0, 0)
+  }
+  return current
 }

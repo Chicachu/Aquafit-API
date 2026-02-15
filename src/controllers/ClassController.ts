@@ -160,6 +160,8 @@ class ClassController {
   cancelClass = [
     param('classId').isString().notEmpty(),
     body('cancellationDate').isISO8601().toDate(),
+    body('cancelledBy').optional().isIn(['instructor', 'client']),
+    body('reason').optional().isString(),
     asyncHandler(async (req: Request, res: Response) => {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
@@ -168,7 +170,9 @@ class ClassController {
       
       const classId = req.params.classId
       const cancellationDate = req.body.cancellationDate as Date
-      await classHandler.cancelClass(classId, cancellationDate)
+      const cancelledBy = req.body.cancelledBy as 'instructor' | 'client' | undefined
+      const reason = req.body.reason as string | undefined
+      await classHandler.cancelClass(classId, cancellationDate, cancelledBy, reason)
       res.send()
     })
   ]
