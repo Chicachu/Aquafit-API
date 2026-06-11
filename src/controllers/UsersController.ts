@@ -27,10 +27,10 @@ class UsersController {
   })
   
   addNewUser = [
-    body('firstName').isString().notEmpty(),
-    body('lastName').isString().notEmpty(),
-    body('phoneNumber').optional().isString().notEmpty(),
-    body('role').optional().isString().isIn(Object.values(Role)),
+    body('firstName').isString().trim().notEmpty(),
+    body('lastName').isString().trim().notEmpty(),
+    body('phoneNumber').optional().isString(),
+    body('role').optional({ values: 'falsy' }).trim().isString().isIn(Object.values(Role)),
     body('employeeId').optional().custom((value) => {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
@@ -43,22 +43,28 @@ class UsersController {
           throw new AppError('errors.missingParameters', 400)
         }
 
+        const roleVal = (role || Role.CLIENT) as Role
+        if (req.username) {
+          const currentUser = await usersService.getUser(req.username)
+          if (currentUser?.role === Role.RECEPTIONIST && roleVal !== Role.CLIENT) {
+            throw new AppError(i18n.__('errors.accessDenied'), 401)
+          }
+        }
+
         const createUserDTO: UserCreationDTO = {
-          firstName, 
-          lastName, 
-          role: role || Role.CLIENT
+          firstName: typeof firstName === 'string' ? firstName.trim() : firstName,
+          lastName: typeof lastName === 'string' ? lastName.trim() : lastName,
+          role: roleVal
         }
         
-        if (phoneNumber) {
-          createUserDTO.phoneNumber = phoneNumber
+        if (phoneNumber !== undefined && phoneNumber !== null && String(phoneNumber).trim() !== '') {
+          createUserDTO.phoneNumber = String(phoneNumber).trim()
         }
 
         if (employeeId !== undefined) {
           createUserDTO.employeeId = employeeId === null ? undefined : Number(employeeId)
         }
-
-        const roleVal = (role || Role.CLIENT) as Role
-        if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE) && createUserDTO.employeeId != null) {
+        if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE || roleVal === Role.MANAGER || roleVal === Role.RECEPTIONIST) && createUserDTO.employeeId != null) {
           createUserDTO.username = String(createUserDTO.employeeId)
         }
 
@@ -220,6 +226,13 @@ class UsersController {
         throw new AppError('errors.resourceNotFound', 404)
       }
 
+      if (req.username) {
+        const currentUser = await usersService.getUser(req.username)
+        if (currentUser?.role === Role.RECEPTIONIST && user.role !== Role.CLIENT) {
+          throw new AppError(i18n.__('errors.accessDenied'), 401)
+        }
+      }
+
       const updateData: UpdateUserOptions & { firstName?: string, lastName?: string } = {}
       if (req.body.firstName !== undefined) updateData.firstName = req.body.firstName
       if (req.body.lastName !== undefined) updateData.lastName = req.body.lastName
@@ -235,7 +248,7 @@ class UsersController {
 
       const roleVal = (updateData.role ?? user.role) as Role
       const employeeIdVal = updateData.employeeId !== undefined ? updateData.employeeId : user.employeeId
-      if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE) && employeeIdVal != null) {
+      if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE || roleVal === Role.MANAGER || roleVal === Role.RECEPTIONIST) && employeeIdVal != null) {
         updateData.username = String(employeeIdVal)
       }
 

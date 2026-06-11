@@ -69,7 +69,7 @@ const hasAccessToUserInvoices = asyncHandler(async (req: Request, res: Response,
     throw new AppError(i18n.__('errors.accessDenied'), 401)
   }
 
-  if (user.role === Role.ADMIN) {
+  if (user.role === Role.ADMIN || user.role === Role.MANAGER || user.role === Role.RECEPTIONIST) {
     return next()
   }
   if ((user.role === Role.INSTRUCTOR || user.role === Role.EMPLOYEE) && targetUserId === loggedInId) {
@@ -79,17 +79,30 @@ const hasAccessToUserInvoices = asyncHandler(async (req: Request, res: Response,
   throw new AppError(i18n.__('errors.accessDenied'), 401)
 })
 
-/** Allow add/delete class notes for Admin or Instructor. */
+/** Allow add/delete class notes for Admin, Manager, Instructor, or Receptionist. */
 const hasAccessToClassNotes = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const userId = res.locals.loggedInUser as string | undefined
   if (!userId) {
     throw new AppError(i18n.__('errors.accessDenied'), 401)
   }
   const user = await usersService.getUserById(userId)
-  if (!user || (user.role !== Role.ADMIN && user.role !== Role.INSTRUCTOR)) {
+  if (!user || (user.role !== Role.ADMIN && user.role !== Role.MANAGER && user.role !== Role.INSTRUCTOR && user.role !== Role.RECEPTIONIST)) {
     throw new AppError(i18n.__('errors.accessDenied'), 401)
   }
   next()
 })
 
-export { hasAccess, isLoggedIn, hasAccessToUserInvoices, hasAccessToClassNotes }
+/** Allow terminate class or update class details only for Admin, Manager, or Instructor (not Receptionist). */
+const hasAccessToTerminateOrUpdateClass = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+  const userId = res.locals.loggedInUser as string | undefined
+  if (!userId) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+  const user = await usersService.getUserById(userId)
+  if (!user || (user.role !== Role.ADMIN && user.role !== Role.MANAGER && user.role !== Role.INSTRUCTOR)) {
+    throw new AppError(i18n.__('errors.accessDenied'), 401)
+  }
+  next()
+})
+
+export { hasAccess, isLoggedIn, hasAccessToUserInvoices, hasAccessToClassNotes, hasAccessToTerminateOrUpdateClass }
