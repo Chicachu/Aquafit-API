@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import { Request, Response } from 'express'
-import { query } from 'express-validator'
+import { param, query, validationResult } from 'express-validator'
 import { classService } from '../services/ClassService'
 import { scheduleService } from '../services/ScheduleService'
 import { ScheduleView } from '../types/enums/ScheduleView'
@@ -43,6 +43,20 @@ class ScheduleController {
 
       res.send(Object.fromEntries(classesSchedule))
     })  
+  ]
+
+  getInstructorClassDetails = [
+    param('userId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const { userId } = req.params
+      const instructorClassDetails = await scheduleService.getInstructorClassDetails(userId)
+      res.send(instructorClassDetails)
+    })
   ]
 }
 

@@ -33,7 +33,10 @@
     "cannotDeleteUserHasEnrollments": "El usuario tiene inscripciones.",
     "cannotDeleteUserHasUnpaidInvoices": "El usuario tiene facturas sin pagar.",
     "cannotDeleteUserOnWaitlist": "El usuario está en una lista de espera.",
-    "cannotDeleteNonClient": "Solo se pueden eliminar usuarios con rol de cliente."
+    "cannotDeleteNonClient": "Solo se pueden eliminar usuarios con rol de cliente.",
+    "invalidPaymentAmount": "El monto del pago debe ser mayor que cero.",
+    "paymentAmountExceedsRemaining": "El monto del pago excede el saldo restante de esta factura.",
+    "invoiceNotPayable": "Esta factura no puede recibir pagos."
   },
   "notes": {
     "reasonForUnenrollingIn": "Razón para dar de baja en"

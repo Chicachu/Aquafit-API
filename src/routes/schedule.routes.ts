@@ -7,6 +7,8 @@ import { AccessControlResource } from "../types/enums/AccessControlResource";
 
 const router = express.Router()
 
+router.get('/users/:userId/classes', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), scheduleController.getInstructorClassDetails)
+
 router.get('/classes', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), scheduleController.getClassSchedule)
 
 export default router

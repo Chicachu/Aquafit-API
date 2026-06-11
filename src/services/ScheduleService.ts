@@ -2,6 +2,12 @@ import path from "path";
 import { CalendarClass } from "../types/CalendarClass";
 import { Class } from "../types/Class";
 import { logger } from "./LoggingService";
+import { usersService } from "./UsersService";
+import { assignmentService } from "./AssignmentService";
+import { classService } from "./ClassService";
+import AppError from "../types/AppError";
+import { Role } from "../types/enums/Role";
+import { InstructorClassDetails } from "../types/InstructorClassDetails";
 
 class ScheduleService {
   private readonly _FILE_NAME = path.basename(__filename)
@@ -100,6 +106,39 @@ class ScheduleService {
     const newDate = new Date(date)
     newDate.setHours(hours, minutes)
     return newDate
+  }
+
+  async getInstructorClassDetails(userId: string): Promise<InstructorClassDetails> {
+    logger.debugInside(this._FILE_NAME, this.getInstructorClassDetails.name, { userId })
+
+    const instructor = await usersService.getUserById(userId)
+
+    if (!instructor || instructor.role !== Role.INSTRUCTOR) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    const assignments = await assignmentService.getInstructorAssignments(userId)
+    const assignmentInfo: InstructorClassDetails['assignmentInfo'] = []
+
+    for (const assignment of assignments) {
+      const classInfo = await classService.getClass(assignment.classId)
+      if (!classInfo) {
+        logger.info(
+          this._FILE_NAME,
+          this.getInstructorClassDetails.name,
+          `Skipping assignment ${assignment._id}: class ${assignment.classId} not found`,
+          { assignmentId: assignment._id, classId: assignment.classId }
+        )
+        continue
+      }
+      assignmentInfo.push({ class: classInfo, assignment })
+    }
+
+    logger.debugComplete(this._FILE_NAME, this.getInstructorClassDetails.name)
+    return {
+      instructor,
+      assignmentInfo
+    }
   }
 }
 

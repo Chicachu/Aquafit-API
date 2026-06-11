@@ -22,6 +22,7 @@ import path from "path"
 import { waitlistCollection } from "../models/waitlist/waitlist.class"
 import { InvoiceHistory } from "../types/invoices/InvoiceHistory"
 import { InvoiceDetails } from "../types/invoices/InvoiceDetails"
+import { PaymentType } from "../types/enums/PaymentType"
 import { DiscountHandlerFactory } from "../types/discounts/DiscountHandlerFactory"
 import { PartialEnrollmentContext } from "../types/discounts/handlers/contexts/PartialEnrollmentContext"
 
@@ -114,6 +115,24 @@ class ClientHandler {
     } catch (error: any) {
       throw new AppError('errors.resourceNotFound', error.status)
     }
+  }
+
+  async applyPaymentToInvoice(
+    invoiceId: string,
+    userId: string,
+    enrollmentId: string,
+    amount: number,
+    paymentType: PaymentType
+  ): Promise<InvoiceDetails> {
+    await this._invoiceService.applyPaymentToInvoice(
+      invoiceId,
+      userId,
+      enrollmentId,
+      amount,
+      paymentType
+    )
+
+    return this.getInvoiceDetails(invoiceId, userId, enrollmentId)
   }
 
   async getInvoiceHistory(userId: string, enrollmentId: string): Promise<InvoiceHistory> {

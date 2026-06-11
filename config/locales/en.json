@@ -33,7 +33,10 @@
     "cannotDeleteUserHasEnrollments": "User has enrollments.",
     "cannotDeleteUserHasUnpaidInvoices": "User has unpaid invoices.",
     "cannotDeleteUserOnWaitlist": "User is on a waitlist.",
-    "cannotDeleteNonClient": "Only client users can be deleted."
+    "cannotDeleteNonClient": "Only client users can be deleted.",
+    "invalidPaymentAmount": "Payment amount must be greater than zero.",
+    "paymentAmountExceedsRemaining": "Payment amount exceeds the remaining balance on this invoice.",
+    "invoiceNotPayable": "This invoice cannot accept payments."
   },
   "notes": {
     "reasonForUnenrollingIn": "Reason for unenrolling in"

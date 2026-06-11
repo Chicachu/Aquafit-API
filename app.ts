@@ -87,6 +87,9 @@ app.use('/api/schedules', scheduleRouter)
 import enrollmentRouter from './src/routes/enrollment.routes'
 app.use('/api/enrollments', enrollmentRouter)
 
+import invoiceAndPaymentsRouter from './src/routes/invoice-and-payments.routes'
+app.use('/api/invoice-and-payments', invoiceAndPaymentsRouter)
+
 import discountRouter from './src/routes/discount.routes'
 app.use('/api/discounts', discountRouter)
 

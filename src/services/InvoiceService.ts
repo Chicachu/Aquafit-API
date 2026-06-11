@@ -6,6 +6,7 @@ import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
 import { Price } from "../types/Price"
 import { logger } from "./LoggingService"
 import { PaymentStatus } from "../types/enums/PaymentStatus"
+import { PaymentType } from "../types/enums/PaymentType"
 
 class InvoiceService {
   constructor(private _invoiceCollection: InvoiceCollection) {}
@@ -260,6 +261,72 @@ class InvoiceService {
           $set: {
             bonusSessionsApplied
           }
+        }
+      )
+    } catch (error) {
+      throw new AppError('errors.unableToUpdateResource', 500)
+    }
+  }
+
+  async applyPaymentToInvoice(
+    invoiceId: string,
+    userId: string,
+    enrollmentId: string,
+    amount: number,
+    paymentType: PaymentType
+  ): Promise<Invoice> {
+    logger.debugInside(this._FILE_NAME, this.applyPaymentToInvoice.name, {
+      invoiceId,
+      userId,
+      enrollmentId,
+      amount,
+      paymentType
+    })
+
+    const invoice = await this.getInvoice(invoiceId)
+
+    if (invoice.userId !== userId || invoice.enrollmentId !== enrollmentId) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    if (
+      invoice.paymentStatus === PaymentStatus.PAID
+      || invoice.paymentStatus === PaymentStatus.CANCELLED
+    ) {
+      throw new AppError('errors.invoiceNotPayable', 400)
+    }
+
+    const totalPayments = (invoice.paymentsApplied || []).reduce(
+      (sum, payment) => sum + payment.charge.amount,
+      0
+    )
+    const remainingBalance = invoice.charge.amount - totalPayments
+
+    if (amount <= 0) {
+      throw new AppError('errors.invalidPaymentAmount', 400)
+    }
+
+    if (amount > remainingBalance) {
+      throw new AppError('errors.paymentAmountExceedsRemaining', 400)
+    }
+
+    const payment = {
+      charge: { amount, currency: invoice.charge.currency },
+      date: new Date(),
+      paymentType
+    }
+
+    const newTotalPayments = totalPayments + amount
+    const newPaymentStatus = newTotalPayments >= invoice.charge.amount
+      ? PaymentStatus.PAID
+      : invoice.paymentStatus
+
+    try {
+      return await this._invoiceCollection.updateOne(
+        { _id: invoiceId },
+        {
+          $push: { paymentsApplied: payment },
+          $set: { paymentStatus: newPaymentStatus }
         }
       )
     } catch (error) {

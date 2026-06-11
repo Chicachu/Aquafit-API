@@ -1,6 +1,6 @@
 import express from "express";
 import { usersController } from "../controllers/UsersController";
-import { hasAccess, isLoggedIn, hasAccessToUserInvoices } from "../middleware/AuthMiddleware";
+import { hasAccess, isLoggedIn } from "../middleware/AuthMiddleware";
 import { AccessControlResource } from "../types/enums/AccessControlResource";
 import { AccessControlAction } from "../types/enums/AccessControlAction";
 
@@ -20,16 +20,6 @@ router.put('/', isLoggedIn, hasAccess(AccessControlAction.CREATE_ANY, AccessCont
 
 router.post('/register', usersController.registerNewUser)
 
-router.get('/:userId/enrollments', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.ENROLLMENT), usersController.getClientEnrollmentDetails)
-
-router.get('/:userId/invoices', isLoggedIn, hasAccessToUserInvoices, usersController.getInvoicesByUserId)
-
-router.get('/:userId/payments/:enrollmentId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceHistory)
-
-router.get('/:userId/payments/:enrollmentId/:invoiceId', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.PAYMENT), usersController.getInvoiceDetails)
-
-router.get('/:userId/payables/:payableId', isLoggedIn, hasAccessToUserInvoices, ...usersController.getPayableDetails)
-
 router.put('/:userId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.updateClient)
 
 router.post('/:userId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.addNote)
@@ -37,7 +27,5 @@ router.post('/:userId/notes', isLoggedIn, hasAccess(AccessControlAction.UPDATE_A
 router.delete('/:userId/notes/:noteId', isLoggedIn, hasAccess(AccessControlAction.UPDATE_ANY, AccessControlResource.USER), usersController.deleteNote)
 
 router.delete('/:userId', isLoggedIn, hasAccess(AccessControlAction.DELETE_ANY, AccessControlResource.USER), ...usersController.deleteUser)
-
-router.get('/:userId/classes', isLoggedIn, hasAccess(AccessControlAction.READ_ANY, AccessControlResource.CLASS), usersController.getInstructorClassDetails)
 
 export default router

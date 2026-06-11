@@ -1,4 +1,4 @@
-import { body, validationResult } from "express-validator"
+import { body, param, validationResult } from "express-validator"
 import { Request, Response } from 'express'
 import asyncHandler from 'express-async-handler'
 import AppError from "../types/AppError"
@@ -35,6 +35,20 @@ class EnrollmentController {
     )
     res.send(activeEnrollments)
   })
+
+  getClientEnrollmentDetails = [
+    param('userId').isString().notEmpty(),
+    asyncHandler(async (req: Request, res: Response) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        throw new AppError('errors.missingParameters', 400)
+      }
+
+      const { userId } = req.params
+      const clientEnrollmentDetails = await clientHandler.getClientEnrollmentDetails(userId)
+      res.send(clientEnrollmentDetails)
+    })
+  ]
 
   unenrollClient = [
     body('enrollmentId').isString().notEmpty(),

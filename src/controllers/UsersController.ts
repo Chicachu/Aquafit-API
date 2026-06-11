@@ -6,16 +6,10 @@ import { Role } from '../types/enums/Role'
 import { authenticationService } from '../services/AuthenticationService'
 import { body, param, query, validationResult } from 'express-validator'
 import { UpdateUserOptions, UserCreationDTO } from '../types/User'
-import { clientHandler } from '../business/ClientHandler'
-import { classService } from '../services/ClassService'
-import { InstructorClassDetails } from '../types/InstructorClassDetails'
-import { assignmentService } from '../services/AssignmentService'
 import { invoiceService } from '../services/InvoiceService'
 import { enrollmentService } from '../services/EnrollmentService'
 import { waitlistCollection } from '../models/waitlist/waitlist.class'
 import { PaymentStatus } from '../types/enums/PaymentStatus'
-import * as employeePayableService from '../services/EmployeePayableService'
-import { logger } from '../services/LoggingService'
 import i18n from '../../config/i18n'
 
 class UsersController {
@@ -112,88 +106,6 @@ class UsersController {
         const user = await usersService.getUserById(userId)
 
         res.send(user)
-    })
-  ]
-
-  getClientEnrollmentDetails = [
-    param('userId').isString().notEmpty(),
-      asyncHandler(async (req: Request, res: Response) => {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-          throw new AppError('errors.missingParameters', 400)
-        }
-        const userId = req.params.userId 
-        const clientEnrollmentDetails = await clientHandler.getClientEnrollmentDetails(userId)
-
-        res.send(clientEnrollmentDetails)
-      })
-  ]
-
-  getInvoiceHistory = [
-    param('userId').isString().notEmpty(), 
-    param('enrollmentId').isString().notEmpty(),
-      asyncHandler(async (req: Request, res: Response) => {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-          throw new AppError('errors.missingParameters', 400)
-        }
-
-        const { userId, enrollmentId } = req.params
-        const invoiceHistory = await clientHandler.getInvoiceHistory(userId, enrollmentId)
-
-        res.send(invoiceHistory)
-      })
-  ]
-
-  getInvoicesByUserId = [
-    param('userId').isString().notEmpty(),
-    asyncHandler(async (req: Request, res: Response) => {
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        throw new AppError('errors.missingParameters', 400)
-      }
-      const userId = req.params.userId
-      const [invoices, employeePayables, name] = await Promise.all([
-        invoiceService.getInvoicesByUserId(userId),
-        employeePayableService.getPayablesByUserId(userId),
-        usersService.getUserFirstAndLastName(userId)
-      ])
-      const userName = `${name.firstName} ${name.lastName}`.trim()
-      res.send({ invoices, employeePayables, userName })
-    })
-  ]
-
-  getInvoiceDetails = [
-    param('invoiceId').isString().notEmpty(),
-    param('userId').isString().notEmpty(), 
-    param('enrollmentId').isString().notEmpty(),
-    asyncHandler(async (req: Request, res: Response) => {
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        throw new AppError('errors.missingParameters', 400)
-      }
-  
-      const { invoiceId, userId, enrollmentId } = req.params
-      const invoiceDetails = await clientHandler.getInvoiceDetails(invoiceId, userId, enrollmentId)
-  
-      res.send(invoiceDetails)
-    })
-  ]
-
-  getPayableDetails = [
-    param('userId').isString().notEmpty(),
-    param('payableId').isString().notEmpty(),
-    asyncHandler(async (req: Request, res: Response) => {
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        throw new AppError('errors.missingParameters', 400)
-      }
-      const { userId, payableId } = req.params
-      const payable = await employeePayableService.getPayableDetailsWithComputedAmounts(userId, payableId)
-      if (!payable) {
-        throw new AppError('errors.resourceNotFound', 404)
-      }
-      res.send(payable)
     })
   ]
 
@@ -409,46 +321,6 @@ class UsersController {
     const employeeId = await usersService.getNextEmployeeId()
     res.send({ employeeId })
   })
-
-  getInstructorClassDetails = [
-    param('userId').isString().notEmpty(),
-      asyncHandler(async (req: Request, res: Response) => {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-          throw new AppError('errors.missingParameters', 400)
-        }
-        const userId = req.params.userId 
-        const instructor = await usersService.getUserById(userId)
-        
-        if (!instructor || instructor.role !== Role.INSTRUCTOR) {
-          throw new AppError('errors.resourceNotFound', 404)
-        }
-
-        const assignments = await assignmentService.getInstructorAssignments(userId)
-        const assignmentInfo: { class: any, assignment: any }[] = []
-        
-        for (const assignment of assignments) {
-          const classInfo = await classService.getClass(assignment.classId)
-          if (!classInfo) {
-            logger.info(
-              'UsersController',
-              'getInstructorClassDetails',
-              `Skipping assignment ${assignment._id}: class ${assignment.classId} not found`,
-              { assignmentId: assignment._id, classId: assignment.classId }
-            )
-            continue
-          }
-          assignmentInfo.push({ class: classInfo, assignment })
-        }
-        
-        const instructorClassDetails: InstructorClassDetails = {
-          instructor,
-          assignmentInfo
-        }
-
-        res.send(instructorClassDetails)
-      })
-  ]
 }
 
 const usersController = new UsersController()
