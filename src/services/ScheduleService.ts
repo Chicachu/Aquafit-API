@@ -8,6 +8,11 @@ import { classService } from "./ClassService";
 import AppError from "../types/AppError";
 import { Role } from "../types/enums/Role";
 import { InstructorClassDetails } from "../types/InstructorClassDetails";
+import {
+  combineBusinessDateAndTime,
+  formatBusinessDateKey,
+  getBusinessDayOfWeek
+} from "./scheduleDateUtils";
 
 class ScheduleService {
   private readonly _FILE_NAME = path.basename(__filename)
@@ -66,10 +71,10 @@ class ScheduleService {
 
       let currentDate = new Date(effectiveStartDate)
       while (currentDate <= effectiveEndDate) {
-        if (classInfo.days.includes(currentDate.getDay())) {
+        if (classInfo.days.includes(getBusinessDayOfWeek(currentDate))) {
           occurrences.push({
             ...classInfo,
-            date: this._addTimeToDate(currentDate, classInfo.startTime)
+            date: combineBusinessDateAndTime(currentDate, classInfo.startTime)
           })
         }
 
@@ -90,7 +95,7 @@ class ScheduleService {
     return new Map(
       Object.entries(
         occurrences.reduce((acc, curr) => {
-          const dateKey = curr.date.toISOString().split('T')[0];
+          const dateKey = formatBusinessDateKey(curr.date);
           if (!acc[dateKey]) {
             acc[dateKey] = [];
           }
@@ -99,13 +104,6 @@ class ScheduleService {
         }, {} as { [key: string]: CalendarClass[] })
       )
     );
-  } 
-
-  private _addTimeToDate(date: Date, timeString: string): Date {
-    const [hours, minutes] = timeString.split(":").map(Number)
-    const newDate = new Date(date)
-    newDate.setHours(hours, minutes)
-    return newDate
   }
 
   async getInstructorClassDetails(userId: string): Promise<InstructorClassDetails> {

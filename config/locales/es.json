@@ -11,6 +11,7 @@
     "invalidLanguage": "Idioma no válido.",
     "alreadyRegistered": "El usuario ya está registrado",
     "missingParameters": "Faltan parámetros",
+    "invalidRole": "Rol inválido.",
     "passwordMinLength": "La contraseña debe tener al menos 6 caracteres.",
     "viewIsRequired": "La vista es obligatoria",
     "conflictingClasses": "La clase no se pudo agregar, entra en conflicto con una clase existente.",

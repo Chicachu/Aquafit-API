@@ -12,6 +12,7 @@ import { waitlistCollection } from '../models/waitlist/waitlist.class'
 import { PaymentStatus } from '../types/enums/PaymentStatus'
 import i18n from '../../config/i18n'
 import { isAdminAquafitEmail, isInternalAquafitEmail, parseNameFromInternalEmail } from '../services/emailUtils'
+import { hasStaffEmployeeId } from '../types/staffManagementRoles'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -39,6 +40,9 @@ class UsersController {
         }
 
         const roleVal = (role || Role.CLIENT) as Role
+        if (roleVal === Role.EMPLOYEE) {
+          throw new AppError('errors.invalidRole', 400)
+        }
         if (req.username) {
           const currentUser = await usersService.getUser(req.username)
           if (currentUser?.role === Role.RECEPTIONIST && roleVal !== Role.CLIENT) {
@@ -59,7 +63,7 @@ class UsersController {
         if (employeeId !== undefined) {
           createUserDTO.employeeId = employeeId === null ? undefined : Number(employeeId)
         }
-        if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE || roleVal === Role.MANAGER || roleVal === Role.RECEPTIONIST) && createUserDTO.employeeId != null) {
+        if (hasStaffEmployeeId(roleVal) && createUserDTO.employeeId != null) {
           createUserDTO.username = String(createUserDTO.employeeId)
         }
 
@@ -150,7 +154,13 @@ class UsersController {
       if (req.body.firstName !== undefined) updateData.firstName = req.body.firstName
       if (req.body.lastName !== undefined) updateData.lastName = req.body.lastName
       if (req.body.phoneNumber !== undefined) updateData.phoneNumber = req.body.phoneNumber
-      if (req.body.role !== undefined) updateData.role = req.body.role as Role
+      if (req.body.role !== undefined) {
+        const nextRole = req.body.role as Role
+        if (nextRole === Role.EMPLOYEE) {
+          throw new AppError('errors.invalidRole', 400)
+        }
+        updateData.role = nextRole
+      }
       if (req.body.employeeId !== undefined) {
         updateData.employeeId = (req.body.employeeId === null ? null : Number(req.body.employeeId)) as number | null
       }
@@ -161,7 +171,7 @@ class UsersController {
 
       const roleVal = (updateData.role ?? user.role) as Role
       const employeeIdVal = updateData.employeeId !== undefined ? updateData.employeeId : user.employeeId
-      if ((roleVal === Role.INSTRUCTOR || roleVal === Role.EMPLOYEE || roleVal === Role.MANAGER || roleVal === Role.RECEPTIONIST) && employeeIdVal != null) {
+      if (hasStaffEmployeeId(roleVal) && employeeIdVal != null) {
         updateData.username = String(employeeIdVal)
       }
 
