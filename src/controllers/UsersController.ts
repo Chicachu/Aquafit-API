@@ -11,6 +11,7 @@ import { enrollmentService } from '../services/EnrollmentService'
 import { waitlistCollection } from '../models/waitlist/waitlist.class'
 import { PaymentStatus } from '../types/enums/PaymentStatus'
 import i18n from '../../config/i18n'
+import { isAdminAquafitEmail, isInternalAquafitEmail, parseNameFromInternalEmail } from '../services/emailUtils'
 
 class UsersController {
   getAllUsers = asyncHandler(async (req: Request, res: Response) => {
@@ -175,19 +176,34 @@ class UsersController {
     body('password').isString().notEmpty(),
     body('role').isString().notEmpty(),
       asyncHandler(async (req: Request, res: Response) => {
-      const { username, password, role } = req.body
+      const { username, password } = req.body
 
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
         throw new AppError('errors.missingParameters', 400)
       }
 
-      let user = await usersService.getUser(username.toLowerCase())
+      const normalizedUsername = username.toLowerCase()
+      const registrationRole = isAdminAquafitEmail(normalizedUsername)
+        ? Role.ADMIN
+        : isInternalAquafitEmail(normalizedUsername)
+          ? Role.INSTRUCTOR
+          : Role.CLIENT
 
-      if (role === Role.CLIENT || role === Role.INSTRUCTOR) {
+      let user = await usersService.getUser(normalizedUsername)
+
+      if (registrationRole === Role.CLIENT) {
         if (!user) {
           throw new AppError('errors.notExistingClient', 400)
         }
+      } else if (!user) {
+        const { firstName, lastName } = parseNameFromInternalEmail(normalizedUsername)
+        user = await usersService.createNewUser({
+          firstName,
+          lastName,
+          role: registrationRole,
+          username: normalizedUsername
+        })
       }
 
       if (!user?._id) {
@@ -200,11 +216,17 @@ class UsersController {
 
       const { encryptedPassword, accessToken } = await authenticationService.encryptPassword(user._id, password)
 
-      user = await usersService.updateUserInfo(user, {
+      const updateUserOptions: UpdateUserOptions = {
         password: encryptedPassword,
         accessToken,
-        username: username.toLowerCase()
-      })
+        username: normalizedUsername
+      }
+
+      if (isAdminAquafitEmail(normalizedUsername)) {
+        updateUserOptions.role = Role.ADMIN
+      }
+
+      user = await usersService.updateUserInfo(user, updateUserOptions)
 
       res.send(user)
     })
