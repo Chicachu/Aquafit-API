@@ -15,6 +15,7 @@ import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { AppliedDiscount } from "../types/discounts/AppliedDiscount"
 import { Invoice } from "../types/invoices/Invoice"
 import { ClassType } from "../types/enums/ClassType"
+import { EnrollmentStatus } from "../types/enums/EnrollmentStatus"
 
 class ClassHandler {
   constructor(
@@ -34,12 +35,13 @@ class ClassHandler {
     }
 
     const classEnrollments = await this.enrollmentService.getClassEnrollmentInfo(foundClass._id!)
+    const activeEnrollments = classEnrollments.filter((enrollment) => this._isActiveEnrollment(enrollment))
 
-    const clientEnrollmentDetails = await this._getClientEnrollmentDetails(classEnrollments, foundClass.days)
+    const clientEnrollmentDetails = await this._getClientEnrollmentDetails(activeEnrollments, foundClass.days)
     const classDetails: ClassDetails = {
       ...foundClass, 
       clients: clientEnrollmentDetails,
-      enrollmentCounts: this._getEnrollmentCounts(classEnrollments, foundClass.days)
+      enrollmentCounts: this._getEnrollmentCounts(activeEnrollments, foundClass.days)
     }
 
     logger.debugComplete(this._FILE_NAME, this.getClassDetails.name)
@@ -53,21 +55,52 @@ class ClassHandler {
     const classClientEnrollmentDetails: ClassClientEnrollmentDetails[] = []
 
     for (const classEnrollment of classEnrollments) {
-      const firstAndLast = await this.userService.getUserFirstAndLastName(classEnrollment.userId)
-      const currentPayment = await this.invoiceService.getOldestUnpaidInvoice(classEnrollment.invoiceIds)
-      const isPartiallyEnrolled =
-        (classEnrollment.daysOfWeekOverride?.length ?? 0) > 0 &&
-        (classEnrollment.daysOfWeekOverride?.length ?? 0) < classDays.length
-      classClientEnrollmentDetails.push({
-        _id: firstAndLast._id,
-        firstName: firstAndLast.firstName,
-        lastName: firstAndLast.lastName,
-        currentPayment,
-        isPartiallyEnrolled
-      })
+      try {
+        const firstAndLast = await this.userService.getUserFirstAndLastName(classEnrollment.userId)
+        const currentPayment = await this._getCurrentPaymentInvoice(classEnrollment.invoiceIds)
+        const isPartiallyEnrolled =
+          (classEnrollment.daysOfWeekOverride?.length ?? 0) > 0 &&
+          (classEnrollment.daysOfWeekOverride?.length ?? 0) < classDays.length
+
+        classClientEnrollmentDetails.push({
+          _id: firstAndLast._id,
+          enrollmentId: classEnrollment._id!,
+          firstName: firstAndLast.firstName,
+          lastName: firstAndLast.lastName,
+          currentPayment: currentPayment ?? undefined,
+          isPartiallyEnrolled,
+          ...(classEnrollment.daysOfWeekOverride?.length
+            ? { daysOfWeekOverride: classEnrollment.daysOfWeekOverride }
+            : {})
+        })
+      } catch (error: any) {
+        logger.debugInside(this._FILE_NAME, this._getClientEnrollmentDetails.name, {
+          enrollmentId: classEnrollment._id,
+          userId: classEnrollment.userId,
+          error: error?.message
+        })
+      }
     }
 
     return classClientEnrollmentDetails
+  }
+
+  private _isActiveEnrollment(enrollment: Enrollment): boolean {
+    return !enrollment.status || enrollment.status === EnrollmentStatus.ACTIVE
+  }
+
+  private async _getCurrentPaymentInvoice(invoiceIds: string[]): Promise<Invoice | null> {
+    if (!invoiceIds?.length) return null
+
+    try {
+      return await this.invoiceService.getOldestUnpaidInvoice(invoiceIds)
+    } catch {
+      try {
+        return await this.invoiceService.getCurrentInvoice(invoiceIds)
+      } catch {
+        return null
+      }
+    }
   }
 
   private _getEnrollmentCounts(enrollments: Enrollment[], classDays: Weekday[]): Partial<Record<Weekday, number>> {
@@ -209,8 +242,6 @@ class ClassHandler {
         } else {
           // Invoice not paid - apply discount to reduce amount due
           const newChargeAmount = Math.max(0, currentInvoice.charge.amount - refundAmount)
-          const newAmountDue = Math.max(0, currentInvoice.amountDue - refundAmount)
-          const newRemainingBalance = Math.max(0, currentInvoice.remainingBalance - refundAmount)
 
           // Create a termination discount entry
           const terminationDiscount: AppliedDiscount = {
@@ -237,13 +268,6 @@ class ClassHandler {
               currency: invoiceCurrency
             },
             updatedDiscounts
-          )
-
-          // Update amountDue and remainingBalance separately (they may differ from charge due to payments)
-          await this.invoiceService.updateInvoiceAmounts(
-            currentInvoice._id!,
-            newAmountDue,
-            newRemainingBalance
           )
 
           logger.debugInside(this._FILE_NAME, this.terminateClass.name, {

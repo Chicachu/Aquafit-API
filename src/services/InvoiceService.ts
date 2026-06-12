@@ -7,11 +7,20 @@ import { Price } from "../types/Price"
 import { logger } from "./LoggingService"
 import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { PaymentType } from "../types/enums/PaymentType"
+import { computeInvoiceAmounts, withInvoiceAmounts } from "./invoiceAmountUtils"
 
 class InvoiceService {
   constructor(private _invoiceCollection: InvoiceCollection) {}
 
   private readonly _FILE_NAME = path.basename(__filename)
+
+  private _asInvoice(invoice: Invoice | null | undefined): Invoice {
+    if (!invoice) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    return withInvoiceAmounts(invoice) as Invoice
+  }
 
   async getClientEnrollmentHistory(userId: string, enrollmentId: string): Promise<Invoice[]> {
     logger.debugInside(this._FILE_NAME, this.getClientEnrollmentHistory.name, { userId, enrollmentId })
@@ -31,7 +40,7 @@ class InvoiceService {
     logger.debugInside(this._FILE_NAME, this.getInvoicesByUserId.name, { userId })
     try {
       const invoices = await this._invoiceCollection.model.find({ userId }).sort({ 'period.endDate': -1 }).lean()
-      return invoices as Invoice[]
+      return (invoices as Invoice[]).map(invoice => withInvoiceAmounts(invoice) as Invoice)
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -42,7 +51,7 @@ class InvoiceService {
 
     try {
       const invoice = await this._invoiceCollection.findOne({ _id: invoiceId })
-      return invoice as Invoice
+      return this._asInvoice(invoice as Invoice)
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -52,7 +61,7 @@ class InvoiceService {
     logger.debugInside(this._FILE_NAME, this.getCurrentInvoice.name, { invoiceIds })
     try {
       const invoice = await this._invoiceCollection.getMostRecentInvoice(invoiceIds)
-      return invoice as Invoice
+      return this._asInvoice(invoice as Invoice)
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -66,7 +75,7 @@ class InvoiceService {
   }
 
   try {
-    return await this._invoiceCollection.getOldestUnpaidInvoice(invoiceIds)
+    return this._asInvoice(await this._invoiceCollection.getOldestUnpaidInvoice(invoiceIds) as Invoice)
   } catch (error) {
     throw new AppError('errors.resourceNotFound', 500)
   }
@@ -79,7 +88,9 @@ class InvoiceService {
     
     try {
       const invoices = await this._invoiceCollection.find({ _id: { $in: invoiceIds } })
-      return invoices.sort((a: Invoice, b: Invoice) => b.period.endDate.getTime() - a.period.endDate.getTime())
+      return invoices
+        .sort((a: Invoice, b: Invoice) => b.period.endDate.getTime() - a.period.endDate.getTime())
+        .map((invoice: Invoice) => withInvoiceAmounts(invoice) as Invoice)
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -146,7 +157,7 @@ class InvoiceService {
 
       logger.debugComplete(this._FILE_NAME, this.createInvoice.name)
       const invoice = await this._invoiceCollection.createInvoice(invoiceCreationDTO)
-      return invoice as Invoice 
+      return this._asInvoice(invoice as Invoice)
     } catch (error: any) {
       throw new AppError('errors.unableToCreateResource', 500)
     } 
@@ -156,7 +167,7 @@ class InvoiceService {
     logger.debugInside(this._FILE_NAME, this.getAllInvoices.name)
     try {
       const invoices = await this._invoiceCollection.model.find({}).lean()
-      return invoices as Invoice[]
+      return (invoices as Invoice[]).map(invoice => withInvoiceAmounts(invoice) as Invoice)
     } catch (error) {
       throw new AppError('errors.resourceNotFound', 500)
     }
@@ -170,48 +181,19 @@ class InvoiceService {
   ): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.updateInvoiceCharge.name, { invoiceId, originalPrice, charge, discountsCount: discountsApplied?.length || 0 })
     try {
-      // Get the current invoice to calculate payments
-      const currentInvoice = await this.getInvoice(invoiceId)
+      // Get the current invoice to validate it exists before updating charge/discounts
+      await this.getInvoice(invoiceId)
       
-      // Calculate total payments applied
-      const totalPayments = currentInvoice.paymentsApplied?.reduce((sum, payment) => sum + payment.charge.amount, 0) || 0
-      
-      // Calculate new remaining balance (charge amount minus payments)
-      const newRemainingBalance = Math.max(0, charge.amount - totalPayments)
-      
-      return await this._invoiceCollection.updateOne(
+      return this._asInvoice(await this._invoiceCollection.updateOne(
         { _id: invoiceId },
         { 
           $set: { 
             originalPrice: originalPrice,
             charge: charge,
-            discountsApplied: discountsApplied || [],
-            amountDue: charge.amount,
-            remainingBalance: newRemainingBalance
+            discountsApplied: discountsApplied || []
           }
         }
-      )
-    } catch (error) {
-      throw new AppError('errors.unableToUpdateResource', 500)
-    }
-  }
-
-  async updateInvoiceAmounts(
-    invoiceId: string,
-    amountDue: number,
-    remainingBalance: number
-  ): Promise<Invoice> {
-    logger.debugInside(this._FILE_NAME, this.updateInvoiceAmounts.name, { invoiceId, amountDue, remainingBalance })
-    try {
-      return await this._invoiceCollection.updateOne(
-        { _id: invoiceId },
-        {
-          $set: {
-            amountDue,
-            remainingBalance
-          }
-        }
-      )
+      ) as Invoice)
     } catch (error) {
       throw new AppError('errors.unableToUpdateResource', 500)
     }
@@ -238,12 +220,12 @@ class InvoiceService {
         update.bonusSessionsApplied = currentBonusSessions + 1
       }
       
-      return await this._invoiceCollection.updateOne(
+      return this._asInvoice(await this._invoiceCollection.updateOne(
         { _id: invoiceId },
         {
           $set: update
         }
-      )
+      ) as Invoice)
     } catch (error) {
       throw new AppError('errors.unableToUpdateResource', 500)
     }
@@ -255,14 +237,14 @@ class InvoiceService {
   ): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.updateBonusSessionsApplied.name, { invoiceId, bonusSessionsApplied })
     try {
-      return await this._invoiceCollection.updateOne(
+      return this._asInvoice(await this._invoiceCollection.updateOne(
         { _id: invoiceId },
         {
           $set: {
             bonusSessionsApplied
           }
         }
-      )
+      ) as Invoice)
     } catch (error) {
       throw new AppError('errors.unableToUpdateResource', 500)
     }
@@ -296,39 +278,45 @@ class InvoiceService {
       throw new AppError('errors.invoiceNotPayable', 400)
     }
 
-    const totalPayments = (invoice.paymentsApplied || []).reduce(
-      (sum, payment) => sum + payment.charge.amount,
-      0
-    )
-    const remainingBalance = invoice.charge.amount - totalPayments
+    const { remainingBalance, totalApplied } = computeInvoiceAmounts(invoice)
 
     if (amount <= 0) {
       throw new AppError('errors.invalidPaymentAmount', 400)
     }
 
-    if (amount > remainingBalance) {
-      throw new AppError('errors.paymentAmountExceedsRemaining', 400)
-    }
+    const appliedAmount = Math.min(amount, remainingBalance)
+    const changeDue = Math.max(0, amount - remainingBalance)
 
-    const payment = {
-      charge: { amount, currency: invoice.charge.currency },
+    const payment: {
+      charge: { amount: number; currency: typeof invoice.charge.currency }
+      amountTendered: { amount: number; currency: typeof invoice.charge.currency }
+      changeDue?: { amount: number; currency: typeof invoice.charge.currency }
+      date: Date
+      paymentType: PaymentType
+    } = {
+      charge: { amount: appliedAmount, currency: invoice.charge.currency },
+      amountTendered: { amount, currency: invoice.charge.currency },
       date: new Date(),
       paymentType
     }
 
-    const newTotalPayments = totalPayments + amount
+    if (changeDue > 0) {
+      payment.changeDue = { amount: changeDue, currency: invoice.charge.currency }
+    }
+
+    const newTotalPayments = totalApplied + appliedAmount
     const newPaymentStatus = newTotalPayments >= invoice.charge.amount
       ? PaymentStatus.PAID
       : invoice.paymentStatus
 
     try {
-      return await this._invoiceCollection.updateOne(
+      return this._asInvoice(await this._invoiceCollection.updateOne(
         { _id: invoiceId },
         {
           $push: { paymentsApplied: payment },
           $set: { paymentStatus: newPaymentStatus }
         }
-      )
+      ) as Invoice)
     } catch (error) {
       throw new AppError('errors.unableToUpdateResource', 500)
     }

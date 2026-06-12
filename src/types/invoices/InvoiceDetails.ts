@@ -15,10 +15,14 @@ export type InvoiceDetails = {
     days: Weekday[]
   }
   originalPrice?: Price
-  charge: Price 
+  charge: Price
+  amountDue: number
+  remainingBalance: number
   discountsApplied?: AppliedDiscount[]
   paymentsApplied: {
     charge: Price
+    amountTendered?: Price | null
+    changeDue?: Price | null
     date: Date
     paymentType: PaymentType
   }[]

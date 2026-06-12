@@ -1,6 +1,7 @@
 import { InferSchemaType, model, Model, Schema } from "mongoose";
 import { PaymentStatus } from "../../types/enums/PaymentStatus";
 import { PaymentType } from "../../types/enums/PaymentType";
+import { computeInvoiceAmounts } from "../../services/invoiceAmountUtils";
 import { AmountSchema } from "../_common/amount.schema";
 const PeriodSchema = new Schema(
   {
@@ -64,6 +65,14 @@ const InvoiceSchema = new Schema(
         type: AmountSchema,
         required: true
       },
+      amountTendered: {
+        type: AmountSchema,
+        required: false
+      },
+      changeDue: {
+        type: AmountSchema,
+        required: false
+      },
       date: {
         type: Date, 
         required: true
@@ -120,15 +129,11 @@ function calculateTotalDiscounts(discounts: any[]): number {
 }
 
 InvoiceSchema.virtual('amountDue').get(function (this: IInvoiceDocument) {
-  // amountDue is the final price after all discounts (same as charge)
-  return this.charge?.amount || 0;
+  return computeInvoiceAmounts(this).amountDue;
 });
 
 InvoiceSchema.virtual('remainingBalance').get(function (this: IInvoiceDocument) {
-  // remainingBalance = amountDue - payments
-  const amountDue = this.charge?.amount || 0;
-  const totalPayments = (this.paymentsApplied || []).reduce((sum, p) => sum + p.charge.amount, 0);
-  return amountDue - totalPayments;
+  return computeInvoiceAmounts(this).remainingBalance;
 });
 
 InvoiceSchema.set('toObject', { virtuals: true });

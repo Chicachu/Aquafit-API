@@ -101,7 +101,9 @@ class ClientHandler {
           days: effectiveWeekdays
         },
         originalPrice: originalPrice,
-        charge: invoice.charge, 
+        charge: invoice.charge,
+        amountDue: invoice.amountDue,
+        remainingBalance: invoice.remainingBalance,
         discountsApplied: invoice.discountsApplied || [],
         paymentsApplied: [...invoice.paymentsApplied],
         paymentStatus: invoice.paymentStatus,

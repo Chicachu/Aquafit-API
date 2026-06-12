@@ -54,9 +54,10 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
       })
       .sort({ 'period.endDate': 1 }) 
       .limit(1)
+      .lean()
       .then(invoices => invoices[0] || null)
 
-      return invoice
+      return invoice as InvoiceDocument
     } catch (error) {
       throw error
     }

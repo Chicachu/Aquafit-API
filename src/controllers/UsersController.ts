@@ -62,9 +62,9 @@ class UsersController {
           createUserDTO.username = String(createUserDTO.employeeId)
         }
 
-        await usersService.createNewUser(createUserDTO)
+        const createdUser = await usersService.createNewUser(createUserDTO)
 
-        res.send()
+        res.send(createdUser)
     })
   ]
 
