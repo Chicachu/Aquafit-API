@@ -79,6 +79,10 @@ const UserSchema = new Schema(
     employeeId: {
       type: Number,
       required: false
+    },
+    workLocation: {
+      type: String,
+      required: false
     }
   },
   { timestamps: true }

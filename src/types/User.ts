@@ -23,6 +23,7 @@ export type User = IDocument & {
   accessToken?: string | null
   notes?: Note[] | null
   employeeId?: number | null
+  workLocation?: string | null
 }
 
 export type UserCreationDTO = {
@@ -32,6 +33,7 @@ export type UserCreationDTO = {
   role: Role
   employeeId?: number
   username?: string
+  workLocation?: string
 }
 
 export type UpdateUserOptions = {
@@ -47,4 +49,5 @@ export type UpdateUserOptions = {
   } | null
   role?: Role
   employeeId?: number | null
+  workLocation?: string | null
 }

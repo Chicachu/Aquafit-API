@@ -31,8 +31,9 @@ class UsersController {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
     }),
+    body('workLocation').optional({ values: 'falsy' }).isString().trim(),
       asyncHandler(async (req: Request, res: Response) => {
-        const { firstName, lastName, phoneNumber, role, employeeId } = req.body
+        const { firstName, lastName, phoneNumber, role, employeeId, workLocation } = req.body
 
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -62,6 +63,9 @@ class UsersController {
 
         if (employeeId !== undefined) {
           createUserDTO.employeeId = employeeId === null ? undefined : Number(employeeId)
+        }
+        if (typeof workLocation === 'string' && workLocation.trim() !== '') {
+          createUserDTO.workLocation = workLocation.trim()
         }
         if (hasStaffEmployeeId(roleVal) && createUserDTO.employeeId != null) {
           createUserDTO.username = String(createUserDTO.employeeId)
@@ -124,6 +128,7 @@ class UsersController {
       if (value === null || value === undefined) return true
       return !isNaN(Number(value))
     }),
+    body('workLocation').optional({ values: 'falsy' }).isString().trim(),
     body('password')
       .optional()
       .custom((val) => val === undefined || val === null || val === '' || (typeof val === 'string' && val.trim().length >= 6))
@@ -163,6 +168,12 @@ class UsersController {
       }
       if (req.body.employeeId !== undefined) {
         updateData.employeeId = (req.body.employeeId === null ? null : Number(req.body.employeeId)) as number | null
+      }
+      if (req.body.workLocation !== undefined) {
+        const workLocationRaw = req.body.workLocation
+        updateData.workLocation = (typeof workLocationRaw === 'string' && workLocationRaw.trim() !== '')
+          ? workLocationRaw.trim()
+          : null
       }
       const passwordRaw = req.body.password
       if (typeof passwordRaw === 'string' && passwordRaw.trim().length > 0) {

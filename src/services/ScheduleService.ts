@@ -109,9 +109,16 @@ class ScheduleService {
   async getInstructorClassDetails(userId: string): Promise<InstructorClassDetails> {
     logger.debugInside(this._FILE_NAME, this.getInstructorClassDetails.name, { userId })
 
-    const instructor = await usersService.getUserById(userId)
+    const employee = await usersService.getUserById(userId)
 
-    if (!instructor || instructor.role !== Role.INSTRUCTOR) {
+    if (!employee) {
+      throw new AppError('errors.resourceNotFound', 404)
+    }
+
+    const canHaveClassAssignments =
+      employee.role === Role.INSTRUCTOR || employee.role === Role.MANAGER
+
+    if (!canHaveClassAssignments) {
       throw new AppError('errors.resourceNotFound', 404)
     }
 
@@ -134,7 +141,7 @@ class ScheduleService {
 
     logger.debugComplete(this._FILE_NAME, this.getInstructorClassDetails.name)
     return {
-      instructor,
+      instructor: employee,
       assignmentInfo
     }
   }
