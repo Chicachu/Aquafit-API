@@ -9,6 +9,6 @@ export class PartialEnrollmentDiscountHandler implements DiscountHandler<Partial
     if (!context) throw new AppError(i18n.__('errors.contextMissing'), 404)
 
     const ratio = context.daysAttending / context.totalDaysInClass
-    return Math.round(chargeAmount * (1 - ratio))
+    return Math.round(chargeAmount * ratio)
   }
 }

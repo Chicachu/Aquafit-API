@@ -14,6 +14,9 @@ import { classService } from "./ClassService"
 import { enrollmentService } from "./EnrollmentService"
 import { assignmentService } from "./AssignmentService"
 import * as employeePayableService from "./EmployeePayableService"
+import { BUSINESS_TIME_ZONE } from "./scheduleDateUtils"
+
+const CRON_TIMEZONE = { timezone: BUSINESS_TIME_ZONE }
 
 export class CronSchedulerService {
   static async startAllJobs() {
@@ -80,7 +83,7 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in updateInvoiceStatuses: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
 
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -90,7 +93,7 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in processDueDateCheckAndCreateInvoices: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
 
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -103,7 +106,7 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in class termination: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
 
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -113,7 +116,7 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in updateEnrollmentStatuses: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
 
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -123,7 +126,7 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in generatePayablesForCurrentMonth: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
 
     cron.schedule('0 0 * * *', async () => {
       try {
@@ -133,6 +136,6 @@ export class CronSchedulerService {
       } catch (error: any) {
         logger.error(`[CRON] Error in updateAssignmentStatuses: ${error?.message || error}`)
       }
-    })
+    }, CRON_TIMEZONE)
   }
 }

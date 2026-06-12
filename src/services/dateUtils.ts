@@ -1,21 +1,36 @@
+import moment from 'moment-timezone'
 import { BillingFrequency } from "../types/enums/BillingFrequency"
 import { Weekday } from "../types/enums/Weekday"
+import { BUSINESS_TIME_ZONE } from './scheduleDateUtils'
+
+function toBusinessMoment(date: Date): moment.Moment {
+  return moment(date).tz(BUSINESS_TIME_ZONE).startOf('day')
+}
+
+/** Normalize a date to midnight in the business timezone (America/Mazatlan). */
+export function toBusinessStartOfDay(date: Date): Date {
+  return toBusinessMoment(date).toDate()
+}
+
+export function addBusinessDays(date: Date, days: number): Date {
+  return toBusinessMoment(date).add(days, 'days').toDate()
+}
 
 /**
  * Counts the number of occurrences of specific weekdays within a date range
  */
 export function countWeekdaysInPeriod(startDate: Date, endDate: Date, weekdays: Weekday[]): number {
   let count = 0
-  const currentDate = new Date(startDate)
-  
-  while (currentDate <= endDate) {
-    const dayOfWeek = currentDate.getDay()
-    if (weekdays.includes(dayOfWeek)) {
+  const currentDate = toBusinessMoment(startDate)
+  const end = toBusinessMoment(endDate)
+
+  while (currentDate.isSameOrBefore(end, 'day')) {
+    if (weekdays.includes(currentDate.day())) {
       count++
     }
-    currentDate.setDate(currentDate.getDate() + 1)
+    currentDate.add(1, 'day')
   }
-  
+
   return count
 }
 
@@ -23,22 +38,18 @@ export function countWeekdaysInPeriod(startDate: Date, endDate: Date, weekdays: 
  * Finds the next session day (based on weekdays) after a given date
  */
 export function getNextSessionDay(date: Date, weekdays: Weekday[]): Date {
-  const nextDate = new Date(date)
-  nextDate.setDate(nextDate.getDate() + 1)
-  
-  // Find the next day that matches one of the session weekdays
+  const nextDate = toBusinessMoment(date).add(1, 'day')
+
   let attempts = 0
   while (attempts < 7) {
-    const dayOfWeek = nextDate.getDay()
-    if (weekdays.includes(dayOfWeek)) {
-      return nextDate
+    if (weekdays.includes(nextDate.day())) {
+      return nextDate.toDate()
     }
-    nextDate.setDate(nextDate.getDate() + 1)
+    nextDate.add(1, 'day')
     attempts++
   }
-  
-  // Fallback: return date + 1 day if no match found (shouldn't happen)
-  return nextDate
+
+  return nextDate.toDate()
 }
 
 /**
@@ -67,12 +78,10 @@ export function getNthSessionDay(
       break
   }
 
-  if (n <= 0) return new Date(startDate)
-  let current = new Date(startDate)
-  current.setHours(0, 0, 0, 0)
+  if (n <= 0) return toBusinessStartOfDay(startDate)
+  let current = toBusinessStartOfDay(startDate)
   for (let i = 0; i < n - 1; i++) {
     current = getNextSessionDay(current, weekdays)
-    current.setHours(0, 0, 0, 0)
   }
   return current
 }

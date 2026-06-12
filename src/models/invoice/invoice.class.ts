@@ -5,6 +5,8 @@ import { InvoiceCreationDTO } from "../../types/invoices/Invoice"
 import AppError from "../../types/AppError"
 import { PaymentStatus } from "../../types/enums/PaymentStatus"
 import { logger } from "../../services/LoggingService"
+import { addBusinessDays, toBusinessStartOfDay } from "../../services/dateUtils"
+import { businessDateDayQuery, formatBusinessDateKey } from "../../services/scheduleDateUtils"
 import path from "path"
 
 class InvoiceCollection extends Collection<IInvoiceModel> {
@@ -67,14 +69,8 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
     const existingInvoice = await this.findOne({
       userId: clientId,
       enrollmentId,
-      'period.startDate': {
-        $gte: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), 0, 0, 0),
-        $lt: new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 1, 0, 0, 0)
-      },
-      'period.endDate': {
-        $gte: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 0, 0, 0),
-        $lt: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate() + 1, 0, 0, 0)
-      }
+      'period.startDate': businessDateDayQuery(startDate),
+      'period.endDate': businessDateDayQuery(endDate)
     })
 
     return !!existingInvoice
@@ -82,11 +78,9 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
 
   async updatePaymentStatuses(): Promise<void> {
     logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name)
-    const now = new Date()
-    // Normalize to start of day for accurate date comparison
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const fourDaysFromNow = new Date(today)
-    fourDaysFromNow.setDate(today.getDate() + 4)
+    const today = toBusinessStartOfDay(new Date())
+    const todayKey = formatBusinessDateKey(today)
+    const fourDaysFromNowKey = formatBusinessDateKey(addBusinessDays(today, 4))
   
     const invoicesToUpdate = await this.model.find({
       paymentStatus: { $in: [PaymentStatus.PENDING, PaymentStatus.ALMOST_DUE] }
@@ -95,28 +89,26 @@ class InvoiceCollection extends Collection<IInvoiceModel> {
     logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, { 
       foundInvoices: invoicesToUpdate.length,
       today: today.toISOString(),
-      fourDaysFromNow: fourDaysFromNow.toISOString()
+      fourDaysFromNow: fourDaysFromNowKey
     })
   
     const bulkOps = invoicesToUpdate.map(invoice => {
-      const endDate = new Date(invoice.period.endDate)
-      // Normalize endDate to start of day for comparison
-      const endDateNormalized = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())
-      
+      const endDateKey = formatBusinessDateKey(invoice.period.endDate)
+
       let newStatus = PaymentStatus.PENDING
-      
-      if (endDateNormalized < today) {
+
+      if (endDateKey < todayKey) {
         newStatus = PaymentStatus.OVERDUE
-      } else if (endDateNormalized >= today && endDateNormalized <= fourDaysFromNow) {
+      } else if (endDateKey >= todayKey && endDateKey <= fourDaysFromNowKey) {
         newStatus = PaymentStatus.ALMOST_DUE
-      } 
+      }
   
       if (newStatus !== invoice.paymentStatus) {
         logger.debugInside(this._FILE_NAME, this.updatePaymentStatuses.name, {
           invoiceId: invoice._id,
           currentStatus: invoice.paymentStatus,
           newStatus: newStatus,
-          endDate: endDateNormalized.toISOString()
+          endDate: endDateKey
         })
         return {
           updateOne: {

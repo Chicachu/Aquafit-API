@@ -5,6 +5,7 @@ import { ClassStatus } from "../types/enums/ClassStatus"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
 import { logger } from "../services/LoggingService"
 import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
+import { formatBusinessDateKey, getBusinessCalendarDayOfWeek, isWithinBusinessDateRange, parseAsBusinessCalendarDate } from "../services/scheduleDateUtils"
 import AppError from "../types/AppError"
 import { ClassDetails } from "../types/ClassDetails"
 import { Enrollment } from "../types/Enrollment"
@@ -301,16 +302,13 @@ class ClassHandler {
       throw new AppError('errors.resourceNotFound', 404)
     }
 
-    // Normalize the cancellation date (set to midnight)
-    const normalizedCancellationDate = new Date(cancellationDate)
-    normalizedCancellationDate.setHours(0, 0, 0, 0)
+    const normalizedCancellationDate = parseAsBusinessCalendarDate(cancellationDate)
 
     // Check if this date has already been cancelled
     if (foundClass.cancellations && foundClass.cancellations.length > 0) {
       const existingCancellation = foundClass.cancellations.find(cancellation => {
-        const cancellationDateObj = new Date(cancellation.date)
-        cancellationDateObj.setHours(0, 0, 0, 0)
-        return cancellationDateObj.getTime() === normalizedCancellationDate.getTime()
+        return formatBusinessDateKey(parseAsBusinessCalendarDate(cancellation.date))
+          === formatBusinessDateKey(normalizedCancellationDate)
       })
 
       if (existingCancellation) {
@@ -335,7 +333,7 @@ class ClassHandler {
 
         // Check if the cancellation date falls on a day this enrollment attends
         // If not, skip giving them a bonus session
-        const cancellationDayOfWeek = normalizedCancellationDate.getDay()
+        const cancellationDayOfWeek = getBusinessCalendarDayOfWeek(normalizedCancellationDate)
         if (!effectiveWeekdays.includes(cancellationDayOfWeek)) {
           logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
             userId: enrollment.userId,
@@ -352,13 +350,11 @@ class ClassHandler {
         let targetInvoice: Invoice | null = null
 
         for (const invoice of allInvoices) {
-          const invoiceStartDate = new Date(invoice.period.startDate)
-          invoiceStartDate.setHours(0, 0, 0, 0)
-          const invoiceEndDate = new Date(invoice.period.endDate)
-          invoiceEndDate.setHours(0, 0, 0, 0)
-
-          // Check if cancellation date falls within this invoice's period
-          if (normalizedCancellationDate >= invoiceStartDate && normalizedCancellationDate <= invoiceEndDate) {
+          if (isWithinBusinessDateRange(
+            normalizedCancellationDate,
+            invoice.period.startDate,
+            invoice.period.endDate
+          )) {
             targetInvoice = invoice
             break
           }
@@ -379,15 +375,13 @@ class ClassHandler {
 
         // Private Fitness + client-initiated: only give bonus on first client cancel per enrollment period; instructor-initiated always gets bonus
         if (isPrivateFitness && effectiveCancelledBy === 'client') {
-          const invoiceStartDate = new Date(targetInvoice.period.startDate)
-          invoiceStartDate.setHours(0, 0, 0, 0)
-          const invoiceEndDate = new Date(targetInvoice.period.endDate)
-          invoiceEndDate.setHours(0, 0, 0, 0)
-          const existingClientCancellationsInPeriod = (foundClass.cancellations || []).filter(c => {
-            const d = new Date(c.date)
-            d.setHours(0, 0, 0, 0)
-            return d >= invoiceStartDate && d <= invoiceEndDate && c.cancelledBy === 'client'
-          })
+          const existingClientCancellationsInPeriod = (foundClass.cancellations || []).filter(c =>
+            isWithinBusinessDateRange(
+              parseAsBusinessCalendarDate(c.date),
+              targetInvoice!.period.startDate,
+              targetInvoice!.period.endDate
+            ) && c.cancelledBy === 'client'
+          )
           if (existingClientCancellationsInPeriod.length >= 1) {
             logger.debugInside(this._FILE_NAME, this.cancelClass.name, {
               userId: enrollment.userId,
@@ -411,11 +405,8 @@ class ClassHandler {
         await this.enrollmentService.updateBonusSessionsConsumed(enrollment._id!, newBonusSessionsConsumed)
 
         // Extend the invoice period end date by one session day
-        const currentEndDate = new Date(targetInvoice.period.endDate)
-        currentEndDate.setHours(0, 0, 0, 0)
-        
+        const currentEndDate = parseAsBusinessCalendarDate(targetInvoice.period.endDate)
         const extendedEndDate = getNextSessionDay(currentEndDate, effectiveWeekdays)
-        extendedEndDate.setHours(0, 0, 0, 0)
 
         // Update the invoice period end date and increment bonus sessions applied
         await this.invoiceService.updateInvoicePeriodEndDate(targetInvoice._id!, extendedEndDate, true)

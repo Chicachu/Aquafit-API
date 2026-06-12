@@ -8,6 +8,8 @@ import { logger } from "./LoggingService"
 import { PaymentStatus } from "../types/enums/PaymentStatus"
 import { PaymentType } from "../types/enums/PaymentType"
 import { computeInvoiceAmounts, withInvoiceAmounts } from "./invoiceAmountUtils"
+import { addBusinessDays, toBusinessStartOfDay } from "./dateUtils"
+import { formatBusinessDateKey } from "./scheduleDateUtils"
 
 class InvoiceService {
   constructor(private _invoiceCollection: InvoiceCollection) {}
@@ -116,20 +118,19 @@ class InvoiceService {
     
     // Determine payment status if not provided
     let invoicePaymentStatus = paymentStatus
+    const normalizedStartDate = toBusinessStartOfDay(startDate)
+    const normalizedEndDate = toBusinessStartOfDay(endDate)
+
     if (!invoicePaymentStatus) {
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      const normalizedEndDate = new Date(endDate)
-      normalizedEndDate.setHours(0, 0, 0, 0)
-      
-      // If the invoice end date has passed, it should be OVERDUE
-      // Otherwise, check if it's within 4 days (ALMOST_DUE) or PENDING
-      if (normalizedEndDate < today) {
+      const today = toBusinessStartOfDay(new Date())
+      const todayKey = formatBusinessDateKey(today)
+      const endKey = formatBusinessDateKey(normalizedEndDate)
+
+      if (endKey < todayKey) {
         invoicePaymentStatus = PaymentStatus.OVERDUE
       } else {
-        const fourDaysFromNow = new Date(today)
-        fourDaysFromNow.setDate(today.getDate() + 4)
-        if (normalizedEndDate >= today && normalizedEndDate <= fourDaysFromNow) {
+        const fourDaysFromNow = formatBusinessDateKey(addBusinessDays(today, 4))
+        if (endKey >= todayKey && endKey <= fourDaysFromNow) {
           invoicePaymentStatus = PaymentStatus.ALMOST_DUE
         } else {
           invoicePaymentStatus = PaymentStatus.PENDING
@@ -143,15 +144,20 @@ class InvoiceService {
       originalPrice,
       charge, 
       period: {
-        startDate, 
-        endDate
+        startDate: normalizedStartDate,
+        endDate: normalizedEndDate
       },
       paymentStatus: invoicePaymentStatus,
       discountsApplied: discountsApplied || []
     }
 
     try {
-      const invoiceExists = await this._invoiceCollection.invoiceExists(clientId, enrollmentId, startDate, endDate)
+      const invoiceExists = await this._invoiceCollection.invoiceExists(
+        clientId,
+        enrollmentId,
+        normalizedStartDate,
+        normalizedEndDate
+      )
 
       if (invoiceExists) throw new AppError('errors.invoiceAlreadyExists', 400)
 
@@ -206,11 +212,8 @@ class InvoiceService {
   ): Promise<Invoice> {
     logger.debugInside(this._FILE_NAME, this.updateInvoicePeriodEndDate.name, { invoiceId, newEndDate, incrementBonusSessions })
     try {
-      const normalizedEndDate = new Date(newEndDate)
-      normalizedEndDate.setHours(0, 0, 0, 0)
-      
       const update: any = {
-        'period.endDate': normalizedEndDate
+        'period.endDate': toBusinessStartOfDay(newEndDate)
       }
       
       if (incrementBonusSessions) {

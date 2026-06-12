@@ -1,7 +1,8 @@
 import { ClassService, classService } from "../services/ClassService"
 import { enrollmentService, EnrollmentService } from "../services/EnrollmentService"
 import { invoiceService, InvoiceService } from "../services/InvoiceService"
-import { countWeekdaysInPeriod, getNextSessionDay, getNthSessionDay } from "../services/dateUtils"
+import { addBusinessDays, countWeekdaysInPeriod, getNextSessionDay, getNthSessionDay, toBusinessStartOfDay } from "../services/dateUtils"
+import { formatBusinessDateKey, getBusinessCalendarDayOfWeek, isBusinessDateAfter, isWithinBusinessDateRange, parseAsBusinessCalendarDate } from "../services/scheduleDateUtils"
 import AppError from "../types/AppError"
 import { Class } from "../types/Class"
 import { Discount } from "../types/discounts/Discount"
@@ -15,6 +16,7 @@ import { Price } from "../types/Price"
 import mongoose from 'mongoose'
 import { ClientEnrollmentDetails } from "../types/ClientEnrollmentDetails"
 import { usersService, UsersService } from "../services/UsersService"
+import { ClassType } from "../types/enums/ClassType"
 import { Weekday } from "../types/enums/Weekday"
 import { EnrollmentStatus } from "../types/enums/EnrollmentStatus"
 import { logger } from "../services/LoggingService"
@@ -386,8 +388,7 @@ class ClientHandler {
     logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name)
   
     const enrollments = await this._enrollmentService.getAllEnrollments()
-    const today = new Date()
-    today.setHours(0, 0, 0, 0) // Normalize to start of day
+    const today = toBusinessStartOfDay(new Date())
 
     logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, `Processing ${enrollments.length} enrollments`, {
       today: today.toISOString()
@@ -402,9 +403,8 @@ class ClientHandler {
 
         // Skip if enrollment has an endDate that has already passed (enrollment has ended)
         if (enrollment.endDate) {
-          const enrollmentEndDate = new Date(enrollment.endDate)
-          enrollmentEndDate.setHours(0, 0, 0, 0)
-          if (enrollmentEndDate <= today) {
+          const enrollmentEndDate = toBusinessStartOfDay(enrollment.endDate)
+          if (formatBusinessDateKey(enrollmentEndDate) <= formatBusinessDateKey(today)) {
             // Enrollment has ended, skip invoice creation
             continue
           }
@@ -435,9 +435,8 @@ class ClientHandler {
         })
         
         if (classDoc.endDate) {
-          const classEndDate = new Date(classDoc.endDate)
-          classEndDate.setHours(0, 0, 0, 0)
-          if (classEndDate < today) {
+          const classEndDate = toBusinessStartOfDay(classDoc.endDate)
+          if (formatBusinessDateKey(classEndDate) < formatBusinessDateKey(today)) {
             logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
               message: 'Class has ended, skipping enrollment',
               enrollmentId: enrollment._id,
@@ -449,34 +448,34 @@ class ClientHandler {
         }
 
         // Get the weekdays for this enrollment (needed to calculate next session day)
-        const weekdays = (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0) 
-          ? enrollment.daysOfWeekOverride 
+        const weekdays = (enrollment.daysOfWeekOverride && enrollment.daysOfWeekOverride.length > 0)
+          ? enrollment.daysOfWeekOverride
           : classDoc.days
 
-        let invoiceStartDate: Date
-        const invoices = await this._invoiceService.getInvoicesFromIds(enrollment.invoiceIds)
-        
+        const billingFrequency = enrollment.billingFrequencyOverride || classDoc.billingFrequency
+        const invoices = await this._invoiceService.getClientEnrollmentHistory(
+          enrollment.userId,
+          enrollment._id!
+        )
+
+        let periodStart: Date
         if (!invoices || invoices.length === 0) {
-          // No invoices exist, start from enrollment startDate
-          invoiceStartDate = new Date(enrollment.startDate)
-          invoiceStartDate.setHours(0, 0, 0, 0)
+          periodStart = toBusinessStartOfDay(enrollment.startDate)
         } else {
-          // Start from the next session day after the latest invoice's end date
           const latestInvoice = invoices[0]
-          const latestInvoiceEndDate = new Date(latestInvoice.period.endDate)
-          latestInvoiceEndDate.setHours(0, 0, 0, 0)
-          
-          // Generate invoice as soon as we've passed the last invoice's end date
-          // Don't wait for the next session day to arrive - create it immediately
-          if (today > latestInvoiceEndDate) {
-            // The invoice period start date should be the next session day that the person
-            // is enrolled for FROM TODAY (when generating), not from the last invoice's end date
-            invoiceStartDate = getNextSessionDay(today, weekdays)
-            invoiceStartDate.setHours(0, 0, 0, 0)
-          } else {
-            // Last invoice hasn't ended yet, skip
+          const latestInvoiceEndDate = toBusinessStartOfDay(latestInvoice.period.endDate)
+
+          if (!isBusinessDateAfter(today, latestInvoiceEndDate)) {
+            await this._applyMissingCancellationBonusesToOpenInvoice(
+              enrollment,
+              classDoc,
+              weekdays,
+              billingFrequency,
+              latestInvoice,
+              invoices
+            )
             logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-              message: 'Last invoice period has not ended yet, skipping',
+              message: 'Last invoice period has not ended yet, skipping new invoice creation',
               enrollmentId: enrollment._id,
               userId: enrollment.userId,
               latestInvoiceEndDate: latestInvoiceEndDate.toISOString(),
@@ -485,151 +484,135 @@ class ClientHandler {
             })
             continue
           }
+
+          periodStart = getNextSessionDay(latestInvoiceEndDate, weekdays)
         }
 
-        // Calculate the next period's end date based on billing frequency
-        const billingFrequency = enrollment.billingFrequencyOverride || classDoc.billingFrequency
-        const nextPeriodEndDate = this._calculateDueDate(invoiceStartDate, billingFrequency, weekdays)
-        nextPeriodEndDate.setHours(0, 0, 0, 0)
-        
-        // Limit by enrollment endDate, class endDate, or calculated period endDate (whichever is earliest)
-        let effectiveEndDate: Date = nextPeriodEndDate
+        let effectiveEndDate: Date = this._calculateDueDate(periodStart, billingFrequency, weekdays)
         if (enrollment.endDate) {
-          const enrollmentEndDate = new Date(enrollment.endDate)
-          enrollmentEndDate.setHours(0, 0, 0, 0)
-          if (enrollmentEndDate < effectiveEndDate) {
+          const enrollmentEndDate = toBusinessStartOfDay(enrollment.endDate)
+          if (formatBusinessDateKey(enrollmentEndDate) < formatBusinessDateKey(effectiveEndDate)) {
             effectiveEndDate = enrollmentEndDate
           }
         }
         if (classDoc.endDate) {
-          const classEndDate = new Date(classDoc.endDate)
-          classEndDate.setHours(0, 0, 0, 0)
-          if (classEndDate < effectiveEndDate) {
+          const classEndDate = toBusinessStartOfDay(classDoc.endDate)
+          if (formatBusinessDateKey(classEndDate) < formatBusinessDateKey(effectiveEndDate)) {
             effectiveEndDate = classEndDate
           }
         }
-        
-        // Only create the next period's invoice (not multiple periods ahead)
-        const periodEndDate = effectiveEndDate
-        const missingPeriods = [{
-          startDate: invoiceStartDate,
-          endDate: periodEndDate
-        }]
 
-        if (missingPeriods.length === 0) {
-          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-            message: 'No period to create',
-            enrollmentId: enrollment._id,
-            userId: enrollment.userId,
-            invoiceStartDate: invoiceStartDate.toISOString(),
-            nextPeriodEndDate: nextPeriodEndDate.toISOString(),
-            classEndDate: effectiveEndDate?.toISOString() || 'none',
-            billingFrequency,
-            weekdays: weekdays,
-            latestInvoiceEndDate: invoices.length > 0 ? invoices[0].period.endDate.toISOString() : 'N/A'
-          })
-          continue
-        }
+        let totalBonusSessions = enrollment.bonusSessions || 0
+        let consumedBonusSessions = enrollment.bonusSessionsConsumed || 0
+        let remainingBonusSessions = totalBonusSessions - consumedBonusSessions
+        const initialConsumedBonusSessions = consumedBonusSessions
+        const initialTotalBonusSessions = totalBonusSessions
+        const invoicesForCancellationCheck: Invoice[] = [...(invoices || [])]
+        let invoicesCreated = 0
 
-        logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Creating invoice for next period', {
-          enrollmentId: enrollment._id,
-          userId: enrollment.userId,
-          invoiceStartDate: invoiceStartDate.toISOString(),
-          invoiceEndDate: periodEndDate.toISOString(),
-          classEndDate: effectiveEndDate?.toISOString() || 'none',
-          billingFrequency
-        })
-
-        // Get bonus sessions (total given and already consumed)
-        const totalBonusSessions = enrollment.bonusSessions || 0
-        const consumedBonusSessions = enrollment.bonusSessionsConsumed || 0
-        const availableBonusSessions = totalBonusSessions - consumedBonusSessions
-        
-        let remainingBonusSessions = availableBonusSessions
-        const initialRemainingBonusSessions = remainingBonusSessions
-
-        // Create invoices for each missing period
-        for (const period of missingPeriods) {
+        while (true) {
           logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
             message: 'Processing period for invoice creation',
             enrollmentId: enrollment._id,
             userId: enrollment.userId,
-            periodStart: period.startDate.toISOString(),
-            periodEnd: period.endDate.toISOString(),
+            periodStart: periodStart.toISOString(),
             billingFrequency
           })
-          
-          // Calculate base end date for this period
-          let periodEndDate = this._calculateDueDate(period.startDate, billingFrequency, weekdays)
-          periodEndDate.setHours(0, 0, 0, 0) // Normalize to start of day
-          
-          // Track bonus sessions applied to this invoice
-          let bonusSessionsForThisInvoice = 0
-          
+
+          const basePeriodEnd = this._calculateDueDate(periodStart, billingFrequency, weekdays)
+          const cancellationBonuses = this._countCancellationBonusSessionsForPeriod(
+            classDoc,
+            weekdays,
+            periodStart,
+            basePeriodEnd,
+            invoicesForCancellationCheck
+          )
+
+          let periodEndDate = this._extendPeriodEndByBonusSessions(
+            basePeriodEnd,
+            weekdays,
+            cancellationBonuses
+          )
+          let bonusSessionsForThisInvoice = cancellationBonuses
+
+          if (cancellationBonuses > 0) {
+            totalBonusSessions += cancellationBonuses
+            consumedBonusSessions += cancellationBonuses
+            remainingBonusSessions = totalBonusSessions - consumedBonusSessions
+          }
+
           // Apply bonus sessions to this period (one session day per bonus session)
           // Note: When backfilling, we apply available bonus sessions to periods as we create them
           // In normal operation, bonus sessions would be applied at the time of cancellation
           if (remainingBonusSessions > 0) {
-            // Apply one bonus session to this period (extend by one session day)
             periodEndDate = getNextSessionDay(periodEndDate, weekdays)
-            periodEndDate.setHours(0, 0, 0, 0) // Normalize after extending
             remainingBonusSessions--
-            bonusSessionsForThisInvoice = 1
+            consumedBonusSessions++
+            bonusSessionsForThisInvoice++
           }
 
-          // Ensure we don't extend beyond the class end date (if it exists)
-          const finalEndDate = effectiveEndDate && periodEndDate > effectiveEndDate 
-            ? new Date(effectiveEndDate) 
+          const finalEndDate = formatBusinessDateKey(periodEndDate) > formatBusinessDateKey(effectiveEndDate)
+            ? new Date(effectiveEndDate)
             : periodEndDate
 
-          logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-            message: 'Creating invoice',
+          if (formatBusinessDateKey(periodStart) >= formatBusinessDateKey(finalEndDate)) {
+            break
+          }
+
+          logger.info(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, 'Creating invoice for next period', {
             enrollmentId: enrollment._id,
             userId: enrollment.userId,
-            invoiceStartDate: period.startDate.toISOString(),
+            invoiceStartDate: periodStart.toISOString(),
             invoiceEndDate: finalEndDate.toISOString(),
-            bonusSessionsForThisInvoice
+            basePeriodEnd: basePeriodEnd.toISOString(),
+            bonusSessionsForThisInvoice,
+            cancellationBonuses,
+            classEndDate: effectiveEndDate.toISOString(),
+            billingFrequency
           })
 
           const invoice = await this._generateInvoiceWithEndDate(
             enrollment.userId,
             enrollment._id,
             classDoc,
-            period.startDate,
+            periodStart,
             finalEndDate,
             enrollment.billingFrequencyOverride
           )
+          invoicesCreated++
+          invoicesForCancellationCheck.unshift(invoice)
 
-          // Update invoice with bonus sessions applied if any were used
           if (bonusSessionsForThisInvoice > 0) {
             await this._invoiceService.updateBonusSessionsApplied(invoice._id!, bonusSessionsForThisInvoice)
           }
 
+          if (formatBusinessDateKey(finalEndDate) >= formatBusinessDateKey(today)) {
+            break
+          }
+
+          periodStart = toBusinessStartOfDay(getNextSessionDay(finalEndDate, weekdays))
+        }
+
+        if (invoicesCreated === 0) {
           logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
-            message: 'Created invoice for period',
+            message: 'No invoice created for enrollment',
             enrollmentId: enrollment._id,
-            periodStart: period.startDate.toISOString(),
-            periodEnd: finalEndDate.toISOString(),
-            bonusSessionsApplied: initialRemainingBonusSessions - remainingBonusSessions,
-            remainingBonusSessions: remainingBonusSessions,
-            weekdays: weekdays,
-            classSchedule: `${weekdays.length} days per week`
+            userId: enrollment.userId
           })
         }
 
-        // Persist consumed bonus sessions if any were applied
-        const newlyConsumedBonusSessions = initialRemainingBonusSessions - remainingBonusSessions
-        if (newlyConsumedBonusSessions > 0) {
-          const newConsumedCount = consumedBonusSessions + newlyConsumedBonusSessions
-          await this._enrollmentService.updateBonusSessionsConsumed(enrollment._id!, newConsumedCount)
-          
+        const newlyConsumedBonusSessions = consumedBonusSessions - initialConsumedBonusSessions
+        if (newlyConsumedBonusSessions > 0 || totalBonusSessions !== initialTotalBonusSessions) {
+          await this._enrollmentService.updateBonusSessions(enrollment._id!, totalBonusSessions)
+          await this._enrollmentService.updateBonusSessionsConsumed(enrollment._id!, consumedBonusSessions)
+
           logger.debugInside(this._FILE_NAME, this.processDueDateCheckAndCreateInvoices.name, {
             message: 'Updated bonus sessions consumption',
             enrollmentId: enrollment._id,
             newlyConsumed: newlyConsumedBonusSessions,
-            totalConsumed: newConsumedCount,
+            totalConsumed: consumedBonusSessions,
             totalGiven: totalBonusSessions,
-            remainingAvailable: totalBonusSessions - newConsumedCount
+            remainingAvailable: totalBonusSessions - consumedBonusSessions
           })
         }
       } catch (error: any) {
@@ -717,15 +700,15 @@ class ClientHandler {
   }
 
   private async _generateInvoice(
-    userId: string, 
-    enrollmentId: string, 
+    userId: string,
+    enrollmentId: string,
     classDoc: Class,
-    startDate: Date, 
+    startDate: Date,
     billingFrequencyOverride: BillingFrequency,
     currency?: Currency
   ): Promise<Invoice> {
-    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, { 
-      userId, 
+    logger.debugInside(this._FILE_NAME, this._generateInvoice.name, {
+      userId,
       enrollmentId,
       classId: classDoc._id,
       classType: classDoc.classType,
@@ -735,7 +718,7 @@ class ClientHandler {
 
     const targetCurrency = currency || Currency.PESOS
     const matchingPrices = classDoc.prices.filter(p => p.currency === targetCurrency)
-    
+
     if (matchingPrices.length === 0) {
       logger.error(`No price found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Available prices: ${JSON.stringify(classDoc.prices)}`)
       throw new AppError('errors.missingParameters', 400)
@@ -757,44 +740,42 @@ class ClientHandler {
       totalPricesForCurrency: matchingPrices.length
     })
 
-    // Apply partial enrollment discount if applicable (fetch enrollment to check daysOfWeekOverride)
     const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
     const discountResult = this._applyPartialEnrollmentDiscount(originalPrice, enrollment, classDoc)
     const finalPrice = discountResult.finalPrice
     const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
 
-    // create invoice
     const billingFrequency = billingFrequencyOverride ? billingFrequencyOverride : classDoc.billingFrequency
     const weekdays = enrollment.daysOfWeekOverride?.length ? enrollment.daysOfWeekOverride : classDoc.days
     const dueDate = this._calculateDueDate(startDate, billingFrequency, weekdays)
     const invoice = await this._invoiceService.createInvoice(
-      userId, 
-      enrollmentId, 
+      userId,
+      enrollmentId,
       originalPrice,
-      finalPrice, 
-      new Date(startDate), 
+      finalPrice,
+      new Date(startDate),
       dueDate,
       undefined,
       discountsApplied
     )
     await this._enrollmentService.addInvoice(enrollmentId, invoice._id)
-    
+
     return invoice
   }
 
   private async _generateInvoiceWithEndDate(
-    userId: string, 
-    enrollmentId: string, 
+    userId: string,
+    enrollmentId: string,
     classDoc: Class,
     startDate: Date,
     endDate: Date,
     billingFrequencyOverride: BillingFrequency,
     currency?: Currency
   ): Promise<Invoice> {
-    logger.debugInside(this._FILE_NAME, this._generateInvoiceWithEndDate.name, { 
-      userId, 
-      enrollmentId, 
-      startDate, 
+    logger.debugInside(this._FILE_NAME, this._generateInvoiceWithEndDate.name, {
+      userId,
+      enrollmentId,
+      startDate,
       endDate,
       classId: classDoc._id,
       classType: classDoc.classType,
@@ -804,7 +785,7 @@ class ClientHandler {
 
     const targetCurrency = currency || Currency.PESOS
     const matchingPrices = classDoc.prices.filter(p => p.currency === targetCurrency)
-    
+
     if (matchingPrices.length === 0) {
       logger.error(`No price found for currency ${targetCurrency} in class ${classDoc._id} (${classDoc.classType} at ${classDoc.classLocation}). Available prices: ${JSON.stringify(classDoc.prices)}`)
       throw new AppError('errors.missingParameters', 400)
@@ -826,25 +807,23 @@ class ClientHandler {
       totalPricesForCurrency: matchingPrices.length
     })
 
-    // Apply partial enrollment discount if applicable (fetch enrollment to check daysOfWeekOverride)
     const enrollment = await this._enrollmentService.getEnrollmentById(enrollmentId)
     const discountResult = this._applyPartialEnrollmentDiscount(originalPrice, enrollment, classDoc)
     const finalPrice = discountResult.finalPrice
     const discountsApplied: AppliedDiscount[] = discountResult.discount ? [discountResult.discount] : []
 
-    // create invoice with calculated endDate
     const invoice = await this._invoiceService.createInvoice(
-      userId, 
-      enrollmentId, 
+      userId,
+      enrollmentId,
       originalPrice,
-      finalPrice, 
-      new Date(startDate), 
+      finalPrice,
+      new Date(startDate),
       new Date(endDate),
       undefined,
       discountsApplied
     )
     await this._enrollmentService.addInvoice(enrollmentId, invoice._id)
-    
+
     return invoice
   }
 
@@ -892,116 +871,145 @@ class ClientHandler {
    */
   private _calculateDueDate(startDate: Date, billingFrequency: BillingFrequency, weekdays?: Weekday[]): Date {
     logger.debugInside(this._FILE_NAME, this._calculateDueDate.name)
-    const dueDate = new Date(startDate)
-    dueDate.setHours(0, 0, 0, 0)
+    const normalizedStart = toBusinessStartOfDay(startDate)
 
     if (weekdays && weekdays.length > 0) {
-      return getNthSessionDay(dueDate, billingFrequency, weekdays)
+      return getNthSessionDay(normalizedStart, billingFrequency, weekdays)
     }
 
-    // Fallback when weekdays not available
     switch (billingFrequency) {
       case BillingFrequency.MONTHLY:
-        dueDate.setDate(dueDate.getDate() + 28)
-        break
+        return addBusinessDays(normalizedStart, 28)
       case BillingFrequency.WEEKLY:
-        dueDate.setDate(dueDate.getDate() + 7)
-        break
+        return addBusinessDays(normalizedStart, 7)
       case BillingFrequency.ONE_TIME:
       default:
-        break
+        return normalizedStart
     }
-
-    return dueDate
   }
 
   /**
-   * Calculates the end date for an invoice period, extending it by bonus sessions
+   * Applies cancellation bonus sessions to an open invoice that was created without them.
    */
-  private _calculatePeriodEndDateWithBonusSessions(
-    startDate: Date,
+  private async _applyMissingCancellationBonusesToOpenInvoice(
+    enrollment: Enrollment,
+    classDoc: Class,
+    weekdays: Weekday[],
     billingFrequency: BillingFrequency,
+    openInvoice: Invoice,
+    allInvoices: Invoice[]
+  ): Promise<void> {
+    const periodStart = toBusinessStartOfDay(openInvoice.period.startDate)
+    const basePeriodEnd = this._calculateDueDate(periodStart, billingFrequency, weekdays)
+    const otherInvoices = allInvoices.filter((invoice) => invoice._id !== openInvoice._id)
+    const cancellationBonuses = this._countCancellationBonusSessionsForPeriod(
+      classDoc,
+      weekdays,
+      periodStart,
+      basePeriodEnd,
+      otherInvoices
+    )
+    const alreadyApplied = openInvoice.bonusSessionsApplied || 0
+    const missingBonuses = cancellationBonuses - alreadyApplied
+
+    if (missingBonuses <= 0) {
+      return
+    }
+
+    let extendedEndDate = toBusinessStartOfDay(openInvoice.period.endDate)
+    for (let i = 0; i < missingBonuses; i++) {
+      extendedEndDate = getNextSessionDay(extendedEndDate, weekdays)
+    }
+
+    const newBonusSessionsApplied = alreadyApplied + missingBonuses
+    await this._invoiceService.updateInvoicePeriodEndDate(openInvoice._id!, extendedEndDate, false)
+    await this._invoiceService.updateBonusSessionsApplied(openInvoice._id!, newBonusSessionsApplied)
+
+    const totalBonusSessions = (enrollment.bonusSessions || 0) + missingBonuses
+    const consumedBonusSessions = (enrollment.bonusSessionsConsumed || 0) + missingBonuses
+    await this._enrollmentService.updateBonusSessions(enrollment._id!, totalBonusSessions)
+    await this._enrollmentService.updateBonusSessionsConsumed(enrollment._id!, consumedBonusSessions)
+
+    logger.info(this._FILE_NAME, this._applyMissingCancellationBonusesToOpenInvoice.name, 'Applied missing cancellation bonuses to open invoice', {
+      enrollmentId: enrollment._id,
+      userId: enrollment.userId,
+      invoiceId: openInvoice._id,
+      missingBonuses,
+      newEndDate: extendedEndDate.toISOString(),
+      bonusSessionsApplied: newBonusSessionsApplied
+    })
+  }
+
+  /**
+   * Counts class cancellations within a billing period that qualify for bonus sessions.
+   * Mirrors ClassHandler.cancelClass rules (enrollment weekdays + private fitness client limit).
+   */
+  private _countCancellationBonusSessionsForPeriod(
+    classDoc: Class,
+    weekdays: Weekday[],
+    periodStart: Date,
+    basePeriodEnd: Date,
+    existingInvoices: Invoice[] = []
+  ): number {
+    const cancellations = (classDoc.cancellations || [])
+      .filter((cancellation) => {
+        const cancellationDate = parseAsBusinessCalendarDate(cancellation.date)
+        if (!isWithinBusinessDateRange(cancellationDate, periodStart, basePeriodEnd)) {
+          return false
+        }
+        if (!weekdays.includes(getBusinessCalendarDayOfWeek(cancellation.date))) {
+          return false
+        }
+        const alreadyCredited = existingInvoices.some((invoice) => {
+          if ((invoice.bonusSessionsApplied || 0) <= 0) {
+            return false
+          }
+          return isWithinBusinessDateRange(
+            cancellationDate,
+            invoice.period.startDate,
+            invoice.period.endDate
+          )
+        })
+        return !alreadyCredited
+      })
+      .sort((a, b) =>
+        formatBusinessDateKey(parseAsBusinessCalendarDate(a.date))
+          .localeCompare(formatBusinessDateKey(parseAsBusinessCalendarDate(b.date)))
+      )
+
+    if (classDoc.classType !== ClassType.PRIVATE_FITNESS) {
+      return cancellations.length
+    }
+
+    let clientBonusUsed = false
+    let count = 0
+    for (const cancellation of cancellations) {
+      if (cancellation.cancelledBy === 'client') {
+        if (!clientBonusUsed) {
+          count++
+          clientBonusUsed = true
+        }
+      } else {
+        count++
+      }
+    }
+    return count
+  }
+
+  private _extendPeriodEndByBonusSessions(
+    periodEnd: Date,
     weekdays: Weekday[],
     bonusSessions: number
   ): Date {
-    // Calculate base end date
-    let endDate = this._calculateDueDate(startDate, billingFrequency, weekdays)
-
-    // Extend end date by bonus sessions (one session day per bonus session)
+    let endDate = toBusinessStartOfDay(periodEnd)
     for (let i = 0; i < bonusSessions; i++) {
       endDate = getNextSessionDay(endDate, weekdays)
     }
-    
     return endDate
   }
 
-  /**
-   * Calculates all missing billing periods between a start date and end date
-   * Each period starts on a session day, and the next period starts on the next session day after the previous period's end date
-   */
-  private _calculateMissingPeriods(
-    startDate: Date,
-    endDate: Date,
-    billingFrequency: BillingFrequency,
-    weekdays: Weekday[]
-  ): { startDate: Date; endDate: Date }[] {
-    const periods: { startDate: Date; endDate: Date }[] = []
-    let currentStart = new Date(startDate)
-    
-    logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-      billingFrequency,
-      weekdays,
-      initialCurrentStart: currentStart.toISOString()
-    })
-    
-    while (currentStart < endDate) {
-      const periodEnd = this._calculateDueDate(currentStart, billingFrequency, weekdays)
-
-      // Don't create periods that extend beyond the end date
-      const actualEnd = periodEnd > endDate ? new Date(endDate) : periodEnd
-      
-      // Only add period if it has a valid date range (start < end)
-      // This prevents creating periods with zero or negative duration
-      if (currentStart < actualEnd) {
-        periods.push({
-          startDate: new Date(currentStart),
-          endDate: actualEnd
-        })
-      } else {
-        logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
-          message: 'Skipping period with invalid date range',
-          currentStart: currentStart.toISOString(),
-          actualEnd: actualEnd.toISOString()
-        })
-        // Break to avoid infinite loop if dates are equal
-        break
-      }
-      
-      // Move to next period - start from the next session day after this period's end date
-      const nextPeriodStart = getNextSessionDay(actualEnd, weekdays)
-      currentStart = new Date(nextPeriodStart)
-      
-      logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
-        iteration: periods.length,
-        currentStart: currentStart.toISOString(),
-        periodEnd: periodEnd.toISOString(),
-        actualEnd: actualEnd.toISOString(),
-        nextPeriodStart: nextPeriodStart.toISOString(),
-        condition: `${currentStart.toISOString()} < ${endDate.toISOString()} = ${currentStart < endDate}`
-      })
-    }
-    
-    logger.debugInside(this._FILE_NAME, this._calculateMissingPeriods.name, {
-      result: `Found ${periods.length} periods`,
-      periods: periods.map(p => ({ start: p.startDate.toISOString(), end: p.endDate.toISOString() }))
-    })
-    
-    return periods
-  }
-
 }
+
 
 const clientHandler = new ClientHandler(enrollmentService, classService, invoiceService, usersService)
 export { clientHandler, ClientHandler }
