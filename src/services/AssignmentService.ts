@@ -1,6 +1,7 @@
 import { AssignmentCollection, assignmentCollection } from "../models/assignment/assignment.class"
 import { Assignment, AssignmentCreationDTO, AssignmentUpdateOptions } from "../types/Assignment"
 import AppError from "../types/AppError"
+import { AssignmentStatus } from "../types/enums/AssignmentStatus"
 import { logger } from "./LoggingService"
 import path from "path"
 
@@ -87,7 +88,26 @@ class AssignmentService {
       if (!assignment) {
         throw new AppError('errors.resourceNotFound', 404)
       }
-      return await this.assignmentCollection.updateAssignment(assignmentId, updateOptions)
+
+      const updateFields: Partial<Assignment> = { ...updateOptions }
+
+      if (updateOptions.endDate !== undefined) {
+        if (updateOptions.endDate) {
+          const endDate = new Date(updateOptions.endDate)
+          endDate.setHours(0, 0, 0, 0)
+          updateFields.endDate = endDate
+
+          const today = new Date()
+          today.setHours(0, 0, 0, 0)
+          if (endDate <= today) {
+            updateFields.status = AssignmentStatus.UNASSIGNED
+          }
+        } else {
+          updateFields.endDate = null
+        }
+      }
+
+      return await this.assignmentCollection.updateAssignment(assignmentId, updateFields)
     } catch (error: any) {
       if (error instanceof AppError) throw error
       throw new AppError('errors.unableToUpdateAssignment', 500)

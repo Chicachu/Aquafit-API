@@ -7,7 +7,10 @@ import { logger } from "../services/LoggingService"
 import { countWeekdaysInPeriod, getNextSessionDay } from "../services/dateUtils"
 import { formatBusinessDateKey, getBusinessCalendarDayOfWeek, isWithinBusinessDateRange, parseAsBusinessCalendarDate } from "../services/scheduleDateUtils"
 import AppError from "../types/AppError"
-import { ClassDetails } from "../types/ClassDetails"
+import { assignmentService, AssignmentService } from "../services/AssignmentService"
+import { ClassDetails, ClassInstructorSummary } from "../types/ClassDetails"
+import { Assignment } from "../types/Assignment"
+import { AssignmentStatus } from "../types/enums/AssignmentStatus"
 import { Enrollment } from "../types/Enrollment"
 import { Weekday } from "../types/enums/Weekday"
 import { usersService, UsersService } from "../services/UsersService"
@@ -23,7 +26,8 @@ class ClassHandler {
     private classService: ClassService, 
     private enrollmentService: EnrollmentService,
     private invoiceService: InvoiceService,
-    private userService: UsersService
+    private userService: UsersService,
+    private assignmentService: AssignmentService
   ) {}
 
   private readonly _FILE_NAME = path.basename(__filename)
@@ -39,10 +43,12 @@ class ClassHandler {
     const activeEnrollments = classEnrollments.filter((enrollment) => this._isActiveEnrollment(enrollment))
 
     const clientEnrollmentDetails = await this._getClientEnrollmentDetails(activeEnrollments, foundClass.days)
+    const instructor = await this._getActiveInstructor(classId)
     const classDetails: ClassDetails = {
       ...foundClass, 
       clients: clientEnrollmentDetails,
-      enrollmentCounts: this._getEnrollmentCounts(activeEnrollments, foundClass.days)
+      enrollmentCounts: this._getEnrollmentCounts(activeEnrollments, foundClass.days),
+      instructor
     }
 
     logger.debugComplete(this._FILE_NAME, this.getClassDetails.name)
@@ -458,6 +464,27 @@ class ClassHandler {
 
     logger.debugComplete(this._FILE_NAME, this.cancelClass.name)
   }
+
+  private _isActiveAssignment(assignment: Assignment): boolean {
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    if (assignment.startDate && new Date(assignment.startDate) > today) return false
+    if (assignment.status === AssignmentStatus.UNASSIGNED) return false
+    return true
+  }
+
+  private async _getActiveInstructor(classId: string): Promise<ClassInstructorSummary | null> {
+    const assignments = await this.assignmentService.getClassAssignments(classId)
+    const activeAssignment = assignments.find((assignment) => this._isActiveAssignment(assignment))
+    if (!activeAssignment) return null
+
+    const user = await this.userService.getUserFirstAndLastName(activeAssignment.employeeId)
+    return {
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName
+    }
+  }
 }
-const classHandler = new ClassHandler(classService, enrollmentService, invoiceService, usersService)
+const classHandler = new ClassHandler(classService, enrollmentService, invoiceService, usersService, assignmentService)
 export { classHandler, ClassHandler }

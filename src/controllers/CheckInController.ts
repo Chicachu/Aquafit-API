@@ -6,6 +6,10 @@ import { employeeCheckInCollection } from "../models/employee-checkin/employee-c
 import { usersService } from "../services/UsersService";
 import { Role } from "../types/enums/Role";
 import { CheckInType } from "../types/EmployeeCheckIn";
+import {
+  CheckInValidationCode,
+  validateCheckInEntry,
+} from "../business/checkInValidation";
 import i18n from "../../config/i18n";
 
 const EMPLOYEE_ID_6_DIGIT = /^\d{6}$/;
@@ -71,44 +75,21 @@ class CheckInController {
 
       const checkInDate = new Date(date);
       const checkInType = type as CheckInType;
+      const existingEntries = await employeeCheckInCollection.getAllEntriesForEmployee(userIdForEntry);
+      const validation = validateCheckInEntry(existingEntries, checkInType, checkInDate);
 
-      // Validation: Check-in cannot be duplicated if there's an open check-in
-      if (checkInType === CheckInType.CHECK_IN) {
-        const openCheckIn = await employeeCheckInCollection.getOpenCheckInBeforeDate(
-          userIdForEntry,
-          checkInDate
-        );
-        
-        if (openCheckIn) {
-          res.status(400).json({
-            message: i18n.__("errors.missingParameters"),
-            validationErrors: [
-              {
-                path: "type",
-                msg: `Cannot create check-in: there is an open check-in from ${openCheckIn.date.toISOString()} that has not been closed with a check-out`,
-              },
-            ],
-          });
-          return;
-        }
-      }
-
-      // Validation: Check-out can only happen if there's an open check-in
-      if (checkInType === CheckInType.CHECK_OUT) {
-        const hasOpenCheckIn = await employeeCheckInCollection.hasOpenCheckIn(userIdForEntry);
-        
-        if (!hasOpenCheckIn) {
-          res.status(400).json({
-            message: i18n.__("errors.missingParameters"),
-            validationErrors: [
-              {
-                path: "type",
-                msg: "Cannot create check-out: there is no open check-in. A check-out requires a matching check-in.",
-              },
-            ],
-          });
-          return;
-        }
+      if (!validation.valid) {
+        const messageKey = _checkInValidationMessageKey(validation.code);
+        res.status(400).json({
+          message: i18n.__(messageKey),
+          validationErrors: [
+            {
+              path: "type",
+              msg: i18n.__(messageKey),
+            },
+          ],
+        });
+        return;
       }
 
       const entry = await employeeCheckInCollection.create({
@@ -166,6 +147,21 @@ class CheckInController {
       res.send(entries);
     }),
   ];
+}
+
+function _checkInValidationMessageKey(code?: CheckInValidationCode): string {
+  switch (code) {
+    case CheckInValidationCode.OPEN_CHECK_IN:
+      return "errors.checkInOpenSession";
+    case CheckInValidationCode.COOLDOWN_AFTER_CHECK_OUT:
+      return "errors.checkInCooldownAfterCheckOut";
+    case CheckInValidationCode.NO_OPEN_CHECK_IN:
+      return "errors.checkOutNoOpenCheckIn";
+    case CheckInValidationCode.COOLDOWN_AFTER_CHECK_IN:
+      return "errors.checkOutCooldownAfterCheckIn";
+    default:
+      return "errors.missingParameters";
+  }
 }
 
 const checkInController = new CheckInController();
