@@ -67,9 +67,9 @@ class CheckInController {
         throw new AppError("errors.notLoggedInAccessDenied", 401);
       }
 
-      const isAdmin = loggedInUser.role === Role.ADMIN;
+      const canManageOthers = loggedInUser.role === Role.ADMIN || loggedInUser.role === Role.MANAGER;
       const isOwnEntry = userIdForEntry === loggedInUserId;
-      if (!isAdmin && !isOwnEntry) {
+      if (!canManageOthers && !isOwnEntry) {
         throw new AppError("errors.accessDenied", 403);
       }
 
@@ -126,7 +126,7 @@ class CheckInController {
 
       const loggedInUserId = res.locals.loggedInUser as string;
       const loggedInUser = await usersService.getUserById(loggedInUserId);
-      if (!loggedInUser || loggedInUser.role !== Role.ADMIN) {
+      if (!loggedInUser || (loggedInUser.role !== Role.ADMIN && loggedInUser.role !== Role.MANAGER)) {
         throw new AppError("errors.accessDenied", 403);
       }
 
