@@ -28,6 +28,7 @@ function roles(): AccessControl {
     .updateAny(AccessControlResource.USER)
     .readAny(AccessControlResource.PAYMENT)
     .readAny(AccessControlResource.CLASS)
+    .createAny(AccessControlResource.CLASS)
     .updateAny(AccessControlResource.CLASS)
     .readAny(AccessControlResource.ENROLLMENT)
     .createAny(AccessControlResource.ENROLLMENT)
