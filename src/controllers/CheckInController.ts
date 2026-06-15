@@ -10,9 +10,15 @@ import {
   CheckInValidationCode,
   validateCheckInEntry,
 } from "../business/checkInValidation";
+import { createOrUpdatePayableForMonth } from "../services/EmployeePayableService";
+import { logger } from "../services/LoggingService";
 import i18n from "../../config/i18n";
 
 const EMPLOYEE_ID_6_DIGIT = /^\d{6}$/;
+
+function canManageEmployeeCheckIns(role: Role): boolean {
+  return role === Role.ADMIN || role === Role.MANAGER || role === Role.RECEPTIONIST;
+}
 
 class CheckInController {
   createEntry = [
@@ -67,7 +73,7 @@ class CheckInController {
         throw new AppError("errors.notLoggedInAccessDenied", 401);
       }
 
-      const canManageOthers = loggedInUser.role === Role.ADMIN || loggedInUser.role === Role.MANAGER;
+      const canManageOthers = canManageEmployeeCheckIns(loggedInUser.role);
       const isOwnEntry = userIdForEntry === loggedInUserId;
       if (!canManageOthers && !isOwnEntry) {
         throw new AppError("errors.accessDenied", 403);
@@ -98,6 +104,20 @@ class CheckInController {
         date: checkInDate,
       });
 
+      if (checkInType === CheckInType.CHECK_OUT) {
+        try {
+          await createOrUpdatePayableForMonth(
+            userIdForEntry,
+            checkInDate.getFullYear(),
+            checkInDate.getMonth()
+          );
+        } catch (error: any) {
+          logger.error(
+            `createEntry: failed to update payable after check-out for ${userIdForEntry}: ${error?.message || error}`
+          );
+        }
+      }
+
       res.status(201).send(entry);
     }),
   ];
@@ -108,7 +128,7 @@ class CheckInController {
     res.send(entries);
   });
 
-  /** Admin-only: get check-in entries for an employee by 6-digit ID or user _id. */
+  /** Admin, manager, or receptionist: get check-in entries for an employee by 6-digit ID or user _id. */
   getEntriesByEmployeeId = [
     param("employeeId").isString().notEmpty().trim(),
     asyncHandler(async (req: Request, res: Response) => {
@@ -126,7 +146,7 @@ class CheckInController {
 
       const loggedInUserId = res.locals.loggedInUser as string;
       const loggedInUser = await usersService.getUserById(loggedInUserId);
-      if (!loggedInUser || (loggedInUser.role !== Role.ADMIN && loggedInUser.role !== Role.MANAGER)) {
+      if (!loggedInUser || !canManageEmployeeCheckIns(loggedInUser.role)) {
         throw new AppError("errors.accessDenied", 403);
       }
 

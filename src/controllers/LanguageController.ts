@@ -16,7 +16,11 @@ class LanguageController {
       }
       
       try {
-        i18n.setLocale(language)
+        if (typeof (req as Request & { setLocale?: (locale: string) => void }).setLocale === 'function') {
+          (req as Request & { setLocale: (locale: string) => void }).setLocale(language)
+        } else {
+          i18n.setLocale(language)
+        }
         res.status(200).send()
       } catch (error) {
         res.status(400).send()
